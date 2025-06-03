@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Members | Illinois Congressional Debate Association</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../../Resource/favicon.png">
+    <script src="script.js"></script>
+</head>
+<body onload="initialize()">
+
+<div id="mobileMenuContainer">
+    <div id="mobileMenu">
+        <header id="shadowHeader">
+            <a href="../../" id="shadowHome"><img src="../../Resource/ICDALogo.png" alt="ICDA Logo" id="shadowHeaderImage" width="90" height="35"> <p id="shadowHeaderTitle">Illinois Congressional<br>Debate Association</p></a>
+            <svg id="closeMobileMenu" width="40" height="40" onclick="closeMobileMenu()">
+                <line x1="0" y1="0" x2="40" y2="40" style="stroke:#ffffff;stroke-width:8"></line>
+                <line x1="40" y1="0" x2="0" y2="40" style="stroke:#ffffff;stroke-width:8"></line>
+            </svg>
+        </header><div class="mobileDropDownCategory">
+        <a href="../../about">About <br></a>
+        <svg class="mobileDropDownOpener" width="72" height="72" style="position: absolute; right: 0; top: 0"><polygon points="21 31 51 31 36 41" style="fill: #ffffff"></polygon></svg>
+    </div>
+        <div id="aboutDropDown" class="mobileDropDown">
+            <a href="../../about/about-icda" class="mobileSubLink">About ICDA</a>
+            <a href="../../about/congressional-debate" class="mobileSubLink">What is Congressional Debate?</a>
+            <a href="../../about/members" class="mobileSubLink">Members</a>
+            <a href="../../about/leadership" class="mobileSubLink">Leadership</a>
+            <a href="../../about/how-to-join" class="mobileSubLink">How do I join?</a>
+        </div>
+        <div class="mobileDropDownCategory">
+            <a href="../../tournaments">Tournaments <br></a>
+            <svg class="mobileDropDownOpener" width="72" height="72" style="position: absolute; right: 0; top: 0"><polygon points="21 31 51 31 36 41" style="fill: #ffffff"></polygon></svg>
+        </div>
+        <div id="tournamentsDropDown" class="mobileDropDown">
+            <a href="../../tournaments/icda-1" class="mobileSubLink">ICDA 1</a>
+            <a href="../../tournaments/icda-2" class="mobileSubLink">ICDA 2</a>
+            <a href="../../tournaments/icda-3" class="mobileSubLink">ICDA 3</a>
+            <a href="../../tournaments/icda-4" class="mobileSubLink">ICDA 4</a>
+            <a href="../../tournaments/icda-5" class="mobileSubLink">ICDA 5</a>
+            <a href="../../tournaments/icda-state" class="mobileSubLink">ICDA State</a>
+        </div>
+        <div class="mobileDropDownCategory">
+            <a href="../../resources">Resources <br></a>
+            <svg class="mobileDropDownOpener" width="72" height="72" style="position: absolute; right: 0; top: 0"><polygon points="21 31 51 31 36 41" style="fill: #ffffff"></polygon></svg>
+        </div>
+        <div id="resourcesDropDown" class="mobileDropDown">
+            <a href="../../resources/rules" class="mobileSubLink">Rules</a>
+            <a href="../../resources/legislation" class="mobileSubLink">Legislation</a>
+            <a href="../../resources/presiding-officers" class="mobileSubLink">Presiding Officers</a>
+            <a href="../../resources/judging" class="mobileSubLink">Judging</a>
+        </div>
+        <div class="mobileDropDownCategory">
+            <a>Contact <br></a>
+            <svg class="mobileDropDownOpener" width="72" height="72" style="position: absolute; right: 0; top: 0"><polygon points="21 31 51 31 36 41" style="fill: #ffffff"></polygon></svg>
+        </div>
+        <div id="contactDropDown" class="mobileDropDown">
+            <a href="mailto:tim.waters@d214.org" class="mobileSubLink">Tim Waters - President</a>
+            <a href="mailto:dzubert@d127.org" class="mobileSubLink">Dustin Zubert - Membership/Training Commissioner</a>
+        </div>
+        <div class="mobileDropDownCategory">
+            <a href="https://icda2025.itemorder.com/shop/home/">Merchandise <br></a>
+        </div>
+    </div>
+</div>
+
+<div id="top">
+    <div id="topContainer">
+        <a id="topImages" href="../../">
+            <img src="../../Resource/ICDALogo.png" alt="ICDA Logo" id="topImage" width="270" height="104" style="display: block">
+        </a>
+        <header id="header">
+            <a href="../../" id="home"><img src="../../Resource/ICDALogo.png" alt="ICDA Logo" id="headerImage" width="90" height="35"> <p id="headerTitle">Illinois Congressional<br>Debate Association</p></a>
+            <a href="../../about" id="about" class="link">About <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <a href="../../tournaments" id="tournaments" class="link">Tournaments <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <a href="../../resources" id="resources" class="link">Resources <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <a id="contact" class="link">Contact <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <a href="https://icda2025.itemorder.com/shop/home/" id="coachPortal" class="link" style="border-radius: 30px">Merchandise <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <img src="../../Resource/menuIcon.svg" onclick="openMobileMenu()" id="menuImage" alt="Menu Icon" width="40" height="40">
+        </header>
+        <div id="headerMenus">
+            <div id="aboutMenu" class="headerMenu">
+                <a href="../../about/about-icda" class="headerSubLink">About ICDA</a>
+                <a href="../../about/congressional-debate" class="headerSubLink">Congressional Debate</a>
+                <a href="../../about/members" class="headerSubLink">Members</a>
+                <a href="../../about/leadership" class="headerSubLink">Leadership</a>
+                <a href="../../about/how-to-join" class="headerSubLink">How do I join?</a>
+            </div>
+            <div id="tournamentsMenu" class="headerMenu">
+                <a href="../../tournaments/icda-1" class="headerSubLink">ICDA 1 - September</a>
+                <a href="../../tournaments/icda-2" class="headerSubLink">ICDA 2 - October</a>
+                <a href="../../tournaments/icda-3" class="headerSubLink">ICDA 3 - November</a>
+                <a href="../../tournaments/icda-4" class="headerSubLink">ICDA 4 - December</a>
+                <a href="../../tournaments/icda-5" class="headerSubLink">ICDA 5 - January</a>
+                <a href="../../tournaments/icda-state" class="headerSubLink">ICDA State - February</a>
+            </div>
+            <div id="resourcesMenu" class="headerMenu">
+                <a href="../../resources/rules" class="headerSubLink">Rules</a>
+                <a href="../../resources/legislation" class="headerSubLink">Legislation</a>
+                <a href="../../resources/presiding-officers" class="headerSubLink">Presiding Officers</a>
+                <a href="../../resources/judging" class="headerSubLink">Judging</a>
+            </div>
+            <div id="contactMenu" class="headerMenu">
+                <a href="mailto:tim.waters@d214.org" class="headerSubLink">Tim Waters - President</a>
+                <a href="mailto:dzubert@d127.org" class="headerSubLink">Dustin Zubert - Membership/Training Commissioner</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Everything below is actual page content and varies by file -->
+
+<div id="mainContent">
+    <div id="pageHeader" class="division">
+        <section>
+            <svg width="200" height="40" style="margin: auto; padding-bottom: 30px">
+                <polygon points="20 0 200 0 180 40 0 40" style="fill: #142039"></polygon>
+                <text x="52" y="29" color="white" style="fill: white; font-family: langdon, serif; font-size: 30px">MEMBERS</text>
+            </svg>
+            <div id="aboutNavigation" style="max-width: 200px">
+                <a href="../" id="aboutNavigationTitle" style="border-bottom: black 1px solid"><b>About</b></a>
+                <a href="../about-icda" class="aboutNavigationLink">About ICDA</a>
+                <a href="../congressional-debate" class="aboutNavigationLink">Congressional Debate</a>
+                <a href="../members" class="aboutNavigationLink">Members</a>
+                <a href="../leadership" class="aboutNavigationLink">Leadership</a>
+                <a href="../how-to-join" class="aboutNavigationLink" style="padding-bottom: 20px">How do I join?</a>
+            </div>
+            <p class="title" style="font-family: 'Arial Black', serif">ICDA Members</p>
+            <p id="pageHeaderDescription">A list (and a map) of all current ICDA member schools and their head coaches, if they chose to be listed here. Click on any head coach name to email them!</p>
+        </section>
+    </div>
+    <div class="division" style="background-color: #e2f2ff; border-radius: 30px">
+        <section style="border: #34518e 4px solid;">
+            <p class="title" style="text-align: center">Map</p>
+            <iframe id="memberMap" sandbox="allow-scripts" src="https://www.google.com/maps/d/u/0/embed?mid=1hB_UPzPCWXnJiDeDEEc42shVIAKavnw&ehbc=2E312F" height="480" style="margin: auto; display: block; width: 640px; max-width: 100%; border-radius: 30px; border: #142039 4px solid;"></iframe>
+        </section>
+    </div>
+    <div class="division">
+        <section>
+            <ul>
+                <!-- Paste new schools below here -->
+
+                <li><b>Addison Trail High School</b> <img src="Resource/Logos/addisonTrail.png" alt="Addison Trail"> <div class="coaches">
+                </div></li>
+                <li><b>Adlai E. Stevenson High School</b> <img src="Resource/Logos/stevenson.png" alt="Stevenson"> <div class="coaches">
+                </div></li>
+                <li><b>Barrington High School</b> <img src="Resource/Logos/barrington.png" alt="Barrington"> <div class="coaches">
+                </div></li>
+                <li><b>Deerfield High School</b> <img src="Resource/Logos/deerfield.png" alt="Deerfield"> <div class="coaches">
+                </div></li>
+                <li><b>Dundee-Crown High School</b> <img src="Resource/Logos/dundeeCrown.png" alt="Dundee-Crown"> <div class="coaches">
+                </div></li>
+                <li><b>Elk Grove High School</b> <img src="Resource/Logos/elkGrove.png" alt="Elk Grove"> <div class="coaches">
+                </div></li>
+                <li><b>Glenbrook South High School</b> <img src="Resource/Logos/glenbrookSouth.png" alt="Glenbrook South"> <div class="coaches">
+                </div></li>
+                <li><b>Grant Community High School</b> <img src="Resource/Logos/grant.png" alt="Grant"> <div class="coaches">
+                </div></li>
+                <li><b>Grayslake Central High School</b> <img src="Resource/Logos/grayslakeCentral.png" alt="Grayslake Central"> <div class="coaches">
+                </div></li>
+                <li><b>Grayslake North High School</b> <img src="Resource/Logos/grayslakeNorth.png" alt="Grayslake North"> <div class="coaches">
+                    <a class="coach">Head coach: Dustin Zubert</a>
+                </div></li>
+                <li><b>Hampshire High School</b> <img src="Resource/Logos/hampshire.png" alt="Hampshire"> <div class="coaches">
+                </div></li>
+                <li><b>Harry D. Jacobs High School</b> <img src="Resource/Logos/jacobs.png" alt="Jacobs"> <div class="coaches">
+                </div></li>
+                <li><b>Highland Park High School</b> <img src="Resource/Logos/highlandPark.png" alt="Highland Park"> <div class="coaches">
+                </div></li>
+                <li><b>Hoffman Estates High School</b> <img src="Resource/Logos/hoffman.png" alt="Hoffman"> <div class="coaches">
+                </div></li>
+                <li><b>Illinois Mathematics and Science Academy</b> <img src="Resource/Logos/imsa.png" alt="IMSA"> <div class="coaches">
+                </div></li>
+                <li><b>James B. Conant High School</b> <img src="Resource/Logos/conant.png" alt="Conant"> <div class="coaches">
+                    <a href="mailto:gschumacher@d211.org" class="coach">Head coach: Gary Schumacher</a>
+                </div></li>
+                <li><b>John Hersey High School</b> <img src="Resource/Logos/hersey.png" alt="Hersey"> <div class="coaches">
+                </div></li>
+                <li><b>Lake Forest High School</b> <img src="Resource/Logos/lakeForest.png" alt="Lake Forest"> <div class="coaches">
+                </div></li>
+                <li><b>Lyons Township High School</b> <img src="Resource/Logos/lyons.png" alt="Lyons"> <div class="coaches">
+                </div></li>
+                <li><b>Naperville Central High School</b> <img src="Resource/Logos/napervilleCentral.png" alt="Naperville Central"> <div class="coaches">
+                </div></li>
+                <li><b>Naperville North High School</b> <img src="Resource/Logos/napervilleNorth.png" alt="Naperville North"> <div class="coaches">
+                </div></li>
+                <li><b>New Trier High School</b> <img src="Resource/Logos/newTrier.png" alt="New Trier"> <div class="coaches">
+                </div></li>
+                <li><b>Notre Dame College Prep</b> <img src="Resource/Logos/notreDame.png" alt="Notre Dame"> <div class="coaches">
+                </div></li>
+                <li><b>Prospect High School</b> <img src="Resource/Logos/prospect.png" alt="Prospect"> <div class="coaches">
+                    <a href="mailto:adam.levinson@d214.org" class="coach">Head coach: Adam Levinson</a>
+                </div></li>
+                <li><b>Rolling Meadows High School</b> <img src="Resource/Logos/meadows.png" alt="Meadows"> <div class="coaches">
+                    <a href="mailto:tim.waters@d214.org" class="coach">Head coach: Tim Waters</a>
+                </div></li>
+                <li><b>Schaumburg High School</b> <img src="Resource/Logos/schaumburg.png" alt="Schaumburg"> <div class="coaches">
+                    <a href="mailto:cschwartz@d211.org" class="coach">Head coach: Carl Schwartz</a>
+                </div></li>
+                <li><b>Wauconda High School</b> <img src="Resource/Logos/wauconda.png" alt="Wauconda"> <div class="coaches">
+                </div></li>
+                <li><b>Wheeling High School</b> <img src="Resource/Logos/wheeling.png" alt="Wheeling"> <div class="coaches">
+                    <a href="mailto:thomas.schwermin@d214.org" class="coach">Head coach: Tom Schwermin</a>
+                </div></li>
+                <li><b>William Fremd High School</b> <img src="Resource/Logos/fremd.png" alt="Fremd"> <div class="coaches">
+                    <a href="mailto:rkrulewich@d211.org" class="coach">Head coach: Rachael Krulewich</a>
+                </div></li>
+                <li><b>Woodlands Academy of the Sacred Heart</b> <img src="Resource/Logos/woodlands.png" alt="Fremd"> <div class="coaches">
+                </div></li>
+
+                <!-- Paste new schools above here -->
+            </ul>
+        </section>
+    </div>
+</div>
+
+<!-- Everything above is actual page content and varies by file -->
+
+<footer id="footer">
+    <img src="../../Resource/ICDALogo.png" alt="ICDA Logo" id="footerImage" width="181" height="69">
+    <p>&copy; ICDA  |  Design and programming by Sunny Gandhi, Scott Gilbert, & Harshil Joshi</p>
+    <a href="../../constitution.pdf" target="_blank">Constitution</a>
+    <a href="../../resources/rules">Rules</a>
+    <a href="mailto:cschwartz@d211.org">Problems with this website?</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About ICDA | Illinois Congressional Debate Association</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../../Resource/favicon.png">
+    <script src="script.js"></script>
+</head>
+<body onload="initialize()">
+
+<div id="mobileMenuContainer">
+    <div id="mobileMenu">
+        <header id="shadowHeader">
+            <a href="../../" id="shadowHome"><img src="../../Resource/ICDALogo.png" alt="ICDA Logo" id="shadowHeaderImage" width="90" height="35"> <p id="shadowHeaderTitle">Illinois Congressional<br>Debate Association</p></a>
+            <svg id="closeMobileMenu" width="40" height="40" onclick="closeMobileMenu()">
+                <line x1="0" y1="0" x2="40" y2="40" style="stroke:#ffffff;stroke-width:8"></line>
+                <line x1="40" y1="0" x2="0" y2="40" style="stroke:#ffffff;stroke-width:8"></line>
+            </svg>
+        </header><div class="mobileDropDownCategory">
+        <a href="../../about">About <br></a>
+        <svg class="mobileDropDownOpener" width="72" height="72" style="position: absolute; right: 0; top: 0"><polygon points="21 31 51 31 36 41" style="fill: #ffffff"></polygon></svg>
+    </div>
+        <div id="aboutDropDown" class="mobileDropDown">
+            <a href="../../about/about-icda" class="mobileSubLink">About ICDA</a>
+            <a href="../../about/congressional-debate" class="mobileSubLink">What is Congressional Debate?</a>
+            <a href="../../about/members" class="mobileSubLink">Members</a>
+            <a href="../../about/leadership" class="mobileSubLink">Leadership</a>
+            <a href="../../about/how-to-join" class="mobileSubLink">How do I join?</a>
+        </div>
+        <div class="mobileDropDownCategory">
+            <a href="../../tournaments">Tournaments <br></a>
+            <svg class="mobileDropDownOpener" width="72" height="72" style="position: absolute; right: 0; top: 0"><polygon points="21 31 51 31 36 41" style="fill: #ffffff"></polygon></svg>
+        </div>
+        <div id="tournamentsDropDown" class="mobileDropDown">
+            <a href="../../tournaments/icda-1" class="mobileSubLink">ICDA 1</a>
+            <a href="../../tournaments/icda-2" class="mobileSubLink">ICDA 2</a>
+            <a href="../../tournaments/icda-3" class="mobileSubLink">ICDA 3</a>
+            <a href="../../tournaments/icda-4" class="mobileSubLink">ICDA 4</a>
+            <a href="../../tournaments/icda-5" class="mobileSubLink">ICDA 5</a>
+            <a href="../../tournaments/icda-state" class="mobileSubLink">ICDA State</a>
+        </div>
+        <div class="mobileDropDownCategory">
+            <a href="../../resources">Resources <br></a>
+            <svg class="mobileDropDownOpener" width="72" height="72" style="position: absolute; right: 0; top: 0"><polygon points="21 31 51 31 36 41" style="fill: #ffffff"></polygon></svg>
+        </div>
+        <div id="resourcesDropDown" class="mobileDropDown">
+            <a href="../../resources/rules" class="mobileSubLink">Rules</a>
+            <a href="../../resources/legislation" class="mobileSubLink">Legislation</a>
+            <a href="../../resources/presiding-officers" class="mobileSubLink">Presiding Officers</a>
+            <a href="../../resources/judging" class="mobileSubLink">Judging</a>
+        </div>
+        <div class="mobileDropDownCategory">
+            <a>Contact <br></a>
+            <svg class="mobileDropDownOpener" width="72" height="72" style="position: absolute; right: 0; top: 0"><polygon points="21 31 51 31 36 41" style="fill: #ffffff"></polygon></svg>
+        </div>
+        <div id="contactDropDown" class="mobileDropDown">
+            <a href="mailto:tim.waters@d214.org" class="mobileSubLink">Tim Waters - President</a>
+            <a href="mailto:dzubert@d127.org" class="mobileSubLink">Dustin Zubert - Membership/Training Commissioner</a>
+        </div>
+        <div class="mobileDropDownCategory">
+            <a href="https://icda2025.itemorder.com/shop/home/">Merchandise <br></a>
+        </div>
+    </div>
+</div>
+
+<div id="top">
+    <div id="topContainer">
+        <a id="topImages" href="../../">
+            <img src="../../Resource/ICDALogo.png" alt="ICDA Logo" id="topImage" width="270" height="104" style="display: block">
+        </a>
+        <header id="header">
+            <a href="../../" id="home"><img src="../../Resource/ICDALogo.png" alt="ICDA Logo" id="headerImage" width="90" height="35"> <p id="headerTitle">Illinois Congressional<br>Debate Association</p></a>
+            <a href="../../about" id="about" class="link">About <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <a href="../../tournaments" id="tournaments" class="link">Tournaments <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <a href="../../resources" id="resources" class="link">Resources <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <a id="contact" class="link">Contact <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <a href="https://icda2025.itemorder.com/shop/home/" id="coachPortal" class="link" style="border-radius: 30px">Merchandise <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <img src="../../Resource/menuIcon.svg" onclick="openMobileMenu()" id="menuImage" alt="Menu Icon" width="40" height="40">
+        </header>
+        <div id="headerMenus">
+            <div id="aboutMenu" class="headerMenu">
+                <a href="../../about/about-icda" class="headerSubLink">About ICDA</a>
+                <a href="../../about/congressional-debate" class="headerSubLink">Congressional Debate</a>
+                <a href="../../about/members" class="headerSubLink">Members</a>
+                <a href="../../about/leadership" class="headerSubLink">Leadership</a>
+                <a href="../../about/how-to-join" class="headerSubLink">How do I join?</a>
+            </div>
+            <div id="tournamentsMenu" class="headerMenu">
+                <a href="../../tournaments/icda-1" class="headerSubLink">ICDA 1 - September</a>
+                <a href="../../tournaments/icda-2" class="headerSubLink">ICDA 2 - October</a>
+                <a href="../../tournaments/icda-3" class="headerSubLink">ICDA 3 - November</a>
+                <a href="../../tournaments/icda-4" class="headerSubLink">ICDA 4 - December</a>
+                <a href="../../tournaments/icda-5" class="headerSubLink">ICDA 5 - January</a>
+                <a href="../../tournaments/icda-state" class="headerSubLink">ICDA State - February</a>
+            </div>
+            <div id="resourcesMenu" class="headerMenu">
+                <a href="../../resources/rules" class="headerSubLink">Rules</a>
+                <a href="../../resources/legislation" class="headerSubLink">Legislation</a>
+                <a href="../../resources/presiding-officers" class="headerSubLink">Presiding Officers</a>
+                <a href="../../resources/judging" class="headerSubLink">Judging</a>
+            </div>
+            <div id="contactMenu" class="headerMenu">
+                <a href="mailto:tim.waters@d214.org" class="headerSubLink">Tim Waters - President</a>
+                <a href="mailto:dzubert@d127.org" class="headerSubLink">Dustin Zubert - Membership/Training Commissioner</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Everything below is actual page content and varies by file -->
+
+<div id="mainContent">
+    <div id="pageHeader" class="division">
+        <section>
+            <svg width="200" height="40" style="margin: auto">
+                <polygon points="20 0 200 0 180 40 0 40" style="fill: #142039"></polygon>
+                <text x="40" y="29" color="white" style="fill: white; font-family: langdon, serif; font-size: 30px">ABOUT ICDA</text>
+            </svg>
+            <div id="aboutNavigation" style="max-width: 200px">
+                <a href="../" id="aboutNavigationTitle" style="border-bottom: black 1px solid"><b>About</b></a>
+                <a href="../about-icda" class="aboutNavigationLink">About ICDA</a>
+                <a href="../congressional-debate" class="aboutNavigationLink">Congressional Debate</a>
+                <a href="../members" class="aboutNavigationLink">Members</a>
+                <a href="../leadership" class="aboutNavigationLink">Leadership</a>
+                <a href="../how-to-join" class="aboutNavigationLink" style="padding-bottom: 20px">How do I join?</a>
+            </div>
+            <br>
+            <br>
+            <p class="title" style="font-family: 'Arial Black',serif"><b>We make debate happen.</b></p>
+            <p id="pageHeaderDescription">We provide the infrastructure and the opportunity for young people in Illinois to debate with their peers from schools across the state.</p>
+        </section>
+    </div>
+    <div id="tournamentsDescription" class="division">
+        <section>
+            <p class="title">Tournaments</p>
+            <p class="descriptionText" style="padding-bottom: 10px">Each year, ICDA partners with five different high schools and Harper College in Palatine to host six Congressional Debate tournaments, giving hundreds of debaters
+                across the state the opportunity to improve their public speaking skills by competing against their peers.</p>
+            <div id="boxesContainer">
+                <a href="../../tournaments/icda-1" class="tournamentBox"><svg width="160" height="10"><rect width="200" height="10" style="fill: #8a8a8a"></rect></svg>ICDA 1</a>
+                <a href="../../tournaments/icda-2" class="tournamentBox"><svg width="160" height="10"><rect width="200" height="10" style="fill: #8a8a8a"></rect></svg>ICDA 2</a>
+                <a href="../../tournaments/icda-3" class="tournamentBox"><svg width="160" height="10"><rect width="200" height="10" style="fill: #8a8a8a"></rect></svg>ICDA 3</a>
+                <a href="../../tournaments/icda-4" class="tournamentBox"><svg width="160" height="10"><rect width="160" height="10" style="fill: #8a8a8a"></rect></svg>ICDA 4</a>
+                <a href="../../tournaments/icda-5" class="tournamentBox"><svg width="160" height="10"><rect width="160" height="10" style="fill: #8a8a8a"></rect></svg>ICDA 5</a>
+                <a href="../../tournaments/icda-state" class="tournamentBox"><svg width="160" height="10"><rect width="200" height="10" style="fill: #8a8a8a"></rect></svg>ICDA State</a>
+            </div>
+            <p class="descriptionText" style="padding-top: 10px">The fifth tournament, ICDA 5, is also an approved Tournament of Champions (TOC) bid tournament. The top six TOC finalists will earn a bid to qualify to compete at the TOC championship
+                in April.</p>
+        </section>
+    </div>
+    <div id="noviceWorkShop" class="division" style="overflow: hidden">
+        <img src="Resource/notepad.jpg" alt="Notepad" id="noviceWorkshopImage" style="clip-path: polygon(0 0, 81% 0, 100% 100%, 0% 100%);">
+        <div id="noviceWorkShopTextContainer">
+            <p class="title" style="width: 100%">Novice Debate Camp</p>
+            <p class="descriptionText">Each year, we sponsor a summer debate camp at Harper College that allows debaters (both novices and veterans) the chance to sharpen the critical skills they need to become a more
+                successful competitors. Any student who is enrolled in a member school will receive a $50 rebate from ICDA. In addition, any student who orders lunch at the program will also receive reimbursement for food.
+                <br><br>Additionally, ICDA will also support two students from each member school with full scholarships. Interested students should talk to their coaches for details.</p>
+        </div>
+    </div>
+    <div id="impact" class="division">
+        <section style="background-color: #2a2c68; color: white; border: #4b50b8 4px solid">
+            <p class="title">Impact</p>
+            <p class="descriptionText">Former ICDA debaters have attended many different prestigious universities across the country, including:</p>
+            <ul class="descriptionText">
+                <li>Brown University</li>
+                <li>Columbia University</li>
+                <li>Duke University</li>
+                <li>Harvard University</li>
+                <li>Northwestern University</li>
+                <li>The University of Chicago</li>
+                <li>University of Pennsylvania</li>
+                <li>Vanderbilt University</li>
+            </ul>
+                <p class="descriptionText">Other former debaters have secured many different positions as a result of their time in debate. One ICDA alumni, Nabeela Syed, has gone on to serve on the Illinois
+                    General Assembly, representing the 51st district.<br><br>Regardless of what awards they win, every single ICDA debater benefits from the opportunity to hone their public speaking and research skills,
+                    preparing them with the skills needed to prosper in post-secondary education and the workforce. <br><br>Another one of the most rewarding outcomes of ICDA are the relationships that develop between the students
+                    from different teams. While they are in competition with each other, as in many political venues, this form of debate requires students to maintain positive relationships even when they disagree. Not only do
+                    students learn about important issues, the structure of debate, and how to develop arguments; they also learn how to negotiate and cooperate.</p>
+        </section>
+    </div>
+</div>
+
+<!-- Everything above is actual page content and varies by file -->
+
+<footer id="footer">
+    <img src="../../Resource/ICDALogo.png" alt="ICDA Logo" id="footerImage" width="181" height="69">
+    <p>&copy; ICDA  |  Design and programming by Sunny Gandhi, Scott Gilbert, & Harshil Joshi</p>
+    <a href="../../constitution.pdf" target="_blank">Constitution</a>
+    <a href="../../resources/rules">Rules</a>
+    <a href="mailto:cschwartz@d211.org">Problems with this website?</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Congressional Debate | Illinois Congressional Debate Association</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../../Resource/favicon.png">
+    <script src="script.js"></script>
+</head>
+<body onload="initialize()">
+
+<div id="mobileMenuContainer">
+    <div id="mobileMenu">
+        <header id="shadowHeader">
+            <a href="../../" id="shadowHome"><img src="../../Resource/ICDALogo.png" alt="ICDA Logo" id="shadowHeaderImage" width="90" height="35"> <p id="shadowHeaderTitle">Illinois Congressional<br>Debate Association</p></a>
+            <svg id="closeMobileMenu" width="40" height="40" onclick="closeMobileMenu()">
+                <line x1="0" y1="0" x2="40" y2="40" style="stroke:#ffffff;stroke-width:8"></line>
+                <line x1="40" y1="0" x2="0" y2="40" style="stroke:#ffffff;stroke-width:8"></line>
+            </svg>
+        </header><div class="mobileDropDownCategory">
+        <a href="../../about">About <br></a>
+        <svg class="mobileDropDownOpener" width="72" height="72" style="position: absolute; right: 0; top: 0"><polygon points="21 31 51 31 36 41" style="fill: #ffffff"></polygon></svg>
+    </div>
+        <div id="aboutDropDown" class="mobileDropDown">
+            <a href="../../about/about-icda" class="mobileSubLink">About ICDA</a>
+            <a href="../../about/congressional-debate" class="mobileSubLink">What is Congressional Debate?</a>
+            <a href="../../about/members" class="mobileSubLink">Members</a>
+            <a href="../../about/leadership" class="mobileSubLink">Leadership</a>
+            <a href="../../about/how-to-join" class="mobileSubLink">How do I join?</a>
+        </div>
+        <div class="mobileDropDownCategory">
+            <a href="../../tournaments">Tournaments <br></a>
+            <svg class="mobileDropDownOpener" width="72" height="72" style="position: absolute; right: 0; top: 0"><polygon points="21 31 51 31 36 41" style="fill: #ffffff"></polygon></svg>
+        </div>
+        <div id="tournamentsDropDown" class="mobileDropDown">
+            <a href="../../tournaments/icda-1" class="mobileSubLink">ICDA 1</a>
+            <a href="../../tournaments/icda-2" class="mobileSubLink">ICDA 2</a>
+            <a href="../../tournaments/icda-3" class="mobileSubLink">ICDA 3</a>
+            <a href="../../tournaments/icda-4" class="mobileSubLink">ICDA 4</a>
+            <a href="../../tournaments/icda-5" class="mobileSubLink">ICDA 5</a>
+            <a href="../../tournaments/icda-state" class="mobileSubLink">ICDA State</a>
+        </div>
+        <div class="mobileDropDownCategory">
+            <a href="../../resources">Resources <br></a>
+            <svg class="mobileDropDownOpener" width="72" height="72" style="position: absolute; right: 0; top: 0"><polygon points="21 31 51 31 36 41" style="fill: #ffffff"></polygon></svg>
+        </div>
+        <div id="resourcesDropDown" class="mobileDropDown">
+            <a href="../../resources/rules" class="mobileSubLink">Rules</a>
+            <a href="../../resources/legislation" class="mobileSubLink">Legislation</a>
+            <a href="../../resources/presiding-officers" class="mobileSubLink">Presiding Officers</a>
+            <a href="../../resources/judging" class="mobileSubLink">Judging</a>
+        </div>
+        <div class="mobileDropDownCategory">
+            <a>Contact <br></a>
+            <svg class="mobileDropDownOpener" width="72" height="72" style="position: absolute; right: 0; top: 0"><polygon points="21 31 51 31 36 41" style="fill: #ffffff"></polygon></svg>
+        </div>
+        <div id="contactDropDown" class="mobileDropDown">
+            <a href="mailto:tim.waters@d214.org" class="mobileSubLink">Tim Waters - President</a>
+            <a href="mailto:dzubert@d127.org" class="mobileSubLink">Dustin Zubert - Membership/Training Commissioner</a>
+        </div>
+        <div class="mobileDropDownCategory">
+            <a href="https://icda2025.itemorder.com/shop/home/">Merchandise <br></a>
+        </div>
+    </div>
+</div>
+
+<div id="top">
+    <div id="topContainer">
+        <a id="topImages" href="../../">
+            <img src="../../Resource/ICDALogo.png" alt="ICDA Logo" id="topImage" width="270" height="104" style="display: block">
+        </a>
+        <header id="header">
+            <a href="../../" id="home"><img src="../../Resource/ICDALogo.png" alt="ICDA Logo" id="headerImage" width="90" height="35"> <p id="headerTitle">Illinois Congressional<br>Debate Association</p></a>
+            <a href="../../about" id="about" class="link">About <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <a href="../../tournaments" id="tournaments" class="link">Tournaments <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <a href="../../resources" id="resources" class="link">Resources <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <a id="contact" class="link">Contact <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <a href="https://icda2025.itemorder.com/shop/home/" id="coachPortal" class="link" style="border-radius: 30px">Merchandise <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <img src="../../Resource/menuIcon.svg" onclick="openMobileMenu()" id="menuImage" alt="Menu Icon" width="40" height="40">
+        </header>
+        <div id="headerMenus">
+            <div id="aboutMenu" class="headerMenu">
+                <a href="../../about/about-icda" class="headerSubLink">About ICDA</a>
+                <a href="../../about/congressional-debate" class="headerSubLink">Congressional Debate</a>
+                <a href="../../about/members" class="headerSubLink">Members</a>
+                <a href="../../about/leadership" class="headerSubLink">Leadership</a>
+                <a href="../../about/how-to-join" class="headerSubLink">How do I join?</a>
+            </div>
+            <div id="tournamentsMenu" class="headerMenu">
+                <a href="../../tournaments/icda-1" class="headerSubLink">ICDA 1 - September</a>
+                <a href="../../tournaments/icda-2" class="headerSubLink">ICDA 2 - October</a>
+                <a href="../../tournaments/icda-3" class="headerSubLink">ICDA 3 - November</a>
+                <a href="../../tournaments/icda-4" class="headerSubLink">ICDA 4 - December</a>
+                <a href="../../tournaments/icda-5" class="headerSubLink">ICDA 5 - January</a>
+                <a href="../../tournaments/icda-state" class="headerSubLink">ICDA State - February</a>
+            </div>
+            <div id="resourcesMenu" class="headerMenu">
+                <a href="../../resources/rules" class="headerSubLink">Rules</a>
+                <a href="../../resources/legislation" class="headerSubLink">Legislation</a>
+                <a href="../../resources/presiding-officers" class="headerSubLink">Presiding Officers</a>
+                <a href="../../resources/judging" class="headerSubLink">Judging</a>
+            </div>
+            <div id="contactMenu" class="headerMenu">
+                <a href="mailto:tim.waters@d214.org" class="headerSubLink">Tim Waters - President</a>
+                <a href="mailto:dzubert@d127.org" class="headerSubLink">Dustin Zubert - Membership/Training Commissioner</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Everything below is actual page content and varies by file -->
+
+<div id="mainContent">
+    <div id="pageHeader" class="division">
+        <section>
+            <svg width="200" height="40" style="margin: auto">
+                <polygon points="20 0 200 0 180 40 0 40" style="fill: #142039"></polygon>
+                <text x="50" y="17" color="white" style="fill: white; font-family: langdon, serif; font-size: 18px">CONGRESSIONAL</text>
+                <text x="75" y="34" color="white" style="fill: white; font-family: langdon, serif; font-size: 18px">DEBATE</text>
+            </svg>
+            <div id="aboutNavigation" style="max-width: 200px">
+                <a href="../" id="aboutNavigationTitle" style="border-bottom: black 1px solid"><b>About</b></a>
+                <a href="../about-icda" class="aboutNavigationLink">About ICDA</a>
+                <a href="../congressional-debate" class="aboutNavigationLink">Congressional Debate</a>
+                <a href="../members" class="aboutNavigationLink">Members</a>
+                <a href="../leadership" class="aboutNavigationLink">Leadership</a>
+                <a href="../how-to-join" class="aboutNavigationLink" style="padding-bottom: 20px">How do I join?</a>
+            </div>
+            <br>
+            <br>
+            <p class="title" style="font-family: 'Arial Black', serif">What is Congressional Debate?</p>
+            <p id="pageHeaderDescription">In Congressional Debate, students simulate senators and representatives from Washington and Springfield. In each round, debaters give speeches in support
+                of or against a bill or resolution, question debaters on the opposing side, and vote on whether it should be passed. At the end of each tournament, individual debaters and their schools
+                are given awards based on their performance throughout the day.</p>
+        </section>
+    </div>
+    <div id="video" class="division">
+        <section style="background-color: #e2f2ff; border-radius: 30px; border: #34518e 4px solid; color: black">
+            <p class="title" style="width: 100%; text-align: center">Example Video</p>
+            <div style="background-color: #1c255a; border-radius: 30px; padding: 40px; margin: auto; width: fit-content">
+                <iframe src="https://player.vimeo.com/video/836726345?h=d44abcc3f5&byline=0" width="640" height="360" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                <p id="creditsContainer"><a href="https://vimeo.com/836726345" target="_blank"><b>Congressional Debate House Final Round, Livestream 1 - Nationals 2023</b></a> <br>from <a href="https://vimeo.com/user97459546" target="_blank"><b>Vista One</b></a> on <a href="https://vimeo.com" target="_blank"><b>Vimeo</b></a>.</p>
+            </div>
+            <p style="width: 100%; text-align: center; font-family: googleSans, serif"><br>Note: ICDA has slightly different rules and format than NSDA Nationals. Refer to our rules section for the ICDA rules.</p>
+        </section>
+    </div>
+    <div id="billWriting" class="division" style="padding-top: 20px">
+        <section id="billWritingSection" class="informationalSection">
+            <div class="textContainer">
+                <p class="title">Legislation</p>
+                <p class="descriptionText">Congressional Debate uses congressional bills and resolution rather than regular resolution. Each of these bills falls into one of three categories: economics, foreign affairs, and civil policy. Unlike other forms of debate, these bills are written by students. About a month before a meet, each school submits a bill
+                for one or two categories, a total of nine (three per category) of which are voted on to be debated.</p>
+                <p class="descriptionText">Legislation can be further filtered down by their type: bill, resolution, or constitutional amendment, all of which are used for different purposes.</p>
+            </div>
+            <img src="Resource/legislation.png" alt="legislation" id="billWritingImage" class="image" height="400" width="308">
+        </section>
+    </div>
+    <div id="rounds"  class="division">
+        <section class="informationalSection">
+            <div class="textContainer">
+                <p class="title">Rounds</p>
+                <p class="descriptionText">Before the start of each round, debaters set a docket, which determines the order they will debate all nine pieces of legislation in. Each of the three rounds (or sessions) is two hours and fifteen minutes long. During
+                    a round, debaters debate between two and three pieces of legislation, depending on how long they debate each bill for.</p>
+                <p class="descriptionText">When debating a bill, the presiding officer, or PO, will first call on debaters to give an affirmation, or pro, speech, which encourages the chamber to pass the bill. If an author of the bill is present, they will be called on to give an authorship speech, which is
+                    a special four-minute-long pro speech. If there are no authors, the PO will randomly call someone to give a standard three-minute pro speech. After the speech is concluded and questioning is done (see below), the PO will then call on debaters to give a negation, or con, speech, which encourages
+                    the chamber to fail the bill. The chamber will alternate between pro and con speeches until either nobody stands up, or the time for the bill expires.</p>
+                <p class="descriptionText">Once debate on a bill has ended, the chamber moves to previous questioning, or voting on the bill. The PO tallies up the number of debaters voting aye, nay, or abstaining, and announces to the chamber whether the bill has passed by reaching the necessary majority.</p>
+            </div>
+        </section>
+    </div>
+    <div id="speeches"  class="division">
+        <section id="speechesSection" class="informationalSection">
+            <img src="Resource/speaker.jpg" alt="speaker" id="speechesImage" class="image" height="500" width="360">
+            <div class="textContainer">
+                <p class="title">Speeches</p>
+                <p class="descriptionText">Besides authorships and conships, most speeches in Congressional Debate are no more than three minutes long. While some POs will allow debaters to speak for a few extra seconds if they need it, taking too long is generally frowned upon and often leads to deductions
+                    in score.</p>
+                <p class="descriptionText">While the style of different speeches can vary, each speech follows a similar structure: an introduction, one to three body paragraphs, or contentions, and a conclusion. Each contention is further broken down into four parts: claim, warrant, evidence, and impact. Debaters also have to refute previous speakers' points.</p>
+                <p class="descriptionText">Each speech is followed up by two (three for four-minute speeches) blocks of questioning. During each block, the PO calls on a debater to ask questions to the speaker, with the goal of using those questions to poke holes in the speaker's argument and/or set the stage
+                    for a future argument. The speaker has to respond to each question in such a way that defends their own argument to those attacks.</p>
+            </div>
+        </section>
+    </div>
+    <div id="awards" class="division">
+        <section id="awardsSection" class="informationalSection">
+            <div class="textContainer">
+                <p class="title">Awards</p>
+                <p class="descriptionText">Each debater's speeches are scored from 0-6 based on the debater's content, delivery, and response to questions. They also receive a separate "ethos" score based on their behavior during the session. Each judge also nominates two debaters that they felt did exceptionally well during the session.</p>
+                <p class="descriptionText">For each chamber, the debater with the highest speaking average (total points divided by total speeches) earns first place. The chamber then votes on the second and third place debaters, who must've received at least one nomination. The chamber also votes on the best presiding officer of the day.</p>
+                <p class="descriptionText">Awards are also given out for best legislation (voted on by all chambers), quality speaker (highest speaking averages across the entire tournament), and small/large school sweepstakes (or team awards).</p>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Everything above is actual page content and varies by file -->
+
+<footer id="footer">
+    <img src="../../Resource/ICDALogo.png" alt="ICDA Logo" id="footerImage" width="181" height="69">
+    <p>&copy; ICDA  |  Design and programming by Sunny Gandhi, Scott Gilbert, & Harshil Joshi</p>
+    <a href="../../constitution.pdf" target="_blank">Constitution</a>
+    <a href="../../resources/rules">Rules</a>
+    <a href="mailto:cschwartz@d211.org">Problems with this website?</a>
+</footer>
+
+</body>
+</html>

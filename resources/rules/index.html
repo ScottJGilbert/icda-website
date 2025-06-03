@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rules | Illinois Congressional Debate Association</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../../Resource/favicon.png">
+    <script src="script.js"></script>
+</head>
+<body onload="initialize()">
+
+<div id="mobileMenuContainer">
+    <div id="mobileMenu">
+        <header id="shadowHeader">
+            <a href="../../" id="shadowHome"><img src="../../Resource/ICDALogo.png" alt="ICDA Logo" id="shadowHeaderImage" width="90" height="35"> <p id="shadowHeaderTitle">Illinois Congressional<br>Debate Association</p></a>
+            <svg id="closeMobileMenu" width="40" height="40" onclick="closeMobileMenu()">
+                <line x1="0" y1="0" x2="40" y2="40" style="stroke:#ffffff;stroke-width:8"></line>
+                <line x1="40" y1="0" x2="0" y2="40" style="stroke:#ffffff;stroke-width:8"></line>
+            </svg>
+        </header><div class="mobileDropDownCategory">
+        <a href="../../about">About <br></a>
+        <svg class="mobileDropDownOpener" width="72" height="72" style="position: absolute; right: 0; top: 0"><polygon points="21 31 51 31 36 41" style="fill: #ffffff"></polygon></svg>
+    </div>
+        <div id="aboutDropDown" class="mobileDropDown">
+            <a href="../../about/about-icda" class="mobileSubLink">About ICDA</a>
+            <a href="../../about/congressional-debate" class="mobileSubLink">What is Congressional Debate?</a>
+            <a href="../../about/members" class="mobileSubLink">Members</a>
+            <a href="../../about/leadership" class="mobileSubLink">Leadership</a>
+            <a href="../../about/how-to-join" class="mobileSubLink">How do I join?</a>
+        </div>
+        <div class="mobileDropDownCategory">
+            <a href="../../tournaments">Tournaments <br></a>
+            <svg class="mobileDropDownOpener" width="72" height="72" style="position: absolute; right: 0; top: 0"><polygon points="21 31 51 31 36 41" style="fill: #ffffff"></polygon></svg>
+        </div>
+        <div id="tournamentsDropDown" class="mobileDropDown">
+            <a href="../../tournaments/icda-1" class="mobileSubLink">ICDA 1</a>
+            <a href="../../tournaments/icda-2" class="mobileSubLink">ICDA 2</a>
+            <a href="../../tournaments/icda-3" class="mobileSubLink">ICDA 3</a>
+            <a href="../../tournaments/icda-4" class="mobileSubLink">ICDA 4</a>
+            <a href="../../tournaments/icda-5" class="mobileSubLink">ICDA 5</a>
+            <a href="../../tournaments/icda-state" class="mobileSubLink">ICDA State</a>
+        </div>
+        <div class="mobileDropDownCategory">
+            <a href="../../resources">Resources <br></a>
+            <svg class="mobileDropDownOpener" width="72" height="72" style="position: absolute; right: 0; top: 0"><polygon points="21 31 51 31 36 41" style="fill: #ffffff"></polygon></svg>
+        </div>
+        <div id="resourcesDropDown" class="mobileDropDown">
+            <a href="../../resources/rules" class="mobileSubLink">Rules</a>
+            <a href="../../resources/legislation" class="mobileSubLink">Legislation</a>
+            <a href="../../resources/presiding-officers" class="mobileSubLink">Presiding Officers</a>
+            <a href="../../resources/judging" class="mobileSubLink">Judging</a>
+        </div>
+        <div class="mobileDropDownCategory">
+            <a>Contact <br></a>
+            <svg class="mobileDropDownOpener" width="72" height="72" style="position: absolute; right: 0; top: 0"><polygon points="21 31 51 31 36 41" style="fill: #ffffff"></polygon></svg>
+        </div>
+        <div id="contactDropDown" class="mobileDropDown">
+            <a href="mailto:tim.waters@d214.org" class="mobileSubLink">Tim Waters - President</a>
+            <a href="mailto:dzubert@d127.org" class="mobileSubLink">Dustin Zubert - Membership/Training Commissioner</a>
+        </div>
+        <div class="mobileDropDownCategory">
+            <a href="https://icda2025.itemorder.com/shop/home/">Merchandise <br></a>
+        </div>
+    </div>
+</div>
+
+<div id="top">
+    <div id="topContainer">
+        <a id="topImages" href="../../">
+            <img src="../../Resource/ICDALogo.png" alt="ICDA Logo" id="topImage" width="270" height="104" style="display: block">
+        </a>
+        <header id="header">
+            <a href="../../" id="home"><img src="../../Resource/ICDALogo.png" alt="ICDA Logo" id="headerImage" width="90" height="35"> <p id="headerTitle">Illinois Congressional<br>Debate Association</p></a>
+            <a href="../../about" id="about" class="link">About <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <a href="../../tournaments" id="tournaments" class="link">Tournaments <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <a href="../../resources" id="resources" class="link">Resources <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <a id="contact" class="link">Contact <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <a href="https://icda2025.itemorder.com/shop/home/" id="coachPortal" class="link" style="border-radius: 30px">Merchandise <br><svg width="50" height="3"><rect class="menuRectangle" width="50" height="3" style="fill: white;"></rect></svg></a>
+            <img src="../../Resource/menuIcon.svg" onclick="openMobileMenu()" id="menuImage" alt="Menu Icon" width="40" height="40">
+        </header>
+        <div id="headerMenus">
+            <div id="aboutMenu" class="headerMenu">
+                <a href="../../about/about-icda" class="headerSubLink">About ICDA</a>
+                <a href="../../about/congressional-debate" class="headerSubLink">Congressional Debate</a>
+                <a href="../../about/members" class="headerSubLink">Members</a>
+                <a href="../../about/leadership" class="headerSubLink">Leadership</a>
+                <a href="../../about/how-to-join" class="headerSubLink">How do I join?</a>
+            </div>
+            <div id="tournamentsMenu" class="headerMenu">
+                <a href="../../tournaments/icda-1" class="headerSubLink">ICDA 1 - September</a>
+                <a href="../../tournaments/icda-2" class="headerSubLink">ICDA 2 - October</a>
+                <a href="../../tournaments/icda-3" class="headerSubLink">ICDA 3 - November</a>
+                <a href="../../tournaments/icda-4" class="headerSubLink">ICDA 4 - December</a>
+                <a href="../../tournaments/icda-5" class="headerSubLink">ICDA 5 - January</a>
+                <a href="../../tournaments/icda-state" class="headerSubLink">ICDA State - February</a>
+            </div>
+            <div id="resourcesMenu" class="headerMenu">
+                <a href="../../resources/rules" class="headerSubLink">Rules</a>
+                <a href="../../resources/legislation" class="headerSubLink">Legislation</a>
+                <a href="../../resources/presiding-officers" class="headerSubLink">Presiding Officers</a>
+                <a href="../../resources/judging" class="headerSubLink">Judging</a>
+            </div>
+            <div id="contactMenu" class="headerMenu">
+                <a href="mailto:tim.waters@d214.org" class="headerSubLink">Tim Waters - President</a>
+                <a href="mailto:dzubert@d127.org" class="headerSubLink">Dustin Zubert - Membership/Training Commissioner</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Everything below is actual page content and varies by file -->
+
+<div id="mainContent">
+    <div id="pageHeader" class="division">
+        <section>
+            <svg width="200" height="40" style="margin: auto;">
+                <polygon points="20 0 200 0 180 40 0 40" style="fill: #142039"></polygon>
+                <text x="67" y="29" color="white" style="fill: white; font-family: langdon, serif; font-size: 30px">RULES</text>
+            </svg>
+            <div id="resourcesNavigation" style="max-width: 200px">
+                <a href="../" id="resourcesNavigationTitle" style="border-bottom: black 1px solid"><b>Resources</b></a>
+                <a href="../rules" class="resourcesNavigationLink">Rules</a>
+                <a href="../legislation" class="resourcesNavigationLink">Legislation</a>
+                <a href="../presiding-officers" class="resourcesNavigationLink">Presiding Officers</a>
+                <a href="../judging" class="resourcesNavigationLink" style="padding-bottom: 20px">Judging</a>
+            </div>
+            <br>
+            <br>
+            <p class="pageHeaderDescription">To keep debate fair and efficient, and to facilitate order in tournaments, ICDA has multiple sets of rules applicable to either all tournaments or to championship-level competitions (i.e. TOC).
+                While debaters are reminded to follow every part of these rules, a select few especially important and/or commonly misunderstood are described below.</p>
+        </section>
+    </div>
+    <div id="info" class="division">
+        <section style="background-color: #d8d8d8; border: #2a2c68 4px solid">
+            <p class="title" style="text-align: center">Important Rules</p>
+            <div class="question" style="border-radius: 20px 20px 0 0">
+                <p class="descriptionText"><b>Junior varsity transitioning (Rule 9)</b></p>
+                <img src="Resource/arrow.svg" alt="open/close">
+            </div>
+            <div class="answer">
+                <p class="descriptionText">Debaters new to the current season can be moved between JV and Varsity can be moved back and forth at the discretion of their coach. However, debaters who competed in
+                    a previous season (even if only for one tournament) may only compete in varsity chambers.</p>
+            </div>
+            <div class="question">
+                <p class="descriptionText"><b>Vote capping (Rule 24)</b></p>
+                <img src="Resource/arrow.svg" alt="open/close">
+            </div>
+            <div class="answer">
+                <p class="descriptionText">For any election (election of Presiding Officer, Best Presiding Officer, Second Place and Third Place Speakers, Best Legislation) each school is capped at a maximum
+                    of two votes, and representatives from that school must collectively decide each of the two votes.</p>
+            </div>
+            <div class="question">
+                <p class="descriptionText"><b>Maximum legislation time (Rule 26)</b></p>
+                <img src="Resource/arrow.svg" alt="open/close">
+            </div>
+            <div class="answer">
+                <p class="descriptionText">Once procedural issues at the beginning of the session are completed, the Presiding Officer will calculate the remaining time for debate in the session. The maximum amount of time
+                    the chamber may spend on any legislation will be one half of that remaining time, rounded up to the nearest minute. </p>
+            </div>
+            <div class="question">
+                <p class="descriptionText"><b>Cumulative precedence (Rule 28)</b></p>
+                <img src="Resource/arrow.svg" alt="open/close">
+            </div>
+            <div class="answer">
+                <p class="descriptionText">When choosing speakers, the Presiding Officer must choose the debater who has given the least amount of speeches throughout the ENTIRE tournament. In the event of a tie,
+                    they may choose one of those debaters by their own discretion, which they should have indicated at the beginning of the session. However, speaking order from previous sessions may NOT carry over.</p>
+            </div>
+            <div class="question">
+                <p class="descriptionText"><b>Speech order (Rule 29)</b></p>
+                <img src="Resource/arrow.svg" alt="open/close">
+            </div>
+            <div class="answer">
+                <p class="descriptionText">Debate will begin with a four-minute authorship speech, or a three-minute sponsorship if the author is not present in the chamber. Following that speech, a debater will deliver
+                    a speech in opposition of the bill. This speech will be four minutes long (also known as a conship) if it follows a
+                    four-minute authorship. It will be three minutes long if it follows a three-minute sponsorship speech.
+                    This alternating process of three minute speeches will continue until the time limit expires.</p>
+            </div>
+            <div class="question">
+                <p class="descriptionText"><b>Gaveling Procedure (Rule 30)</b></p>
+                <img src="Resource/arrow.svg" alt="open/close">
+            </div>
+            <div class="answer">
+                <p class="descriptionText"> During a speech, the Presiding Officer will tap the gavel once after two minutes have passed, twice after two minutes
+                    and thirty seconds have passed, and three times after three minutes have passed. After giving the speaker a five second grace period,
+                    they will gavel the speaker down.</p>
+            </div>
+            <div class="question">
+                <p class="descriptionText"><b>Questioning timing (Rule 31)</b></p>
+                <img src="Resource/arrow.svg" alt="open/close">
+            </div>
+            <div class="answer">
+                <p class="descriptionText">During questioning, each questioner will have a 1-minute block of time that cannot be yielded to the next questioner. After a 4-minute authorship or conship speech, there will
+                    be three such blocks of questioning. After any other speech, there will be two such blocks of questioning.</p>
+            </div>
+            <div class="question">
+                <p class="descriptionText"><b>Questioning precedence (Rule 32)</b></p>
+                <img src="Resource/arrow.svg" alt="open/close">
+            </div>
+            <div class="answer">
+                <p class="descriptionText">Debaters who have not questioned a speaker have precedence over those who have and the Presiding Officer must acknowledge these people before s/he recognizes others.</p>
+            </div>
+            <div class="question">
+                <p class="descriptionText"><b>Speech scoring (Rule 35) </b></p>
+                <img src="Resource/arrow.svg" alt="open/close">
+            </div>
+            <div class="answer">
+                <p class="descriptionText">Each judge will evaluate each speech on a scale of 0-6 based on quality of debate, organization, delivery, and question responses. Furthermore, they will also provide
+                    debaters with feedback and critiques and share their critiques with the other judge. While judges may evaluate their own participant’s speeches, these scores will not be averaged into speech totals.</p>
+            </div>
+
+            <div class="question">
+                <p class="descriptionText"><b>Nominations (Rule 37)</b></p>
+                <img src="Resource/arrow.svg" alt="open/close">
+            </div>
+            <div class="answer">
+                <p class="descriptionText">At the end of each session, each judge will independently nominate two debaters (not from their own school) they feel should be considered for speaker awards, which they
+                    will rank first and second.</p>
+            </div>
+            <div class="question">
+                <p class="descriptionText"><b>Presiding Officer scoring (Rule 39)</b></p>
+                <img src="Resource/arrow.svg" alt="open/close">
+            </div>
+            <div class="answer">
+                <p class="descriptionText">If speakers have spoken a maximum of once, the two judges’ scores shall be averaged to result in one Presiding Officer score out of 6 points. If the maximum number of
+                    speeches is two or greater, both judges’ scores will comprise the P.O.’s score out of 12 points. The P.O’s score may exceed the highest speaker’s score.</p>
+            </div>
+            <div class="question">
+                <p class="descriptionText"><b>Second and third place speakers (Rules 47 and 48)</b></p>
+                <img src="Resource/arrow.svg" alt="open/close">
+            </div>
+            <div class="answer">
+                <p class="descriptionText">At the end of the tournament, debaters will vote in a judge-run election between each of the nominees to determine the second and third place speakers. The second place speaker
+                    will be the first debater to receive a simple majority of the votes cast, and the third place speaker will be the nominee on that ballot who receives the second-highest number of votes. In the
+                    event no nominee receives a simple majority, the judges will remove the nominee(s) who received the least number of votes and will hold another round of voting. This procedure will continue
+                    until a nominee receives a simple majority. Ties for either place are broken by the Oversight Committee (see rule 48).</p>
+            </div>
+            <div class="question">
+                <p class="descriptionText"><b>First place speaker (Rule 49)</b></p>
+                <img src="Resource/arrow.svg" alt="open/close">
+            </div>
+            <div class="answer">
+                <p class="descriptionText">The debater who has the highest speech score average, and has given at least three speeches over the course of the tournament, will receive the first place award. In the
+                    event of a tie, the Oversight Committee will break it based on number of nominations received and, if a tie is still present, by the ranking of those nominations.</p>
+            </div>
+            <div class="question">
+                <p class="descriptionText"><b>Large school sweepstakes (Rules 52 - 55) </b></p>
+                <img src="Resource/arrow.svg" alt="open/close">
+            </div>
+            <div class="answer">
+                <p class="descriptionText">Each debater's points (including ethos, speeches, and presiding officer points) will be totaled up. The top eight such point-receivers from each large school will be totaled,
+                    and the schools with the first, second, and third-highest numbers of points will receive awards. In the event of a tie, duplicate awards will be given.</p>
+            </div>
+            <div class="question">
+                <p class="descriptionText"><b>Small school sweepstakes (Rules 56 - 59)</b></p>
+                <img src="Resource/arrow.svg" alt="open/close">
+            </div>
+            <div class="answer">
+                <p class="descriptionText">Each debater's points (including ethos, speeches, and presiding officer points) will be totaled up. However, only the top four such point-receivers from each small school will be
+                    totaled, and the schools with the first, second, and third-highest numbers of points will receive awards. In the event of a tie, duplicate awards will be given.</p>
+            </div>
+            <div class="question" style="border-radius: 0 0 20px 20px">
+                <p class="descriptionText"><b>Electronic devices (Rule 67)</b></p>
+                <img src="Resource/arrow.svg" alt="open/close">
+            </div>
+            <div class="answer">
+                <p class="descriptionText">Debaters may use electronic devices and access the internet while in the chamber. However, they may not use any electronic devices while they are either speaking or
+                    questioning.</p>
+            </div>
+        </section>
+    </div>
+    <div id="documents" class="division">
+        <section style="max-width: 1400px; background-color: #d8d8d8; border: #2a2c68 4px solid">
+            <p class="title" style="text-align: center">Documents</p>
+            <div id="documentsContainer">
+                <a href="invitational-rules.pdf" target="_blank" class="document">
+                    <span>
+                        <img src="Resource/invitationalRulesImage.png" alt="Rubric">
+                    </span>
+                    <span>
+                        <p class="descriptionText" style="font-size: 30px"><b>Invitational Rules</b></p>
+                        <p class="descriptionText">The official ICDA invitational (ICDA 1 - 5) rule list, which contains procedures and requirements related to school, debater, and tournament matters. This list does not contain the
+                            official ICDA bylaws, which can be found under "constitution" at the bottom of the page. There are also certain rules specific to ICDA State that are not included in this list - these rules can be found
+                            below.</p>
+                    </span>
+                </a>
+                <a href="FAQ.pdf" target="_blank" class="document">
+                    <span>
+                        <img src="Resource/FAQImage.png" alt="FAQ">
+                    </span>
+                    <span>
+                        <p class="descriptionText" style="font-size: 30px"><b>Tournament of Champions FAQ</b></p>
+                        <p class="descriptionText">A list of answers for common questions about the tournament of champions (TOC) qualifier at ICDA 5. While not an official ruleset, this document covers most
+                            of the differing rules and other procedures used in the TOC rounds.</p>
+                    </span>
+                </a>
+                <a href="state-rules.pdf" target="_blank" class="document">
+                    <span>
+                        <img src="Resource/stateRulesImage.png" alt="FAQ">
+                    </span>
+                    <span>
+                        <p class="descriptionText" style="font-size: 30px"><b>ICDA State Rules</b></p>
+                        <p class="descriptionText">The official ICDA State rule list, which contains procedures and requirements related to school, debater, and tournament matters specific to the ICDA State tournament only.</p>
+                    </span>
+                </a>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Everything above is actual page content and varies by file -->
+
+<footer id="footer">
+    <img src="../../Resource/ICDALogo.png" alt="ICDA Logo" id="footerImage" width="181" height="69">
+    <p>&copy; ICDA  |  Design and programming by Sunny Gandhi, Scott Gilbert, & Harshil Joshi</p>
+    <a href="../../constitution.pdf" target="_blank">Constitution</a>
+    <a href="../../resources/rules">Rules</a>
+    <a href="mailto:cschwartz@d211.org">Problems with this website?</a>
+</footer>
+
+</body>
+</html>
