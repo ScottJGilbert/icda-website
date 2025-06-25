@@ -7,3 +7,4 @@
 /httpRequests/
 # DATABASE SECRETS DO NOT LET ANYONE SEE THIS
 .env/*
+api/config/config.php
