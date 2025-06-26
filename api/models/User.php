@@ -38,6 +38,14 @@ class User
         $stmt->execute();
     }
 
+    public function deleteUser($uuid)
+    {
+        $sql = "DELETE FROM users WHERE uuid = :uuid";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(":uuid", $uuid, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
     private function generateUUID()
     {
         // Generate 16 bytes (128 bits) of random data or use the data passed into the function.

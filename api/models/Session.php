@@ -28,6 +28,36 @@ class Session
 
       $stmt->execute();
     }
+  }
 
+  public function validateSession(string $sessionId): bool
+  {
+    if (session_status() === PHP_SESSION_ACTIVE) {
+      $sql = "SELECT * FROM sessions WHERE (session_id = :sessionId AND DATE_ADD(last_seen, INTERVAL 30 MINUTE) < NOW()) LIMIT 1";
+      $stmt = $this->pdo->prepare($sql);
+      $stmt->bindParam(":sessionId", $sessionId, PDO::PARAM_STR);
+      $stmt->execute();
+
+      $validSession = $stmt->fetch(PDO::FETCH_ASSOC); // Returns false if not found
+      return $validSession ?: null;
+    }
+    return false;
+  }
+
+  public function terminateSession($sessionId): void
+  {
+    //Handle actual session destruction in controller
+    $sql = "DELETE FROM sessions WHERE session_id = :sessionId";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindParam(":sessionId", $sessionId, PDO::PARAM_STR);
+    $stmt->execute();
+
+  }
+
+  public function terminateExpiredSessions(): void
+  {
+    $sql = "DELETE FROM sessions WHERE DATE_ADD(last_seen, INTERVAL 30 MINUTE) > NOW()";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute();
   }
 }
