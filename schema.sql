@@ -6,7 +6,7 @@ CREATE TABLE users (
   username VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
   access_level ENUM('Poster', 'Editor', 'Administrator') NOT NULL,
-  PRIMARY KEY (uuid),
+  PRIMARY KEY (uuid)
 );
 
 CREATE TABLE sessions (
@@ -17,7 +17,7 @@ CREATE TABLE sessions (
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   last_seen DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (session_id),
-  FOREIGN KEY (user_uuid) REFERENCES users(uuid),
+  FOREIGN KEY (user_uuid) REFERENCES users(uuid)
 );
 
 CREATE TABLE news_posts ( --Upload image or use a url
@@ -26,13 +26,13 @@ CREATE TABLE news_posts ( --Upload image or use a url
   creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
   edit_date DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   markdown TEXT,
-  PRIMARY KEY (id),
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE schools ( --Upload logos as images or use a url
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,
-  PRIMARY KEY (id),
+  PRIMARY KEY (id)
 ); -- Functions needed: get number of schools, get schools
 
 CREATE TABLE coaches (
@@ -41,7 +41,7 @@ CREATE TABLE coaches (
   email VARCHAR(127),
   school_id INT NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (school_id) REFERENCES schools(id),
+  FOREIGN KEY (school_id) REFERENCES schools(id)
 );
 
 -- Order: President, Secretary, Treasurer, Executive, Technology, Membership/Training, At-Large
@@ -49,7 +49,7 @@ CREATE TABLE oversight (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(127) NOT NULL,
   email VARCHAR(127) NOT NULL,
-  PRIMARY KEY (id),
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE tournament_pages (
@@ -59,7 +59,7 @@ CREATE TABLE tournament_pages (
   tabroom VARCHAR(127),
   contacts VARCHAR(511), --List of ids (1-7 for oversight and then coach ids + 7) separated by commas
   PRIMARY KEY (id),
-  FOREIGN KEY (school_id) REFERENCES schools(id),
+  FOREIGN KEY (school_id) REFERENCES schools(id)
 );
 
 CREATE TABLE rules (
@@ -67,5 +67,5 @@ CREATE TABLE rules (
   name VARCHAR(255) NOT NULL,
   number INT NOT NULL,
   summary VARCHAR(1023) NOT NULL,
-  PRIMARY KEY (id),
+  PRIMARY KEY (id)
 );
