@@ -10,7 +10,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE sessions (
-  session_id VARCHAR(128) NOT NULL,
+  session_id VARCHAR(127) NOT NULL,
   user_uuid VARCHAR(36) NOT NULL,
   ip_address VARCHAR(40),
   user_agent TEXT (4095),
