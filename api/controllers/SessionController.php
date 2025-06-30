@@ -5,7 +5,7 @@ class SessionController
 
 	public function terminateSession($sessionId)
 	{
-		$errors = Validators::validateSessionTermination($sessionId);
+		$errors = SessionValidators::validateSessionTermination($sessionId);
 
 		if (!empty($errors)) {
 			Response::error($errors[0], 422);
