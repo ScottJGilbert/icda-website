@@ -4,7 +4,7 @@ class UserController
 {
 	public function login($data)
 	{
-		$errors = Validators::validateLogin($data);
+		$errors = UserValidators::validateLogin($data);
 
 		if (!empty($errors)) {
 			Response::error($errors[0], 422); // Return first error for simplicity
@@ -32,7 +32,7 @@ class UserController
 
 	public function newUser($data)
 	{
-		$errors = Validators::validateNewUser($data);
+		$errors = UserValidators::validateNewUser($data);
 
 		if (!empty($errors)) {
 			Response::error($errors[0], 422);
@@ -49,7 +49,7 @@ class UserController
 
 	public function deleteUser($data)
 	{
-		$errors = Validators::validateUserDeletion($data);
+		$errors = UserValidators::validateUserDeletion($data);
 
 		if (!empty($errors)) {
 			Response::error($errors[0], 422);
