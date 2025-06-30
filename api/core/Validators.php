@@ -3,41 +3,96 @@
 class Validators
 {
 
-    public static function validateLogin($data): array
-    {
-        $errors = [];
+	public static function validateLogin($data): array
+	{
+		$errors = [];
 
-        if (!isset($data['username']) || trim($data['username']) === '') {
-            $errors[] = 'Username is required.';
-        }
+		// Sanitize input to prevent SQL injection
+		$username = isset($data['username']) ? trim($data['username']) : '';
+		$password = isset($data['password']) ? trim($data['password']) : '';
 
-        if (!isset($data['password']) || trim($data['password']) === '') {
-            $errors[] = 'Password is required.';
-        }
+		// Remove unwanted characters (basic sanitization)
+		$sanitizedUsername = filter_var($username, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH);
+		$sanitizedPassword = filter_var($password, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH);
 
-        return $errors;
-    }
+		if ($username === '') {
+			$errors[] = 'Username is required.';
+		}
 
-    public static function validateNewUser($data): array
-    {
-        $errors = [];
+		if ($password === '') {
+			$errors[] = 'Password is required.';
+		}
 
-        if (!isset($data['name']) || trim($data['name']) === '') {
-            $errors[] = 'Name is required.';
-        }
+		if ($username !== $sanitizedUsername || $password !== $sanitizedPassword) {
+			$errors[] = 'Failed sanitization check.';
+		}
 
-        if (!isset($data['username']) || trim($data['username']) === '') {
-            $errors[] = 'Username is required.';
-        }
+		// Optionally, you can return sanitized data as well
+		// return ['errors' => $errors, 'sanitized' => ['username' => $username, 'password' => $password]];
 
-        if (!isset($data['password']) || trim($data['password']) === '') {
-            $errors[] = 'Password is required.';
-        }
+		return $errors;
+	}
 
-        if (!isset($data['permission']) || trim($data['permission']) === '') {
-            $errors[] = 'Permission is required.';
-        }
+	public static function validateNewUser($data): array
+	{
+		$errors = [];
 
-        return $errors;
-    }
+		if (!isset($data['name']) || trim($data['name']) === '') {
+			$errors[] = 'Name is required.';
+		}
+
+		if (!isset($data['username']) || trim($data['username']) === '') {
+			$errors[] = 'Username is required.';
+		}
+
+		if (!isset($data['password']) || trim($data['password']) === '') {
+			$errors[] = 'Password is required.';
+		}
+
+		if (!isset($data['permission']) || trim($data['permission']) === '') {
+			$errors[] = 'Permission is required.';
+		}
+
+		$session = new Session();
+		$accessLevel = $session->validateSession();
+		if (!($accessLevel === 'Administrator')) {
+			$errors[] = 'You do not have permission to perform this action.';
+		}
+
+		return $errors;
+	}
+
+	public static function validateUserDeletion(array $data): array
+	{
+		$errors = [];
+
+		if (!isset($data['uuid']) || trim($data['uuid']) === '') {
+			$errors[] = 'UUID is required.';
+		}
+
+		$session = new Session();
+		$accessLevel = $session->validateSession();
+		if (!($accessLevel === 'Administrator')) {
+			$errors[] = 'You do not have permission to perform this action.';
+		}
+
+		return $errors;
+	}
+
+	public static function validateSessionTermination($sessionId): array
+	{
+		$errors = [];
+
+		if (!isset($sessionId) || trim($sessionId) === '') {
+			$errors[] = 'Name is required.';
+		}
+
+		$session = new Session();
+		$accessLevel = $session->validateSession();
+		if (!($accessLevel === 'Administrator')) {
+			$errors[] = 'You do not have permission to perform this action.';
+		}
+
+		return $errors;
+	}
 }
