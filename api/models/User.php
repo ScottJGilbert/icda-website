@@ -58,6 +58,14 @@ class User
 		$stmt->execute();
 	}
 
+	public function fetchUsers(): array
+	{
+		$sql = "SELECT * FROM users";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
 	private function generateUUID()
 	{
 		// Generate 16 bytes (128 bits) of random data or use the data passed into the function.
