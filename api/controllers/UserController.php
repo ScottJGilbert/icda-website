@@ -30,6 +30,25 @@ class UserController
 		header('/admin', true, 307);
 	}
 
+	public function fetchUsers()
+	{
+		$errors = UserValidators::validateFetchUsers();
+		if (!empty($errors)) {
+			Response::error($errors[0], 422); // Return first error for simplicity
+			exit;
+		}
+
+		$userModel = new User();
+		$users = $userModel->fetchUsers();
+
+		if (empty($users)) {
+			Response::error('No users found', 404);
+			exit;
+		}
+
+		Response::success($users);
+	}
+
 	public function newUser($data)
 	{
 		$errors = UserValidators::validateNewUser($data);

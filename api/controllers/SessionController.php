@@ -3,6 +3,21 @@
 class SessionController
 {
 
+	public function fetchSessions()
+	{
+		$errors = SessionValidators::validateFetchSessions();
+
+		if (!empty($errors)) {
+			Response::error($errors[0], 422);
+			exit;
+		}
+
+		$sessionModel = new Session();
+		$sessions = $sessionModel->fetchSessions();
+
+		Response::success($sessions);
+	}
+
 	public function terminateSession($sessionId)
 	{
 		$errors = SessionValidators::validateSessionTermination($sessionId);

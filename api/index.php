@@ -56,6 +56,11 @@ switch ($path) {
 		$controller->logout();
 		header("Refresh:0");
 		break;
+	case 'api/fetch-users':
+		checkPost();
+		$controller = new UserController();
+		$controller->fetchUsers();
+		break;
 	case 'api/new-user':
 		checkPost();
 		$controller = new UserController();
@@ -65,6 +70,11 @@ switch ($path) {
 		checkPost();
 		$controller = new UserController();
 		$controller->deleteUser($input);
+		break;
+	case 'api/fetch-sessions':
+		checkPost();
+		$controller = new SessionController();
+		$controller->fetchSessions();
 		break;
 	case 'api/terminate-session':
 		checkPost();

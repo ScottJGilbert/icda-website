@@ -33,6 +33,19 @@ class UserValidators
     return $errors;
   }
 
+  public static function validateFetchUsers(): array
+  {
+    $errors = [];
+
+    $session = new Session();
+    $accessLevel = $session->validateSession();
+    if (!($accessLevel === 'Administrator')) {
+      $errors[] = 'You do not have permission to perform this action.';
+    }
+
+    return $errors;
+  }
+
   public static function validateNewUser($data): array
   {
     $errors = [];

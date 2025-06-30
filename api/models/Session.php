@@ -67,4 +67,12 @@ class Session
 		$stmt = $this->pdo->prepare($sql);
 		$stmt->execute();
 	}
+
+	public function fetchSessions(): array
+	{
+		$sql = "SELECT * FROM sessions";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
 }
