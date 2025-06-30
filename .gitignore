@@ -5,6 +5,5 @@
 /workspace.xml
 # Editor-based HTTP Client requests
 /httpRequests/
-# DATABASE SECRETS DO NOT LET ANYONE SEE THIS
+# DATABASE SECRETS DO NOT LET ANYONE SEE THIS (example .env file is provided))
 .env/*
-api/config/config.php
