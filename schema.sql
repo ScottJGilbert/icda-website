@@ -55,7 +55,7 @@ CREATE TABLE oversight (
 CREATE TABLE tournament_pages (
   id INT NOT NULL AUTO_INCREMENT,
   tournament_date DATE NOT NULL,
-  school_id INT NOT NULL,
+  school_id INT NOT NULL, -- Default to 1 for ICDA State but always display harper college
   tabroom VARCHAR(127),
   contacts VARCHAR(511), --List of ids (1-7 for oversight and then coach ids + 7) separated by commas
   PRIMARY KEY (id),
