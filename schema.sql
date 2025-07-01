@@ -22,7 +22,9 @@ CREATE TABLE sessions (
 
 CREATE TABLE news_posts ( --Upload image or use a url
   id INT NOT NULL AUTO_INCREMENT,
+  slug VARCHAR(255) NOT NULL UNIQUE, -- Unique identifier for the post, used in URLs
   title VARCHAR(511) NOT NULL,
+  image_url VARCHAR(511), -- URL to the image associated with the post
   creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
   edit_date DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   markdown TEXT,
@@ -32,6 +34,7 @@ CREATE TABLE news_posts ( --Upload image or use a url
 CREATE TABLE schools ( --Upload logos as images or use a url
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,
+  image_url VARCHAR(511), -- URL to the school's logo or image
   PRIMARY KEY (id)
 ); -- Functions needed: get number of schools, get schools
 
