@@ -163,6 +163,7 @@ function initialize() {
             })
         }, 10
     )
+    
 }
 
 function changeTop() {
@@ -187,7 +188,6 @@ function changeTop() {
 
     mainContentElement.style.background = `linear-gradient(to bottom,white,rgba(20,32,57,${ratio}))`
 }
-
 
 function scrollDown() {
     document.getElementById("topImages").getElementsByTagName("svg")[0].style.animation = "arrowClick"

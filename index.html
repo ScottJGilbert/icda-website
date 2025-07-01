@@ -6,6 +6,173 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="public/images/favicon.png" />
     <script src="script.js"></script>
+    <script type="module">
+      import { animate, scroll, inView, stagger, spring, hover, press } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm"
+
+      inView(document.getElementById("message"), (element) => {
+        animate(
+            element,
+            { opacity: 1, scale: 1 },
+            {
+                duration: 0.7,
+                type: spring,
+                bounce: 0.3,
+                easing: [0.17, 0.55, 0.55, 1],
+            }
+        )
+
+        animate(
+            document.getElementById("timWatersImg"),
+            { x: [-20, 0] },
+            {
+                duration: 0.7,
+                easing: [0.17, 0.55, 0.55, 1],
+            }
+        )
+
+        animate(
+            document.getElementById("theMessage"),
+            { x: [20, 0] },
+            {
+                duration: 0.7,
+                easing: [0.17, 0.55, 0.55, 1],
+            }
+        )
+
+        return () => {animate(element, { opacity: 0, scale: 0.9 }), animate(document.getElementById("timWatersImg"), { x: -20 }), animate(document.getElementById("theMessage"), { x: 20 })}
+      })
+
+
+
+
+
+      inView(document.getElementById("completeCarousel"), (element) => {
+        animate(
+            element,
+            { opacity: 1, scale: 1 },
+            {
+                duration: 0.7,
+                type: spring,
+                bounce: 0.3,
+                easing: [0.17, 0.55, 0.55, 1],
+            }
+        )
+
+        animate(
+            document.getElementById("carouselAdditional"),
+            { scaleX: 1 },
+            {
+                duration: 0.7,
+                easing: [0.17, 0.55, 0.55, 1],
+            }
+        )
+
+        return () => {animate(element, { opacity: 0, scale: 0.9 }), animate(document.getElementById("carouselAdditional"), { scaleX: 0.9 })}
+      })
+
+
+
+
+      inView(document.getElementById("pageHeader"), (element) => {
+        animate(
+            element,
+            { opacity: 1, scale: 1 },
+            {
+                duration: 0.7,
+                type: spring,
+                bounce: 0.3,
+                easing: [0.17, 0.55, 0.55, 1],
+            }
+        )
+
+        animate(
+            document.getElementById("pageHeaderLink"),
+            { x: [-20, 0] },
+            {
+                duration: 0.7,
+                easing: [0.17, 0.55, 0.55, 1],
+            }
+        )
+
+        animate(
+            document.getElementById("pageHeaderParagraph"),
+            { x: [20, 0] },
+            {
+                duration: 0.7,
+                easing: [0.17, 0.55, 0.55, 1],
+            }
+        )
+
+        return () => {animate(element, { opacity: 0, scale: 0.9 }), animate(document.getElementById("pageHeaderLink"), { x: -20 }), animate(document.getElementById("pageHeaderParagraph"), { x: 20 })}
+      })
+
+
+
+
+
+      inView(document.getElementById("joinICDA"), (element) => {
+        animate(
+            element,
+            { opacity: 1, scale: 1 },
+            {
+                duration: 0.7,
+                type: spring,
+                bounce: 0.3,
+                easing: [0.17, 0.55, 0.55, 1],
+            }
+        )
+
+        animate(
+            document.getElementById("joinICDALink"),
+            { x: [-20, 0] },
+            {
+                duration: 0.7,
+                easing: [0.17, 0.55, 0.55, 1],
+            }
+        )
+
+        animate(
+            document.getElementById("joinICDAParagraph"),
+            { x: [20, 0] },
+            {
+                duration: 0.7,
+                easing: [0.17, 0.55, 0.55, 1],
+            }
+        )
+
+        return () => {animate(element, { opacity: 0, scale: 0.9 }), animate(document.getElementById("pageHeaderLink"), { x: -20 }), animate(document.getElementById("pageHeaderParagraph"), { x: 20 })}
+      })
+      
+
+
+
+      hover(document.getElementById("pageHeaderLink"), (element) => {
+        animate(element, { scale: 1.1 })
+
+        return () => animate(element, { scale: 1 })
+      })
+
+      press(document.getElementById("pageHeaderLink"), (element) => {
+        animate(element, { scale: 0.9 })
+
+        return () =>
+            animate(element, { scale: 1 })
+      })
+
+      hover(document.getElementById("joinICDALink"), (element) => {
+        animate(element, { scale: 1.1 })
+
+        return () => animate(element, { scale: 1 })
+      })
+
+      press(document.getElementById("joinICDALink"), (element) => {
+        animate(element, { scale: 0.9 })
+
+        return () =>
+            animate(element, { scale: 1 })
+      })
+
+    </script>
     <meta
       name="google-site-verification"
       content="3S52M0hEqL3g8UvsDsYQ2lI2wmm3C0A-W-7ibjiEpgY"
@@ -333,28 +500,29 @@
             of congressional debate competition across Illinois. We stress the
             educational importance of congressional debate activities, along
             with a spirit of cooperation and friendship amongst our membership.
-            <br /><br /><i>- Tim Waters, ICDA President</i>
+            <br /><br /><i>- Tim Waters, Former ICDA President</i>
           </p>
           <div class="imageContainer">
-            <img src="Resource/timWaters.jpeg" alt="Tim Waters" />
+            <img src="public/images/timWaters.jpeg" alt="Tim Waters" id="timWatersImg"/>
           </div>
         </section>
       </div>
+      <div id="completeCarousel">
       <div id="slideshow" style="height: 625px" class="division">
         <a class="slide" href="about">
-          <img src="Resource/aboutImage.jpg" alt="image" />
+          <img src="public/images/aboutImage.jpg" alt="image" />
           <p>Learn more →</p>
         </a>
         <a class="slide" href="tournaments">
-          <img src="Resource/trophySlide.jpg" alt="image" />
+          <img src="public/images/trophySlide.jpg" alt="image" />
           <p>Find tournaments →</p>
         </a>
         <a class="slide" href="resources">
-          <img src="Resource/resourcesImage.jpg" alt="image" />
+          <img src="public/images/resourcesImage.jpg" alt="image" />
           <p>Explore resources →</p>
         </a>
         <a class="slide" href="about/how-to-join">
-          <img src="Resource/handshake.jpg" alt="image" />
+          <img src="public/images/handshake.jpg" alt="image" />
           <p>Join ICDA →</p>
         </a>
       </div>
@@ -362,7 +530,7 @@
         <span class="carouselButton" id="leftCarousel" style="left: 0">
           <img
             style="transform: scaleX(-1)"
-            src="Resource/arrow.svg"
+            src="public/images/arrow.svg"
             height="160"
             width="60"
             onclick="carouselBack()"
@@ -371,7 +539,7 @@
         </span>
         <span class="carouselButton" id="rightCarousel" style="right: 0">
           <img
-            src="Resource/arrow.svg"
+            src="public/images/arrow.svg"
             height="160"
             width="60"
             onclick="carouselForward()"
@@ -379,6 +547,7 @@
           />
         </span>
       </section>
+      </div>
       <div
         id="pageHeader"
         style="
@@ -412,9 +581,9 @@
                 max-width: 450px;
                 margin: auto;
                 color: white;
-              "
+              ", id="pageHeaderParagraph"
             >
-              Each year, we enable more than <b>500</b> debaters to raise their
+              Each year, we enable over <b>500</b> debaters to raise their
               voices and experience the power of congressional debate, honing
               their skills as they compete against their peers.
             </p>
@@ -426,7 +595,7 @@
               justify-content: center;
               flex-direction: column;
               border-radius: 30px;
-              background-image: url('Resource/aboutICDATop.png');
+              background-image: url('public/images/aboutICDATop.png');
               background-position: center;
               background-size: cover;
             "
@@ -448,11 +617,11 @@
               margin: auto;
               color: black;
               padding-bottom: 30px;
-            "
+            ", id="joinICDAParagraph"
           >
             What are you waiting for?
           </p>
-          <a href="about/how-to-join"><b>Join ICDA today.</b></a>
+          <a href="about/how-to-join", id="joinICDALink"><b>Join ICDA today.</b></a>
         </section>
       </div>
       <br />
