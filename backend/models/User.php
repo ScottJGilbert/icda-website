@@ -10,16 +10,25 @@ class User
 		$this->pdo = Database::getConnection();
 	}
 
-	public function findByUsername($username)
+	public function login($username, $password): bool
 	{
 		$sql = "SELECT * FROM users WHERE username = :username LIMIT 1";
 		$stmt = $this->pdo->prepare($sql);
 		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
 
 		$stmt->execute();
-		$user = $stmt->fetch(PDO::FETCH_ASSOC); // Returns false if not found
+		$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-		return $user ?: null;
+		if (!$user || !password_verify($password, $user['password'])) {
+			return false;
+		}
+
+		unset($user['password']);
+
+		$sessionModel = new Session();
+		$sessionModel->createSession($user['uuid']);
+
+		return true;
 	}
 
 	public function findAccessByUUID($uuid)

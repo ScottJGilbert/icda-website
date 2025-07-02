@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $session = new Session();
 $accessLevel = $session->getAccessLevel();
-if (!($accessLevel === 'Administrator')) {
+if (!($accessLevel === 'Administrator' || $accessLevel === 'Poster' || $accessLevel === 'Editor')) {
   Response::error('You do not have permission to perform this action.', 403);
   exit;
 }
@@ -42,13 +42,32 @@ foreach ($input as $key => $value) {
   $input[$key] = $value;
 }
 
-if (!isset($input['sessionId']) || empty($input['sessionId']) || !is_numeric($input['sessionId']) || $input['sessionId'] <= 0) {
-  Response::error('Valid session ID is required.', 400);
+if (!isset($input['id'])) {
+  Response::error('ID is required.', 400);
   exit;
 }
 
+if (!is_numeric($input['id']) || $input['id'] < 1 || $input['id'] > 7) {
+  Response::error('Invalid ID.', 400);
+  exit;
+}
 
-$sessionModel = new Session();
-$sessionModel->terminateSession($input['sessionId']);
+if (!isset($input['name']) || trim($input['name']) === '') {
+  Response::error('Name is required.', 400);
+  exit;
+}
 
-Response::success('Session terminated successfully', 200);
+if (!isset($input['email']) || trim($input['email']) === '') {
+  Response::error('Email is required.', 400);
+  exit;
+}
+
+if ($input['email'] !== '' && !filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
+  Response::error('Invalid email format.', 400);
+  exit;
+}
+
+$model = new Oversight();
+$model->updateOversight($input['id'], $input['name'], $input['email']);
+
+Response::success('Oversight member updated successfully', 200);

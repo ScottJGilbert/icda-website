@@ -2,7 +2,7 @@
 
 $postsPerPage = 9;
 
-class Coach
+class Post
 {
 
   private $pdo;

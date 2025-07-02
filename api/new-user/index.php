@@ -1,8 +1,14 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  http_response_code(405); // Method Not Allowed
-  echo json_encode(['success' => false, 'error' => 'Only POST is allowed']);
+  Response::error('Method not allowed', 405);
+  exit;
+}
+
+$session = new Session();
+$accessLevel = $session->getAccessLevel();
+if (!($accessLevel === 'Administrator')) {
+  Response::error('You do not have permission to perform this action.', 403);
   exit;
 }
 
@@ -23,6 +29,11 @@ spl_autoload_register(function ($class) {
 
 $input = json_decode(file_get_contents('php://input'), true);
 
+if ($input === null) {
+  Response::error('Invalid JSON input', 415);
+  exit;
+}
+
 foreach ($input as $key => $value) {
   $value = trim($value);
   $value = stripslashes($value);
@@ -31,5 +42,32 @@ foreach ($input as $key => $value) {
   $input[$key] = $value;
 }
 
-$controller = new UserController();
-$controller->newUser($input);
+if (!isset($input['name']) || trim($input['name']) === '') {
+  Response::error('Name is required.', 400);
+  exit;
+}
+
+if (!isset($input['username']) || trim($input['username']) === '') {
+  Response::error('Username is required.', 400);
+  exit;
+}
+
+if (!isset($input['password']) || trim($input['password']) === '') {
+  Response::error('Password is required.', 400);
+  exit;
+}
+
+if (!isset($input['permission']) || ($input['permission'] !== 'Administrator' && $input['permission'] !== 'Poster' && $input['permission'] !== 'Editor')) {
+  Response::error('Valid permission level is required.', 400);
+  exit;
+}
+
+$model = new User();
+$model->createUser(
+  $input['name'],
+  $input['username'],
+  $input['password'],
+  $input['permission']
+);
+
+Response::success('User created successfully', 200);

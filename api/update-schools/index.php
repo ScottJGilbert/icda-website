@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $session = new Session();
 $accessLevel = $session->getAccessLevel();
-if (!($accessLevel === 'Administrator')) {
+if (!($accessLevel === 'Administrator' || $accessLevel === 'Poster' || $accessLevel === 'Editor')) {
   Response::error('You do not have permission to perform this action.', 403);
   exit;
 }
@@ -30,25 +30,36 @@ spl_autoload_register(function ($class) {
 $input = json_decode(file_get_contents('php://input'), true);
 
 if ($input === null) {
+  Response::error('Invalid media type', 415);
+  exit;
+}
+
+if (!is_array($input['list']) || empty($input['list'])) {
   Response::error('Invalid JSON input', 415);
   exit;
 }
 
-foreach ($input as $key => $value) {
-  $value = trim($value);
-  $value = stripslashes($value);
-  $value = htmlspecialchars($value);
+foreach ($input['list'] as $item) {
+  foreach ($item as $key => $value) {
+    $value = trim($value);
+    if ($key !== 'imageUrl') {
+      $value = stripslashes($value);
+    }
+    $value = htmlspecialchars($value);
 
-  $input[$key] = $value;
+    $coach[$key] = $value;
+  }
+
+  if (!isset($item['name']) || trim($item['name']) === '') {
+    Response::error('Name is required.', 400);
+    exit;
+  }
+
 }
 
-if (!isset($input['sessionId']) || empty($input['sessionId']) || !is_numeric($input['sessionId']) || $input['sessionId'] <= 0) {
-  Response::error('Valid session ID is required.', 400);
-  exit;
-}
+$model = new School();
+$model->updateSchools(
+  $input['list'],
+);
 
-
-$sessionModel = new Session();
-$sessionModel->terminateSession($input['sessionId']);
-
-Response::success('Session terminated successfully', 200);
+Response::success('Schools updated successfully', 200);

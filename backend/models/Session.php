@@ -30,7 +30,7 @@ class Session
 		}
 	}
 
-	public function validateSession(): string
+	public function getAccessLevel(): string
 	{
 		$accessLevel = 'None';
 

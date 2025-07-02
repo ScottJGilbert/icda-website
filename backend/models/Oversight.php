@@ -25,11 +25,11 @@ class Oversight
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function updateOversight($id, $data)
+  public function updateOversight($id, $name, $email)
   {
     $stmt = $this->pdo->prepare('UPDATE oversight SET name = :name, email = :email WHERE id = :id');
-    $stmt->bindParam(':name', $data['name'], PDO::PARAM_STR);
-    $stmt->bindParam(':email', $data['email'], PDO::PARAM_STR);
+    $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+    $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
   }
