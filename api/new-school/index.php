@@ -44,61 +44,42 @@ if ($input === null) {
   exit;
 }
 
-foreach ($input as $key => $value) {
+foreach ($input['list'] as $key => $value) {
   $value = trim($value);
   $value = stripslashes($value);
   $value = htmlspecialchars($value);
 
   $input[$key] = $value;
+
 }
 
-if (!isset($input['id'])) {
-  Response::error('ID is required.', 400);
-  exit;
-}
-
-if (!is_numeric($input['id']) || $input['id'] < 1 || $input['id'] > 7) {
+if (!isset($input['id']) || !is_numeric($input['id']) || $input['id'] < 1) {
   Response::error('Invalid ID.', 400);
   exit;
 }
 
-if (!isset($input['name']) || trim($input['name']) === '') {
+if (!isset($item['name']) || trim($item['name']) === '') {
   Response::error('Name is required.', 400);
   exit;
 }
 
-if (!isset($input['email']) || trim($input['email']) === '') {
-  Response::error('Email is required.', 400);
+if (!isset($input['containsImage']) || !is_bool($input['containsImage'])) {
+  Response::error('Contains image flag is required and must be a boolean.', 400);
   exit;
 }
 
-if ($input['email'] !== '' && !filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
-  Response::error('Invalid email format.', 400);
-  exit;
-}
-
-if (!isset($input['deleteImage']) || !is_bool($input['deleteImage'])) {
-  Response::error('Delete image flag is required and must be a boolean.', 400);
-  exit;
-}
-
-$model = new Oversight();
-
-$file = new File();
-if ($input['deleteImage']) {
-  $oldURL = $model->fetchImageUrl($input['id']);
-  if ($oldURL)
-    $file->deleteImage($oldURL);
-  $input['imageUrl'] = '';
-} else if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-  $oldURL = $model->fetchImageUrl($input['id']);
-  if ($oldURL)
-    $file->deleteImage($oldURL);
+$fileModel = new File();
+if ($input['containsImage']) {
   $input['imageUrl'] = $fileModel->uploadImage();
 } else {
-  $input['imageUrl'] = $model->fetchImageUrl($input['id']); // No new image uploaded
+  $input['imageUrl'] = '';
 }
 
-$model->updateOversight($input['id'], $input['name'], $input['email'], $input['imageUrl']);
+$model = new School();
+$model->updateSchool(
+  $input['name'],
+  $input['imageUrl'],
+  -1
+);
 
-Response::success('Oversight member updated successfully', 200);
+Response::success('School created successfully', 200);

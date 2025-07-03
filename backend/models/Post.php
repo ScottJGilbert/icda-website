@@ -40,13 +40,22 @@ class Post
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function fetchPostsByPostId($postId)
+  public function fetchPostByPostId($postId)
   {
     $stmt = $this->pdo->prepare("SELECT * FROM posts WHERE id = :id LIMIT 1");
     $stmt->bindParam(':id', $postId, PDO::PARAM_INT);
     $stmt->execute();
 
     return $stmt->fetch(PDO::FETCH_ASSOC);
+  }
+
+  public function fetchImageUrl($postId)
+  {
+    $stmt = $this->pdo->prepare("SELECT image_url FROM posts WHERE id = :id LIMIT 1");
+    $stmt->bindParam(':id', $postId, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchColumn();
   }
 
   public function updatePost($slug, $title, $imageUrl, $markdown)

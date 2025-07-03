@@ -44,36 +44,22 @@ if ($input === null) {
   exit;
 }
 
-foreach ($input as $key => $value) {
+foreach ($input['list'] as $key => $value) {
   $value = trim($value);
   $value = stripslashes($value);
   $value = htmlspecialchars($value);
 
   $input[$key] = $value;
+
 }
 
-if (!isset($input['id'])) {
-  Response::error('ID is required.', 400);
-  exit;
-}
-
-if (!is_numeric($input['id']) || $input['id'] < 1 || $input['id'] > 7) {
+if (!isset($input['id']) || !is_numeric($input['id']) || $input['id'] < 1) {
   Response::error('Invalid ID.', 400);
   exit;
 }
 
-if (!isset($input['name']) || trim($input['name']) === '') {
+if (!isset($item['name']) || trim($item['name']) === '') {
   Response::error('Name is required.', 400);
-  exit;
-}
-
-if (!isset($input['email']) || trim($input['email']) === '') {
-  Response::error('Email is required.', 400);
-  exit;
-}
-
-if ($input['email'] !== '' && !filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
-  Response::error('Invalid email format.', 400);
   exit;
 }
 
@@ -82,7 +68,7 @@ if (!isset($input['deleteImage']) || !is_bool($input['deleteImage'])) {
   exit;
 }
 
-$model = new Oversight();
+$model = new School();
 
 $file = new File();
 if ($input['deleteImage']) {
@@ -99,6 +85,10 @@ if ($input['deleteImage']) {
   $input['imageUrl'] = $model->fetchImageUrl($input['id']); // No new image uploaded
 }
 
-$model->updateOversight($input['id'], $input['name'], $input['email'], $input['imageUrl']);
+$model->updateSchool(
+  $input['name'],
+  $input['imageUrl'],
+  $input['id']
+);
 
-Response::success('Oversight member updated successfully', 200);
+Response::success('Schools updated successfully', 200);

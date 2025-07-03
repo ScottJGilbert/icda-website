@@ -49,33 +49,24 @@ if (!isset($input['title']) || trim($input['title']) === '') {
   exit;
 }
 
-if (!isset($input['slug']) || trim($input['slug']) === '') {
-  Response::error('Slug is required.', statusCode: 400);
-  exit;
-}
-
 if (!isset($input['markdown']) || trim($input['markdown']) === '') {
   Response::error('Markdown is required.', statusCode: 400);
   exit;
 }
 
-$model = new Post();
-
-$file = new File();
-if ($input['deleteImage']) {
-  $oldURL = $model->fetchImageUrl($input['id']);
-  if ($oldURL)
-    $file->deleteImage($oldURL);
-  $input['imageUrl'] = '';
-} else if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-  $oldURL = $model->fetchImageUrl($input['id']);
-  if ($oldURL)
-    $file->deleteImage($oldURL);
-  $input['imageUrl'] = $fileModel->uploadImage();
-} else {
-  $input['imageUrl'] = $model->fetchImageUrl($input['id']); // No new image uploaded
+if (!isset($input['containsImage']) || !is_bool($input['containsImage'])) {
+  Response::error('Contains image must be a boolean.', 400);
+  exit;
 }
 
+$fileModel = new File();
+if ($input['containsImage']) {
+  $input['imageUrl'] = $fileModel->uploadImage();
+} else {
+  $input['imageUrl'] = '';
+}
+
+$model = new Post();
 $model->updatePost($input['slug'], $input['title'], $input['imageUrl'], $input['markdown']);
 
 Response::success('Post created successfully', 200);

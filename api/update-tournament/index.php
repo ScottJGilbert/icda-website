@@ -27,7 +27,9 @@ spl_autoload_register(function ($class) {
   }
 });
 
-$input = json_decode(file_get_contents('php://input'), true);
+$targetDir = __DIR__ . '../../tournaments/icda-';
+
+$input = json_decode($_POST['data'], true);
 
 if ($input === null) {
   Response::error('Invalid JSON input', 415);
@@ -72,13 +74,37 @@ if (!isset($input['schoolId']) || !is_numeric($input['schoolId']) || $input['sch
 }
 
 if (!isset($input['tabroom']) || trim($input['tabrom']) === '') {
-  Response::error('Email is required.', 400);
+  Response::error('Tabroom link is required.', 400);
   exit;
 }
 
 if (!isset($input['contacts']) || trim($input['contacts']) === '') {
   Response::error('Contacts are required.', 400);
   exit;
+}
+
+if (!isset($input['deleteLegislation']) || !is_bool($input['deleteLegislation'])) {
+  Response::error('Delete legislation status is required and must be a boolean.', 400);
+  exit;
+}
+
+if (!isset($input['deleteResults']) || !is_bool($input['deleteResults'])) {
+  Response::error('Delete results status is required and must be a boolean.', 400);
+  exit;
+}
+
+$fileModel = new File();
+
+if ($input['deleteLegislation']) {
+  $fileModel->deleteLegislation($input['id']);
+} else if (isset($_FILES['legislation']) && $_FILES['legislation']['error'] === UPLOAD_ERR_OK) {
+  $fileModel->uploadLegislation($input['id']);
+}
+
+if ($input['deleteResults']) {
+  $fileModel->deleteResults($input['id']);
+} else if (isset($_FILES['results']) && $_FILES['results']['error'] === UPLOAD_ERR_OK) {
+  $fileModel->uploadResults($input['id']);
 }
 
 $model = new Tournament();
