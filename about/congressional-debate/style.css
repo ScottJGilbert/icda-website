@@ -1,3 +1,7 @@
+@view-transition {
+  navigation: auto;
+}
+
 @keyframes topAnimate {
   0% {
     opacity: 0;
