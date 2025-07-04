@@ -107,6 +107,38 @@ class File
     }
   }
 
+  public function uploadConstitution()
+  {
+    $targetFile = __DIR__ . "/../../constitution.pdf";
+    $uploadedFile = $_FILES["constitution"]["name"];
+
+    $uploadedType = strtolower(pathinfo($uploadedFile, PATHINFO_EXTENSION));
+    $mimeType = str_replace("application/", "", mime_content_type($_FILES["constitution"]["tmp_name"]));
+
+    if ($uploadedType !== 'pdf' || $mimeType !== 'pdf') {
+      Response::error('Invalid file type. Only PDF files are allowed.', 400);
+      exit;
+    }
+
+    if (!$this->isImageMagicNumberValid('pdf')) {
+      Response::error('Invalid file magic number. The file may be corrupted or not a valid PDF.', 400);
+      exit;
+    }
+
+    if ($_FILES["results"]["size"] > 16000000) {
+      Response::error('File size exceeds the limit of 16MB.', 400);
+      exit;
+    }
+
+    if (move_uploaded_file($_FILES["constitution"]["tmp_name"], $targetFile)) {
+      Response::success('Constitution updated successfully.', 200);
+      exit;
+    } else {
+      Response::error('Failed to update constitution.', 500);
+      exit;
+    }
+  }
+
   public function uploadImage(): string
   {
     $validExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'tiff', 'ico', 'avif', 'heic'];
