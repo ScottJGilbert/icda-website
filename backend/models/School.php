@@ -34,6 +34,18 @@ class School
     return $stmt->fetchColumn();
   }
 
+  public function fetchSchoolNames($ids)
+  {
+    $names = [];
+    foreach ($ids as $id) {
+      $stmt = $this->pdo->prepare("SELECT name FROM schools WHERE id = :id LIMIT 1");
+      $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+      $stmt->execute();
+      $names[] = $stmt->fetchColumn();
+    }
+    return $names;
+  }
+
   public function fetchImageUrl($id): string
   {
     $stmt = $this->pdo->prepare("SELECT image_url FROM schools WHERE id = :id LIMIT 1");

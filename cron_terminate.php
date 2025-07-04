@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['key'] !== $expectedToken) {
 }
 
 // Run your task
+
 function performBackgroundTask()
 {
   file_put_contents('cron_log.txt', "Task ran at " . date('Y-m-d H:i:s') . "\n", FILE_APPEND);
