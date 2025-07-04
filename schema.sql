@@ -73,3 +73,19 @@ CREATE TABLE rules (
   summary VARCHAR(1023) NOT NULL,
   PRIMARY KEY (id)
 );
+
+CREATE TABLE archiveData(
+  id INT NOT NULL AUTO_INCREMENT,
+  icda_1_school VARCHAR(255),
+  icda_1_date DATE,
+  icda_2_school VARCHAR(255),
+  icda_2_date DATE,
+  icda_3_school VARCHAR(255),
+  icda_3_date DATE,
+  icda_4_school VARCHAR(255),
+  icda_4_date DATE,
+  icda_5_school VARCHAR(255),
+  icda_5_date DATE,
+  icda_state_date DATE,
+  PRIMARY KEY (id)
+);
