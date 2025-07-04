@@ -10,14 +10,6 @@ class Response
 		exit;
 	}
 
-	public static function html($data, $statusCode = 200)
-	{
-		http_response_code($statusCode);
-		header('Content-Type: text/html; charset=utf-8');
-		echo json_encode($data);
-		exit;
-	}
-
 	public static function success($payload = [], $statusCode = 200)
 	{
 		self::json([
@@ -32,5 +24,12 @@ class Response
 			'success' => false,
 			'error' => $message
 		], $statusCode);
+	}
+
+	public static function redirect($url, $statusCode)
+	{
+		http_response_code($statusCode);
+		header("Location: $url");
+		exit;
 	}
 }

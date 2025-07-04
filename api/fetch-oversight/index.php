@@ -1,8 +1,8 @@
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
   http_response_code(405); // Method Not Allowed
-  echo json_encode(['success' => false, 'error' => 'Only POST is allowed']);
+  echo json_encode(['success' => false, 'error' => 'Only GET is allowed']);
   exit;
 }
 
@@ -21,14 +21,12 @@ spl_autoload_register(function ($class) {
   }
 });
 
-if (session_status() === PHP_SESSION_ACTIVE) {
-  $sessionId = session_id();
-
-  $model = new Session();
-  $model->terminateSession($sessionId);
-
-  session_unset();
-  session_destroy();
+$id = isset($_GET['id']) ? (int) $_GET['id'] : 1;
+if ($id < 1 || $id > 7) {
+  $id = 1; // Default to president if invalid
 }
 
-Response::redirect('/login', 200);
+$model = new Oversight();
+$output = $model->fetchOversight($id);
+
+Response::success($output);

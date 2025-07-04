@@ -31,5 +31,26 @@ foreach ($input as $key => $value) {
   $input[$key] = $value;
 }
 
-$controller = new UserController();
-$controller->login($input);
+$username = isset($input['username']) ? trim($input['username']) : '';
+$password = isset($input['password']) ? trim($input['password']) : '';
+
+if ($username === '') {
+  Response::error('Username is required.', 400);
+  exit;
+}
+
+if ($password === '') {
+  Response::error('Password is required.', 400);
+  exit;
+}
+
+$model = new User();
+$success = $model->login($username, $password);
+
+if ($success) {
+  Response::redirect('/admin', 200);
+  exit;
+} else {
+  Response::error('Invalid username or password', 401);
+  exit;
+}

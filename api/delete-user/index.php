@@ -1,8 +1,14 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  http_response_code(405); // Method Not Allowed
-  echo json_encode(['success' => false, 'error' => 'Only POST is allowed']);
+  Response::error('Method not allowed', 405);
+  exit;
+}
+
+$session = new Session();
+$accessLevel = $session->getAccessLevel();
+if (!($accessLevel === 'Administrator')) {
+  Response::error('You do not have permission to perform this action.', 403);
   exit;
 }
 
@@ -23,6 +29,11 @@ spl_autoload_register(function ($class) {
 
 $input = json_decode(file_get_contents('php://input'), true);
 
+if ($input === null) {
+  Response::error('Invalid JSON input', 415);
+  exit;
+}
+
 foreach ($input as $key => $value) {
   $value = trim($value);
   $value = stripslashes($value);
@@ -31,5 +42,15 @@ foreach ($input as $key => $value) {
   $input[$key] = $value;
 }
 
-$controller = new UserController();
-$controller->deleteUser($input);
+if (!isset($input['uuid']) || trim($input['uuid']) === '') {
+  Response::error('UUID is required.', 400);
+  exit;
+}
+
+
+$model = new User();
+$model->deleteUser(
+  $input['uuid']
+);
+
+Response::success('User deleted successfully', 200);

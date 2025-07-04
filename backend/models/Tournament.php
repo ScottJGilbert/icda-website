@@ -18,13 +18,13 @@ class Tournament
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function updateTournament($id, $data)
+  public function updateTournament($id, $date, $schoolId, $tabroom, $contacts)
   {
-    $stmt = $this->pdo->prepare('UPDATE tournament_pages SET tournament_date = :tournamentDate, school_id = :schoolId, tabroom = :tabroom, contacts = :contacts WHERE id = :id');
-    $stmt->bindParam(':tournamentDate', $data['tournamentDate'], PDO::PARAM_STR);
-    $stmt->bindParam(':schoolId', $data['schoolId'], PDO::PARAM_INT);
-    $stmt->bindParam(':tabroom', $data['tabroom'], PDO::PARAM_STR);
-    $stmt->bindParam(':contacts', $data['contacts'], PDO::PARAM_STR);
+    $stmt = $this->pdo->prepare('UPDATE tournaments SET tournament_date = :tournamentDate, school_id = :schoolId, tabroom = :tabroom, contacts = :contacts WHERE id = :id');
+    $stmt->bindParam(':tournamentDate', $date, PDO::PARAM_STR);
+    $stmt->bindParam(':schoolId', $schoolId, PDO::PARAM_INT);
+    $stmt->bindParam(':tabroom', $tabroom, PDO::PARAM_STR);
+    $stmt->bindParam(':contacts', $contacts, PDO::PARAM_STR);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
   }

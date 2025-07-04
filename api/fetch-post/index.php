@@ -6,13 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
   exit;
 }
 
-$session = new Session();
-$accessLevel = $session->getAccessLevel();
-if (!($accessLevel === 'Administrator')) {
-  Response::error('You do not have permission to perform this action.', 403);
-  exit;
-}
-
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -28,7 +21,13 @@ spl_autoload_register(function ($class) {
   }
 });
 
-$model = new User();
-$output = $model->fetchUsers();
+$slug = isset($_GET['slug']) ? (int) $_GET['slug'] : "";
+$slug = filter_var($slug, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH);
+$slug = trim($slug);
+$slug = stripslashes($slug);
+$slug = htmlspecialchars($slug);
+
+$model = new Post();
+$output = $model->fetchPostBySlug($page);
 
 Response::success($output);

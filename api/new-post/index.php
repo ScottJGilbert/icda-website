@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $session = new Session();
 $accessLevel = $session->getAccessLevel();
-if (!($accessLevel === 'Administrator')) {
+if (!($accessLevel === 'Poster' || $accessLevel === 'Administrator')) {
   Response::error('You do not have permission to perform this action.', 403);
   exit;
 }
@@ -36,19 +36,37 @@ if ($input === null) {
 
 foreach ($input as $key => $value) {
   $value = trim($value);
-  $value = stripslashes($value);
+  if ($key !== 'imageUrl') {
+    $value = stripslashes($value);
+  }
   $value = htmlspecialchars($value);
 
   $input[$key] = $value;
 }
 
-if (!isset($input['sessionId']) || empty($input['sessionId']) || !is_numeric($input['sessionId']) || $input['sessionId'] <= 0) {
-  Response::error('Valid session ID is required.', 400);
+if (!isset($input['title']) || trim($input['title']) === '') {
+  Response::error('Title is required.', 400);
   exit;
 }
 
+if (!isset($input['markdown']) || trim($input['markdown']) === '') {
+  Response::error('Markdown is required.', statusCode: 400);
+  exit;
+}
 
-$sessionModel = new Session();
-$sessionModel->terminateSession($input['sessionId']);
+if (!isset($input['containsImage']) || !is_bool($input['containsImage'])) {
+  Response::error('Contains image must be a boolean.', 400);
+  exit;
+}
 
-Response::success('Session terminated successfully', 200);
+$fileModel = new File();
+if ($input['containsImage']) {
+  $input['imageUrl'] = $fileModel->uploadImage();
+} else {
+  $input['imageUrl'] = '';
+}
+
+$model = new Post();
+$model->updatePost($input['slug'], $input['title'], $input['imageUrl'], $input['markdown']);
+
+Response::success('Post created successfully', 200);

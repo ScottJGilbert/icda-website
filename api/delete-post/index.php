@@ -1,15 +1,15 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  Response::error('Method not allowed', 405);
+  http_response_code(405); // Method Not Allowed
+  echo json_encode(['success' => false, 'error' => 'Only GET is allowed']);
   exit;
 }
 
-$session = new Session();
+$sessionModel = new Session();
 $accessLevel = $session->getAccessLevel();
 if (!($accessLevel === 'Administrator')) {
   Response::error('You do not have permission to perform this action.', 403);
-  exit;
 }
 
 ini_set('display_errors', 1);
@@ -29,11 +29,6 @@ spl_autoload_register(function ($class) {
 
 $input = json_decode(file_get_contents('php://input'), true);
 
-if ($input === null) {
-  Response::error('Invalid JSON input', 415);
-  exit;
-}
-
 foreach ($input as $key => $value) {
   $value = trim($value);
   $value = stripslashes($value);
@@ -42,13 +37,12 @@ foreach ($input as $key => $value) {
   $input[$key] = $value;
 }
 
-if (!isset($input['sessionId']) || empty($input['sessionId']) || !is_numeric($input['sessionId']) || $input['sessionId'] <= 0) {
-  Response::error('Valid session ID is required.', 400);
+if (!isset($input['slug']) || trim($input['slug']) === '') {
+  Response::error('Slug is required.', 400);
   exit;
 }
 
+$model = new Post();
+$model->deletePost($input['slug']);
 
-$sessionModel = new Session();
-$sessionModel->terminateSession($input['sessionId']);
-
-Response::success('Session terminated successfully', 200);
+Response::success('Post deleted successfully', 200);

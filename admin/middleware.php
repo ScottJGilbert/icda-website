@@ -1,27 +1,35 @@
 <?php
 
+require_once __DIR__ . '/../core/Response.php';
+
 if (session_status() == PHP_SESSION_ACTIVE) {
   $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
   $sessionModel = new Session();
-  $permissionLevel = $sessionModel->validateSession();
+  $permissionLevel = $sessionModel->getAccessLevel();
 
   switch ($permissionLevel) {
     case "Editor":
       if ($currentPath == "/management" || $currentPath == "/news") {
-        header('Location: /unauthorized');
+        Response::redirect('/unauthorized', 403); // Forbidden
       }
       break;
     case "Poster":
       if ($currentPath == "/management") {
-        header('Location: /unauthorized');
+        Response::redirect('/unauthorized', 403); // Forbidden
       }
       break;
     case "Administrator":
       break;
     default:
-      $sessionController = new SessionController();
-      $sessionController->logout();
-      header('Location: /login?code=2'); //"Please log in again"
+      $sessionId = session_id();
+
+      $model = new Session();
+      $model->terminateSession($sessionId);
+
+      session_unset();
+      session_destroy();
+      Response::redirect('/login?code=2', 403); //"Please log in again"
   }
+} else {
+  Response::redirect('/login?code=1', 403); //"Please log in"
 }
-header('Location: /login?code=1'); //"Please log in.

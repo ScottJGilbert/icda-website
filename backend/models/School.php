@@ -15,22 +15,37 @@ class School
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function updateSchools($schools)
+  public function updateSchool($name, $imageUrl, $id)
   {
-    $stmt = $this->pdo->query("DELETE FROM schools");
-    $stmt->execute();
-
-    foreach ($schools as $school) {
+    if ($id > 0) {
+      $stmt = $this->pdo->prepare("UPDATE schools SET name = :name, image_url = :imageUrl WHERE id = :id");
+    } else {
       $stmt = $this->pdo->prepare("INSERT INTO schools (name, image_url) VALUES (:name, :imageUrl)");
-      $stmt->bindParam(':name', $school['name'], PDO::PARAM_STR);
-      $stmt->bindParam(':imageUrl', $school['imageUrl'], PDO::PARAM_STR);
-      $stmt->execute();
     }
+    $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+    $stmt->bindParam(':imageUrl', $imageUrl, PDO::PARAM_STR);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    return $stmt->execute();
   }
 
   public function fetchNumberOfSchools()
   {
     $stmt = $this->pdo->query("SELECT COUNT(*) FROM schools");
     return $stmt->fetchColumn();
+  }
+
+  public function fetchImageUrl($id): string
+  {
+    $stmt = $this->pdo->prepare("SELECT image_url FROM schools WHERE id = :id LIMIT 1");
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchColumn();
+  }
+
+  public function deleteSchool($id)
+  {
+    $stmt = $this->pdo->prepare("DELETE FROM schools WHERE id = :id");
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    return $stmt->execute();
   }
 }

@@ -52,6 +52,7 @@ CREATE TABLE oversight (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(127) NOT NULL,
   email VARCHAR(127) NOT NULL,
+  image_url VARCHAR(511), -- URL to the oversight member's image
   PRIMARY KEY (id)
 );
 
