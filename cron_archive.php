@@ -21,7 +21,7 @@ function performBackgroundTask()
     $newDirectory = __DIR__ . "/archive/" . ((((int) date("Y")) - 1) . "-" . date("Y")) . "/";
     mkdir($newDirectory, 0, true);
 
-    for ($i = 0; $i < 5; $i++) {
+    for ($i = 1; $i < 6; $i++) {
       rename(
         __DIR__ . "/../../tournaments/icda-" . $i . "/legislation.pdf",
         __DIR__ . $newDirectory . "icda-" . $i . "-legislation.pdf"
