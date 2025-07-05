@@ -69,4 +69,9 @@ if ($input['containsImage']) {
 $model = new Post();
 $model->updatePost($input['slug'], $input['title'], $input['imageUrl'], $input['markdown']);
 
+mkdir(__DIR__ . "../../news/{$input['slug']}");
+copy(__DIR__ . "../../news/new-website/index.php", __DIR__ . "../../news/{$input['slug']}/index.php");
+mkdir(__DIR__ . "../../admin/news/{$input['slug']}");
+copy(__DIR__ . "../../admin/news/new-website/index.php", __DIR__ . "../../admin/news/{$input['slug']}/index.php");
+
 Response::success('Post created successfully', 200);

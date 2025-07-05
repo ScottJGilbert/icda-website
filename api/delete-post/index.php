@@ -45,4 +45,32 @@ if (!isset($input['slug']) || trim($input['slug']) === '') {
 $model = new Post();
 $model->deletePost($input['slug']);
 
+$it = new RecursiveDirectoryIterator(__DIR__ . "../../news/{$input['slug']}", RecursiveDirectoryIterator::SKIP_DOTS);
+$files = new RecursiveIteratorIterator(
+  $it,
+  RecursiveIteratorIterator::CHILD_FIRST
+);
+foreach ($files as $file) {
+  if ($file->isDir()) {
+    rmdir($file->getPathname());
+  } else {
+    unlink($file->getPathname());
+  }
+}
+rmdir(__DIR__ . "../../news/{$input['slug']}");
+
+$it = new RecursiveDirectoryIterator(__DIR__ . "../../admin/news/{$input['slug']}", RecursiveDirectoryIterator::SKIP_DOTS);
+$files = new RecursiveIteratorIterator(
+  $it,
+  RecursiveIteratorIterator::CHILD_FIRST
+);
+foreach ($files as $file) {
+  if ($file->isDir()) {
+    rmdir($file->getPathname());
+  } else {
+    unlink($file->getPathname());
+  }
+}
+rmdir(__DIR__ . "../../admin/news/{$input['slug']}");
+
 Response::success('Post deleted successfully', 200);
