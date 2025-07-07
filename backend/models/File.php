@@ -195,6 +195,16 @@ class File
     }
   }
 
+  public function fetchImage($url)
+  {
+    if (file_exists($url) && is_readable($url)) {
+      return file_get_contents($url);
+    } else {
+      Response::error('Image does not exist or is not readable.', 404);
+      exit;
+    }
+  }
+
   private function getFileHeader($bytes = 12)
   {
     $handle = fopen($_FILES['image']['tmp_name'], 'rb');
