@@ -18,6 +18,15 @@ class Response
 		], $statusCode);
 	}
 
+	public static function image($image, $statusCode = 200)
+	{
+		http_response_code($statusCode);
+		$fileExtension = pathinfo($image, PATHINFO_EXTENSION);
+		header('Content-Type: image/' . $fileExtension);
+		echo base64_encode($image);
+		exit;
+	}
+
 	public static function error($message = 'Something went wrong', $statusCode = 400)
 	{
 		self::json([
