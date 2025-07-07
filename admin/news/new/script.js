@@ -1,12 +1,10 @@
-const originalText = `# New Website`;
-
 const Editor = toastui.Editor;
 
 const editor = new Editor({
   el: document.querySelector("#editor"),
   height: "500px",
   initialEditType: "wysiwyg",
-  initialValue: originalText ?? "Start writing your post here...",
+  initialValue: "Start writing your post here...",
   previewStyle: "vertical",
   toolbarItems: [
     ["heading", "bold", "italic", "strike"],
@@ -45,12 +43,6 @@ editor.getRootElement().addEventListener("paste", (e) => {
 });
 
 //Use this for fetching unique data (a lot more efficient than HTML)
-function save() {
-  if (
-    confirm(
-      "Are you sure you want to save? Any previous data will be overwritten."
-    )
-  ) {
-    const slug = "";
-  }
+function button() {
+  alert(editor.getMarkdown());
 }
