@@ -1,3 +1,0 @@
-[submodule "dotenv"]
-	path = dotenv
-	url = https://github.com/symfony/dotenv.git
