@@ -49,17 +49,22 @@
 
 @font-face {
   font-family: googleSans;
-  src: url("Resource/googleSans.woff");
+  src: url("/public/fonts/googleSans.woff");
+}
+
+@font-face {
+  font-family: langdon;
+  src: url("/public/fonts/langdon.otf");
 }
 
 @font-face {
   font-family: Ebrima;
-  src: url("Resource/ebrima.ttf");
+  src: url("/public/fonts/ebrima.ttf");
 }
 
 @font-face {
   font-family: "Arial Black";
-  src: url("Resource/arial_black.ttf");
+  src: url("/public/fonts/arial_black.ttf");
 }
 
 #mobileMenuContainer {
@@ -186,7 +191,7 @@
 #top {
   margin-left: auto;
   margin-right: auto;
-  background-image: url("Resource/topBackground.jpg");
+  background-image: url("/public/images/topBackground.jpg");
   background-position: 50% top;
   display: block;
   background-blend-mode: color;

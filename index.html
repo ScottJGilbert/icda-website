@@ -3,175 +3,187 @@
   <head>
     <meta charset="UTF-8" />
     <title>Illinois Congressional Debate Association</title>
-    <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="public/images/favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- global.css does not apply to homepage!!! -->
     <script src="script.js"></script>
     <script type="module">
-      import { animate, scroll, inView, stagger, spring, hover, press, styleEffect, motionValue, transformValue } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm"
+      import {
+        animate,
+        scroll,
+        inView,
+        stagger,
+        spring,
+        hover,
+        press,
+        styleEffect,
+        motionValue,
+        transformValue,
+      } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
 
       inView(document.getElementById("message"), (element) => {
         animate(
-            element,
-            { opacity: 1, scale: 1 },
-            {
-                duration: 0.7,
-                type: spring,
-                bounce: 0.3,
-                easing: [0.17, 0.55, 0.55, 1],
-            }
-        )
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
 
         animate(
-            document.getElementById("timWatersImg"),
-            { x: [-20, 0] },
-            {
-                duration: 0.7,
-                easing: [0.17, 0.55, 0.55, 1],
-            }
-        )
+          document.getElementById("timWatersImg"),
+          { x: [-20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
 
         animate(
-            document.getElementById("theMessage"),
-            { x: [20, 0] },
-            {
-                duration: 0.7,
-                easing: [0.17, 0.55, 0.55, 1],
-            }
-        )
+          document.getElementById("theMessage"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
 
-        return () => {animate(element, { opacity: 0, scale: 0.9 }), animate(document.getElementById("timWatersImg"), { x: -20 }), animate(document.getElementById("theMessage"), { x: 20 })}
-      })
-
-
-
-
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("timWatersImg"), { x: -20 }),
+            animate(document.getElementById("theMessage"), { x: 20 });
+        };
+      });
 
       inView(document.getElementById("completeCarousel"), (element) => {
         animate(
-            element,
-            { opacity: 1, scale: 1 },
-            {
-                duration: 0.7,
-                type: spring,
-                bounce: 0.3,
-                easing: [0.17, 0.55, 0.55, 1],
-            }
-        )
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
 
         animate(
-            document.getElementById("carouselAdditional"),
-            { scaleX: 1 },
-            {
-                duration: 0.7,
-                easing: [0.17, 0.55, 0.55, 1],
-            }
-        )
+          document.getElementById("carouselAdditional"),
+          { scaleX: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
 
-        return () => {animate(element, { opacity: 0, scale: 0.9 }), animate(document.getElementById("carouselAdditional"), { scaleX: 0.9 })}
-      })
-
-
-
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("carouselAdditional"), {
+              scaleX: 0.9,
+            });
+        };
+      });
 
       inView(document.getElementById("pageHeader"), (element) => {
         animate(
-            element,
-            { opacity: 1, scale: 1 },
-            {
-                duration: 0.7,
-                type: spring,
-                bounce: 0.3,
-                easing: [0.17, 0.55, 0.55, 1],
-            }
-        )
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
 
         animate(
-            document.getElementById("pageHeaderLink"),
-            { x: [-20, 0] },
-            {
-                duration: 0.7,
-                easing: [0.17, 0.55, 0.55, 1],
-            }
-        )
+          document.getElementById("pageHeaderLink"),
+          { x: [-20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
 
         animate(
-            document.getElementById("pageHeaderParagraph"),
-            { x: [20, 0] },
-            {
-                duration: 0.7,
-                easing: [0.17, 0.55, 0.55, 1],
-            }
-        )
+          document.getElementById("pageHeaderParagraph"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
 
-        return () => {animate(element, { opacity: 0, scale: 0.9 }), animate(document.getElementById("pageHeaderLink"), { x: -20 }), animate(document.getElementById("pageHeaderParagraph"), { x: 20 })}
-      })
-
-
-
-
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("pageHeaderLink"), { x: -20 }),
+            animate(document.getElementById("pageHeaderParagraph"), { x: 20 });
+        };
+      });
 
       inView(document.getElementById("joinICDA"), (element) => {
         animate(
-            element,
-            { opacity: 1, scale: 1 },
-            {
-                duration: 0.7,
-                type: spring,
-                bounce: 0.3,
-                easing: [0.17, 0.55, 0.55, 1],
-            }
-        )
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
 
         animate(
-            document.getElementById("joinICDALink"),
-            { x: [-20, 0] },
-            {
-                duration: 0.7,
-                easing: [0.17, 0.55, 0.55, 1],
-            }
-        )
+          document.getElementById("joinICDALink"),
+          { x: [-20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
 
         animate(
-            document.getElementById("joinICDAParagraph"),
-            { x: [20, 0] },
-            {
-                duration: 0.7,
-                easing: [0.17, 0.55, 0.55, 1],
-            }
-        )
+          document.getElementById("joinICDAParagraph"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
 
-        return () => {animate(element, { opacity: 0, scale: 0.9 }), animate(document.getElementById("pageHeaderLink"), { x: -20 }), animate(document.getElementById("pageHeaderParagraph"), { x: 20 })}
-      })
-      
-
-
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("pageHeaderLink"), { x: -20 }),
+            animate(document.getElementById("pageHeaderParagraph"), { x: 20 });
+        };
+      });
 
       hover(document.getElementById("pageHeaderLink"), (element) => {
-        animate(element, { scale: 1.1 })
+        animate(element, { scale: 1.1 });
 
-        return () => animate(element, { scale: 1 })
-      })
+        return () => animate(element, { scale: 1 });
+      });
 
       press(document.getElementById("pageHeaderLink"), (element) => {
-        animate(element, { scale: 0.9 })
+        animate(element, { scale: 0.9 });
 
-        return () =>
-            animate(element, { scale: 1 })
-      })
+        return () => animate(element, { scale: 1 });
+      });
 
       hover(document.getElementById("joinICDALink"), (element) => {
-        animate(element, { scale: 1.1 })
+        animate(element, { scale: 1.1 });
 
-        return () => animate(element, { scale: 1 })
-      })
+        return () => animate(element, { scale: 1 });
+      });
 
       press(document.getElementById("joinICDALink"), (element) => {
-        animate(element, { scale: 0.9 })
+        animate(element, { scale: 0.9 });
 
-        return () =>
-            animate(element, { scale: 1 })
-      })
-
+        return () => animate(element, { scale: 1 });
+      });
     </script>
     <meta
       name="google-site-verification"
@@ -184,7 +196,7 @@
         <header id="shadowHeader">
           <a href="" id="shadowHome"
             ><img
-              src="Resource/ICDALogo.png"
+              src="/public/images/ICDALogo.png"
               alt="ICDA Logo"
               id="shadowHeaderImage"
               width="90"
@@ -418,7 +430,7 @@
             ></rect></svg
         ></a>
         <img
-          src="Resource/menuIcon.svg"
+          src="/public/images/menuIcon.svg"
           onclick="openMobileMenu()"
           id="menuImage"
           alt="Menu Icon"
@@ -504,50 +516,54 @@
             <br /><br /><i>- Tim Waters, Former ICDA President</i>
           </p>
           <div class="imageContainer">
-            <img src="public/images/timWaters.jpeg" alt="Tim Waters" id="timWatersImg"/>
+            <img
+              src="public/images/timWaters.jpeg"
+              alt="Tim Waters"
+              id="timWatersImg"
+            />
           </div>
         </section>
       </div>
       <div id="completeCarousel">
-      <div id="slideshow" style="height: 625px" class="division">
-        <a class="slide" href="about">
-          <img src="public/images/aboutImage.jpg" alt="image" />
-          <p>Learn more →</p>
-        </a>
-        <a class="slide" href="tournaments">
-          <img src="public/images/trophySlide.jpg" alt="image" />
-          <p>Find tournaments →</p>
-        </a>
-        <a class="slide" href="resources">
-          <img src="public/images/resourcesImage.jpg" alt="image" />
-          <p>Explore resources →</p>
-        </a>
-        <a class="slide" href="about/how-to-join">
-          <img src="public/images/handshake.jpg" alt="image" />
-          <p>Join ICDA →</p>
-        </a>
-      </div>
-      <section id="carouselAdditional">
-        <span class="carouselButton" id="leftCarousel" style="left: 0">
-          <img
-            style="transform: scaleX(-1)"
-            src="public/images/arrow.svg"
-            height="160"
-            width="60"
-            onclick="carouselBack()"
-            alt="Left Arrow"
-          />
-        </span>
-        <span class="carouselButton" id="rightCarousel" style="right: 0">
-          <img
-            src="public/images/arrow.svg"
-            height="160"
-            width="60"
-            onclick="carouselForward()"
-            alt="Right Arrow"
-          />
-        </span>
-      </section>
+        <div id="slideshow" style="height: 625px" class="division">
+          <a class="slide" href="about">
+            <img src="public/images/aboutImage.jpg" alt="image" />
+            <p>Learn more →</p>
+          </a>
+          <a class="slide" href="tournaments">
+            <img src="public/images/trophySlide.jpg" alt="image" />
+            <p>Find tournaments →</p>
+          </a>
+          <a class="slide" href="resources">
+            <img src="public/images/resourcesImage.jpg" alt="image" />
+            <p>Explore resources →</p>
+          </a>
+          <a class="slide" href="about/how-to-join">
+            <img src="public/images/handshake.jpg" alt="image" />
+            <p>Join ICDA →</p>
+          </a>
+        </div>
+        <section id="carouselAdditional">
+          <span class="carouselButton" id="leftCarousel" style="left: 0">
+            <img
+              style="transform: scaleX(-1)"
+              src="public/images/arrow.svg"
+              height="160"
+              width="60"
+              onclick="carouselBack()"
+              alt="Left Arrow"
+            />
+          </span>
+          <span class="carouselButton" id="rightCarousel" style="right: 0">
+            <img
+              src="public/images/arrow.svg"
+              height="160"
+              width="60"
+              onclick="carouselForward()"
+              alt="Right Arrow"
+            />
+          </span>
+        </section>
       </div>
       <div
         id="pageHeader"
@@ -582,7 +598,9 @@
                 max-width: 450px;
                 margin: auto;
                 color: white;
-              ", id="pageHeaderParagraph"
+              "
+              ,
+              id="pageHeaderParagraph"
             >
               Each year, we enable over <b>500</b> debaters to raise their
               voices and experience the power of congressional debate, honing
@@ -618,11 +636,15 @@
               margin: auto;
               color: black;
               padding-bottom: 30px;
-            ", id="joinICDAParagraph"
+            "
+            ,
+            id="joinICDAParagraph"
           >
             What are you waiting for?
           </p>
-          <a href="about/how-to-join", id="joinICDALink"><b>Join ICDA today.</b></a>
+          <a href="about/how-to-join" , id="joinICDALink"
+            ><b>Join ICDA today.</b></a
+          >
         </section>
       </div>
       <br />
