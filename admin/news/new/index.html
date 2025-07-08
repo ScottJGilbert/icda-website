@@ -5,7 +5,7 @@ require_once 'middleware.php';
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>New Post | Illinois Congressional Debate Association</title>
+    <title>New Post | ICDA</title>
     <link rel="icon" href="/public/images/favicon.png" />
     <link
       rel="stylesheet"
@@ -17,11 +17,17 @@ require_once 'middleware.php';
 
   <body>
     <h1>New Post</h1>
-    <!-- Populate this with stuff that can be duplicated -->
-    <div id="editor"></div>
+    <form name="newPost" id="newPost">
+      <input type="text" id="title" name="title" placeholder="Title" required />
+      <label for="title">Title <span style="color: red">*</span></label>
+      <input type="hidden" name="MAX_FILE_SIZE" value="16000000" />
+      <input type="image" id="image" name="image" />
+      <label for="image">Upload Image</label>
+      <div id="editor"></div>
 
-    <button onclick="save()">Save Changes</button>
+      <button type="submit" onclick="save()">Save Changes</button>
+    </form>
 
-    <script src="script.js"></script>
+    <script src="post-script.js"></script>
   </body>
 </html>

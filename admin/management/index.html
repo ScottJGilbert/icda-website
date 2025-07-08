@@ -19,17 +19,29 @@ require_once 'middleware.php';
       <input name="password" type="password" />
       <label for="password">Password</label>
 
+      <input
+        type="radio"
+        id="editor"
+        name="access_level"
+        value="Editor"
+        checked="true"
+      />
+      <label for="poster"
+        >Editor (can edit non-post data and upload results/legislation,
+        etc.)</label
+      ><br />
       <input type="radio" id="poster" name="access_level" value="Poster" />
-      <label for="poster">Poster</label><br />
-      <input type="radio" id="editor" name="access_level" value="Editor" />
-      <label for="poster">Editor</label><br />
+      <label for="poster"
+        >Poster (all editing permissions + creating/updating/deleting
+        posts)</label
+      ><br />
       <input
         type="radio"
         id="administrator"
         name="access_level"
         value="Administrator"
       />
-      <label for="poster">Administrator</label><br />
+      <label for="poster">Administrator (all permissions)</label><br />
 
       <input type="submit" value="Submit" />
     </form>

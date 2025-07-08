@@ -19,7 +19,7 @@ spl_autoload_register(function ($class) {
 });
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  Response::error('Method not allowed', 405);
+  Response::error('Only POST is allowed.', 405);
   exit;
 }
 
@@ -30,26 +30,18 @@ if (!($accessLevel === 'Administrator' || $accessLevel === 'Poster' || $accessLe
   exit;
 }
 
-if (strpos($_SERVER['CONTENT_TYPE'], 'multipart/form-data') === 0) {
-  // For multipart/form-data, JSON is usually sent as a field, e.g., 'json'
-  if (isset($_POST['json'])) {
-    $input = json_decode($_POST['json'], true);
-  } else {
-    $input = null;
-  }
-} else {
+if (strpos($_SERVER['CONTENT_TYPE'], 'multipart/form-data') !== 0) {
   Response::error('Invalid media type', 415);
   exit;
 }
 
-if ($input === null) {
-  Response::error('Invalid JSON input', 415);
-  exit;
-}
+$input = [];
 
-foreach ($input as $key => $value) {
+foreach ($_POST as $key => $value) {
   $value = trim($value);
-  $value = stripslashes($value);
+  if ($key !== 'imageUrl') {
+    $value = stripslashes($value);
+  }
   $value = htmlspecialchars($value);
 
   $input[$key] = $value;

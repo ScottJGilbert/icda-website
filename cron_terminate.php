@@ -1,6 +1,7 @@
 <?php
 
 require_once realpath(__DIR__ . '/backend/config/bootstrap.php');
+require_once realpath(__DIR__ . '/models/Session.php');
 
 // Strong token stored securely
 $expectedToken = $_ENV['CRON_KEY'];
@@ -15,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['key'] !== $expectedToken) {
 
 function performBackgroundTask()
 {
-  file_put_contents('cron_log.txt', "Task ran at " . date('Y-m-d H:i:s') . "\n", FILE_APPEND);
+  file_put_contents('/cron_log.txt', "Task ran at " . date('Y-m-d H:i:s') . "\n", FILE_APPEND);
   $sessionModel = new Session();
   $sessionModel->terminateExpiredSessions();
 }

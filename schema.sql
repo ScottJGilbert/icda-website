@@ -20,11 +20,11 @@ CREATE TABLE sessions (
   FOREIGN KEY (user_uuid) REFERENCES users(uuid)
 );
 
-CREATE TABLE news_posts ( --Upload image or use a url
+CREATE TABLE posts (
   id INT NOT NULL AUTO_INCREMENT,
-  slug VARCHAR(255) NOT NULL UNIQUE, -- Unique identifier for the post, used in URLs
+  slug VARCHAR(255) NOT NULL UNIQUE, 
   title VARCHAR(511) NOT NULL,
-  image_url VARCHAR(511), -- URL to the image associated with the post
+  image_url VARCHAR(511), 
   creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
   edit_date DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   markdown TEXT,
@@ -34,9 +34,9 @@ CREATE TABLE news_posts ( --Upload image or use a url
 CREATE TABLE schools ( --Upload logos as images or use a url
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,
-  image_url VARCHAR(511), -- URL to the school's logo or image
+  image_url VARCHAR(511),
   PRIMARY KEY (id)
-); -- Functions needed: get number of schools, get schools
+);
 
 CREATE TABLE coaches (
   id INT NOT NULL AUTO_INCREMENT,
@@ -52,7 +52,7 @@ CREATE TABLE oversight (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(127) NOT NULL,
   email VARCHAR(127) NOT NULL,
-  image_url VARCHAR(511), -- URL to the oversight member's image
+  image_url VARCHAR(511),
   PRIMARY KEY (id)
 );
 

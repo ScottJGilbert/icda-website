@@ -19,8 +19,7 @@ spl_autoload_register(function ($class) {
 });
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  http_response_code(405); // Method Not Allowed
-  echo json_encode(['success' => false, 'error' => 'Only POST is allowed']);
+  Response::error('Only POST is allowed.', 405);
   exit;
 }
 

@@ -23,12 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
   exit;
 }
 
-$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int) $_GET['page'] : 1;
-if ($page < 1) {
-  $page = 1; // Default to page 1 if invalid
-}
-
 $model = new Post();
-$output = $model->fetchPosts($page);
+$output = $model->fetchSlugs();
 
 Response::success($output);
