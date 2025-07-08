@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit9294338621ac7f555f2ce9a22fba6e7a
+class ComposerStaticInitcbffacdc22799bd911e3bce4ca004b0b
 {
     public static $prefixLengthsPsr4 = array (
         'S' => 
@@ -22,21 +22,14 @@ class ComposerStaticInit9294338621ac7f555f2ce9a22fba6e7a
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'Symfony\\Component\\Dotenv\\Command\\DebugCommand' => __DIR__ . '/..' . '/symfony/dotenv/Command/DebugCommand.php',
-        'Symfony\\Component\\Dotenv\\Command\\DotenvDumpCommand' => __DIR__ . '/..' . '/symfony/dotenv/Command/DotenvDumpCommand.php',
-        'Symfony\\Component\\Dotenv\\Dotenv' => __DIR__ . '/..' . '/symfony/dotenv/Dotenv.php',
-        'Symfony\\Component\\Dotenv\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/symfony/dotenv/Exception/ExceptionInterface.php',
-        'Symfony\\Component\\Dotenv\\Exception\\FormatException' => __DIR__ . '/..' . '/symfony/dotenv/Exception/FormatException.php',
-        'Symfony\\Component\\Dotenv\\Exception\\FormatExceptionContext' => __DIR__ . '/..' . '/symfony/dotenv/Exception/FormatExceptionContext.php',
-        'Symfony\\Component\\Dotenv\\Exception\\PathException' => __DIR__ . '/..' . '/symfony/dotenv/Exception/PathException.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit9294338621ac7f555f2ce9a22fba6e7a::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit9294338621ac7f555f2ce9a22fba6e7a::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit9294338621ac7f555f2ce9a22fba6e7a::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitcbffacdc22799bd911e3bce4ca004b0b::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitcbffacdc22799bd911e3bce4ca004b0b::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitcbffacdc22799bd911e3bce4ca004b0b::$classMap;
 
         }, null, ClassLoader::class);
     }

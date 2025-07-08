@@ -78,6 +78,6 @@
             "install-path": "../symfony/dotenv"
         }
     ],
-    "dev": false,
+    "dev": true,
     "dev-package-names": []
 }
