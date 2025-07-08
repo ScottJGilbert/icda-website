@@ -1,10 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../../dotenv/Dotenv.php';
-use Symfony\Component\Dotenv\Dotenv;
-
-$dotenv = new Dotenv();
-$dotenv->load(__DIR__ . '/../../.env');
+require_once realpath(__DIR__ . '/bootstrap.php');
 
 return [
     'db' => [
