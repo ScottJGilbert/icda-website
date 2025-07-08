@@ -18,9 +18,8 @@ spl_autoload_register(function ($class) {
   }
 });
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  http_response_code(405); // Method Not Allowed
-  echo json_encode(['success' => false, 'error' => 'Only GET is allowed']);
+if ($_SERVER['REQUEST_METHOD'] !== 'DELETE') {
+  Response::error('Only DELETE is allowed.', 405);
   exit;
 }
 
@@ -42,6 +41,21 @@ foreach ($input as $key => $value) {
 
 if (!isset($input['slug']) || trim($input['slug']) === '') {
   Response::error('Slug is required.', 400);
+  exit;
+}
+
+if (!preg_match('/^[a-zA-Z0-9-_]+$/', $input['slug'])) {
+  Response::error('Invalid slug format. Only alphanumeric characters, dashes, and underscores are allowed.', 400);
+  exit;
+}
+
+if ($input['slug'] === 'new') {
+  Response::error('Cannot delete the "new" slug.', 400);
+  exit;
+}
+
+if ($input['slug'] === 'new-website') {
+  Response::error('Cannot delete the "new-website" post.', 400);
   exit;
 }
 

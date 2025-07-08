@@ -19,7 +19,7 @@ spl_autoload_register(function ($class) {
 });
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  Response::error('Method not allowed', 405);
+  Response::error('Only POST is allowed.', 405);
   exit;
 }
 
@@ -30,14 +30,9 @@ if (!($accessLevel === 'Poster' || $accessLevel === 'Administrator')) {
   exit;
 }
 
-$input = json_decode(file_get_contents('php://input'), true);
+$input = [];
 
-if ($input === null) {
-  Response::error('Invalid JSON input', 415);
-  exit;
-}
-
-foreach ($input as $key => $value) {
+foreach ($_POST as $key => $value) {
   $value = trim($value);
   if ($key !== 'imageUrl') {
     $value = stripslashes($value);
@@ -62,6 +57,13 @@ if (!isset($input['containsImage']) || !is_bool($input['containsImage'])) {
   exit;
 }
 
+$input['slug'] = strtolower(trim(preg_replace('/[^a-z0-9]+/', '-', $input['title'])));
+$model = new Post();
+if (in_array($input['slug'], $model->fetchSlugs()) || $input['slug'] === 'new') {
+  Response::error('A post with this slug already exists.', 400);
+  exit;
+}
+
 $fileModel = new File();
 if ($input['containsImage']) {
   $input['imageUrl'] = $fileModel->uploadImage();
@@ -69,7 +71,6 @@ if ($input['containsImage']) {
   $input['imageUrl'] = '';
 }
 
-$model = new Post();
 $model->updatePost($input['slug'], $input['title'], $input['imageUrl'], $input['markdown']);
 
 mkdir(__DIR__ . "../../news/{$input['slug']}");

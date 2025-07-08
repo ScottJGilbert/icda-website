@@ -1,23 +1,28 @@
 <?php
 
-$postsPerPage = 9;
-
 class Post
 {
 
   private $pdo;
+  private $postsPerPage = 9; // Default posts per page
 
   public function __construct()
   {
     $this->pdo = Database::getConnection();
   }
 
+  public function getPages()
+  {
+    $stmt = $this->pdo->query("SELECT COUNT(*) FROM posts");
+    $totalPosts = $stmt->fetchColumn();
+
+    return ceil($totalPosts / $this->postsPerPage);
+  }
+
   public function fetchPosts($page)
   {
-    global $postsPerPage;
-
-    $offset = ($page - 1) * $postsPerPage;
-    $stmt = $this->pdo->prepare("SELECT * FROM posts ORDER BY created_at DESC LIMIT :offset, :limit");
+    $offset = ($page - 1) * $this->postsPerPage;
+    $stmt = $this->pdo->prepare("SELECT * FROM posts ORDER BY creation_date DESC LIMIT :limit OFFSET :offset");
     $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
     $stmt->bindParam(':limit', $postsPerPage, PDO::PARAM_INT);
     $stmt->execute();

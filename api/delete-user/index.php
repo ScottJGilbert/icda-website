@@ -18,8 +18,8 @@ spl_autoload_register(function ($class) {
   }
 });
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  Response::error('Method not allowed', 405);
+if ($_SERVER['REQUEST_METHOD'] !== 'DELETE') {
+  Response::error('Only DELETE is allowed.', 405);
   exit;
 }
 

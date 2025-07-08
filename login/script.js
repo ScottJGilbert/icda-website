@@ -13,3 +13,18 @@ async function postData() {
     alert("Saved!");
   }
 }
+
+function onLoad() {
+  const params = new URLSearchParams(window.location.search);
+  switch (params.get("code")) {
+    case "1":
+      document.getElementById("errorOne").style.display = "block";
+      break;
+    case "2":
+      document.getElementById("errorTwo").style.display = "block";
+      break;
+    default:
+      document.getElementById("errorOne").style.display = "none";
+      document.getElementById("errorTwo").style.display = "none";
+  }
+}

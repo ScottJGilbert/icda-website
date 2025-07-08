@@ -19,7 +19,7 @@ spl_autoload_register(function ($class) {
 });
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  Response::error('Method not allowed', 405);
+  Response::error('Only POST is allowed.', 405);
   exit;
 }
 
@@ -30,14 +30,9 @@ if (!($accessLevel === 'Poster' || $accessLevel === 'Administrator')) {
   exit;
 }
 
-$input = json_decode(file_get_contents('php://input'), true);
+$input = [];
 
-if ($input === null) {
-  Response::error('Invalid JSON input', 415);
-  exit;
-}
-
-foreach ($input as $key => $value) {
+foreach ($_POST as $key => $value) {
   $value = trim($value);
   if ($key !== 'imageUrl') {
     $value = stripslashes($value);

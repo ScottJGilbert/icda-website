@@ -6,7 +6,7 @@
     <link rel="icon" href="/public/images/favicon.png" />
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="onLoad()">
     <form>
       <input name="username" type="text" />
       <label for="username">Username</label>
@@ -14,5 +14,7 @@
       <label for="password">Password</label>
       <input type="submit" value="Submit" />
     </form>
+    <p id="errorOne">Please log in.</p>
+    <p id="errorTwo">Please log in again.</p>
   </body>
 </html>

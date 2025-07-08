@@ -1,0 +1,46 @@
+<!-- <?php
+require_once 'middleware.php';
+?> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>News | ICDA</title>
+    <link rel="icon" href="/public/images/favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+
+  <body>
+    <div onload="fetchData()" id="posts"></div>
+    >
+
+    <script>
+      async function fetchData() {
+        const res = await fetch(`/api/fetch-posts`);
+        const data = res.json();
+
+        for (post of data) {
+          const listing = document.createElement("div");
+          listing.className = "listing";
+
+          const title = document.createElement("h2");
+          const titleText = document.createTextNode(post.title);
+          title.appendChild(titleText);
+          listing.appendChild(title);
+
+          const image = document.createElement("img");
+          image.src = post.imageUrl;
+          listing.appendChild(image);
+
+          const date = document.createElement("h3");
+          const dateText = document.createTextNode(
+            new Date(post.creation_date).toLocaleDateString()
+          );
+          date.appendChild(dateText);
+          listing.appendChild(date);
+        }
+      }
+    </script>
+  </body>
+</html>

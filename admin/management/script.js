@@ -1,6 +1,6 @@
-const formData = new FormData(document.getElementById("new-user-form"));
-
 async function postData() {
+  const formData = new FormData(document.getElementById("new-user-form"));
+
   const res = await fetch("/api/new-user", {
     method: "POST",
     headers: { "Content-Type": "application/json" },

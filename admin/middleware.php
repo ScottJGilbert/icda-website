@@ -1,6 +1,7 @@
 <?php
 
-require_once __DIR__ . '/../core/Response.php';
+require_once realpath(__DIR__ . '/../core/Response.php');
+require_once realpath(__DIR__ . '/../models/Session.php');
 
 if (session_status() == PHP_SESSION_ACTIVE) {
   $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);

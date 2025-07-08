@@ -19,8 +19,7 @@ spl_autoload_register(function ($class) {
 });
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-  http_response_code(405); // Method Not Allowed
-  echo json_encode(['success' => false, 'error' => 'Only GET is allowed']);
+  Response::error('Only GET is allowed.', 405);
   exit;
 }
 

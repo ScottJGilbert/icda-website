@@ -19,7 +19,7 @@ spl_autoload_register(function ($class) {
 });
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  Response::error('Method not allowed', 405);
+  Response::error('Only POST is allowed.', 405);
   exit;
 }
 
