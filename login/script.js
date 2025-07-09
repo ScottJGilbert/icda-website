@@ -1,16 +1,14 @@
-const formData = new FormData(document.getElementById("login-form"));
-
-async function postData() {
-  const res = await fetch("/api/login", {
+async function login() {
+  const formData = new FormData(document.querySelector("#loginForm"));
+  const res = await fetch("/api/login/index.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(formData),
+    body: JSON.stringify(Object.fromEntries(formData.entries())),
   });
 
   if (!res.ok) {
-    alert("Failed to update.");
-  } else {
-    alert("Saved!");
+    alert("Login failed.");
+    window.location.reload();
   }
 }
 
@@ -19,8 +17,10 @@ function onLoad() {
   switch (params.get("code")) {
     case "1":
       document.getElementById("errorOne").style.display = "block";
+      document.getElementById("errorTwo").style.display = "none";
       break;
     case "2":
+      document.getElementById("errorOne").style.display = "none";
       document.getElementById("errorTwo").style.display = "block";
       break;
     default:
@@ -28,3 +28,5 @@ function onLoad() {
       document.getElementById("errorTwo").style.display = "none";
   }
 }
+
+window.onload = onLoad; // Call onLoad when the page loads

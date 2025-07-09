@@ -24,7 +24,7 @@ class Post
     $offset = ($page - 1) * $this->postsPerPage;
     $stmt = $this->pdo->prepare("SELECT * FROM posts ORDER BY creation_date DESC LIMIT :limit OFFSET :offset");
     $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
-    $stmt->bindParam(':limit', $postsPerPage, PDO::PARAM_INT);
+    $stmt->bindParam(':limit', $this->postsPerPage, PDO::PARAM_INT);
     $stmt->execute();
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -54,10 +54,10 @@ class Post
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function fetchImageUrl($postId)
+  public function fetchImageUrl($slug)
   {
-    $stmt = $this->pdo->prepare("SELECT image_url FROM posts WHERE id = :id LIMIT 1");
-    $stmt->bindParam(':id', $postId, PDO::PARAM_INT);
+    $stmt = $this->pdo->prepare("SELECT image_url FROM posts WHERE slug = :slug LIMIT 1");
+    $stmt->bindParam(':slug', $slug, PDO::PARAM_STR);
     $stmt->execute();
 
     return $stmt->fetchColumn();

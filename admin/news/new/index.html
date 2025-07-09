@@ -22,12 +22,11 @@ require_once 'middleware.php';
       <input type="text" id="title" name="title" placeholder="Title" required />
       <label for="title">Title <span style="color: red">*</span></label>
       <input type="hidden" name="MAX_FILE_SIZE" value="16000000" />
-      <input type="image" id="image" name="image" />
+      <input type="file" id="image" name="image" />
       <label for="image">Upload Image</label>
       <div id="editor"></div>
-
-      <button type="submit" onclick="save()">Save Changes</button>
     </form>
+    <button onclick="save()">Save Changes</button>
 
     <script src="post-script.js"></script>
   </body>
