@@ -2,16 +2,17 @@ const Editor = toastui.Editor;
 
 const viewer = new toastui.Editor({
   el: document.querySelector("#viewer"),
-  initialValue: originalData.markdown ?? "No content available.",
+  initialValue: "No content available.",
 });
 
 async function fetchData() {
   const slug = window.location.pathname.split("/")[3];
-  const res = await fetch(`/api/fetch-post?slug=${slug}`);
-  const originalData = await res.json();
+  const res = await fetch(`/api/fetch-post/index.php?slug=${slug}`);
+  const json = await res.json();
+  const originalData = await json.data;
 
-  document.querySelector("#title").value = originalData.title ?? "";
-  viewer.setMarkdown(originalData.markdown ?? "No content available.");
+  document.querySelector("#title").value = originalData.title;
+  viewer.setMarkdown(originalData.markdown);
   document.querySelector("#creationDate").textContent = `Created on: ${new Date(
     originalData.creation_date
   ).toLocaleDateString()}`;
@@ -21,3 +22,5 @@ async function fetchData() {
 
   document.title = `${originalData.title} | ICDA`;
 }
+
+window.onload = fetchData; // Fetch data when the page loads

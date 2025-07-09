@@ -14,6 +14,7 @@ class Session
 	{
 		if (session_status() === PHP_SESSION_NONE) {
 			session_start();
+			session_regenerate_id(true);
 			$_SESSION['uuid'] = $uuid;
 			$sessionId = session_id();
 			$ipAddress = $_SERVER['REMOTE_ADDR'];
@@ -42,9 +43,8 @@ class Session
 			$stmt->bindParam(":sessionId", $sessionId, PDO::PARAM_STR);
 			$stmt->execute();
 			$validSession = $stmt->fetch(PDO::FETCH_ASSOC); // Returns false if not found
-			$loggedIn = $validSession ?: null;
 
-			if ($loggedIn !== null) {
+			if (count($validSession) > 0) {
 				$userModel = new User();
 				$accessLevel = $userModel->findAccessByUUID($_SESSION['uuid']);
 			}
