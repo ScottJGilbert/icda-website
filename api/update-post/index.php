@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -33,11 +35,13 @@ if (!($accessLevel === 'Poster' || $accessLevel === 'Administrator')) {
 $input = [];
 
 foreach ($_POST as $key => $value) {
+	if (is_string($value)) {
   $value = trim($value);
   if ($key !== 'imageUrl') {
     $value = stripslashes($value);
   }
   $value = htmlspecialchars($value);
+  }
 
   $input[$key] = $value;
 }
@@ -57,7 +61,7 @@ if (!isset($input['markdown']) || trim($input['markdown']) === '') {
   exit;
 }
 
-if (!isset($input['deleteImage']) || !is_bool($input['deleteImage'])) {
+if (!isset($input['deleteImage']) || !($input['deleteImage'] === "false")) {
   Response::error('Delete image flag is required and must be a boolean.', 400);
   exit;
 }
@@ -65,7 +69,7 @@ if (!isset($input['deleteImage']) || !is_bool($input['deleteImage'])) {
 $model = new Post();
 
 $file = new File();
-if ($input['deleteImage']) {
+if ($input['deleteImage'] === "true") {
   $oldURL = $model->fetchImageUrl($input['id']);
   if ($oldURL)
     $file->deleteImage($oldURL);

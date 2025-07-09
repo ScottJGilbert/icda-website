@@ -1,17 +1,21 @@
-const formData = new FormData(document.getElementById("login-form"));
-
-async function postData() {
-  const res = await fetch("/api/login", {
+async function login() {
+  const formData = new FormData(document.querySelector("#loginForm"));
+  const res = await fetch("/api/login/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(formData),
+    body: JSON.stringify(Object.fromEntries(formData.entries())),
   });
+  
+  console.log(formData);
+  console.log(JSON.stringify(Object.fromEntries(formData.entries())));
 
   if (!res.ok) {
     alert("Failed to update.");
   } else {
     alert("Saved!");
   }
+  
+  window.location.reload();
 }
 
 function onLoad() {

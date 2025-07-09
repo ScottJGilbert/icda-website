@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
   exit;
 }
 
-$slug = isset($_GET['slug']) ?? "";
+$slug = $_GET['slug'];
 $slug = trim($slug);
 $slug = stripslashes($slug);
 $slug = htmlspecialchars($slug);

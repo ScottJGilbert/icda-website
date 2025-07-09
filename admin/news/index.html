@@ -12,15 +12,16 @@ require_once 'middleware.php';
   </head>
 
   <body>
-    <div onload="fetchData()" id="posts"></div>
-    >
-
+    <div id="posts"></div>
     <script>
       async function fetchData() {
+        const list = document.querySelector("#posts");
         const res = await fetch(`/api/fetch-posts`);
-        const data = res.json();
+        const json = await res.json();
+        const data = await json.data;
 
         for (post of data) {
+          console.log(post);
           const listing = document.createElement("div");
           listing.className = "listing";
 
@@ -30,7 +31,7 @@ require_once 'middleware.php';
           listing.appendChild(title);
 
           const image = document.createElement("img");
-          image.src = post.imageUrl;
+          image.src = post.imageUrl ?? "/public/images/ICDALogo.png";
           listing.appendChild(image);
 
           const date = document.createElement("h3");
@@ -39,8 +40,11 @@ require_once 'middleware.php';
           );
           date.appendChild(dateText);
           listing.appendChild(date);
+          
+          list.appendChild(listing);
         }
       }
+      window.addEventListener("DOMContentLoaded", fetchData);
     </script>
   </body>
 </html>

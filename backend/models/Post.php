@@ -24,7 +24,7 @@ class Post
     $offset = ($page - 1) * $this->postsPerPage;
     $stmt = $this->pdo->prepare("SELECT * FROM posts ORDER BY creation_date DESC LIMIT :limit OFFSET :offset");
     $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
-    $stmt->bindParam(':limit', $postsPerPage, PDO::PARAM_INT);
+    $stmt->bindParam(':limit', $this->postsPerPage, PDO::PARAM_INT);
     $stmt->execute();
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);

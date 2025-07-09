@@ -7,13 +7,13 @@
     <script src="script.js"></script>
   </head>
   <body onload="onLoad()">
-    <form>
-      <input name="username" type="text" />
+    <form id="loginForm">
+      <input name="username" id="username" type="text" />
       <label for="username">Username</label>
-      <input name="password" type="password" />
+      <input name="password" id="password" type="password" />
       <label for="password">Password</label>
-      <input type="submit" value="Submit" />
     </form>
+    <button onclick="login()">Login</button>
     <p id="errorOne">Please log in.</p>
     <p id="errorTwo">Please log in again.</p>
   </body>

@@ -42,9 +42,8 @@ class Session
 			$stmt->bindParam(":sessionId", $sessionId, PDO::PARAM_STR);
 			$stmt->execute();
 			$validSession = $stmt->fetch(PDO::FETCH_ASSOC); // Returns false if not found
-			$loggedIn = $validSession ?: null;
-
-			if ($loggedIn !== null) {
+			
+			if (count($validSession) > 0) {
 				$userModel = new User();
 				$accessLevel = $userModel->findAccessByUUID($_SESSION['uuid']);
 			}

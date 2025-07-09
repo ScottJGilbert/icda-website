@@ -2,7 +2,7 @@ const Editor = toastui.Editor;
 
 const viewer = new toastui.Editor({
   el: document.querySelector("#viewer"),
-  initialValue: originalData.markdown ?? "No content available.",
+  initialValue: "No content available.",
 });
 
 async function fetchData() {
@@ -21,3 +21,5 @@ async function fetchData() {
 
   document.title = `${originalData.title} | ICDA`;
 }
+
+window.onload = fetchData;
