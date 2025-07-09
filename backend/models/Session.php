@@ -14,6 +14,7 @@ class Session
 	{
 		if (session_status() === PHP_SESSION_NONE) {
 			session_start();
+			session_regenerate_id(true);
 			$_SESSION['uuid'] = $uuid;
 			$sessionId = session_id();
 			$ipAddress = $_SERVER['REMOTE_ADDR'];

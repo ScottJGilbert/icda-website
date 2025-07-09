@@ -10,7 +10,6 @@ define('ROOT_PATH', dirname(__DIR__, 2)); // Two levels up from this file
 spl_autoload_register(function ($class) {
   $paths = ['models', 'core'];
   foreach ($paths as $path) {
-    // [root]/api/fetch-post/index.php
     $file = ROOT_PATH . "/backend/$path/$class.php";
 
     if (file_exists($file)) {
@@ -35,12 +34,12 @@ if (!($accessLevel === 'Poster' || $accessLevel === 'Administrator')) {
 $input = [];
 
 foreach ($_POST as $key => $value) {
-	if (is_string($value)) {
-  $value = trim($value);
-  if ($key !== 'imageUrl') {
-    $value = stripslashes($value);
-  }
-  $value = htmlspecialchars($value);
+  if (is_string($value) && $key !== 'markdown') {
+    $value = trim($value);
+    if ($key !== 'imageUrl') {
+      $value = stripslashes($value);
+    }
+    $value = htmlspecialchars($value);
   }
 
   $input[$key] = $value;
@@ -61,7 +60,7 @@ if (!isset($input['markdown']) || trim($input['markdown']) === '') {
   exit;
 }
 
-if (!isset($input['deleteImage']) || !($input['deleteImage'] === "false")) {
+if (!isset($input['deleteImage']) || !($input['deleteImage'] === 'true' || $input['deleteImage'] === 'false')) {
   Response::error('Delete image flag is required and must be a boolean.', 400);
   exit;
 }
@@ -69,18 +68,18 @@ if (!isset($input['deleteImage']) || !($input['deleteImage'] === "false")) {
 $model = new Post();
 
 $file = new File();
-if ($input['deleteImage'] === "true") {
-  $oldURL = $model->fetchImageUrl($input['id']);
+if ($input['deleteImage'] === 'true') {
+  $oldURL = $model->fetchImageUrl($input['slug']);
   if ($oldURL)
     $file->deleteImage($oldURL);
   $input['imageUrl'] = '';
 } else if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-  $oldURL = $model->fetchImageUrl($input['id']);
+  $oldURL = $model->fetchImageUrl($input['slug']);
   if ($oldURL)
     $file->deleteImage($oldURL);
   $input['imageUrl'] = $fileModel->uploadImage();
 } else {
-  $input['imageUrl'] = $model->fetchImageUrl($input['id']); // No new image uploaded
+  $input['imageUrl'] = $model->fetchImageUrl($input['slug']); // No new image uploaded
 }
 
 $model->updatePost($input['slug'], $input['title'], $input['imageUrl'], $input['markdown']);

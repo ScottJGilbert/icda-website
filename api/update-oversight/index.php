@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -8,7 +10,6 @@ define('ROOT_PATH', dirname(__DIR__, 2)); // Two levels up from this file
 spl_autoload_register(function ($class) {
   $paths = ['models', 'core'];
   foreach ($paths as $path) {
-    // [root]/api/fetch-post/index.php
     $file = ROOT_PATH . "/backend/$path/$class.php";
 
     if (file_exists($file)) {
@@ -38,11 +39,13 @@ if (strpos($_SERVER['CONTENT_TYPE'], 'multipart/form-data') !== 0) {
 $input = [];
 
 foreach ($_POST as $key => $value) {
-  $value = trim($value);
-  if ($key !== 'imageUrl') {
-    $value = stripslashes($value);
+  if (is_string($value)) {
+    $value = trim($value);
+    if ($key !== 'imageUrl') {
+      $value = stripslashes($value);
+    }
+    $value = htmlspecialchars($value);
   }
-  $value = htmlspecialchars($value);
 
   $input[$key] = $value;
 }
@@ -72,7 +75,7 @@ if ($input['email'] !== '' && !filter_var($input['email'], FILTER_VALIDATE_EMAIL
   exit;
 }
 
-if (!isset($input['deleteImage']) || !is_bool($input['deleteImage'])) {
+if (!isset($input['deleteImage']) || !($input['deleteImage'] === 'true' || $input['deleteImage'] === 'false')) {
   Response::error('Delete image flag is required and must be a boolean.', 400);
   exit;
 }
@@ -80,7 +83,7 @@ if (!isset($input['deleteImage']) || !is_bool($input['deleteImage'])) {
 $model = new Oversight();
 
 $file = new File();
-if ($input['deleteImage']) {
+if ($input['deleteImage'] === 'true') {
   $oldURL = $model->fetchImageUrl($input['id']);
   if ($oldURL)
     $file->deleteImage($oldURL);

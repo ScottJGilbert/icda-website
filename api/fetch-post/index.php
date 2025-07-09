@@ -8,7 +8,6 @@ define('ROOT_PATH', dirname(__DIR__, 2)); // Two levels up from this file
 spl_autoload_register(function ($class) {
   $paths = ['models', 'core'];
   foreach ($paths as $path) {
-    // [root]/api/fetch-post/index.php
     $file = ROOT_PATH . "/backend/$path/$class.php";
 
     if (file_exists($file)) {
@@ -23,6 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
   exit;
 }
 
+if (isset($_GET['slug']) && !is_string($_GET['slug'])) {
+  Response::error('Slug must be a string.', 400);
+  exit;
+}
+
 $slug = $_GET['slug'];
 $slug = trim($slug);
 $slug = stripslashes($slug);
@@ -30,5 +34,11 @@ $slug = htmlspecialchars($slug);
 
 $model = new Post();
 $output = $model->fetchPostBySlug($slug);
+
+foreach ($output as $key => $value) {
+  if (is_string($value)) {
+    $output[$key] = htmlspecialchars($value);
+  }
+}
 
 Response::success($output);

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -8,7 +10,6 @@ define('ROOT_PATH', dirname(__DIR__, 2)); // Two levels up from this file
 spl_autoload_register(function ($class) {
   $paths = ['models', 'core'];
   foreach ($paths as $path) {
-    // [root]/api/fetch-post/index.php
     $file = ROOT_PATH . "/backend/$path/$class.php";
 
     if (file_exists($file)) {
@@ -33,11 +34,13 @@ if (!($accessLevel === 'Poster' || $accessLevel === 'Administrator')) {
 $input = [];
 
 foreach ($_POST as $key => $value) {
-  $value = trim($value);
-  if ($key !== 'imageUrl') {
-    $value = stripslashes($value);
+  if (is_string($value) && $key !== 'markdown') {
+    $value = trim($value);
+    if ($key !== 'imageUrl') {
+      $value = stripslashes($value);
+    }
+    $value = htmlspecialchars($value);
   }
-  $value = htmlspecialchars($value);
 
   $input[$key] = $value;
 }
@@ -52,7 +55,7 @@ if (!isset($input['markdown']) || trim($input['markdown']) === '') {
   exit;
 }
 
-if (!isset($input['containsImage']) || !is_bool($input['containsImage'])) {
+if (!isset($input['containsImage']) || !($input['containsImage'] === 'true' || $input['containsImage'] === 'false')) {
   Response::error('Contains image must be a boolean.', 400);
   exit;
 }
@@ -65,7 +68,7 @@ if (in_array($input['slug'], $model->fetchSlugs()) || $input['slug'] === 'new') 
 }
 
 $fileModel = new File();
-if ($input['containsImage']) {
+if ($input['containsImage'] === 'true') {
   $input['imageUrl'] = $fileModel->uploadImage();
 } else {
   $input['imageUrl'] = '';

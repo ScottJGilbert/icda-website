@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -8,7 +10,6 @@ define('ROOT_PATH', dirname(__DIR__, 2)); // Two levels up from this file
 spl_autoload_register(function ($class) {
   $paths = ['models', 'core'];
   foreach ($paths as $path) {
-    // [root]/api/fetch-post/index.php
     $file = ROOT_PATH . "/backend/$path/$class.php";
 
     if (file_exists($file)) {
@@ -44,9 +45,11 @@ if (!is_array($input['list']) || empty($input['list'])) {
 
 foreach ($input['list'] as $item) {
   foreach ($item as $key => $value) {
-    $value = trim($value);
-    $value = stripslashes($value);
-    $value = htmlspecialchars($value);
+    if (is_string($value)) {
+      $value = trim($value);
+      $value = stripslashes($value);
+      $value = htmlspecialchars($value);
+    }
 
     $coach[$key] = $value;
   }

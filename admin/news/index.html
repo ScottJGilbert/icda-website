@@ -16,7 +16,8 @@ require_once 'middleware.php';
     <script>
       async function fetchData() {
         const list = document.querySelector("#posts");
-        const res = await fetch(`/api/fetch-posts`);
+
+        const res = await fetch(`/api/fetch-posts/index.php`);
         const json = await res.json();
         const data = await json.data;
 
@@ -40,7 +41,7 @@ require_once 'middleware.php';
           );
           date.appendChild(dateText);
           listing.appendChild(date);
-          
+
           list.appendChild(listing);
         }
       }

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -8,7 +10,6 @@ define('ROOT_PATH', dirname(__DIR__, 2)); // Two levels up from this file
 spl_autoload_register(function ($class) {
   $paths = ['models', 'core'];
   foreach ($paths as $path) {
-    // [root]/api/fetch-post/index.php
     $file = ROOT_PATH . "/backend/$path/$class.php";
 
     if (file_exists($file)) {
@@ -86,25 +87,25 @@ if (!isset($input['contacts']) || trim($input['contacts']) === '') {
   exit;
 }
 
-if (!isset($input['deleteLegislation']) || !is_bool($input['deleteLegislation'])) {
+if (!isset($input['deleteLegislation']) || !($input['deleteLegislation'] === 'true' || $input['deleteLegislation'] === 'false')) {
   Response::error('Delete legislation status is required and must be a boolean.', 400);
   exit;
 }
 
-if (!isset($input['deleteResults']) || !is_bool($input['deleteResults'])) {
+if (!isset($input['deleteResults']) || !($input['deleteResults'] === 'true' || $input['deleteResults'] === 'false')) {
   Response::error('Delete results status is required and must be a boolean.', 400);
   exit;
 }
 
 $fileModel = new File();
 
-if ($input['deleteLegislation']) {
+if ($input['deleteLegislation'] === 'true') {
   $fileModel->deleteLegislation($input['id']);
 } else if (isset($_FILES['legislation']) && $_FILES['legislation']['error'] === UPLOAD_ERR_OK) {
   $fileModel->uploadLegislation($input['id']);
 }
 
-if ($input['deleteResults']) {
+if ($input['deleteResults'] === 'true') {
   $fileModel->deleteResults($input['id']);
 } else if (isset($_FILES['results']) && $_FILES['results']['error'] === UPLOAD_ERR_OK) {
   $fileModel->uploadResults($input['id']);

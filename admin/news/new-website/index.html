@@ -20,7 +20,7 @@ require_once 'middleware.php';
     <form id="updatePost">
       <input id="title" name="title" type="text" placeholder="Title" required />
       <label for="title">Title <span style="color: red">*</span></label>
-      <input id="image" name="image" type="image" />
+      <input id="image" name="image" type="file" />
       <label for="image">Upload new image</label>
 
       <input
@@ -32,10 +32,8 @@ require_once 'middleware.php';
       <label for="deleteImage">Delete associated image</label>
       <!-- Populate this with stuff that can be duplicated -->
       <div id="editor"></div>
-
-
     </form>
-          <button type="submit" onclick="save()"></button>
+    <button onclick="save()">Save</button>
 
     <button
       onclick="deletePost()"

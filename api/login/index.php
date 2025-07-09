@@ -8,7 +8,6 @@ define('ROOT_PATH', dirname(__DIR__, 2)); // Two levels up from this file
 spl_autoload_register(function ($class) {
   $paths = ['models', 'core'];
   foreach ($paths as $path) {
-    // [root]/api/fetch-post/index.php
     $file = ROOT_PATH . "/backend/$path/$class.php";
 
     if (file_exists($file)) {
@@ -26,9 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $input = json_decode(file_get_contents('php://input'), true);
 
 foreach ($input as $key => $value) {
-  $value = trim($value);
-  $value = stripslashes($value);
-  $value = htmlspecialchars($value);
+  if (is_string($value)) {
+    $value = trim($value);
+    $value = stripslashes($value);
+    $value = htmlspecialchars($value);
+  }
 
   $input[$key] = $value;
 }

@@ -26,7 +26,6 @@ async function fetchData() {
   const res = await fetch(`/api/fetch-post?slug=${slug}`);
   const json = await res.json();
   const originalData = await json.data;
- 
 
   document.querySelector("#title").value = originalData.title;
   editor.setMarkdown(
@@ -47,9 +46,12 @@ function save() {
     // Add fields
     formData.append("slug", window.location.pathname.split("/")[3]);
     formData.append("markdown", editor.getMarkdown());
-    formData.append("deleteImage", document.querySelector("#deleteImage").checked);
+    formData.append(
+      "deleteImage",
+      document.querySelector("#deleteImage").checked
+    );
 
-    fetch("/api/update-post/", {
+    fetch("api/update-post/index.php", {
       method: "POST",
       body: formData,
       // Don't set the Content-Type manually!
@@ -89,7 +91,7 @@ function deletePost() {
       return;
     }
     const slug = window.location.pathname.split("/")[3];
-    fetch(`/api/delete-post?slug=${slug}`, {
+    fetch(`/api/delete-post/index.php?slug=${slug}`, {
       method: "DELETE",
     })
       .then((response) => response.json())
