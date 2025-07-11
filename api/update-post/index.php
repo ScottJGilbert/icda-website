@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $session = new Session();
 $accessLevel = $session->getAccessLevel();
 if (!($accessLevel === 'Poster' || $accessLevel === 'Administrator')) {
-  Response::error('You do not have permission to perform this action.', 403);
+  Response::redirect('/login', 403);
   exit;
 }
 
@@ -77,7 +77,7 @@ if ($input['deleteImage'] === 'true') {
   $oldURL = $model->fetchImageUrl($input['slug']);
   if ($oldURL)
     $file->deleteImage($oldURL);
-  $input['imageUrl'] = $fileModel->uploadImage();
+  $input['imageUrl'] = $file->uploadImage();
 } else {
   $input['imageUrl'] = $model->fetchImageUrl($input['slug']); // No new image uploaded
 }

@@ -92,7 +92,7 @@ if ($input['deleteImage'] === 'true') {
   $oldURL = $model->fetchImageUrl($input['id']);
   if ($oldURL)
     $file->deleteImage($oldURL);
-  $input['imageUrl'] = $fileModel->uploadImage();
+  $input['imageUrl'] = $file->uploadImage();
 } else {
   $input['imageUrl'] = $model->fetchImageUrl($input['id']); // No new image uploaded
 }

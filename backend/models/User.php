@@ -65,6 +65,9 @@ class User
 		$stmt = $this->pdo->prepare($sql);
 		$stmt->bindParam(":uuid", $uuid, PDO::PARAM_STR);
 		$stmt->execute();
+
+		$sessionModel = new Session();
+		$sessionModel->terminateDeletedUserSessions($uuid);
 	}
 
 	public function fetchUsers(): array

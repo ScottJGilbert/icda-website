@@ -15,18 +15,25 @@ class Tournament
     $stmt = $this->pdo->prepare('SELECT * FROM tournaments WHERE id = :id LIMIT 1');
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+    $tournament = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $contactModel = new Contact();
+    $contacts = $contactModel->fetchContacts($id);
+    $tournament['contacts'] = $contacts;
+    return $tournament;
   }
 
   public function updateTournament($id, $date, $schoolId, $tabroom, $contacts)
   {
-    $stmt = $this->pdo->prepare('UPDATE tournaments SET tournament_date = :tournamentDate, school_id = :schoolId, tabroom = :tabroom, contacts = :contacts WHERE id = :id');
+    $stmt = $this->pdo->prepare('UPDATE tournaments SET tournament_date = :tournamentDate, school_id = :schoolId, tabroom = :tabroom WHERE id = :id');
     $stmt->bindParam(':tournamentDate', $date, PDO::PARAM_STR);
     $stmt->bindParam(':schoolId', $schoolId, PDO::PARAM_INT);
     $stmt->bindParam(':tabroom', $tabroom, PDO::PARAM_STR);
-    $stmt->bindParam(':contacts', $contacts, PDO::PARAM_STR);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
+
+    $contactModel = new Contact();
+    $contactModel->updateContacts($id, $contacts);
   }
 
   public function archiveTournaments()

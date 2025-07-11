@@ -50,24 +50,14 @@ foreach ($_POST as $key => $value) {
   $input[$key] = $value;
 }
 
-if (!isset($input['id']) || !is_numeric($input['id']) || $input['id'] < 1) {
-  Response::error('Invalid ID.', 400);
-  exit;
-}
-
 if (!isset($item['name']) || trim($item['name']) === '') {
   Response::error('Name is required.', 400);
   exit;
 }
 
-if (!isset($input['containsImage']) || !($input['containsImage'] === 'true' || $input['containsImage'] === 'false')) {
-  Response::error('Contains image must be a boolean.', 400);
-  exit;
-}
-
-$fileModel = new File();
-if ($input['containsImage'] === 'true') {
-  $input['imageUrl'] = $fileModel->uploadImage();
+if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+  $file = new File();
+  $input['imageUrl'] = $file->uploadImage();
 } else {
   $input['imageUrl'] = '';
 }

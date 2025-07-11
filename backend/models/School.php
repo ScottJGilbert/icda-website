@@ -15,6 +15,14 @@ class School
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
+  public function fetchSchool($id)
+  {
+    $stmt = $this->pdo->prepare("SELECT * FROM schools WHERE id = :id LIMIT 1");
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+  }
+
   public function updateSchool($name, $imageUrl, $id)
   {
     if ($id > 0) {

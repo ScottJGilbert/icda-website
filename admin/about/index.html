@@ -12,5 +12,19 @@ require_once 'middleware.php';
 
   <body>
     <h1>Edit About</h1>
+    <h2>Edit Schools</h2>
+    <div id="schools">
+      <form id="new-school-form">
+        <input type="text" id="name" name="name" placeholder="Name" required />
+        <label for="name">Name <span style="color: red">*</span></label>
+        <input type="file" id="image" name="image" accept="image/*" />
+        <label for="image">Logo</label>
+      </form>
+      <button onclick="addNewSchool()">Add School</button>
+    </div>
+    <h2>Edit Oversight</h2>
+    <div id="oversight"></div>
+
+    <script src="data-script.js"></script>
   </body>
 </html>

@@ -66,6 +66,15 @@ CREATE TABLE tournament_pages (
   FOREIGN KEY (school_id) REFERENCES schools(id)
 );
 
+CREATE TABLE contacts (
+  id INT NOT NULL AUTO_INCREMENT,
+  tournament INT NOT NULL,
+  name VARCHAR(127) NOT NULL,
+  email VARCHAR(127) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (tournament) REFERENCES tournament_pages(id)
+)
+
 CREATE TABLE rules (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,

@@ -35,6 +35,11 @@ $slug = htmlspecialchars($slug);
 $model = new Post();
 $output = $model->fetchPostBySlug($slug);
 
+if (!$output) {
+  Response::error('Post not found.', 404);
+  exit;
+}
+
 foreach ($output as $key => $value) {
   if (is_string($value)) {
     $output[$key] = htmlspecialchars($value);
