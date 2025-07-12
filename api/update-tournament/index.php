@@ -97,18 +97,18 @@ if (!isset($input['deleteResults']) || !($input['deleteResults'] === 'true' || $
   exit;
 }
 
-$fileModel = new File();
+$file = new File();
 
 if ($input['deleteLegislation'] === 'true') {
-  $fileModel->deleteLegislation($input['id']);
+  $file->deleteLegislation($input['id']);
 } else if (isset($_FILES['legislation']) && $_FILES['legislation']['error'] === UPLOAD_ERR_OK) {
-  $fileModel->uploadLegislation($input['id']);
+  $file->uploadLegislation($input['id']);
 }
 
 if ($input['deleteResults'] === 'true') {
-  $fileModel->deleteResults($input['id']);
+  $file->deleteResults($input['id']);
 } else if (isset($_FILES['results']) && $_FILES['results']['error'] === UPLOAD_ERR_OK) {
-  $fileModel->uploadResults($input['id']);
+  $file->uploadResults($input['id']);
 }
 
 $model = new Tournament();

@@ -6,7 +6,7 @@ class File
   {
     $tournament_name = $tournament_id === 6 ? 'state' : (string) $tournament_id;
 
-    $targetFile = __DIR__ . "/../../tournaments/icda-$tournament_name/legislation.pdf";
+    $targetFile = realpath(__DIR__ . "/../../tournaments/icda-$tournament_name/legislation.pdf");
     $uploadedFile = $_FILES["legislation"]["name"];
 
     $uploadedType = strtolower(pathinfo($uploadedFile, PATHINFO_EXTENSION));
@@ -22,8 +22,8 @@ class File
       exit;
     }
 
-    if ($_FILES["legislation"]["size"] > 16000000) {
-      Response::error('File size exceeds the limit of 16MB.', 400);
+    if ($_FILES["legislation"]["size"] > 8000000) {
+      Response::error('File size exceeds the limit of 8MB.', 400);
       exit;
     }
 
@@ -39,7 +39,7 @@ class File
 
   public function deleteLegislation($tournament_id)
   {
-    $targetFile = __DIR__ . "/../../tournaments/icda-$tournament_id/legislation.pdf";
+    $targetFile = realpath(__DIR__ . "/../../tournaments/icda-$tournament_id/legislation.pdf");
 
     if (file_exists($targetFile)) {
       if (unlink($targetFile)) {
@@ -59,7 +59,7 @@ class File
   {
     $tournament_name = $tournament_id === 6 ? 'state' : (string) $tournament_id;
 
-    $targetFile = __DIR__ . "/../../tournaments/icda-$tournament_name/results.pdf";
+    $targetFile = realpath(__DIR__ . "/../../tournaments/icda-$tournament_name/results.pdf");
     $uploadedFile = $_FILES["results"]["name"];
 
     $uploadedType = strtolower(pathinfo($uploadedFile, PATHINFO_EXTENSION));
@@ -75,8 +75,8 @@ class File
       exit;
     }
 
-    if ($_FILES["results"]["size"] > 16000000) {
-      Response::error('File size exceeds the limit of 16MB.', 400);
+    if ($_FILES["results"]["size"] > 8000000) {
+      Response::error('File size exceeds the limit of 8MB.', 400);
       exit;
     }
 
@@ -91,7 +91,7 @@ class File
 
   public function deleteResults($tournament_id)
   {
-    $targetFile = __DIR__ . "/../../tournaments/icda-$tournament_id/results.pdf";
+    $targetFile = realpath(__DIR__ . "/../../tournaments/icda-$tournament_id/results.pdf");
 
     if (file_exists($targetFile)) {
       if (unlink($targetFile)) {
@@ -109,7 +109,7 @@ class File
 
   public function uploadConstitution()
   {
-    $targetFile = __DIR__ . "/../../constitution.pdf";
+    $targetFile = realpath(__DIR__ . "/../../constitution.pdf");
     $uploadedFile = $_FILES["constitution"]["name"];
 
     $uploadedType = strtolower(pathinfo($uploadedFile, PATHINFO_EXTENSION));
@@ -125,8 +125,8 @@ class File
       exit;
     }
 
-    if ($_FILES["results"]["size"] > 16000000) {
-      Response::error('File size exceeds the limit of 16MB.', 400);
+    if ($_FILES["results"]["size"] > 8000000) {
+      Response::error('File size exceeds the limit of 8MB.', 400);
       exit;
     }
 
@@ -142,11 +142,12 @@ class File
   public function uploadImage(): string
   {
     $validExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'tiff', 'ico', 'avif', 'heic'];
-
-    $targetDir = __DIR__ . '../../public/uploads/';
-    $targetFile = $targetDir . basename($_FILES["image"]["name"]);
-    $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
     $mimeType = str_replace("image/", "", mime_content_type($_FILES["image"]["tmp_name"]));
+
+    $targetDir = realpath(__DIR__ . '/../../public/uploads/');
+    $targetFile = $targetDir . '/' . uniqid("", true) . '.' . $mimeType;
+
+    $imageFileType = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
 
     // Check if image file is a actual image or fake image
     $check = getimagesize($_FILES["image"]["tmp_name"]);
@@ -167,13 +168,14 @@ class File
     }
 
     // Check file size
-    if ($_FILES["image"]["size"] > 16000000) { // 16MB limit
-      Response::error('File size exceeds the limit of 16MB.', 400);
+    if ($_FILES["image"]["size"] > 8000000) { // 8MB limit
+      Response::error('File size exceeds the limit of 8MB.', 400);
       exit;
     }
 
     if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-      return $targetFile;
+      $relativePath = substr($targetFile, strpos($targetFile, '/public/uploads/'));
+      return $relativePath;
     } else {
       Response::error('Failed to upload image.', 500);
       exit;

@@ -11,39 +11,68 @@ require_once 'middleware.php';
   </head>
 
   <body>
-    <form id="new-user-form">
-      <input name="name" type="text" />
-      <label for="name">Name</label>
-      <input name="username" type="text" />
-      <label for="username">Username</label>
-      <input name="password" type="password" />
-      <label for="password">Password</label>
+    <div>
+      <form id="newConstitution">
+        <input
+          type="file"
+          id="constitution"
+          name="constitution"
+          accept=".pdf"
+          required
+        />
+        <label for="constitution"
+          >New Constitution <span style="color: red">*</span></label
+        >
+      </form>
+      <button onclick="newConstitution()">Upload</button>
+    </div>
+    <div>
+      <form id="new-user-form">
+        <input id="name" name="name" type="text" required />
+        <label for="name">Name <span style="color: red">*</span></label>
+        <input id="username" name="username" type="text" required />
+        <label for="username">Username <span style="color: red">*</span></label>
+        <input id="password" name="password" type="password" required />
+        <label for="password">Password <span style="color: red">*</span></label>
+        <input id="confirmPassword" type="password" required />
+        <label for="password"
+          >Confirm Password <span style="color: red">*</span></label
+        >
 
-      <input
-        type="radio"
-        id="editor"
-        name="access_level"
-        value="Editor"
-        checked="true"
-      />
-      <label for="poster"
-        >Editor (can edit non-post data and upload results/legislation,
-        etc.)</label
-      ><br />
-      <input type="radio" id="poster" name="access_level" value="Poster" />
-      <label for="poster"
-        >Poster (all editing permissions + creating/updating/deleting
-        posts)</label
-      ><br />
-      <input
-        type="radio"
-        id="administrator"
-        name="access_level"
-        value="Administrator"
-      />
-      <label for="poster">Administrator (all permissions)</label><br />
-
-      <input type="submit" value="Submit" />
-    </form>
+        <input
+          type="radio"
+          id="editor"
+          name="access_level"
+          value="Editor"
+          checked="true"
+        />
+        <label for="editor"
+          >Editor (can edit non-post data and upload results/legislation,
+          etc.)</label
+        ><br />
+        <input type="radio" id="poster" name="access_level" value="Poster" />
+        <label for="poster"
+          >Poster (all editing permissions + creating/updating/deleting
+          posts)</label
+        ><br />
+        <input
+          type="radio"
+          id="administrator"
+          name="access_level"
+          value="Administrator"
+        />
+        <label for="administrator">Administrator (all permissions)</label><br />
+      </form>
+      <button onclick="newUser()">Add User</button>
+    </div>
+    <div id="currentUsers">
+      <p>
+        Note: for security reasons, user information cannot be edited. If you
+        need to edit a user's information, please delete their current user and
+        create a new one for them.
+      </p>
+    </div>
+    <div id="currentSessions"></div>
+    <script src="data-script.js"></script>
   </body>
 </html>

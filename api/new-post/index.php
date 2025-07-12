@@ -67,9 +67,9 @@ if (in_array($input['slug'], $model->fetchSlugs()) || $input['slug'] === 'new') 
   exit;
 }
 
-$fileModel = new File();
+$file = new File();
 if ($input['containsImage'] === 'true') {
-  $input['imageUrl'] = $fileModel->uploadImage();
+  $input['imageUrl'] = $file->uploadImage();
 } else {
   $input['imageUrl'] = '';
 }

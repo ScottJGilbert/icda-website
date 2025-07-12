@@ -30,4 +30,9 @@ if ($id < 1 || $id > 6) {
 $model = new Tournament();
 $output = $model->fetchTournament($id);
 
+$schoolModel = new School();
+$school = $schoolModel->fetchSchool($output['school_id']);
+$output['school_name'] = $school['name'];
+$output['school_image'] = $school['imageUrl'] ?? '';
+
 Response::success($output);

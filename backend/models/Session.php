@@ -33,23 +33,20 @@ class Session
 
 	public function getAccessLevel(): string
 	{
-		$accessLevel = 'None';
+		$sessionId = session_id();
 
-		if (session_status() === PHP_SESSION_ACTIVE) {
-			$sessionId = session_id();
+		$sql = "SELECT * FROM sessions WHERE (session_id = :sessionId AND DATE_ADD(last_seen, INTERVAL 30 MINUTE) > NOW()) LIMIT 1";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindParam(":sessionId", $sessionId, PDO::PARAM_STR);
+		$stmt->execute();
+		$validSession = $stmt->fetch(PDO::FETCH_ASSOC); // Returns false if not found
 
-			$sql = "SELECT * FROM sessions WHERE (session_id = :sessionId AND DATE_ADD(last_seen, INTERVAL 30 MINUTE) < NOW()) LIMIT 1";
-			$stmt = $this->pdo->prepare($sql);
-			$stmt->bindParam(":sessionId", $sessionId, PDO::PARAM_STR);
-			$stmt->execute();
-			$validSession = $stmt->fetch(PDO::FETCH_ASSOC); // Returns false if not found
-			
-			if (count($validSession) > 0) {
-				$userModel = new User();
-				$accessLevel = $userModel->findAccessByUUID($_SESSION['uuid']);
-			}
+		if ($validSession !== false) {
+			$userModel = new User();
+			return $userModel->findAccessByUUID($validSession['uuid']);
+		} else {
+			return 'None';
 		}
-		return $accessLevel;
 	}
 
 	public function terminateSession($sessionId): void
@@ -58,6 +55,14 @@ class Session
 		$sql = "DELETE FROM sessions WHERE session_id = :sessionId";
 		$stmt = $this->pdo->prepare($sql);
 		$stmt->bindParam(":sessionId", $sessionId, PDO::PARAM_STR);
+		$stmt->execute();
+	}
+
+	public function terminateDeletedUserSessions($uuid): void
+	{
+		$sql = "DELETE FROM sessions WHERE user_uuid = :uuid";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindParam(":uuid", $uuid, PDO::PARAM_STR);
 		$stmt->execute();
 	}
 
