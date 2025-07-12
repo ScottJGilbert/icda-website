@@ -73,7 +73,7 @@ CREATE TABLE contacts (
   email VARCHAR(127) NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (tournament) REFERENCES tournament_pages(id)
-)
+);
 
 CREATE TABLE rules (
   id INT NOT NULL AUTO_INCREMENT,
