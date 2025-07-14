@@ -39,7 +39,7 @@ async function fetchData() {
   }
 
   try {
-    const res = await fetch("/api/fetch-oversight/index.php");
+    const res = await fetch("/api/fetch-all-oversight/index.php");
     const data = await res.json();
     if (!data.success) {
       throw new Error(data.error);

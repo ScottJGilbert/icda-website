@@ -44,7 +44,7 @@ async function fetchData() {
       <p>Last Seen: ${session.last_seen}</p>
       <button onclick="terminateSession('${session.session_id}')">Terminate Session</button>
     `;
-      document.getElementById("currentSessions").appendChild(userDiv);
+      document.getElementById("currentSessions").appendChild(sessionDiv);
     }
   } catch (error) {
     console.error("Error fetching users:", error);
