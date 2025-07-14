@@ -3,8 +3,10 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+/vendor
 # Editor-based HTTP Client requests
 /httpRequests/
 # DATABASE SECRETS DO NOT LET ANYONE SEE THIS (example .env file is provided))
 .env/*
 .env
+

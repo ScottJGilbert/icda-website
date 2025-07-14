@@ -2,6 +2,13 @@
 
 class File
 {
+
+  private function getSeason($archive_id)
+  {
+    //Will need to adjust how $archive_id matches to a season depending on what the earliest season entered into the database is
+    return (2020 + $archive_id) . "-" . (2021 + $archive_id);
+  }
+
   public function uploadLegislation($tournament_id)
   {
     $tournament_name = $tournament_id === 6 ? 'state' : (string) $tournament_id;
@@ -55,6 +62,64 @@ class File
     }
   }
 
+  public function uploadArchiveLegislation($archive_id, $tournament_id)
+  {
+    $season = $this->getSeason($archive_id);
+
+    $tournament_name = $tournament_id === 6 ? 'state' : (string) $tournament_id;
+
+    $targetFile = realpath(__DIR__ . "/../../archive/$season/icda-$tournament_name-legislation.pdf");
+    $uploadedFile = $_FILES["legislation"]["name"];
+
+    $uploadedType = strtolower(pathinfo($uploadedFile, PATHINFO_EXTENSION));
+    $mimeType = str_replace("application/", "", mime_content_type($_FILES["legislation"]["tmp_name"]));
+
+    if ($uploadedType !== 'pdf' || $mimeType !== 'pdf') {
+      Response::error('Invalid file type. Only PDF files are allowed.', 400);
+      exit;
+    }
+
+    if (!$this->isImageMagicNumberValid('pdf')) {
+      Response::error('Invalid file magic number. The file may be corrupted or not a valid PDF.', 400);
+      exit;
+    }
+
+    if ($_FILES["legislation"]["size"] > 8000000) {
+      Response::error('File size exceeds the limit of 8MB.', 400);
+      exit;
+    }
+
+    if (move_uploaded_file($_FILES["legislation"]["tmp_name"], $targetFile)) {
+      Response::success('Legislation file uploaded successfully.', 200);
+      exit;
+    } else {
+      Response::error('Failed to upload legislation file.', 500);
+      exit;
+    }
+  }
+
+  public function deleteArchiveLegislation($archive_id, $tournament_id)
+  {
+    $season = $this->getSeason($archive_id);
+
+    $tournament_name = $tournament_id === 6 ? 'state' : (string) $tournament_id;
+
+    $targetFile = realpath(__DIR__ . "/../../archive/$season/icda-$tournament_name-legislation.pdf");
+
+    if (file_exists($targetFile)) {
+      if (unlink($targetFile)) {
+        Response::success('Legislation file deleted successfully.', 200);
+        exit;
+      } else {
+        Response::error('Failed to delete legislation file.', 500);
+        exit;
+      }
+    } else {
+      Response::error('Legislation file does not exist.', 404);
+      exit;
+    }
+  }
+
   public function uploadResults($tournament_id)
   {
     $tournament_name = $tournament_id === 6 ? 'state' : (string) $tournament_id;
@@ -92,6 +157,64 @@ class File
   public function deleteResults($tournament_id)
   {
     $targetFile = realpath(__DIR__ . "/../../tournaments/icda-$tournament_id/results.pdf");
+
+    if (file_exists($targetFile)) {
+      if (unlink($targetFile)) {
+        Response::success('Results file deleted successfully.', 200);
+        exit;
+      } else {
+        Response::error('Failed to delete results file.', 500);
+        exit;
+      }
+    } else {
+      Response::error('Results file does not exist.', 404);
+      exit;
+    }
+  }
+
+  public function uploadArchiveResults($archive_id, $tournament_id)
+  {
+    $season = $this->getSeason($archive_id);
+
+    $tournament_name = $tournament_id === 6 ? 'state' : (string) $tournament_id;
+
+    $targetFile = realpath(__DIR__ . "/../../archive/$season/icda-$tournament_name-results.pdf");
+    $uploadedFile = $_FILES["legislation"]["name"];
+
+    $uploadedType = strtolower(pathinfo($uploadedFile, PATHINFO_EXTENSION));
+    $mimeType = str_replace("application/", "", mime_content_type($_FILES["legislation"]["tmp_name"]));
+
+    if ($uploadedType !== 'pdf' || $mimeType !== 'pdf') {
+      Response::error('Invalid file type. Only PDF files are allowed.', 400);
+      exit;
+    }
+
+    if (!$this->isImageMagicNumberValid('pdf')) {
+      Response::error('Invalid file magic number. The file may be corrupted or not a valid PDF.', 400);
+      exit;
+    }
+
+    if ($_FILES["legislation"]["size"] > 8000000) {
+      Response::error('File size exceeds the limit of 8MB.', 400);
+      exit;
+    }
+
+    if (move_uploaded_file($_FILES["legislation"]["tmp_name"], $targetFile)) {
+      Response::success('Results file uploaded successfully.', 200);
+      exit;
+    } else {
+      Response::error('Failed to upload results file.', 500);
+      exit;
+    }
+  }
+
+  public function deleteArchiveResults($archive_id, $tournament_id)
+  {
+    $season = $this->getSeason($archive_id);
+
+    $tournament_name = $tournament_id === 6 ? 'state' : (string) $tournament_id;
+
+    $targetFile = realpath(__DIR__ . "/../../archive/$season/icda-$tournament_name-results.pdf");
 
     if (file_exists($targetFile)) {
       if (unlink($targetFile)) {

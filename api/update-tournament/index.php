@@ -31,21 +31,23 @@ if (!($accessLevel === 'Editor' || $accessLevel === 'Poster' || $accessLevel ===
   exit;
 }
 
-$targetDir = __DIR__ . '../../tournaments/icda-';
-
-$input = json_decode($_POST['data'], true);
-
-if ($input === null) {
-  Response::error('Invalid JSON input', 415);
+if (strpos($_SERVER['CONTENT_TYPE'], 'multipart/form-data') !== 0) {
+  Response::error('Invalid media type', 415);
   exit;
 }
 
-foreach ($input as $key => $value) {
-  $value = trim($value);
-  if ($key !== 'tabroom') {
-    $value = stripslashes($value);
+$targetDir = __DIR__ . '../../tournaments/icda-';
+
+$input = [];
+
+foreach ($_POST as $key => $value) {
+  if (is_string($value)) {
+    $value = trim($value);
+    if ($key !== 'imageUrl') {
+      $value = stripslashes($value);
+    }
+    $value = htmlspecialchars($value);
   }
-  $value = htmlspecialchars($value);
 
   $input[$key] = $value;
 }

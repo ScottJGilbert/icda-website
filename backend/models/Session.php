@@ -43,7 +43,7 @@ class Session
 
 		if ($validSession !== false) {
 			$userModel = new User();
-			return $userModel->findAccessByUUID($validSession['uuid']);
+			return $userModel->findAccessByUUID($validSession['user_uuid']);
 		} else {
 			return 'None';
 		}

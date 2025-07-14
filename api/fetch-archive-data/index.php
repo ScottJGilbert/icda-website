@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -24,13 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
   exit;
 }
 
-$sessionModel = new Session();
-$accessLevel = $sessionModel->getAccessLevel();
-if (!($accessLevel === 'Administrator')) {
-  Response::error('You do not have permission to perform this action.', 403);
-  exit;
-}
+$model = new Archive();
+$output = $model->fetchArchiveData();
 
-$sessions = $sessionModel->fetchSessions();
-
-Response::success($sessions);
+Response::success($output);

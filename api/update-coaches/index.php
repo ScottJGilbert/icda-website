@@ -46,6 +46,15 @@ if (!is_array($input['list']) || empty($input['list'])) {
 $schoolModel = new School();
 $numSchools = $schoolModel->fetchNumberOfSchools();
 
+if (!isset($item['list'])) {
+  Response::error('List is required.', 400);
+  exit;
+}
+
+if (!is_array($input['list']) || empty($input['list'])) {
+  Response::error('List must be a non-empty array.', 400);
+}
+
 foreach ($input['list'] as $item) {
   foreach ($item as $key => $value) {
     if (is_string($value)) {
@@ -54,7 +63,7 @@ foreach ($input['list'] as $item) {
       $value = htmlspecialchars($value);
     }
 
-    $coach[$key] = $value;
+    $input[$key] = $value;
   }
 
   if (!isset($item['name']) || trim($item['name']) === '') {

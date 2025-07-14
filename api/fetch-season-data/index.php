@@ -24,13 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
   exit;
 }
 
-$sessionModel = new Session();
-$accessLevel = $sessionModel->getAccessLevel();
-if (!($accessLevel === 'Administrator')) {
-  Response::error('You do not have permission to perform this action.', 403);
-  exit;
+$id = $_GET['id'];
+if (!isset($id) || !is_numeric($id)) {
+  Response::error('Invalid ID', 404);
 }
 
-$sessions = $sessionModel->fetchSessions();
 
-Response::success($sessions);
+$model = new Archive();
+$output = $model->fetchSeasonData($id);
+
+Response::success($output);

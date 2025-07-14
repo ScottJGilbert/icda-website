@@ -1,5 +1,5 @@
 async function fetchData() {
-  const slug = window.location.pathname.split("/")[3];
+  const slug = window.location.pathname.split("/")[2];
   const res = await fetch(`/api/fetch-post/index.php?slug=${slug}`);
   const json = await res.json();
   const originalData = await json.data;
