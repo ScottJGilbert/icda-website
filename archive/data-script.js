@@ -34,6 +34,8 @@ function displayData() {
   document.getElementById("icda5Name").textContent = data.icda_5_school;
   document.getElementById("icda5Date").textContent = data.icda_5_date;
   document.getElementById("icdaStateDate").textContent = data.icda_state_date;
+
+  document.title = `${window.location.pathname.split("/")[1]} | ICDA`;
 }
 
 fetchData();
