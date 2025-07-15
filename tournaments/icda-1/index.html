@@ -5,7 +5,7 @@
     <title>ICDA 1 | ICDA</title>
     <link rel="stylesheet" href="../tournament.css" />
     <link rel="stylesheet" href="/public/global.css" />
-    <link rel="icon" href="../../Resource/favicon.png" />
+    <link rel="icon" href="/public/images/favicon.png" />
     <script src="/public/global.js"></script>
     <script src="../tournament.js"></script>
 
@@ -53,13 +53,15 @@
                 border-radius: 20px;
                 padding: 5px 10px;
               "
-              >September 21st, 2024 | Grayslake North High School</span
+              ><span id="date">September 21st, 2024</span> |
+              <span id="school">Grayslake North High School</span></span
             ></b
           >
         </p>
         <div id="content" style="display: flex; justify-content: space-between">
           <div>
             <img
+              id="logo"
               src="Resource/grayslakeNorth.png"
               alt="School logo"
               style="display: block; height: 250px; margin: 25px 0"
@@ -155,6 +157,7 @@
                 <b>Resources</b>
               </p>
               <a
+                id="tabroom"
                 href="https://www.tabroom.com/index/tourn/index.mhtml?tourn_id=32358"
                 target="_blank"
                 class="navigationLink"
@@ -183,25 +186,26 @@
               >
                 <b>Contacts</b>
               </p>
-              <a
-                href="mailto:cschwartz@d211.org"
-                target="_blank"
-                class="navigationLink"
-                >Carl Schwartz</a
-              >
-              <a
-                href="mailto:rsmith@naperville203.org"
-                target="_blank"
-                class="navigationLink"
-                >Randy Smith</a
-              >
-              <a
-                href="mailto:tim.waters@d214.org"
-                target="_blank"
-                class="navigationLink"
-                style="padding-bottom: 15px"
-                >Tim Waters</a
-              >
+              <div id="list" style="padding-bottom: 15px">
+                <a
+                  href="mailto:cschwartz@d211.org"
+                  target="_blank"
+                  class="navigationLink"
+                  >Carl Schwartz</a
+                >
+                <a
+                  href="mailto:rsmith@naperville203.org"
+                  target="_blank"
+                  class="navigationLink"
+                  >Randy Smith</a
+                >
+                <a
+                  href="mailto:tim.waters@d214.org"
+                  target="_blank"
+                  class="navigationLink"
+                  >Tim Waters</a
+                >
+              </div>
             </div>
           </div>
         </div>

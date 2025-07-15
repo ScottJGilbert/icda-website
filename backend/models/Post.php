@@ -11,7 +11,7 @@ class Post
     $this->pdo = Database::getConnection();
   }
 
-  public function getPages()
+  public function fetchPages()
   {
     $stmt = $this->pdo->query("SELECT COUNT(*) FROM posts");
     $totalPosts = $stmt->fetchColumn();

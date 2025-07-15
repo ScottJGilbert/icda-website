@@ -38,3 +38,6 @@ function changeScreenSizeMain() {
     }
   }
 }
+
+window.addEventListener("load", changeScreenSizeMain);
+window.addEventListener("resize", changeScreenSizeMain);

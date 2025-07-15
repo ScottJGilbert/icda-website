@@ -7,6 +7,8 @@ function initializeFAQ() {
   let answers = document
     .getElementById("info")
     .getElementsByClassName("answer");
+  questions[0].style.borderRadius = "20px 20px 0 0";
+  questions[questions.length - 1].style.borderRadius = "0 0 20px 20px";
   for (let i = 0; i < questions.length; i++) {
     questions[i].onclick = function () {
       for (let j = 0; j < answers.length; j++) {
@@ -56,5 +58,33 @@ function changeScreenSizeMain() {
   }
 }
 
+async function fetchData() {
+  const res = await fetch("/api/fetch-rules/index.php");
+  const data = await res.json();
+  if (!data.success) {
+    throw new Error(data.error);
+  }
+
+  const rules = data.data;
+
+  for (const rule of rules) {
+    const question = document.createElement("div");
+    question.className = "question";
+    question.innerHTML = `
+      <p class="descriptionText"><b>${rule.name} (Rule ${rule.number})</b></p>
+      <img src="/public/images/faqArrow.svg" alt="open/close" />
+    `;
+    document.getElementById("importantRules").appendChild(question);
+
+    const answer = document.createElement("div");
+    answer.className = "answer";
+    answer.innerHTML = `
+      <p class="descriptionText">${rule.summary}</p>
+    `;
+    document.getElementById("importantRules").appendChild(answer);
+  }
+}
+
+window.addEventListener("load", fetchData);
 window.addEventListener("load", initializeFAQ);
 window.addEventListener("resize", changeScreenSizeMain);
