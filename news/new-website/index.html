@@ -5,17 +5,23 @@ require_once 'middleware.php';
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>New Website | Illinois Congressional Debate Association</title>
+    <title>New Website | ICDA</title>
     <link rel="icon" href="/public/images/favicon.png" />
     <link
       rel="stylesheet"
       href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
     />
+    <link rel="stylesheet" href="/public/global.css" />
     <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
     <link rel="stylesheet" href="../post-style.css" />
   </head>
 
   <body>
+    <div id="mobile-menu-root"></div>
+    <div id="top"></div>
+
+    <!-- Everything below is actual page content and varies by file -->
+
     <h1 id="title"></h1>
     <img id="image" src="" />
     <h2 id="creationDate"></h2>
@@ -23,5 +29,28 @@ require_once 'middleware.php';
     <div id="viewer"></div>
 
     <script src="../post-script.js"></script>
+
+    <!-- Everything above is actual page content and varies by file -->
+
+    <footer id="footer"></footer>
+
+    <!-- React components (Babel-in-browser) -->
+    <script type="text/babel" src="/public/components/mobile-menu.jsx"></script>
+    <script type="text/babel" src="/public/components/header.jsx"></script>
+    <script type="text/babel" src="/public/components/footer.jsx"></script>
+
+    <!-- React entry point -->
+    <script type="text/babel">
+      const mobileRoot = ReactDOM.createRoot(
+        document.getElementById("mobile-menu-root")
+      );
+      mobileRoot.render(<MobileMenu />);
+
+      const headerRoot = ReactDOM.createRoot(document.getElementById("top"));
+      headerRoot.render(<TopHeader />);
+
+      const footerRoot = ReactDOM.createRoot(document.getElementById("footer"));
+      footerRoot.render(<Footer />);
+    </script>
   </body>
 </html>

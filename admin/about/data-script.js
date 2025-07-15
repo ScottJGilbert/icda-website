@@ -23,6 +23,10 @@ async function fetchData() {
         "school" + school.id + "image"
       }" name="image" accept="image/*" />
       <label for="${"school" + school.id + "image"}">Logo</label>
+      <input type="checkbox" id="${
+        "member" + school.id + "deletePhoto"
+      }" name="deleteImage" />
+      <label for="${"member" + school.id + "deletePhoto"}">Delete Photo</label>
       `;
 
       schoolDiv.appendChild(schoolForm);
@@ -61,29 +65,33 @@ async function fetchData() {
       const memberForm = document.createElement("form");
       memberForm.id = "member" + member.id;
       memberForm.innerHTML = `
-      <p>${oversightNames[member.id] - 1}:</p>
+      <p>${oversightNames[member.id - 1]}:</p>
       <input type="text" id="${
         "member" + member.id + "name"
-      }" name="name" placeholder="Name" value=${member.name} required />
+      }" name="name" placeholder="Name" value="${member.name}" required />
       <label for="${
         "member" + member.id + "name"
       }">Name <span style="color: red">*</span></label>
       <input type="email" id="${
         "member" + member.id + "email"
-      }" name="email" placeholder="Email" value=${member.email} />
+      }" name="email" placeholder="Email" value="${member.email}" />
       <label for="email">Email</label>
       <input type="file" id="${
         "member" + member.id + "photo"
       }" name="image" accept="image/*" />
       <label for="file" id="${"member" + member.id + "photo"}">Portrait</label>
+      <input type="checkbox" id="${
+        "member" + member.id + "deletePhoto"
+      }" name="deleteImage" />
+      <label for="${"member" + member.id + "deletePhoto"}">Delete Photo</label>
       `;
 
-      memberDiv.appendChild(schoolForm);
+      memberDiv.appendChild(memberForm);
       memberDiv.innerHTML += `
       <button onclick="editMember('${member.id}')">Save</button>
       `;
 
-      document.getElementById("oversight").appendChild(schoolDiv);
+      document.getElementById("oversight").appendChild(memberDiv);
     }
   } catch (error) {
     console.error("Error fetching schools:", error);
@@ -119,9 +127,13 @@ async function editSchool(schoolId) {
   const form = document.getElementById("school" + schoolId);
   const formData = new FormData(form);
   formData.append("id", schoolId);
+  formData.append(
+    "deleteImage",
+    document.getElementById("school" + schoolId + "deletePhoto").checked
+  );
 
   try {
-    const res = await fetch("/api/edit-school/index.php", {
+    const res = await fetch("/api/update-school/index.php", {
       method: "POST",
       body: formData,
     });
@@ -170,9 +182,13 @@ async function editMember(memberId) {
   const form = document.getElementById("member" + memberId);
   const formData = new FormData(form);
   formData.append("id", memberId);
+  formData.append(
+    "deleteImage",
+    document.getElementById("member" + memberId + "deletePhoto").checked
+  );
 
   try {
-    const res = await fetch("/api/edit-member/index.php", {
+    const res = await fetch("/api/update-oversight/index.php", {
       method: "POST",
       body: formData,
     });

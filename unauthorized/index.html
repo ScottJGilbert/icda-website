@@ -2,12 +2,52 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Unauthorized | Illinois Congressional Debate Association</title>
+    <title>Unauthorized | ICDA</title>
     <link rel="icon" href="/public/images/favicon.png" />
+    <link rel="stylesheet" href="/public/global.css" />
+    <script src="/public/global.js"></script>
     <script src="script.js"></script>
+
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
+    <div id="mobile-menu-root"></div>
+    <div id="top"></div>
+
+    <!-- Everything below is actual page content and varies by file -->
+
     <h1>405</h1>
     <h2>You are not authorized to access this page.</h2>
+
+    <!-- Everything above is actual page content and varies by file -->
+
+    <footer id="footer"></footer>
+
+    <!-- React components (Babel-in-browser) -->
+    <script type="text/babel" src="/public/components/mobile-menu.jsx"></script>
+    <script type="text/babel" src="/public/components/header.jsx"></script>
+    <script type="text/babel" src="/public/components/footer.jsx"></script>
+
+    <!-- React entry point -->
+    <script type="text/babel">
+      const mobileRoot = ReactDOM.createRoot(
+        document.getElementById("mobile-menu-root")
+      );
+      mobileRoot.render(<MobileMenu />);
+
+      const headerRoot = ReactDOM.createRoot(document.getElementById("top"));
+      headerRoot.render(<TopHeader />);
+
+      const footerRoot = ReactDOM.createRoot(document.getElementById("footer"));
+      footerRoot.render(<Footer />);
+    </script>
   </body>
 </html>

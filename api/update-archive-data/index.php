@@ -48,7 +48,7 @@ if (!is_numeric($input['id']) || $input['id'] < 1) {
   exit;
 }
 
-if (!isset($item['names'])) {
+if (!isset($input['names'])) {
   Response::error('Names are required.', 400);
   exit;
 }
@@ -69,7 +69,7 @@ foreach ($input['names'] as $value) {
   $sanitizedNames[] = $value;
 }
 
-if (!isset($item['dates'])) {
+if (!isset($input['dates'])) {
   Response::error('Dates are required.', 400);
   exit;
 }

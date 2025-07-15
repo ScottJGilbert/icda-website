@@ -50,7 +50,7 @@ foreach ($_POST as $key => $value) {
   $input[$key] = $value;
 }
 
-if (!isset($item['name']) || trim($item['name']) === '') {
+if (!isset($input['name']) || trim($input['name']) === '') {
   Response::error('Name is required.', 400);
   exit;
 }

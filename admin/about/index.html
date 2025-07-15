@@ -5,15 +5,27 @@ require_once 'middleware.php';
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Edit About | Illinois Congressional Debate Association</title>
+    <title>Edit About | ICDA</title>
     <link rel="icon" href="/public/images/favicon.png" />
+    <script src="/public/global.js"></script>
     <script src="script.js"></script>
+
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
 
   <body>
     <h1>Edit About</h1>
     <h2>Edit Schools</h2>
-    <div id="schools">
+    <div id="schools"></div>
+    <div>
       <form id="new-school-form">
         <input type="text" id="name" name="name" placeholder="Name" required />
         <label for="name">Name <span style="color: red">*</span></label>

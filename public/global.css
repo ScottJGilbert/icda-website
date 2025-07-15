@@ -91,6 +91,8 @@
   position: relative;
   border-bottom: white 2px solid;
   overflow: hidden;
+  display: flex;
+  justify-content: space-between;
 }
 
 .mobileDropDownCategory a {
@@ -102,6 +104,7 @@
   text-decoration: none;
   color: #ffffff;
   font-family: Ebrima, Serif, serif;
+  flex: 1;
 }
 
 .mobileDropDownCategory a:hover {
@@ -258,6 +261,14 @@
   background-color: #4c4eaf;
 }
 
+#news {
+  border-radius: 30px;
+}
+
+#archive {
+  border-radius: 30px;
+}
+
 .menuRectangle {
   width: 0;
   margin: auto;
@@ -307,7 +318,7 @@
   z-index: 1;
 }
 
-#headerMenus div {
+.headerMenu {
   display: none;
   height: 60px;
   padding-bottom: 50px;
@@ -315,7 +326,7 @@
   justify-content: center;
 }
 
-#headerMenus div a {
+.headerMenu a {
   text-decoration: none;
   color: white;
   font-family: googleSans, serif;
