@@ -30,8 +30,13 @@ section {
   font-family: googleSans, serif;
 }
 
+#content {
+  flex: 1;
+}
+
 #navigation {
   float: right;
+  max-width: 200px;
 }
 
 .navigationMenu {

@@ -46,7 +46,7 @@ if (!is_array($input['list']) || empty($input['list'])) {
 $schoolModel = new School();
 $numSchools = $schoolModel->fetchNumberOfSchools();
 
-if (!isset($item['list'])) {
+if (!isset($input['list'])) {
   Response::error('List is required.', 400);
   exit;
 }

@@ -125,6 +125,8 @@
   position: relative;
   border-bottom: white 2px solid;
   overflow: hidden;
+  display: flex;
+  justify: space-between;
 }
 
 .mobileDropDownCategory a {
@@ -136,6 +138,7 @@
   text-decoration: none;
   color: #ffffff;
   font-family: Ebrima, Serif, serif;
+  flex: 1;
 }
 
 .mobileDropDownCategory a:hover {

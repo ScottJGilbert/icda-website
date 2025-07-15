@@ -36,6 +36,9 @@ function displayData() {
   document.getElementById("icdaStateDate").textContent = data.icda_state_date;
 
   document.title = `${window.location.pathname.split("/")[1]} | ICDA`;
+  document.getElementById("season").textContent = `${
+    window.location.pathname.split("/")[1]
+  } | ICDA`;
 }
 
 fetchData();

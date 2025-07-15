@@ -55,7 +55,7 @@ if (!isset($input['id']) || !is_numeric($input['id']) || $input['id'] < 1) {
   exit;
 }
 
-if (!isset($item['name']) || trim($item['name']) === '') {
+if (!isset($input['name']) || trim($input['name']) === '') {
   Response::error('Name is required.', 400);
   exit;
 }
