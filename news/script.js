@@ -49,9 +49,10 @@ async function fetchData() {
     const box = document.createElement("div");
     box.className = "post";
     box.innerHTML = `
-      <img src=${post.image_url} />
+      <img src="${post.image_url}" />
       <h2>${post.title}</h2>
       <h3><i>${new Date(post.creation_date)}</i></h3>
+      <a href="/${post.slug}">
     `;
 
     document.getElementById("list").appendChild(box);

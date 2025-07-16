@@ -208,4 +208,4 @@ async function deleteResults(archiveId, tournamentId) {
   alert("Results deleted successfully!");
 }
 
-fetchData();
+window.addEventListener("load", fetchData);

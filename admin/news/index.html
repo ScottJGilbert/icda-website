@@ -23,40 +23,40 @@ require_once 'middleware.php';
   </head>
 
   <body>
-    <div id="posts"></div>
-    <script>
-      async function fetchData() {
-        const list = document.querySelector("#posts");
+    <div id="mobile-menu-root"></div>
+    <div id="top"></div>
 
-        const res = await fetch(`/api/fetch-posts/index.php`);
-        const json = await res.json();
-        const data = await json.data;
+    <!-- Everything below is actual page content and varies by file -->
 
-        for (post of data) {
-          console.log(post);
-          const listing = document.createElement("div");
-          listing.className = "listing";
+    <h1 id="title">News</h1>
+    <div id="list"></div>
 
-          const title = document.createElement("h2");
-          const titleText = document.createTextNode(post.title);
-          title.appendChild(titleText);
-          listing.appendChild(title);
+    <div>
+      <button id="pageDown" onclick="pageDown()">←</button>
+      <button id="pageUp" onclick="pageUp()">→</button>
+    </div>
 
-          const image = document.createElement("img");
-          image.src = post.imageUrl ?? "/public/images/ICDALogo.png";
-          listing.appendChild(image);
+    <!-- Everything above is actual page content and varies by file -->
 
-          const date = document.createElement("h3");
-          const dateText = document.createTextNode(
-            new Date(post.creation_date).toLocaleDateString()
-          );
-          date.appendChild(dateText);
-          listing.appendChild(date);
+    <footer id="footer"></footer>
 
-          list.appendChild(listing);
-        }
-      }
-      window.addEventListener("DOMContentLoaded", fetchData);
+    <!-- React components (Babel-in-browser) -->
+    <script type="text/babel" src="/public/components/mobile-menu.jsx"></script>
+    <script type="text/babel" src="/public/components/header.jsx"></script>
+    <script type="text/babel" src="/public/components/footer.jsx"></script>
+
+    <!-- React entry point -->
+    <script type="text/babel">
+      const mobileRoot = ReactDOM.createRoot(
+        document.getElementById("mobile-menu-root")
+      );
+      mobileRoot.render(<MobileMenu />);
+
+      const headerRoot = ReactDOM.createRoot(document.getElementById("top"));
+      headerRoot.render(<TopHeader />);
+
+      const footerRoot = ReactDOM.createRoot(document.getElementById("footer"));
+      footerRoot.render(<Footer />);
     </script>
   </body>
 </html>

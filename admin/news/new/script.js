@@ -86,4 +86,4 @@ function save() {
   }
 }
 
-await fetchSlugs();
+window.addEventListener("load", fetchSlugs);

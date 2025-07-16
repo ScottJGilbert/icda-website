@@ -158,4 +158,4 @@ async function editTournament(tournamentId) {
   }
 }
 
-fetchData();
+window.addEventListener("load", fetchData);

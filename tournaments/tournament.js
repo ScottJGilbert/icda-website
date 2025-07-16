@@ -16,7 +16,8 @@ function changeScreenSizeMain() {
 }
 
 async function fetchData() {
-  const name = window.location.pathname.split("/")[3].slice(5);
+  const name = window.location.pathname.split("/")[2].slice(5);
+  console.log(name);
   const id = name === "state" ? 6 : Number(name);
 
   const res = await fetch(`/api/fetch-tournament/index.php?id=${id}`);
@@ -28,8 +29,10 @@ async function fetchData() {
   document.getElementById("date").textContent = new Date(
     data.date
   ).toDateString();
-  document.getElementById("school").textContent = data.school_name;
-  document.getElementById("logo").src = data.school_image;
+  document.getElementById("school").textContent =
+    id === 6 ? "Harper College" : data.school_name;
+  document.getElementById("logo").src =
+    id === 6 ? "/public/images/harperCollege.svg" : data.school_image;
   document.getElementById("tabroom").href = data.tabroom;
 
   for (const contact of data.contacts) {

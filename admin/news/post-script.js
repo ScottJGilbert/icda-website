@@ -106,4 +106,4 @@ function deletePost() {
   }
 }
 
-window.onload = fetchData;
+window.addEventListener("load", fetchData);

@@ -3,8 +3,8 @@
 function changeScreenSizeMain() {
   const width = document.documentElement.clientWidth;
   const height = document.documentElement.clientHeight;
-  const headerHeight = height - 394;
-  const minHeight = 0;
+  let headerHeight = height - 394;
+  let minHeight = 0;
   const elements = document
     .getElementById("pageHeader")
     .getElementsByTagName("section")[0].children;
@@ -44,4 +44,21 @@ function changeScreenSizeMain() {
   }
 }
 
+async function fetchData() {
+  try {
+    const res = await fetch("/api/fetch-number-schools/index.php");
+    const data = await res.json();
+    if (!data.success) {
+      throw new Error(data.error);
+    }
+
+    numSchools = data.data;
+    document.getElementById("numSchools").innerHTML = numSchools;
+  } catch (error) {
+    console.error("Error fetching archive data: ", error);
+  }
+}
+
+window.addEventListener("load", fetchData);
+window.addEventListener("load", changeScreenSizeMain);
 window.addEventListener("resize", changeScreenSizeMain);

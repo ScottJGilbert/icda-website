@@ -154,4 +154,4 @@ async function deleteRule(ruleId) {
   displayRules;
 }
 
-fetchData();
+window.addEventListener("load", fetchData);
