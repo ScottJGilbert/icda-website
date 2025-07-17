@@ -22,4 +22,4 @@ async function fetchData() {
   document.title = `${originalData.title} | ICDA`;
 }
 
-window.onload = fetchData;
+window.addEventListener("load", fetchData);
