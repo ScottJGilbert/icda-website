@@ -71,7 +71,7 @@ CREATE TABLE contacts (
   name VARCHAR(127) NOT NULL,
   email VARCHAR(127) NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (tournament) REFERENCES tournament_pages(id)
+  FOREIGN KEY (tournament) REFERENCES tournaments(id)
 );
 
 CREATE TABLE rules (
