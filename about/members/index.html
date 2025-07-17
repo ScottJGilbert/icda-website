@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <title>Members | ICDA</title>
+    <link rel="icon" href="/public/images/favicon.png" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="/public/global.css" />
-    <link rel="icon" href="../../Resource/favicon.png" />
     <script src="/public/global.js"></script>
     <script src="script.js"></script>
 
@@ -84,7 +84,7 @@
           <p class="title" style="text-align: center">Map</p>
           <iframe
             id="memberMap"
-            sandbox="allow-scripts"
+            sandbox="allow-scripts allow-popups"
             src="https://www.google.com/maps/d/u/0/embed?mid=1hB_UPzPCWXnJiDeDEEc42shVIAKavnw&ehbc=2E312F"
             height="480"
             style="
@@ -100,9 +100,7 @@
       </div>
       <div class="division">
         <section>
-          <ul>
-            <!-- Paste new schools below here -->
-
+          <ul id="list">
             <li>
               <b>Addison Trail High School</b>
               <img src="Resource/Logos/addisonTrail.png" alt="Addison Trail" />
@@ -294,8 +292,6 @@
               <img src="Resource/Logos/woodlands.png" alt="Fremd" />
               <div class="coaches"></div>
             </li>
-
-            <!-- Paste new schools above here -->
           </ul>
         </section>
       </div>

@@ -80,7 +80,7 @@ async function fetchSchoolDropdown() {
   const schools = data.data;
 
   const schoolSelect = document.createElement("select");
-  schoolSelect.class = "schoolSelect";
+  schoolSelect.className = "schoolSelect";
 
   for (const school of schools) {
     const option = document.createElement("option");
@@ -158,4 +158,4 @@ async function editTournament(tournamentId) {
   }
 }
 
-fetchData();
+window.addEventListener("load", fetchData);

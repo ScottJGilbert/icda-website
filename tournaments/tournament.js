@@ -15,5 +15,36 @@ function changeScreenSizeMain() {
   }
 }
 
+async function fetchData() {
+  const name = window.location.pathname.split("/")[2].slice(5);
+  console.log(name);
+  const id = name === "state" ? 6 : Number(name);
+
+  const res = await fetch(`/api/fetch-tournament/index.php?id=${id}`);
+  const data = await res.json();
+  if (!data.success) {
+    throw new Error(data.error);
+  }
+
+  document.getElementById("date").textContent = new Date(
+    data.date
+  ).toDateString();
+  document.getElementById("school").textContent =
+    id === 6 ? "Harper College" : data.school_name;
+  document.getElementById("logo").src =
+    id === 6 ? "/public/images/harperCollege.svg" : data.school_image;
+  document.getElementById("tabroom").href = data.tabroom;
+
+  for (const contact of data.contacts) {
+    const anchor = document.createElement("a");
+    anchor.href = "mailto:" + contact.email;
+    anchor.target = "_blank";
+    anchor.className = "navigationLink";
+    anchor.textContent = data.name;
+    document.getElementById("list").appendChild(anchor);
+  }
+}
+
+window.addEventListener("load", fetchData);
 window.addEventListener("resize", changeScreenSizeMain);
 window.addEventListener("load", changeScreenSizeMain);

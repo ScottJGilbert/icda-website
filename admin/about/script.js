@@ -206,4 +206,4 @@ async function editMember(memberId) {
   }
 }
 
-fetchData();
+window.addEventListener("load", fetchData);

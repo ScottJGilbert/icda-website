@@ -128,4 +128,4 @@ function newConstitution() {
     });
 }
 
-fetchData();
+window.addEventListener("load", fetchData);

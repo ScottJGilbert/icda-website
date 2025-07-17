@@ -16,6 +16,11 @@ require_once 'middleware.php';
   </head>
 
   <body>
+    <div id="mobile-menu-root"></div>
+    <div id="top"></div>
+
+    <!-- Everything below is actual page content and varies by file -->
+
     <form id="updatePost">
       <input id="title" name="title" type="text" placeholder="Title" required />
       <label for="title">Title <span style="color: red">*</span></label>
@@ -46,6 +51,27 @@ require_once 'middleware.php';
       Delete Post
     </button>
 
-    <script src="../post-script.js"></script>
+    <!-- Everything above is actual page content and varies by file -->
+
+    <footer id="footer"></footer>
+
+    <!-- React components (Babel-in-browser) -->
+    <script type="text/babel" src="/public/components/mobile-menu.jsx"></script>
+    <script type="text/babel" src="/public/components/header.jsx"></script>
+    <script type="text/babel" src="/public/components/footer.jsx"></script>
+
+    <!-- React entry point -->
+    <script type="text/babel">
+      const mobileRoot = ReactDOM.createRoot(
+        document.getElementById("mobile-menu-root")
+      );
+      mobileRoot.render(<MobileMenu />);
+
+      const headerRoot = ReactDOM.createRoot(document.getElementById("top"));
+      headerRoot.render(<TopHeader />);
+
+      const footerRoot = ReactDOM.createRoot(document.getElementById("footer"));
+      footerRoot.render(<Footer />);
+    </script>
   </body>
 </html>
