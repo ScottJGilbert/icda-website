@@ -96,7 +96,6 @@ function TopHeader() {
             href={item.href ?? "#"}
             id={item.id}
             className="link"
-            style={item.id === "coachPortal" ? { borderRadius: "30px" } : {}}
           >
             {item.label}
             <br />

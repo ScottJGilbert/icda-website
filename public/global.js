@@ -151,18 +151,16 @@ function initialize() {
       for (let j = 0; j < mobileMenuDropDowns.length; j++) {
         if (j !== i) {
           mobileMenuDropDowns[j].style.display = "none";
-          mobileMenuOpeners[j].style.transform = "rotate(0deg)";
+          mobileMenuOpeners[j].style.transform = "rotate(90deg)";
         }
       }
       if (mobileMenuDropDowns[i].style.display === "inline-flex") {
         mobileMenuDropDowns[i].style.display = "none";
-        mobileMenuOpeners[i].style.transform = "rotate(0deg)";
+        mobileMenuOpeners[i].style.transform = "rotate(90deg)";
       } else {
         mobileMenuDropDowns[i].style.display = "inline-flex";
-        mobileMenuOpeners[i].style.transform = "rotate(90deg)";
+        mobileMenuOpeners[i].style.transform = "rotate(00deg)";
       }
     };
   }
 }
-
-window.addEventListener("load", initialize);

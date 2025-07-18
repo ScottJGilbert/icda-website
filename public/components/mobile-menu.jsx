@@ -1,5 +1,4 @@
 function MobileMenu() {
-  const [visible, setVisible] = React.useState(false);
   const [openIndex, setOpenIndex] = React.useState(null);
 
   const toggleDropdown = (i) => {
@@ -66,10 +65,7 @@ function MobileMenu() {
 
   return (
     <>
-      <div
-        id="mobileMenuContainer"
-        style={{ display: visible ? "block" : "none" }}
-      >
+      <div id="mobileMenuContainer">
         <div id="mobileMenu">
           <header id="shadowHeader">
             <a href="/" id="shadowHome">

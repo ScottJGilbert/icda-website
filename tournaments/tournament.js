@@ -17,7 +17,6 @@ function changeScreenSizeMain() {
 
 async function fetchData() {
   const name = window.location.pathname.split("/")[2].slice(5);
-  console.log(name);
   const id = name === "state" ? 6 : Number(name);
 
   const res = await fetch(`/api/fetch-tournament/index.php?id=${id}`);

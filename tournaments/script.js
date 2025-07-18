@@ -10,7 +10,6 @@ function changeScreenSizeMain() {
     .getElementsByTagName("section")[0].children;
   for (let i = 1; i < elements.length; i++) {
     minHeight += elements[i].getBoundingClientRect().height;
-    console.log(elements[i].getBoundingClientRect().height);
   }
   minHeight += 188;
   if (headerHeight < minHeight) {

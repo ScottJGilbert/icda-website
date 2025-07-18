@@ -148,6 +148,7 @@
 .mobileDropDownOpener {
   z-index: 2;
   background-color: #142039;
+  transform: rotate(90deg);
 }
 
 .mobileDropDownOpener:hover {
