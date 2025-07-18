@@ -5,15 +5,12 @@ async function login() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(Object.fromEntries(formData.entries())),
   });
-  
-  console.log(formData);
-  console.log(JSON.stringify(Object.fromEntries(formData.entries())));
 
   if (!res.ok) {
     alert("Login failed.");
     window.location.reload();
   }
-  
+
   window.location.reload();
 }
 

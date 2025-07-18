@@ -57,6 +57,31 @@ require_once 'middleware.php';
 
       const footerRoot = ReactDOM.createRoot(document.getElementById("footer"));
       footerRoot.render(<Footer />);
+
+      function waitForReactAndInitialize() {
+        const maxAttempts = 50;
+        let attempts = 0;
+
+        const interval = setInterval(() => {
+          const headerLinks = document.getElementsByClassName("link");
+          const headerMenus = document.getElementById("headerMenus");
+
+          if (headerLinks.length > 0 && headerMenus) {
+            clearInterval(interval);
+            initialize();
+          }
+
+          attempts++;
+          if (attempts > maxAttempts) {
+            clearInterval(interval);
+            console.warn(
+              "initialize() timed out waiting for React components."
+            );
+          }
+        }, 100); // check every 100ms
+      }
+
+      waitForReactAndInitialize();
     </script>
   </body>
 </html>
