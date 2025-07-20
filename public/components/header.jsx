@@ -1,4 +1,42 @@
 function TopHeader() {
+  const [presidentName, setPresidentName] = React.useState("");
+  const [presidentEmail, setPresidentEmail] = React.useState("");
+  const [commissionerName, setCommissionerName] = React.useState("");
+  const [commissionerEmail, setCommissionerEmail] = React.useState("");
+
+  React.useEffect(() => {
+    async function fetchPresident() {
+      try {
+        const res = await fetch("/api/fetch-oversight/index.php?id=1");
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          console.error("Error fetching president.");
+        }
+        setPresidentName(data.name);
+        setPresidentEmail(data.email);
+      } catch (error) {
+        console.error("There was an error fetching data.");
+      }
+    }
+
+    async function fetchCommissioner() {
+      try {
+        const res = await fetch("/api/fetch-oversight/index.php?id=6");
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          console.error("Error fetching membership/training commissioner.");
+        }
+        setCommissionerName(data.name);
+        setCommissionerEmail(data.email);
+      } catch (error) {
+        console.error("There was an error fetching data.");
+      }
+    }
+
+    fetchPresident();
+    fetchCommissioner();
+  }, []);
+
   const menuItems = [
     {
       id: "about",
@@ -48,18 +86,14 @@ function TopHeader() {
       href: "/archive",
       submenu: [],
     },
-    {
-      id: "contact",
-      label: "Contact",
-      href: null,
-      submenu: [
-        ["mailto:tim.waters@d214.org", "Tim Waters - President"],
-        [
-          "mailto:dzubert@d127.org",
-          "Dustin Zubert - Membership/Training Commissioner",
-        ],
-      ],
-    },
+  ];
+
+  const contactSubmenu = [
+    ["mailto:" + presidentEmail, presidentName + " - President"],
+    [
+      "mailto:" + commissionerEmail,
+      commissionerName + " - Membership/Training Commissioner",
+    ],
   ];
 
   return (
@@ -109,6 +143,18 @@ function TopHeader() {
             </svg>
           </a>
         ))}
+        <div key={"contact"} id={"contact"} className="link">
+          Contact
+          <br />
+          <svg width="50" height="3">
+            <rect
+              className="menuRectangle"
+              width="50"
+              height="3"
+              style={{ fill: "white" }}
+            />
+          </svg>
+        </div>
 
         <img
           src="/public/images/menuIcon.svg"
@@ -134,6 +180,13 @@ function TopHeader() {
             ))}
           </div>
         ))}
+        <div id="contactMenu" className="headerMenu">
+          {contactSubmenu.map(([href, text], i) => (
+            <a key={i} href={href} className="headerSubLink">
+              {text}
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   );

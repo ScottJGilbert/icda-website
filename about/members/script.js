@@ -36,21 +36,21 @@ async function fetchData() {
     }
     const coaches = data2.data;
     for (const school of schools) {
-      const schoolElement = document.createElement("ul");
+      const schoolElement = document.createElement("li");
       schoolElement.innerHTML = `
         <b>${school.name}</b>
         <img src="${school.image_url}" alt="${school.name}" />
       `;
-      const coaches = document.createElement("div");
+      const coachDiv = document.createElement("div");
       for (const coach of coaches) {
         if (coach.school_id === school.id) {
           const coachElement = document.createElement("a");
           coachElement.textContent = coach.name;
           coachElement.href = "mailto:" + coach.email;
-          coaches.appendChild(coach);
+          coachDiv.appendChild(coach);
         }
       }
-      schoolElement.appendChild(coaches);
+      schoolElement.appendChild(coachDiv);
       document.getElementById("list").appendChild(schoolElement);
     }
   } catch (error) {

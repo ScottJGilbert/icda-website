@@ -1,5 +1,42 @@
 function MobileMenu() {
   const [openIndex, setOpenIndex] = React.useState(null);
+  const [presidentName, setPresidentName] = React.useState("");
+  const [presidentEmail, setPresidentEmail] = React.useState("");
+  const [commissionerName, setCommissionerName] = React.useState("");
+  const [commissionerEmail, setCommissionerEmail] = React.useState("");
+
+  React.useEffect(() => {
+    async function fetchPresident() {
+      try {
+        const res = await fetch("/api/fetch-oversight/index.php?id=1");
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          console.error("Error fetching president.");
+        }
+        setPresidentName(data.name);
+        setPresidentEmail(data.email);
+      } catch (error) {
+        console.error("There was an error fetching data.");
+      }
+    }
+
+    async function fetchCommissioner() {
+      try {
+        const res = await fetch("/api/fetch-oversight/index.php?id=6");
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          console.error("Error fetching membership/training commissioner.");
+        }
+        setCommissionerName(data.name);
+        setCommissionerEmail(data.email);
+      } catch (error) {
+        console.error("There was an error fetching data.");
+      }
+    }
+
+    fetchPresident();
+    fetchCommissioner();
+  }, []);
 
   const toggleDropdown = (i) => {
     setOpenIndex(openIndex === i ? null : i);
@@ -54,10 +91,10 @@ function MobileMenu() {
       title: "Contact",
       href: null,
       links: [
-        ["mailto:tim.waters@d214.org", "Tim Waters - President"],
+        ["mailto:" + presidentEmail, presidentName + " - President"],
         [
-          "mailto:dzubert@d127.org",
-          "Dustin Zubert - Membership/Training Commissioner",
+          "mailto:" + commissionerEmail,
+          commissionerName + " - Membership/Training Commissioner",
         ],
       ],
     },

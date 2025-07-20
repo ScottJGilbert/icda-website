@@ -42,7 +42,9 @@ async function fetchData() {
       director.className = "commissioner";
       director.innerHTML = `
         <div class="imageContainer">
-          <img src="${oversight[i].image_url}" alt="${oversight[i].name}" />
+          <img src="${
+            oversight[i].image_url ?? "/public/images/unknown.png"
+          }" alt="${oversight[i].name}" />
         </div>
         <p class="descriptionText"><b>${oversight[i].name}</b></p>
         <p class="descriptionText">${oversightNames[i]}</p>
@@ -54,7 +56,9 @@ async function fetchData() {
       commissioner.className = "commissioner";
       commissioner.innerHTML = `
         <div class="imageContainer">
-          <img src="${oversight[i].image_url}" alt="${oversight[i].name}" />
+          <img src="${
+            oversight[i].image_url ?? "/public/images/unknown.png"
+          }" alt="${oversight[i].name}" />
         </div>
         <p class="descriptionText"><b>${oversight[i].name}</b></p>
         <p class="descriptionText">${oversightNames[i]}</p>
