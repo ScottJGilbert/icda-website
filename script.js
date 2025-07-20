@@ -64,7 +64,36 @@ function closeMobileMenu() {
   changeTop();
 }
 
-function initialize() {
+async function initialize() {
+  let presidentName = "";
+  let presidentEmail = "";
+  let commissionerName = "";
+  let commissionerEmail = "";
+
+  try {
+    const res = await fetch("/api/fetch-oversight/index.php?id=1");
+    const data = await res.json();
+    if (!res.ok || !data.success) {
+      console.error("Error fetching president.");
+    }
+    presidentName = data.name;
+    presidentEmail = data.email;
+  } catch (error) {
+    console.error("There was an error fetching data.");
+  }
+
+  try {
+    const res = await fetch("/api/fetch-oversight/index.php?id=6");
+    const data = await res.json();
+    if (!res.ok || !data.success) {
+      console.error("Error fetching membership/training commissioner.");
+    }
+    commissionerName = data.name;
+    commissionerEmail = data.email;
+  } catch (error) {
+    console.error("There was an error fetching data.");
+  }
+
   topElement = document.getElementById("top");
   homeElement = document.getElementById("home");
   headerElement = document.getElementById("header");
@@ -75,7 +104,7 @@ function initialize() {
   changeScreenSize();
 
   let headers = document.getElementsByClassName("link");
-  let headerMenus = document.getElementsByClassName("headerMenu");
+  let headerMenus = document.getElementById("headerMenus").children;
 
   for (let i = 0; i < headers.length; i++) {
     headers[i].onmouseover = function () {
@@ -91,6 +120,7 @@ function initialize() {
           headers[i].style.borderRadius = "30px 30px 0 0";
         }
       } catch (err) {}
+      headers[3].style.borderRadius = "30px";
       headers[4].style.borderRadius = "30px";
       headers[i].style.display = "inline";
       headers[i].style.backgroundColor = "#4c4eaf";
@@ -165,7 +195,15 @@ function initialize() {
       }
     };
   }
-  //Everything below is for the actual page content and varies by file
+
+  document.getElementById("presidentLink").href = "mailto:" + presidentEmail;
+  document.getElementById("commissionerLink").href =
+    "mailto:" + commissionerEmail;
+  document.getElementById("presidentLink").textContent =
+    presidentName + " - President";
+  document.getElementById("commissionerLink").textContent =
+    commissionerName + " - Membership/Training Commissioner";
+
   initializeCarousel();
   changeScreenSizeMain(document.documentElement.clientWidth);
   setTimeout(function () {

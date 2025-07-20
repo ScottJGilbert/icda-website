@@ -24,9 +24,9 @@ async function fetchData() {
       }" name="image" accept="image/*" />
       <label for="${"school" + school.id + "image"}">Logo</label>
       <input type="checkbox" id="${
-        "member" + school.id + "deletePhoto"
+        "school" + school.id + "deletePhoto"
       }" name="deleteImage" />
-      <label for="${"member" + school.id + "deletePhoto"}">Delete Photo</label>
+      <label for="${"school" + school.id + "deletePhoto"}">Delete Photo</label>
       `;
 
       schoolDiv.appendChild(schoolForm);
@@ -157,12 +157,8 @@ async function deleteSchool(schoolId) {
   }
 
   try {
-    const res = await fetch("/api/delete-school/index.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id: schoolId }),
+    const res = await fetch(`/api/delete-school/index.php?id=${schoolId}`, {
+      method: "DELETE",
     });
     const data = await res.json();
     if (!data.success) {

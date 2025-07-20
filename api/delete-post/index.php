@@ -30,42 +30,30 @@ if (!($accessLevel === 'Administrator')) {
   Response::error('You do not have permission to perform this action.', 403);
 }
 
-$input = json_decode(file_get_contents('php://input'), true);
-
-foreach ($input as $key => $value) {
-  if (is_string($value)) {
-    $value = trim($value);
-    $value = stripslashes($value);
-    $value = htmlspecialchars($value);
-  }
-
-  $input[$key] = $value;
-}
-
-if (!isset($input['slug']) || trim($input['slug']) === '') {
+if (!isset($_GET['slug']) || trim($_GET['slug']) === '') {
   Response::error('Slug is required.', 400);
   exit;
 }
 
-if (!preg_match('/^[a-zA-Z0-9-_]+$/', $input['slug'])) {
+if (!preg_match('/^[a-zA-Z0-9-_]+$/', $_GET['slug'])) {
   Response::error('Invalid slug format. Only alphanumeric characters, dashes, and underscores are allowed.', 400);
   exit;
 }
 
-if ($input['slug'] === 'new') {
+if ($_GET['slug'] === 'new') {
   Response::error('Cannot delete the "new" slug.', 400);
   exit;
 }
 
-if ($input['slug'] === 'new-website') {
+if ($_GET['slug'] === 'new-website') {
   Response::error('Cannot delete the "new-website" post.', 400);
   exit;
 }
 
 $model = new Post();
-$model->deletePost($input['slug']);
+$model->deletePost($_GET['slug']);
 
-$it = new RecursiveDirectoryIterator(__DIR__ . "../../news/{$input['slug']}", RecursiveDirectoryIterator::SKIP_DOTS);
+$it = new RecursiveDirectoryIterator(__DIR__ . "../../news/{$_GET['slug']}", RecursiveDirectoryIterator::SKIP_DOTS);
 $files = new RecursiveIteratorIterator(
   $it,
   RecursiveIteratorIterator::CHILD_FIRST
@@ -77,9 +65,9 @@ foreach ($files as $file) {
     unlink($file->getPathname());
   }
 }
-rmdir(__DIR__ . "../../news/{$input['slug']}");
+rmdir(__DIR__ . "../../news/{$_GET['slug']}");
 
-$it = new RecursiveDirectoryIterator(__DIR__ . "../../admin/news/{$input['slug']}", RecursiveDirectoryIterator::SKIP_DOTS);
+$it = new RecursiveDirectoryIterator(__DIR__ . "../../admin/news/{$_GET['slug']}", RecursiveDirectoryIterator::SKIP_DOTS);
 $files = new RecursiveIteratorIterator(
   $it,
   RecursiveIteratorIterator::CHILD_FIRST
@@ -91,6 +79,6 @@ foreach ($files as $file) {
     unlink($file->getPathname());
   }
 }
-rmdir(__DIR__ . "../../admin/news/{$input['slug']}");
+rmdir(__DIR__ . "../../admin/news/{$_GET['slug']}");
 
 Response::success('Post deleted successfully', 200);

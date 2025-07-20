@@ -350,15 +350,16 @@
   border-radius: 30px;
 }
 
-#headerMenus div {
+.headerMenu {
   display: none;
   height: 60px;
   padding-bottom: 50px;
   padding-top: 30px;
   justify-content: center;
+  width: 100%;
 }
 
-#headerMenus div a {
+.headerMenu a {
   text-decoration: none;
   color: white;
   font-family: googleSans, serif;

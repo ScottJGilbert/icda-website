@@ -27,12 +27,12 @@ class School
   {
     if ($id > 0) {
       $stmt = $this->pdo->prepare("UPDATE schools SET name = :name, image_url = :imageUrl WHERE id = :id");
+      $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     } else {
       $stmt = $this->pdo->prepare("INSERT INTO schools (name, image_url) VALUES (:name, :imageUrl)");
     }
     $stmt->bindParam(':name', $name, PDO::PARAM_STR);
     $stmt->bindParam(':imageUrl', $imageUrl, PDO::PARAM_STR);
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     return $stmt->execute();
   }
 
