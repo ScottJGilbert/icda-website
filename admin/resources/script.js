@@ -87,17 +87,37 @@ async function updateRules() {
 function addRule() {
   const form = document.getElementById("add-rule");
   const formData = new FormData(form);
-  const data = Object.fromEntries(formData.entries());
+  const rule = Object.fromEntries(formData.entries());
+  const ruleDivs = document.querySelectorAll(".rule");
+  rule.id = ruleDivs.length + 1;
+  rule.summary = document.querySelector("#summary").value.trim();
 
-  const toInsert = [];
-  toInsert.push({
-    id: rules.length,
-    name: data.name,
-    number: data.number,
-    summary: document.querySelector("#summary").value,
-  });
+  const ruleDiv = document.createElement("div");
+  ruleDiv.className = "rule";
+  const ruleForm = document.createElement("form");
+  ruleForm.id = "rule" + rule.id;
+  ruleForm.innerHTML = `
+    <label for="${rule.id}Name">Rule Name <span style="color: red">*</span></label>
+    <input type="text" id="${rule.id}Name" name="name" placeholder="Name" value="${rule.name}" required />
+    <label for="${rule.id}Number">Rule Number <span style="color: red">*</span></label>
+    <input type="number" id="${rule.id}Number" name="number" placeholder="Gaveling Procedure" value="${rule.number}" required />
+    <label for="summary">Rule Summary <span style="color: red">*</span></label>
+    `;
 
-  fetchData(toInsert);
+  const textarea = document.createElement("textarea");
+  textarea.id = rule.id + "summary";
+  textarea.name = "summary";
+  textarea.placeholder = "Presiding officers must...";
+  textarea.spellcheck = "default";
+  textarea.defaultValue = rule.summary;
+  ruleForm.appendChild(textarea);
+
+  ruleDiv.appendChild(ruleForm);
+  ruleDiv.innerHTML += `
+    <button onclick="deleteRule(${rule.id})">Delete Rule</button>
+    `;
+
+  document.getElementById("rules").appendChild(ruleDiv);
 
   form.reset();
   document.querySelector("#summary").value = "";
