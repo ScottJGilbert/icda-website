@@ -77,6 +77,12 @@ function checkBox() {
 }
 
 function deletePost() {
+  if (window.location.pathname.split("/")[3] === "new-website") {
+    alert(
+      "Sorry, you cannot delete the 'New Website' post - it's a vital part of the code."
+    );
+    return;
+  }
   if (
     confirm(
       "Are you sure you want to delete this post? This action cannot be undone."

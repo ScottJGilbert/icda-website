@@ -36,14 +36,11 @@ async function fetchData() {
       contactsDiv.id = "tournament" + i + "Contacts";
 
       for (const contact of tournament.contacts) {
+        const trimmedName = contact.name.replace(/\s+/g, "");
         contactsDiv.innerHTML += `
-        <div id="${i + contact.name}contact" class="contact">
-          <p class=${"contactName"} id="${i + contact.name}contactName">${
-          contact.name
-        }</p> 
-          <p class=${"contactEmail"} id="${i + contact.name}contactEmail">(${
-          contact.email
-        })</p>
+        <div class="contact" id="${i + trimmedName}contact">
+          <p class="contactName">${contact.name}</p> 
+          <p class="contactEmail">(${contact.email})</p>
           <button type="button" onclick="deleteContact(${
             i + contact.name
           }')">Delete Contact</button>
@@ -105,6 +102,9 @@ function addContact(tournamentId) {
   const emailInput = document.getElementById(tournamentId + "contact_email");
   const name = nameInput.value.trim();
   const email = emailInput.value.trim();
+
+  const trimmedName = name.replace(/\s+/g, "");
+
   if (!name || !email) {
     alert("Please enter both name and email.");
     return;
@@ -113,18 +113,18 @@ function addContact(tournamentId) {
     "tournament" + tournamentId + "Contacts"
   );
   contactsDiv.innerHTML += `
-  <div id="${tournamentId + name}contact" class="contact">
-    <p class="contactName" id="${name}contactName">${name}</p>
-    <p class="contactEmail" id="${name}contactEmail">(${email})</p>
+  <div class="contact" id="${tournamentId + trimmedName}contact">
+    <p class="contactName">${name}</p>
+    <p class="contactEmail">(${email})</p>
     <button type="button" onclick="deleteContact('${
-      tournamentId + name
+      tournamentId + trimmedName + "contact"
     }')">Delete Contact</button>
   </div>
   `;
 }
 
 function deleteContact(contact) {
-  const contactsDiv = document.getElementById(`${contact}contact`);
+  const contactsDiv = document.getElementById(contact);
   if (contactsDiv) {
     contactsDiv.remove();
   }
@@ -141,9 +141,11 @@ async function editTournament(tournamentId) {
   } else {
     data.school_id = -1; // State tournament has a fixed school ID
   }
-
-  const names = document.querySelectorAll(`.${tournamentId}contactName`);
-  const emails = document.querySelectorAll(`.${tournamentId}contactEmail`);
+  const contactsDiv = document.getElementById(
+    `tournament${tournamentId}Contacts`
+  );
+  const names = contactsDiv.querySelectorAll(`.contactName`);
+  const emails = document.querySelectorAll(`.contactEmail`);
   const contacts = [];
   for (let i = 0; i < names.length; i++) {
     contacts.push({
