@@ -10,8 +10,6 @@ async function login() {
     alert("Login failed.");
     window.location.reload();
   }
-
-  window.location.reload();
 }
 
 function onLoad() {

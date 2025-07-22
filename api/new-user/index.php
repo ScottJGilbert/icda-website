@@ -63,7 +63,7 @@ if (!isset($input['password']) || trim($input['password']) === '') {
   exit;
 }
 
-if (!isset($input['permission']) || ($input['permission'] !== 'Administrator' && $input['permission'] !== 'Poster' && $input['permission'] !== 'Editor')) {
+if (!isset($input['access_level']) || ($input['access_level'] !== 'Administrator' && $input['access_level'] !== 'Poster' && $input['access_level'] !== 'Editor')) {
   Response::error('Valid permission level is required.', 400);
   exit;
 }
@@ -73,7 +73,7 @@ $model->createUser(
   $input['name'],
   $input['username'],
   $input['password'],
-  $input['permission']
+  $input['access_level']
 );
 
 Response::success('User created successfully', 200);

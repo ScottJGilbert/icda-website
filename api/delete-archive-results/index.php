@@ -19,8 +19,8 @@ spl_autoload_register(function ($class) {
   }
 });
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  Response::error('Only POST is allowed.', 405);
+if ($_SERVER['REQUEST_METHOD'] !== 'DELETE') {
+  Response::error('Only DELETE is allowed.', 405);
   exit;
 }
 
@@ -31,34 +31,27 @@ if (!($accessLevel === 'Administrator' || $accessLevel === 'Poster' || $accessLe
   exit;
 }
 
-$input = json_decode(file_get_contents('php://input'), true);
-
-if ($input === null) {
-  Response::error('Invalid JSON input', 415);
-  exit;
-}
-
-if (!isset($input['archiveId'])) {
+if (!isset($_GET['archiveId'])) {
   Response::error('Archive ID is required.', 400);
   exit;
 }
 
-if (!is_numeric($input['archiveId']) || $input['archiveId'] < 1) {
+if (!is_numeric($_GET['archiveId']) || $input['archiveId'] < 1) {
   Response::error('Invalid archive ID.', 400);
   exit;
 }
 
-if (!isset($input['tournamentId'])) {
+if (!isset($_GET['tournamentId'])) {
   Response::error('Tournament ID is required.', 400);
   exit;
 }
 
-if (!is_numeric($input['tournamentId']) || $input['tournamentId'] < 1 || $input['tournamentId'] > 6) {
+if (!is_numeric($_GET['tournamentId']) || $_GET['tournamentId'] < 1 || $_GET['tournamentId'] > 6) {
   Response::error('Invalid tournament ID.', 400);
   exit;
 }
 
 $file = new File();
-$file->deleteArchiveResults($input['archiveId'], $input['tournamentId']);
+$file->deleteArchiveResults($_GET['archiveId'], $_GET['tournamentId']);
 
 Response::success("Results deleted successfully!");

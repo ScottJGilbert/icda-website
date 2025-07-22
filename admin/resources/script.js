@@ -9,12 +9,12 @@ async function fetchData() {
     }
     const fetchedRules = data.data;
     rules.length = 0;
-    for (const fetchedRule of fetchedRules) {
+    for (const rule of fetchedRules) {
       rules.push({
         id: rules.length,
-        name: fetchedRule.name,
-        number: fetchedRule.number,
-        summary: fetchedRule.summary,
+        name: rule.name,
+        number: rule.number,
+        summary: rule.summary,
       });
 
       const ruleDiv = document.createElement("div");
@@ -144,7 +144,7 @@ async function editRule(ruleId) {
 }
 
 async function deleteRule(ruleId) {
-  for (const i = 0; i < rules.length; i++) {
+  for (let i = 0; i < rules.length; i++) {
     const rule = rules[i];
     rule.id = i;
     if (rule.id === ruleId) {
