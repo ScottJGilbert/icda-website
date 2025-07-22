@@ -43,6 +43,9 @@ function save() {
       "Are you sure you want to save? Any previous data will be overwritten."
     )
   ) {
+    const formData = new FormData(document.querySelector("#newPost"));
+    formData.append("markdown", editor.getMarkdown());
+
     if (!formData.get("title")) {
       alert("Title is required.");
       return;
@@ -60,14 +63,12 @@ function save() {
       );
       return;
     }
-    const formData = new FormData(document.querySelector("#newPost"));
-    formData.append("markdown", editor.getMarkdown());
 
     if (document.querySelector("#image").files.length > 0) {
       formData.append("containsImage", true);
     }
 
-    fetch("api/new-post", {
+    fetch("/api/new-post/index.php", {
       method: "POST",
       body: formData,
       // Don't set the Content-Type manually!

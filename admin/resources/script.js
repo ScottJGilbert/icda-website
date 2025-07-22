@@ -49,34 +49,37 @@ function displayRules() {
     const ruleForm = document.createElement("form");
     ruleForm.id = "rule" + rule.id;
     ruleForm.innerHTML = `
+      <label for="${rule.id}Name">Rule Name <span style="color: red">*</span></label>
       <input
         type="text"
-        id=${rule.id + "name"}
+        id="${rule.id}Name"
         name="name"
         placeholder="Name"
         value="${rule.name}"
         required
       />
-      <label for="name">Rule Name <span style="color: red">*</span></label>
+      <label for="${rule.id}Number">Rule Number <span style="color: red">*</span></label>
       <input
         type="number"
-        id=${rule.id + "number"}
+        id="${rule.id}Number"
         name="number"
         placeholder="Gaveling Procedure"
         value="${rule.number}"
         required
       />
-      <label for="number">Rule Number <span style="color: red">*</span></label>
-      <textarea
-        id=${rule.id + "summary"}
-        name="summary"
-        spellcheck="default"
-        required
-      >${rule.summary}</textarea>
       <label for="summary"
         >Rule Summary <span style="color: red">*</span></label
       >
       `;
+
+    const textarea = document.createElement("textarea");
+    textarea.id = rule.id + "summary";
+    textarea.name = "summary";
+    textarea.placeholder = "Presiding officers must...";
+    textarea.spellcheck = "default";
+    textarea.required = true;
+    textarea.value = rule.summary;
+    ruleForm.appendChild(textarea);
 
     ruleDiv.appendChild(ruleForm);
     ruleDiv.innerHTML += `

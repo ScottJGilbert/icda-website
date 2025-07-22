@@ -38,10 +38,10 @@ async function fetchData() {
       for (const contact of tournament.contacts) {
         contactsDiv.innerHTML += `
         <div id="${i + contact.name}contact" class="contact">
-          <p class=${"contactName"} id=${i + contact.name + "contactName"}>${
+          <p class=${"contactName"} id="${i + contact.name}contactName">${
           contact.name
         }</p> 
-          <p class=${"contactEmail"} id=${i + contact.name + "contactEmail"}>(${
+          <p class=${"contactEmail"} id="${i + contact.name}contactEmail">(${
           contact.email
         })</p>
           <button type="button" onclick="deleteContact(${
@@ -64,7 +64,7 @@ async function fetchData() {
 
       editButton = document.createElement("button");
       editButton.type = "button";
-      editButton.innerText = "Edit Tournament";
+      editButton.innerText = "Save";
       editButton.onclick = () => editTournament(i);
       tournamentDiv.appendChild(editButton);
 
@@ -113,13 +113,18 @@ function addContact(tournamentId) {
     "tournament" + tournamentId + "Contacts"
   );
   contactsDiv.innerHTML += `
-  <p class="contactName" id=${name + "contactName"}>${name}</p>
-  <p class="contactEmail" id=${name + "contactEmail"}>(${email})</p>
+  <div id="${tournamentId + name}contact" class="contact">
+    <p class="contactName" id="${name}contactName">${name}</p>
+    <p class="contactEmail" id="${name}contactEmail">(${email})</p>
+    <button type="button" onclick="deleteContact('${
+      tournamentId + name
+    }')">Delete Contact</button>
+  </div>
   `;
 }
 
 function deleteContact(contact) {
-  const contactsDiv = document.querySelector(`#${contact}contact`);
+  const contactsDiv = document.getElementById(`${contact}contact`);
   if (contactsDiv) {
     contactsDiv.remove();
   }
@@ -130,7 +135,7 @@ async function editTournament(tournamentId) {
   const formData = new FormData(form);
   const data = Object.fromEntries(formData.entries());
 
-  if (i !== 6) {
+  if (tournamentId !== 6) {
     const schoolSelect = document.getElementById("schoolSelect" + tournamentId);
     data.school_id = schoolSelect.value;
   } else {

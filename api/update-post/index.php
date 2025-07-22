@@ -83,7 +83,7 @@ if ($input['deleteImage'] === 'true') {
       exit;
     }
   }
-  $oldURL = $model->fetchImageUrl($input['id']);
+  $oldURL = $model->fetchImageUrl($input['slug']);
   if ($oldURL)
     $file->deleteImage($oldURL);
   $input['imageUrl'] = $file->uploadImage();
