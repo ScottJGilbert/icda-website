@@ -52,7 +52,7 @@ async function fetchData() {
       <img src="${post.image_url}" />
       <h2>${post.title}</h2>
       <h3><i>${new Date(post.creation_date)}</i></h3>
-      <a href="/${post.slug}">Read More →</a>
+      <a href="${post.slug}">Read More →</a>
     `;
 
     document.getElementById("list").appendChild(box);
