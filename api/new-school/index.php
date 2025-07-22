@@ -55,7 +55,16 @@ if (!isset($input['name']) || trim($input['name']) === '') {
   exit;
 }
 
-if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+if (isset($_FILES['image'])) {
+  if ($_FILES['image']['error'] !== UPLOAD_ERR_OK) {
+    if ($_FILES['image']['error'] === UPLOAD_ERR_INI_SIZE) {
+      Response::error('Image exceeds 8MB limit.', 400);
+      exit;
+    } else {
+      Response::error('Error uploading image.', 400);
+      exit;
+    }
+  }
   $file = new File();
   $input['imageUrl'] = $file->uploadImage();
 } else {

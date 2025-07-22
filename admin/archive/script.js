@@ -158,13 +158,15 @@ async function uploadLegislation(archiveId, tournamentId) {
 }
 
 async function deleteLegislation(archiveId, tournamentId) {
-  const res = await fetch("/api/delete-archive-legislation", {
-    method: "POST",
-    body: JSON.stringify({
-      archive_id: archiveId,
-      tournament_id: tournamentId,
-    }),
-  });
+  const res = await fetch(
+    "/api/delete-archive-legislation?archive_id=" +
+      archiveId +
+      "&tournament_id?=" +
+      tournamentId,
+    {
+      method: "DELETE",
+    }
+  );
 
   const data = await res.json();
   if (!data.success) {
@@ -192,13 +194,15 @@ async function uploadResults(archiveId, tournamentId) {
 }
 
 async function deleteResults(archiveId, tournamentId) {
-  const res = await fetch("/api/delete-archive-results", {
-    method: "POST",
-    body: JSON.stringify({
-      archive_id: archiveId,
-      tournament_id: tournamentId,
-    }),
-  });
+  const res = await fetch(
+    "/api/delete-archive-results?archive_id=" +
+      archiveId +
+      "&tournament_id?=" +
+      tournamentId,
+    {
+      method: "DELETE",
+    }
+  );
 
   const data = await res.json();
   if (!data.success) {

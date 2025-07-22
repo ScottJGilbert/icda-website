@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'DELETE') {
 }
 
 $sessionModel = new Session();
-$accessLevel = $session->getAccessLevel();
+$accessLevel = $sessionModel->getAccessLevel();
 if (!($accessLevel === 'Administrator')) {
   Response::error('You do not have permission to perform this action.', 403);
 }

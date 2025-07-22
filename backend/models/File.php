@@ -48,7 +48,7 @@ class File
   {
     $targetFile = realpath(__DIR__ . "/../../tournaments/icda-$tournament_id/legislation.pdf");
 
-    if (file_exists($targetFile)) {
+    if (file_exists(PROJECT_ROOT . $targetFile)) {
       if (unlink($targetFile)) {
         Response::success('Legislation file deleted successfully.', 200);
         exit;
@@ -106,7 +106,7 @@ class File
 
     $targetFile = realpath(__DIR__ . "/../../archive/$season/icda-$tournament_name-legislation.pdf");
 
-    if (file_exists($targetFile)) {
+    if (file_exists(PROJECT_ROOT . $targetFile)) {
       if (unlink($targetFile)) {
         Response::success('Legislation file deleted successfully.', 200);
         exit;
@@ -158,7 +158,7 @@ class File
   {
     $targetFile = realpath(__DIR__ . "/../../tournaments/icda-$tournament_id/results.pdf");
 
-    if (file_exists($targetFile)) {
+    if (file_exists(PROJECT_ROOT . $targetFile)) {
       if (unlink($targetFile)) {
         Response::success('Results file deleted successfully.', 200);
         exit;
@@ -216,7 +216,7 @@ class File
 
     $targetFile = realpath(__DIR__ . "/../../archive/$season/icda-$tournament_name-results.pdf");
 
-    if (file_exists($targetFile)) {
+    if (file_exists(PROJECT_ROOT . $targetFile)) {
       if (unlink($targetFile)) {
         Response::success('Results file deleted successfully.', 200);
         exit;
@@ -307,7 +307,7 @@ class File
 
   public function deleteImage($imagePath)
   {
-    if (file_exists($imagePath)) {
+    if (file_exists(PROJECT_ROOT . $imagePath)) {
       if (unlink($imagePath)) {
         exit;
       } else {
@@ -322,7 +322,7 @@ class File
 
   public function fetchImage($url)
   {
-    if (file_exists($url) && is_readable($url)) {
+    if (file_exists(PROJECT_ROOT . $url) && is_readable($url)) {
       return file_get_contents($url);
     } else {
       Response::error('Image does not exist or is not readable.', 404);

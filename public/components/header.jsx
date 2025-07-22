@@ -41,7 +41,7 @@ function TopHeader() {
     {
       id: "about",
       label: "About",
-      href: "../about",
+      href: "/about",
       submenu: [
         ["/about/about-icda", "About ICDA"],
         ["/about/congressional-debate", "Congressional Debate"],
@@ -66,7 +66,7 @@ function TopHeader() {
     {
       id: "resources",
       label: "Resources",
-      href: "../resources",
+      href: "/resources",
       submenu: [
         ["/resources/rules", "Rules"],
         ["/resources/legislation", "Legislation"],

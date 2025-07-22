@@ -1,36 +1,9 @@
-#mainContent {
-  z-index: 0;
-}
-
-.division {
-  max-width: 1400px;
-  width: 98%;
-  margin: 50px auto;
-  border-radius: 30px;
-}
-
-section {
-  max-width: 1360px;
-  margin: auto;
-  border-radius: 30px;
-  padding: 40px;
-  position: relative;
-}
-
 #pageHeaderDescription {
   font-family: googleSans, "serif";
   font-size: 30px;
   width: 80%;
   padding-left: 10%;
   padding-right: 10%;
-}
-
-.title {
-  font-family: googleSans, serif;
-  font-size: 35px;
-  text-align: left;
-  display: block;
-  margin-top: 0;
 }
 
 #pageHeader {
@@ -42,11 +15,6 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.descriptionText {
-  font-size: 20px;
-  font-family: googleSans, serif;
 }
 
 #resourcesNavigation {

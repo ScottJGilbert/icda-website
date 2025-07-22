@@ -1,7 +1,7 @@
 async function fetchData() {
   const schoolSelect = await fetchSchoolDropdown();
 
-  for (const i = 1; i <= 6; i++) {
+  for (let i = 1; i <= 6; i++) {
     try {
       const res = await fetch("/api/fetch-tournament/index.php?id=" + i);
       const data = await res.json();
@@ -21,7 +21,7 @@ async function fetchData() {
         tournament.date
       }" />
       <input type="url" name="tabroom" placeholder="Tabroom" value="${
-        tournament.link
+        tournament.tabroom
       }" />
       `;
       if (i !== 6) {
@@ -33,6 +33,7 @@ async function fetchData() {
 
       const contactsDiv = document.createElement("div");
       contactsDiv.className = "contacts";
+      contactsDiv.id = "tournament" + i + "Contacts";
 
       for (const contact of tournament.contacts) {
         contactsDiv.innerHTML += `
@@ -59,9 +60,16 @@ async function fetchData() {
       } placeholder="Contact Email" name="contact_email" />
       <button type="button" onclick="addContact(${i})">Add Contact</button>
       `;
+      tournamentForm.appendChild(contactsDiv);
+
+      editButton = document.createElement("button");
+      editButton.type = "button";
+      editButton.innerText = "Edit Tournament";
+      editButton.onclick = () => editTournament(i);
+      tournamentDiv.appendChild(editButton);
 
       tournamentDiv.appendChild(tournamentForm);
-      document.getElementById("tournaments").appendChild(tournamentDiv);
+      document.getElementById("tournamentsDiv").appendChild(tournamentDiv);
     } catch (error) {
       console.error("Error fetching tournament :", error);
       alert(
@@ -101,8 +109,8 @@ function addContact(tournamentId) {
     alert("Please enter both name and email.");
     return;
   }
-  const contactsDiv = document.querySelector(
-    `#tournament${tournamentId} .contacts`
+  const contactsDiv = document.getElementById(
+    "tournament" + tournamentId + "Contacts"
   );
   contactsDiv.innerHTML += `
   <p class="contactName" id=${name + "contactName"}>${name}</p>

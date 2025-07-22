@@ -48,7 +48,7 @@ foreach ($input as $key => $value) {
   $input[$key] = $value;
 }
 
-if (!isset($input['sessionId']) || empty($input['sessionId']) || !is_numeric($input['sessionId']) || $input['sessionId'] <= 0) {
+if (!isset($input['sessionId']) || trim($input['sessionId']) === '') {
   Response::error('Valid session ID is required.', 400);
   exit;
 }

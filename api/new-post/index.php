@@ -69,7 +69,17 @@ if (in_array($input['slug'], $model->fetchSlugs()) || $input['slug'] === 'new') 
 
 $file = new File();
 if ($input['containsImage'] === 'true') {
-  $input['imageUrl'] = $file->uploadImage();
+  if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+    $input['imageUrl'] = $file->uploadImage();
+  } else {
+    if ($_FILES['image']['error'] === UPLOAD_ERR_INI_SIZE) {
+      Response::error('Image exceeds 8MB limit.', 400);
+      exit;
+    } else {
+      Response::error('Error uploading image.', 400);
+      exit;
+    }
+  }
 } else {
   $input['imageUrl'] = '';
 }

@@ -382,3 +382,35 @@ body {
   margin: 0;
   overflow-x: hidden;
 }
+
+#mainContent {
+  z-index: 0;
+}
+
+.division {
+  max-width: 1400px;
+  width: 98%;
+  margin: 50px auto;
+  border-radius: 30px;
+}
+
+section {
+  max-width: 1360px;
+  margin: auto;
+  border-radius: 30px;
+  padding: 40px;
+  position: relative;
+}
+
+.title {
+  font-family: googleSans, serif;
+  font-size: 35px;
+  text-align: left;
+  display: block;
+  margin-top: 0;
+}
+
+.descriptionText {
+  font-size: 20px;
+  font-family: googleSans, serif;
+}

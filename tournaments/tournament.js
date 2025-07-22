@@ -34,6 +34,7 @@ async function fetchData() {
     id === 6 ? "/public/images/harperCollege.svg" : data.school_image;
   document.getElementById("tabroom").href = data.tabroom;
 
+  document.getElementById("list").innerHTML = ""; // Clear previous links
   for (const contact of data.contacts) {
     const anchor = document.createElement("a");
     anchor.href = "mailto:" + contact.email;

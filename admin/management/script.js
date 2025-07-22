@@ -56,10 +56,10 @@ async function terminateSession(sessionId) {
   const res = await fetch("/api/terminate-session/index.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(sessionId),
+    body: JSON.stringify({ sessionId: sessionId }),
   });
 
-  if (!res.success) {
+  if (!res.ok) {
     alert("Failed to terminate session: ", res.error);
   } else {
     alert("Saved!");
@@ -68,16 +68,15 @@ async function terminateSession(sessionId) {
 }
 
 async function deleteUser(uuid) {
-  const res = await fetch("/api/delete-user/index.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(uuid),
+  const res = await fetch("/api/delete-user/index.php?uuid=" + uuid, {
+    method: "DELETE",
   });
 
-  if (!res.success) {
-    alert("Failed to delete user: ", res.error);
+  if (!res.ok) {
+    alert("Failed to delete user.");
   } else {
     alert("Saved!");
+    document.getElementById(uuid).remove();
   }
 }
 
@@ -97,10 +96,11 @@ async function newUser() {
     body: JSON.stringify(Object.fromEntries(formData.entries())),
   });
 
-  if (!res.success) {
-    alert("Failed to create new user: ", res.error);
+  if (!res.ok) {
+    alert("Failed to create new user.");
   } else {
     alert("Saved!");
+    fetchData();
   }
 }
 

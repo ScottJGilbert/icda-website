@@ -31,24 +31,7 @@ if (!($accessLevel === 'Administrator')) {
   exit;
 }
 
-$input = json_decode(file_get_contents('php://input'), true);
-
-if ($input === null) {
-  Response::error('Invalid JSON input', 415);
-  exit;
-}
-
-foreach ($input as $key => $value) {
-  if (is_string($value)) {
-    $value = trim($value);
-    $value = stripslashes($value);
-    $value = htmlspecialchars($value);
-  }
-
-  $input[$key] = $value;
-}
-
-if (!isset($input['uuid']) || trim($input['uuid']) === '') {
+if (!isset($_GET['uuid']) || trim($_GET['uuid']) === '') {
   Response::error('UUID is required.', 400);
   exit;
 }
@@ -56,7 +39,7 @@ if (!isset($input['uuid']) || trim($input['uuid']) === '') {
 
 $model = new User();
 $model->deleteUser(
-  $input['uuid']
+  $_GET['uuid']
 );
 
 Response::success('User deleted successfully', 200);
