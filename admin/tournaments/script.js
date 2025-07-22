@@ -23,6 +23,8 @@ async function fetchData() {
       <input type="url" name="tabroom" placeholder="Tabroom" value="${
         tournament.tabroom
       }" />
+      <input type="file" name="legislation" accept=".pdf" />
+      <input type="file" name="results" accept=".pdf" />
       `;
       if (i !== 6) {
         const select = schoolSelect.cloneNode(true);
@@ -157,8 +159,7 @@ async function editTournament(tournamentId) {
   try {
     const res = await fetch("/api/edit-tournament/index.php", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: tournamentId, contacts: contacts, ...data }),
+      body: { id: tournamentId, contacts: contacts, ...data },
     });
     const result = await res.json();
     if (!result.success) {
