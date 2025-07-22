@@ -37,7 +37,7 @@ editor.addHook("addImageBlobHook", (blob, callback) => {
   return false; // cancel upload
 });
 
-function save() {
+async function save() {
   if (
     confirm(
       "Are you sure you want to save? Any previous data will be overwritten."
@@ -57,7 +57,7 @@ function save() {
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "");
 
-    if (slugs.includes(slug)) {
+    if (slugs.includes(slug) || slug === "new") {
       alert(
         "A post with this slug already exists. Please choose a different title."
       );
@@ -66,24 +66,22 @@ function save() {
 
     if (document.querySelector("#image").files.length > 0) {
       formData.append("containsImage", true);
+    } else {
+      formData.append("containsImage", false);
     }
 
-    fetch("/api/new-post/index.php", {
+    const res = await fetch("/api/new-post/index.php", {
       method: "POST",
       body: formData,
       // Don't set the Content-Type manually!
       // fetch will automatically add the correct boundary and content type.
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        console.log("Success:", result);
-        alert("Post saved successfully!");
-        window.location.href = "/admin/news"; // Redirect to news list
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("An error occurred while saving the post: " + error.message);
-      });
+    });
+    const json = await res.json();
+
+    if (!res.ok) {
+      const error = json.error || "Unknown error occurred";
+      alert("An error occurred while saving the post: " + error.message);
+    }
   }
 }
 

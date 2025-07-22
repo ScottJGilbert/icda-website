@@ -62,7 +62,7 @@ if (!isset($input['containsImage']) || !($input['containsImage'] === 'true' || $
 
 $input['slug'] = strtolower(trim(preg_replace('/[^a-z0-9]+/', '-', $input['title'])));
 $model = new Post();
-if (in_array($input['slug'], $model->fetchSlugs()) || $input['slug'] === 'new') {
+if (in_array($input['slug'], $model->fetchSlugs()) || strtolower($input['slug']) === 'new') {
   Response::error('A post with this slug already exists.', 400);
   exit;
 }
