@@ -11,7 +11,7 @@ async function fetchData() {
       const tournament = data.data;
 
       document.getElementById("date" + i).value = tournament.date;
-      document.getElementById("tabroom" + i).value = tournament.tabroom_url;
+      document.getElementById("tabroom" + i).value = tournament.tabroom;
 
       if (i !== 6) {
         const select = schoolSelect.cloneNode(true);
@@ -66,6 +66,7 @@ async function fetchSchoolDropdown() {
   for (const school of schools) {
     const option = document.createElement("option");
     option.text = school.name;
+    option.id = "school" + school.id;
 
     schoolSelect.appendChild(option);
   }
@@ -112,9 +113,9 @@ async function updateTournament(tournamentId) {
 
   if (tournamentId !== 6) {
     const schoolSelect = document.getElementById("schoolSelect" + tournamentId);
-    formData.school_id = schoolSelect.value;
+    formData.append("school_id", schoolSelect.value.slice(6));
   } else {
-    formData.school_id = -1; // State tournament has a fixed school ID
+    formData.append("school_id", 1); // State tournament has a fixed school ID
   }
   const contactList = document
     .getElementById(`tournament${tournamentId}Contacts`)
