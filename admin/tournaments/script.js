@@ -9,37 +9,21 @@ async function fetchData() {
         throw new Error(data.error);
       }
       const tournament = data.data;
-      const tournamentDiv = document.createElement("div");
 
-      const tournamentForm = document.createElement("form");
-      tournamentForm.id = "tournament" + i;
-      tournamentForm.className = "tournament";
-
-      tournamentForm.innerHTML = `
-      <p>ICDA ${tournament.id === 6 ? "State" : tournament.id}</p>
-      <input type="date" name="tournament_date" placeholder="Date" value="${
-        tournament.date
-      }" />
-      <input type="url" name="tabroom" placeholder="Tabroom" value="${
-        tournament.tabroom
-      }" />
-      <input type="file" name="legislation" accept=".pdf" />
-      <input type="file" name="results" accept=".pdf" />
-      `;
       if (i !== 6) {
         const select = schoolSelect.cloneNode(true);
         select.id = "schoolSelect" + i;
         select.value = tournament.school_name;
-        tournamentForm.appendChild(select);
+        document.getElementById("schoolSelect" + i).replaceWith(select);
       }
 
-      const contactsDiv = document.createElement("div");
-      contactsDiv.className = "contacts";
-      contactsDiv.id = "tournament" + i + "Contacts";
+      const contactList = document
+        .getElementById("tournament" + i + "Contacts")
+        .querySelector(".contactList");
 
       for (const contact of tournament.contacts) {
         const trimmedName = contact.name.replace(/\s+/g, "");
-        contactsDiv.innerHTML += `
+        contactList.innerHTML += `
         <div class="contact" id="${i + trimmedName}contact">
           <p class="contactName">${contact.name}</p> 
           <p class="contactEmail">(${contact.email})</p>
@@ -49,26 +33,6 @@ async function fetchData() {
         </div>
         `;
       }
-
-      contactsDiv.innerHTML += `
-      <input type="text" id=${
-        i + "contact_name"
-      } placeholder="Contact Name" name="contact_name" />
-      <input type="email" id=${
-        i + "contact_email"
-      } placeholder="Contact Email" name="contact_email" />
-      <button type="button" onclick="addContact(${i})">Add Contact</button>
-      `;
-      tournamentForm.appendChild(contactsDiv);
-
-      editButton = document.createElement("button");
-      editButton.type = "button";
-      editButton.innerText = "Save";
-      editButton.onclick = () => editTournament(i);
-      tournamentDiv.appendChild(editButton);
-
-      tournamentDiv.appendChild(tournamentForm);
-      document.getElementById("tournamentsDiv").appendChild(tournamentDiv);
     } catch (error) {
       console.error("Error fetching tournament :", error);
       alert(
@@ -132,22 +96,21 @@ function deleteContact(contact) {
   }
 }
 
-async function editTournament(tournamentId) {
+async function updateTournament(tournamentId) {
   const form = document.getElementById("tournament" + tournamentId);
   const formData = new FormData(form);
-  const data = Object.fromEntries(formData.entries());
 
   if (tournamentId !== 6) {
     const schoolSelect = document.getElementById("schoolSelect" + tournamentId);
-    data.school_id = schoolSelect.value;
+    formData.school_id = schoolSelect.value;
   } else {
-    data.school_id = -1; // State tournament has a fixed school ID
+    formData.school_id = -1; // State tournament has a fixed school ID
   }
-  const contactsDiv = document.getElementById(
-    `tournament${tournamentId}Contacts`
-  );
-  const names = contactsDiv.querySelectorAll(`.contactName`);
-  const emails = document.querySelectorAll(`.contactEmail`);
+  const contactList = document
+    .getElementById(`tournament${tournamentId}Contacts`)
+    .querySelector(".contactList");
+  const names = contactList.querySelectorAll(`.contactName`);
+  const emails = contactList.querySelectorAll(`.contactEmail`);
   const contacts = [];
   for (let i = 0; i < names.length; i++) {
     contacts.push({
@@ -156,10 +119,13 @@ async function editTournament(tournamentId) {
     });
   }
 
+  formData.append("contacts", JSON.stringify(contacts));
+  formData.append("id", tournamentId);
+
   try {
-    const res = await fetch("/api/edit-tournament/index.php", {
+    const res = await fetch("/api/update-tournament/index.php", {
       method: "POST",
-      body: { id: tournamentId, contacts: contacts, ...data },
+      body: formData,
     });
     const result = await res.json();
     if (!result.success) {

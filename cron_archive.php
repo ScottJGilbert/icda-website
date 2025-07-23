@@ -23,21 +23,21 @@ function performBackgroundTask()
 
     for ($i = 1; $i < 6; $i++) {
       rename(
-        realpath(__DIR__ . "/tournaments/icda-" . $i . "/legislation.pdf"),
-        realpath(__DIR__ . $newDirectory . "icda-" . $i . "-legislation.pdf")
+        __DIR__ . "/tournaments/icda-" . $i . "/legislation.pdf",
+        __DIR__ . $newDirectory . "icda-" . $i . "-legislation.pdf"
       );
       rename(
-        realpath(__DIR__ . "/tournaments/icda-" . $i . "/results.pdf"),
-        realpath(__DIR__ . $newDirectory . "icda-" . $i . "-results.pdf")
+        __DIR__ . "/tournaments/icda-" . $i . "/results.pdf",
+        __DIR__ . $newDirectory . "icda-" . $i . "-results.pdf"
       );
     }
     rename(
-      realpath(__DIR__ . "/tournaments/icda-state/legislation.pdf"),
-      realpath(__DIR__ . $newDirectory . "/icda-state-legislation.pdf")
+      __DIR__ . "/tournaments/icda-state/legislation.pdf",
+      __DIR__ . $newDirectory . "/icda-state-legislation.pdf"
     );
     rename(
-      realpath(__DIR__ . "/tournaments/icda-state/results.pdf"),
-      realpath(__DIR__ . $newDirectory . "/icda-state-results.pdf")
+      __DIR__ . "/tournaments/icda-state/results.pdf",
+      __DIR__ . $newDirectory . "/icda-state-results.pdf"
     );
 
     $archiveModel = new Archive();
