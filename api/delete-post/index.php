@@ -53,7 +53,7 @@ if ($_GET['slug'] === 'new-website') {
 $model = new Post();
 $model->deletePost($_GET['slug']);
 
-$it = new RecursiveDirectoryIterator(__DIR__ . "../../news/{$_GET['slug']}", RecursiveDirectoryIterator::SKIP_DOTS);
+$it = new RecursiveDirectoryIterator(ROOT_PATH . "/news/{$_GET['slug']}", RecursiveDirectoryIterator::SKIP_DOTS);
 $files = new RecursiveIteratorIterator(
   $it,
   RecursiveIteratorIterator::CHILD_FIRST
@@ -65,9 +65,9 @@ foreach ($files as $file) {
     unlink($file->getPathname());
   }
 }
-rmdir(__DIR__ . "../../news/{$_GET['slug']}");
+rmdir(ROOT_PATH . "/news/{$_GET['slug']}");
 
-$it = new RecursiveDirectoryIterator(__DIR__ . "../../admin/news/{$_GET['slug']}", RecursiveDirectoryIterator::SKIP_DOTS);
+$it = new RecursiveDirectoryIterator(ROOT_PATH . "/admin/news/{$_GET['slug']}", RecursiveDirectoryIterator::SKIP_DOTS);
 $files = new RecursiveIteratorIterator(
   $it,
   RecursiveIteratorIterator::CHILD_FIRST
@@ -79,6 +79,6 @@ foreach ($files as $file) {
     unlink($file->getPathname());
   }
 }
-rmdir(__DIR__ . "../../admin/news/{$_GET['slug']}");
+rmdir(ROOT_PATH . "/admin/news/{$_GET['slug']}");
 
 Response::success('Post deleted successfully', 200);

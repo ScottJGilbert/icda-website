@@ -84,9 +84,26 @@ if (!isset($input['tabroom']) || trim($input['tabrom']) === '') {
   exit;
 }
 
-if (!isset($input['contacts']) || trim($input['contacts']) === '') {
+if (!isset($input['contacts']) === '') {
   Response::error('Contacts are required.', 400);
   exit;
+}
+
+$contactList = json_decode($input['contacts'], true);
+if (!is_array($contactList) || empty($contactList)) {
+  Response::error('Contacts must be a non-empty array.', 400);
+  exit;
+}
+
+for ($i = 0; $i < count($contactList); $i++) {
+  if (!isset($contactList[$i]['name']) || trim($contactList[$i]['name']) === '') {
+    Response::error('Contact name is required.', 400);
+    exit;
+  }
+  if (!isset($contactList[$i]['email']) || !filter_var($contactList[$i]['email'], FILTER_VALIDATE_EMAIL)) {
+    Response::error('Valid contact email is required.', 400);
+    exit;
+  }
 }
 
 if (!isset($input['deleteLegislation']) || !($input['deleteLegislation'] === 'true' || $input['deleteLegislation'] === 'false')) {
@@ -114,6 +131,6 @@ if ($input['deleteResults'] === 'true') {
 }
 
 $model = new Tournament();
-$model->updateTournament($input['id'], $input['date'], $input['schoolId'], $input['tabroom'], $input['contacts']);
+$model->updateTournament($input['id'], $input['date'], $input['schoolId'], $input['tabroom'], $contactList);
 
 Response::success('Tournament updated successfully', 200);

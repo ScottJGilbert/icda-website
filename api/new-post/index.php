@@ -60,9 +60,9 @@ if (!isset($input['containsImage']) || !($input['containsImage'] === 'true' || $
   exit;
 }
 
-$input['slug'] = strtolower(trim(preg_replace('/[^a-z0-9]+/', '-', $input['title'])));
+$slug = strtolower(trim(preg_replace('/[\s\/_]+/', '-', $input['title'])));
 $model = new Post();
-if (in_array($input['slug'], $model->fetchSlugs()) || strtolower($input['slug']) === 'new') {
+if (in_array($slug, $model->fetchSlugs()) || strtolower($slug) === 'new') {
   Response::error('A post with this slug already exists.', 400);
   exit;
 }
@@ -84,11 +84,11 @@ if ($input['containsImage'] === 'true') {
   $input['imageUrl'] = '';
 }
 
-$model->updatePost($input['slug'], $input['title'], $input['imageUrl'], $input['markdown']);
+mkdir("/../../news/$slug");
+copy("/../../news/new-website/index.html", "/../../news/$slug/index.html");
+mkdir("/../../admin/news/$slug");
+copy("/../../admin/news/new-website/index.php", "/../../admin/news/$slug/index.php");
 
-mkdir(realpath(PROJECT_ROOT . "/news/{$input['slug']}"));
-copy(realpath(PROJECT_ROOT . "/news/new-website/index.php"), realpath(PROJECT_ROOT . "/news/{$input['slug']}/index.php"));
-mkdir(realpath(PROJECT_ROOT . "/admin/news/{$input['slug']}"));
-copy(realpath(PROJECT_ROOT . "/admin/news/new-website/index.php"), realpath("/admin/news/{$input['slug']}/index.php"));
+$model->updatePost($slug, $input['title'], $input['imageUrl'], $input['markdown']);
 
 Response::success('Post created successfully', 200);

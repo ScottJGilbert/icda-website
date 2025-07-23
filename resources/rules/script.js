@@ -83,8 +83,8 @@ async function fetchData() {
     `;
     document.getElementById("importantRules").appendChild(answer);
   }
+  initializeFAQ();
 }
 
 window.addEventListener("load", fetchData);
-window.addEventListener("load", initializeFAQ);
 window.addEventListener("resize", changeScreenSizeMain);

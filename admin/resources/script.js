@@ -1,4 +1,4 @@
-async function fetchData(toInsert = []) {
+async function fetchData() {
   try {
     const res = await fetch("/api/fetch-rules/index.php");
     const data = await res.json();
@@ -6,7 +6,8 @@ async function fetchData(toInsert = []) {
       throw new Error(data.error);
     }
     const fetchedRules = data.data;
-    fetchedRules.push(...toInsert);
+
+    document.getElementById("rules").innerHTML = ""; // Clear existing rules
     for (const rule of fetchedRules) {
       const ruleDiv = document.createElement("div");
       ruleDiv.className = "rule";
@@ -17,7 +18,7 @@ async function fetchData(toInsert = []) {
       <input type="text" id="${rule.id}Name" name="name" placeholder="Name" value="${rule.name}" required
       />
       <label for="${rule.id}Number">Rule Number <span style="color: red">*</span></label>
-      <input type="number" id="${rule.id}Number" name="number" placeholder="Gaveling Procedure" value="${rule.number}" required
+      <input type="number" id="${rule.id}Number" name="number" placeholder="12" value="${rule.number}" required
       />
       <label for="summary"
         >Rule Summary <span style="color: red">*</span></label
