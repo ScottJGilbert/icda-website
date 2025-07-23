@@ -10,11 +10,21 @@ async function fetchData() {
       }
       const tournament = data.data;
 
+      document.getElementById("date" + i).value = tournament.date;
+      document.getElementById("tabroom" + i).value = tournament.tabroom_url;
+
       if (i !== 6) {
         const select = schoolSelect.cloneNode(true);
         select.id = "schoolSelect" + i;
         select.value = tournament.school_name;
         document.getElementById("schoolSelect" + i).replaceWith(select);
+
+        for (const option of select.options) {
+          if (option.text === tournament.school_name) {
+            option.selected = true;
+            break;
+          }
+        }
       }
 
       const contactList = document
