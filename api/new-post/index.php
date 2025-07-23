@@ -84,10 +84,10 @@ if ($input['containsImage'] === 'true') {
   $input['imageUrl'] = '';
 }
 
-mkdir("/../../news/$slug");
-copy("/../../news/new-website/index.html", "/../../news/$slug/index.html");
-mkdir("/../../admin/news/$slug");
-copy("/../../admin/news/new-website/index.php", "/../../admin/news/$slug/index.php");
+mkdir(ROOT_PATH . "/news/$slug");
+copy(ROOT_PATH . "/news/new-website/index.html", ROOT_PATH . "/news/$slug/index.html");
+mkdir(ROOT_PATH . "/admin/news/$slug");
+copy(ROOT_PATH . "/admin/news/new-website/index.php", ROOT_PATH . "/admin/news/$slug/index.php");
 
 $model->updatePost($slug, $input['title'], $input['imageUrl'], $input['markdown']);
 
