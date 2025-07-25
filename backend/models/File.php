@@ -6,7 +6,7 @@ class File
   private function getSeason($archive_id)
   {
     //Will need to adjust how $archive_id matches to a season depending on what the earliest season entered into the database is
-    return (2020 + $archive_id) . "-" . (2021 + $archive_id);
+    return (2018 + $archive_id) . "-" . (2019 + $archive_id);
   }
 
   public function uploadLegislation($tournament_id)

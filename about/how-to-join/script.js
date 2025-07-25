@@ -24,7 +24,7 @@ function changeHeaderSize(width) {
   }
 }
 
-function initializeFAQ() {
+async function initializePage() {
   let questions = document
     .getElementById("FAQ")
     .getElementsByClassName("question");
@@ -61,7 +61,31 @@ function initializeFAQ() {
       }
     };
   }
+
+  try {
+    const res = await fetch("/api/fetch-oversight/index.php?id=1");
+    const data = await res.json();
+    if (!res.ok || !data.success) {
+      console.error("Error fetching president.");
+    }
+    document.getElementById("president").textContent = data.name;
+    document.getElementById("president").href = "mailto:" + data.email;
+  } catch (error) {
+    console.error("There was an error fetching data.");
+  }
+
+  try {
+    const res = await fetch("/api/fetch-oversight/index.php?id=6");
+    const data = await res.json();
+    if (!res.ok || !data.success) {
+      console.error("Error fetching membership/training commissioner.");
+    }
+    document.getElementById("commissioner").textContent = data.name;
+    document.getElementById("commissioner").href = "mailto:" + data.email;
+  } catch (error) {
+    console.error("There was an error fetching data.");
+  }
 }
 
-window.addEventListener("load", initializeFAQ);
+window.addEventListener("load", initializePage);
 window.addEventListener("resize", changeScreenSizeMain);

@@ -57,6 +57,14 @@ class Archive
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
+  public function fetchLastArchiveTime()
+  {
+    $sql = "SELECT archive_time FROM archiveData ORDER BY id DESC LIMIT 1";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchColumn();
+  }
+
   public function updateArchive($names, $dates, $id)
   {
     $this->pdo->prepare('UPDATE archiveData SET icda_1_school = :icda1School, icda_1_date = :icda1Date, icda_2_school = :icda2School, icda_2_date = :icda2Date, icda_3_school = icda3School, icda_3_date = :icda3Date, icda_4_school = :icda4School, icda_4_date = :icda4Date, icda_5_school = :icda5School, icda_5_date = :icda5Date, icda_state_date = :icdaStateDate WHERE id = :id')

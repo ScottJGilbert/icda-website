@@ -43,6 +43,26 @@ async function fetchData() {
     anchor.textContent = data.name;
     document.getElementById("list").appendChild(anchor);
   }
+
+  try {
+    const res = await fetch("legislation.pdf");
+    if (!res.ok) {
+      document.getElementById("legislation").style.display = "none";
+    }
+  } catch (error) {
+    console.error("Error fetching legislation PDF:", error);
+    document.getElementById("legislation").style.display = "none";
+  }
+
+  try {
+    const res = await fetch("results.pdf");
+    if (!res.ok) {
+      document.getElementById("results").style.display = "none";
+    }
+  } catch (error) {
+    console.error("Error fetching results PDF:", error);
+    document.getElementById("results").style.display = "none";
+  }
 }
 
 window.addEventListener("load", fetchData);

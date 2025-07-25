@@ -86,10 +86,10 @@ function addContact(tournamentId) {
     alert("Please enter both name and email.");
     return;
   }
-  const contactsDiv = document.getElementById(
-    "tournament" + tournamentId + "Contacts"
-  );
-  contactsDiv.innerHTML += `
+  const contactList = document
+    .getElementById("tournament" + tournamentId + "Contacts")
+    .querySelector(".contactList");
+  contactList.innerHTML += `
   <div class="contact" id="${tournamentId + trimmedName}contact">
     <p class="contactName">${name}</p>
     <p class="contactEmail">(${email})</p>
@@ -113,25 +113,39 @@ async function updateTournament(tournamentId) {
 
   if (tournamentId !== 6) {
     const schoolSelect = document.getElementById("schoolSelect" + tournamentId);
-    formData.append("school_id", schoolSelect.value.slice(6));
+    for (const option of schoolSelect.options) {
+      if (option.selected) {
+        formData.append("schoolId", option.id.slice(6));
+      }
+    }
   } else {
-    formData.append("school_id", 1); // State tournament has a fixed school ID
+    formData.append("schoolId", 1); // State tournament has a fixed school ID
   }
   const contactList = document
     .getElementById(`tournament${tournamentId}Contacts`)
     .querySelector(".contactList");
-  const names = contactList.querySelectorAll(`.contactName`);
-  const emails = contactList.querySelectorAll(`.contactEmail`);
-  const contacts = [];
-  for (let i = 0; i < names.length; i++) {
-    contacts.push({
-      name: names[i].textContent,
-      email: emails[i].textContent.replace(/[()]/g, "").trim(),
-    });
+  const htmlNames = contactList.querySelectorAll(`.contactName`);
+  const htmlEmails = contactList.querySelectorAll(`.contactEmail`);
+  const names = [];
+  const emails = [];
+  for (let i = 0; i < htmlNames.length; i++) {
+    names.push(htmlNames[i].textContent.trim());
+    emails.push(htmlEmails[i].textContent.replace(/[()]/g, "").trim());
   }
 
-  formData.append("contacts", JSON.stringify(contacts));
+  // You can't send arrays directly in FormData; you need to append each value separately
+  names.forEach((name) => formData.append("contactNames[]", name));
+  emails.forEach((email) => formData.append("contactEmails[]", email));
+
   formData.append("id", tournamentId);
+  formData.append(
+    "deleteLegislation",
+    document.getElementById("deleteLegislation" + tournamentId).checked
+  );
+  formData.append(
+    "deleteResults",
+    document.getElementById("deleteResults" + tournamentId).checked
+  );
 
   try {
     const res = await fetch("/api/update-tournament/index.php", {

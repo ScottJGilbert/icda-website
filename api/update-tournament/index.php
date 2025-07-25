@@ -79,20 +79,41 @@ if (!isset($input['schoolId']) || !is_numeric($input['schoolId']) || $input['sch
   exit;
 }
 
-if (!isset($input['tabroom']) || trim($input['tabrom']) === '') {
+if (!isset($input['tabroom']) || trim($input['tabroom']) === '') {
   Response::error('Tabroom link is required.', 400);
   exit;
 }
 
-if (!isset($input['contacts']) === '') {
-  Response::error('Contacts are required.', 400);
+if (!isset($input['contactNames']) || !is_array($input['contactNames']) || empty($input['contactNames'])) {
+  Response::error('Contact names are required.', 400);
   exit;
 }
 
-$contactList = json_decode($input['contacts'], true);
-if (!is_array($contactList) || empty($contactList)) {
-  Response::error('Contacts must be a non-empty array.', 400);
+if (!isset($input['contactEmails']) || !is_array($input['contactEmails']) || empty($input['contactEmails'])) {
+  Response::error('Contact emails are required.', 400);
   exit;
+}
+
+$contactList = [];
+// Combine names and emails into contact list
+for ($i = 0; $i < count($input['contactNames']); $i++) {
+  $name = trim($input['contactNames'][$i]);
+  $email = trim($input['contactEmails'][$i]);
+
+  if ($name === '' || $email === '') {
+    Response::error('Contact name and email cannot be empty.', 400);
+    exit;
+  }
+
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    Response::error('Invalid email format for contact: ' . htmlspecialchars($name), 400);
+    exit;
+  }
+
+  $contactList[] = [
+    'name' => $name,
+    'email' => $email
+  ];
 }
 
 for ($i = 0; $i < count($contactList); $i++) {
