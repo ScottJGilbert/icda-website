@@ -33,4 +33,16 @@ if (!isset($id) || !is_numeric($id)) {
 $model = new Archive();
 $output = $model->fetchSeasonData($id);
 
+$season = (2018 + $id) . '-' . (2018 + $id + 1);
+
+$legislationFiles = [];
+$resultsFiles = [];
+for ($i = 1; $i < 6; $i++) {
+  $legislationFiles[] = file_exists(ROOT_PATH . "/archive/$season/icda-$i-legislation.pdf");
+  $resultsFiles[] = file_exists(ROOT_PATH . "/archive/$season/icda-$i-results.pdf");
+}
+
+$legislationFiles[] = file_exists(ROOT_PATH . "/archive/$season/icda-state-legislation.pdf");
+$resultsFiles[] = file_exists(ROOT_PATH . "/archive/$season/icda-state-results.pdf");
+
 Response::success($output);

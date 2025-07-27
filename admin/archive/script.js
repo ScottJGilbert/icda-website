@@ -17,7 +17,7 @@ async function fetchData() {
 
 function displayData() {
   //May need to change depending on what the earliest season loaded in is
-  const startYear = 2020;
+  const startYear = 2018;
 
   const fullContainer = document.querySelector("#edit");
   fullContainer.innerHTML = "";
@@ -25,6 +25,12 @@ function displayData() {
   for (const season of data) {
     const div = document.createElement("div");
     div.className = "seasonDiv";
+
+    const seasonTitle = document.createElement("h2");
+    seasonTitle.textContent = `${startYear + season.id} - ${
+      startYear + season.id + 1
+    }`;
+    div.appendChild(seasonTitle);
 
     const dataForm = document.createElement("form");
 

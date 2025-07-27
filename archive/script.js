@@ -1,5 +1,5 @@
 //May need to change depending on earliest year
-const startYear = 2020;
+const startYear = 2018;
 
 async function fetchData() {
   const res = await fetch("/api/fetch-archive-data/index.php");
