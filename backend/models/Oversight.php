@@ -22,7 +22,7 @@ class Oversight
     $stmt = $this->pdo->prepare('SELECT * FROM oversight WHERE id = :id LIMIT 1');
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
-    return $stmt->fetchColumn();
+    return $stmt->fetch();
   }
 
   public function fetchImageUrl($id): string

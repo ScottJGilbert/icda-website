@@ -45,4 +45,7 @@ for ($i = 1; $i < 6; $i++) {
 $legislationFiles[] = file_exists(ROOT_PATH . "/archive/$season/icda-state-legislation.pdf");
 $resultsFiles[] = file_exists(ROOT_PATH . "/archive/$season/icda-state-results.pdf");
 
+$output['legislationFiles'] = $legislationFiles;
+$output['resultsFiles'] = $resultsFiles;
+
 Response::success($output);

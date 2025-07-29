@@ -34,4 +34,10 @@ class Contact
       $stmt->execute();
     }
   }
+
+  public function deleteAllContacts()
+  {
+    $stmt = $this->pdo->prepare('DELETE FROM contacts');
+    $stmt->execute();
+  }
 }

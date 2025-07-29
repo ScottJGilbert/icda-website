@@ -20,10 +20,12 @@ async function fetchData() {
   const id = name === "state" ? 6 : Number(name);
 
   const res = await fetch(`/api/fetch-tournament/index.php?id=${id}`);
-  const data = await res.json();
-  if (!data.success) {
-    throw new Error(data.error);
+  if (!res.ok) {
+    console.error("Error fetching tournament data.");
+    throw new Error("There was an error fetching the tournament data.");
   }
+  const json = await res.json();
+  const data = json.data;
 
   document.getElementById("date").textContent = new Date(
     data.date
@@ -34,13 +36,13 @@ async function fetchData() {
     id === 6 ? "/public/images/harperCollege.svg" : data.school_image;
   document.getElementById("tabroom").href = data.tabroom;
 
-  document.getElementById("list").innerHTML = ""; // Clear previous links
+  // document.getElementById("list").innerHTML = ""; // Clear previous links
   for (const contact of data.contacts) {
     const anchor = document.createElement("a");
     anchor.href = "mailto:" + contact.email;
     anchor.target = "_blank";
     anchor.className = "navigationLink";
-    anchor.textContent = data.name;
+    anchor.textContent = contact.name;
     document.getElementById("list").appendChild(anchor);
   }
 

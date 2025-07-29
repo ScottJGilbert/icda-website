@@ -72,10 +72,13 @@ async function initialize() {
 
   try {
     const res = await fetch("/api/fetch-oversight/index.php?id=1");
-    const data = await res.json();
-    if (!res.ok || !data.success) {
+    if (!res.ok) {
       console.error("Error fetching president.");
+      return;
     }
+    const json = await res.json();
+    const data = await json.data;
+
     presidentName = data.name;
     presidentEmail = data.email;
   } catch (error) {
@@ -84,10 +87,13 @@ async function initialize() {
 
   try {
     const res = await fetch("/api/fetch-oversight/index.php?id=6");
-    const data = await res.json();
-    if (!res.ok || !data.success) {
+    if (!res.ok) {
       console.error("Error fetching membership/training commissioner.");
+      return;
     }
+    const json = await res.json();
+    const data = await json.data;
+
     commissionerName = data.name;
     commissionerEmail = data.email;
   } catch (error) {

@@ -68,7 +68,7 @@ class Session
 
 	public function terminateExpiredSessions(): void
 	{
-		$sql = "DELETE FROM sessions WHERE DATE_ADD(last_seen, INTERVAL 30 MINUTE) > NOW()";
+		$sql = "DELETE FROM sessions WHERE DATE_ADD(last_seen, INTERVAL 30 MINUTE) < NOW()";
 		$stmt = $this->pdo->prepare($sql);
 		$stmt->execute();
 	}
