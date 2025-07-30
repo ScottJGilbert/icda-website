@@ -9,10 +9,13 @@ function MobileMenu() {
     async function fetchPresident() {
       try {
         const res = await fetch("/api/fetch-oversight/index.php?id=1");
-        const data = await res.json();
-        if (!res.ok || !data.success) {
+        if (!res.ok) {
           console.error("Error fetching president.");
+          return;
         }
+        const json = await res.json();
+        const data = await json.data;
+
         setPresidentName(data.name);
         setPresidentEmail(data.email);
       } catch (error) {
@@ -23,10 +26,13 @@ function MobileMenu() {
     async function fetchCommissioner() {
       try {
         const res = await fetch("/api/fetch-oversight/index.php?id=6");
-        const data = await res.json();
-        if (!res.ok || !data.success) {
+        if (!res.ok) {
           console.error("Error fetching membership/training commissioner.");
+          return;
         }
+        const json = await res.json();
+        const data = await json.data;
+
         setCommissionerName(data.name);
         setCommissionerEmail(data.email);
       } catch (error) {

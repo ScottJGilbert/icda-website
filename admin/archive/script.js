@@ -16,13 +16,13 @@ async function fetchData() {
 }
 
 function displayData() {
-  //May need to change depending on what the earliest season loaded in is
+  //May need to change depending on what the earliest season loaded in is - always is earliest year minus one
   const startYear = 2018;
 
   const fullContainer = document.querySelector("#edit");
   fullContainer.innerHTML = "";
 
-  for (const season of data) {
+  for (const season of archiveData) {
     const div = document.createElement("div");
     div.className = "seasonDiv";
 
@@ -35,16 +35,35 @@ function displayData() {
     const dataForm = document.createElement("form");
 
     for (let i = 1; i <= 6; i++) {
+      const dataFormDiv = document.createElement("div");
       if (i !== 6) {
         const schoolInput = document.createElement("input");
         schoolInput.type = "text";
         schoolInput.id = season.id + "SchoolInput" + i;
-        dataForm.appendChild(schoolInput);
+        schoolInput.value = season[`icda_${i}_school`];
+        dataFormDiv.appendChild(schoolInput);
+
+        const schoolLabel = document.createElement("label");
+        schoolLabel.htmlFor = season.id + "SchoolInput" + i;
+        schoolLabel.textContent = `ICDA ${i} School:`;
+        dataFormDiv.appendChild(schoolLabel);
       }
       const dateInput = document.createElement("input");
       dateInput.type = "date";
       dateInput.id = season.id + "DateInput" + i;
-      dataForm.appendChild(dateInput);
+
+      const dateLabel = document.createElement("label");
+      dateLabel.htmlFor = season.id + "DateInput" + i;
+      if (i !== 6) {
+        dateInput.value = season[`icda_${i}_date`];
+        dateLabel.textContent = `ICDA ${i} Date:`;
+      } else {
+        dateInput.value = season.icda_state_date;
+        dateLabel.textContent = `ICDA State Date:`;
+      }
+      dataFormDiv.appendChild(dateInput);
+      dataFormDiv.appendChild(dateLabel);
+      dataForm.appendChild(dataFormDiv);
     }
 
     div.appendChild(dataForm);
@@ -66,17 +85,23 @@ function displayData() {
       selectLegislationFile.type = "file";
       selectLegislationFile.accept = ".pdf";
       uploadLegislationForm.appendChild(selectLegislationFile);
+
+      const selectLegislationLabel = document.createElement("label");
+      selectLegislationLabel.htmlFor = season.id + "UploadLegislationForm" + i;
+      selectLegislationLabel.innerText = "Upload Legislation";
+      uploadLegislationForm.appendChild(selectLegislationLabel);
+
       uploadLegislationDiv.appendChild(uploadLegislationForm);
 
       const uploadLegislationButton = document.createElement("button");
-      uploadLegislationButton.value = "Upload Legislation";
+      uploadLegislationButton.textContent = "Upload Legislation";
       uploadLegislationButton.onclick = () => {
         uploadLegislation(season.id, i);
       };
       uploadLegislationDiv.appendChild(uploadLegislationButton);
 
       const deleteLegislationButton = document.createElement("button");
-      deleteLegislationButton.value = "Upload Legislation";
+      deleteLegislationButton.textContent = "Delete Legislation";
       deleteLegislationButton.onclick = () => {
         deleteLegislation(season.id, i);
       };
@@ -97,14 +122,14 @@ function displayData() {
       uploadResultsDiv.appendChild(uploadResultsForm);
 
       const uploadResultsButton = document.createElement("button");
-      uploadResultsButton.value = "Upload Results";
+      uploadResultsButton.textContent = "Upload Results";
       uploadResultsButton.onclick = () => {
         uploadResults(season.id, i);
       };
       uploadResultsDiv.appendChild(uploadResultsButton);
 
       const deleteResultsButton = document.createElement("button");
-      deleteResultsButton.value = "Upload Results";
+      deleteResultsButton.textContent = "Delete Results";
       deleteResultsButton.onclick = () => {
         deleteResults(season.id, i);
       };

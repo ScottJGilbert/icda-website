@@ -14,10 +14,10 @@ async function fetchData() {
     const anchor = document.createElement("a");
     const seasonName =
       startYear + season.id + "-" + (startYear + season.id + 1);
-    anchor.href = "/" + seasonName;
+    anchor.href = seasonName;
     anchor.textContent = seasonName;
 
-    document.getElementById("list").appendChild(anchor);
+    document.getElementById("seasons").appendChild(anchor);
   }
 }
 

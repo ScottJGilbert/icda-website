@@ -33,6 +33,10 @@ $output = $model->fetchTournament($id);
 $schoolModel = new School();
 $school = $schoolModel->fetchSchool($output['school_id']);
 $output['school_name'] = $school['name'];
-$output['school_image'] = $school['imageUrl'] ?? '';
+$output['school_image'] = $school['image_url'] ?? '';
+
+$contactModel = new Contact();
+$contacts = $contactModel->fetchContacts($id);
+$output['contacts'] = $contacts;
 
 Response::success($output);

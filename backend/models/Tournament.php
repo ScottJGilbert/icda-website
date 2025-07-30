@@ -17,9 +17,6 @@ class Tournament
     $stmt->execute();
     $tournament = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $contactModel = new Contact();
-    $contacts = $contactModel->fetchContacts($id);
-    $tournament['contacts'] = $contacts;
     return $tournament;
   }
 
@@ -38,12 +35,15 @@ class Tournament
 
   public function archiveTournaments()
   {
-    $stmt = $this->pdo->prepare('SELECT date, school_id FROM tournanamants');
+    $stmt = $this->pdo->prepare('SELECT id, date, school_id FROM tournaments');
     $stmt->execute();
     $tournaments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $stmt = $this->pdo->prepare('DELETE FROM tournaments');
+    $stmt = $this->pdo->prepare("UPDATE tournaments SET tabroom = ''");
     $stmt->execute();
+
+    $contactModel = new Contact();
+    $contactModel->deleteAllContacts();
 
     return $tournaments;
   }
