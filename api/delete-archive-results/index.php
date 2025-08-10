@@ -36,7 +36,7 @@ if (!isset($_GET['archiveId'])) {
   exit;
 }
 
-if (!is_numeric($_GET['archiveId']) || $input['archiveId'] < 1) {
+if (!is_numeric($_GET['archiveId']) || $_GET['archiveId'] < 1) {
   Response::error('Invalid archive ID.', 400);
   exit;
 }

@@ -95,6 +95,6 @@ CREATE TABLE archiveData(
   icda_5_school VARCHAR(255),
   icda_5_date DATE,
   icda_state_date DATE,
-  archive_time TIMESTAMP DEAFAULT CURRENT_TIMESTAMP,
+  archive_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 );

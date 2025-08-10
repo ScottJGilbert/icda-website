@@ -106,7 +106,7 @@ class File
 
     $targetFile = realpath(__DIR__ . "/../../archive/$season/icda-$tournament_name-legislation.pdf");
 
-    if (file_exists(PROJECT_ROOT . $targetFile)) {
+    if (file_exists($targetFile)) {
       if (unlink($targetFile)) {
         Response::success('Legislation file deleted successfully.', 200);
         exit;
@@ -216,7 +216,7 @@ class File
 
     $targetFile = realpath(__DIR__ . "/../../archive/$season/icda-$tournament_name-results.pdf");
 
-    if (file_exists(PROJECT_ROOT . $targetFile)) {
+    if (file_exists($targetFile)) {
       if (unlink($targetFile)) {
         Response::success('Results file deleted successfully.', 200);
         exit;
