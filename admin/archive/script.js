@@ -69,14 +69,14 @@ function displayData() {
     div.appendChild(dataForm);
 
     const dataSubmitButton = document.createElement("button");
-    dataSubmitButton.value = "Save Archive Data";
+    dataSubmitButton.innerText = "Save Archive Data";
     dataSubmitButton.onclick = () => {
       updateData(season.id);
     };
 
     div.appendChild(dataSubmitButton);
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 1; i <= 6; i++) {
       const uploadLegislationDiv = document.createElement("div");
 
       const uploadLegislationForm = document.createElement("form");
@@ -110,7 +110,7 @@ function displayData() {
       div.appendChild(uploadLegislationDiv);
     }
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 1; i <= 6; i++) {
       const uploadResultsDiv = document.createElement("div");
 
       const uploadResultsForm = document.createElement("form");
@@ -153,7 +153,7 @@ async function updateData(archiveId) {
     dates.push(dateInput.value);
   }
 
-  const res = await fetch("/api/update-archive-data", {
+  const res = await fetch("/api/update-archive-data/index.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -166,33 +166,37 @@ async function updateData(archiveId) {
   const data = await res.json();
   if (!data.success) {
     alert("There was an error updating archive data: " + data.error);
+  } else {
+    alert("Archive data updated successfully!");
   }
   fetchData();
-  alert("Archive data updated successfully!");
 }
 
 async function uploadLegislation(archiveId, tournamentId) {
-  const formData = document.getElementById(
-    archiveId + "UploadLegislationForm" + tournamentId
+  const formData = new FormData(
+    document.getElementById(archiveId + "UploadLegislationForm" + tournamentId)
   );
-  const res = await fetch("/api/update-archive-legislation", {
+  formData.append("archiveId", archiveId);
+  formData.append("tournamentId", tournamentId);
+  const res = await fetch("/api/update-archive-legislation/index.php", {
     method: "POST",
-    body: { ...formData, archive_id: archiveId, tournament_id: tournamentId },
+    body: formData,
   });
 
   const data = await res.json();
-  if (!data.success) {
+  if (!res.ok) {
     alert("There was an error uploading legislation: " + data.error);
+  } else {
+    alert("Legislation uploaded successfully!");
   }
   fetchData();
-  alert("Legislation uploaded successfully!");
 }
 
 async function deleteLegislation(archiveId, tournamentId) {
   const res = await fetch(
-    "/api/delete-archive-legislation?archive_id=" +
+    "/api/delete-archive-legislation/index.php?archiveId=" +
       archiveId +
-      "&tournament_id?=" +
+      "&tournamentId=" +
       tournamentId,
     {
       method: "DELETE",
@@ -200,35 +204,39 @@ async function deleteLegislation(archiveId, tournamentId) {
   );
 
   const data = await res.json();
-  if (!data.success) {
+  if (!res.ok) {
     alert("There was an error deleting legislation: " + data.error);
+  } else {
+    alert("Legislation deleted successfully!");
   }
   fetchData();
-  alert("Legislation deleted successfully!");
 }
 
 async function uploadResults(archiveId, tournamentId) {
-  const formData = document.getElementById(
-    archiveId + "UploadResultsForm" + tournamentId
+  const formData = new FormData(
+    document.getElementById(archiveId + "UploadResultsForm" + tournamentId)
   );
-  const res = await fetch("/api/update-archive-results", {
+  formData.append("archiveId", archiveId);
+  formData.append("tournamentId", tournamentId);
+  const res = await fetch("/api/update-archive-results/index.php", {
     method: "POST",
-    body: { ...formData, archive_id: archiveId, tournament_id: tournamentId },
+    body: formData,
   });
 
   const data = await res.json();
   if (!data.success) {
     alert("There was an error uploading results: " + data.error);
+  } else {
+    alert("Results uploaded successfully!");
   }
   fetchData();
-  alert("Results uploaded successfully!");
 }
 
 async function deleteResults(archiveId, tournamentId) {
   const res = await fetch(
-    "/api/delete-archive-results?archive_id=" +
+    "/api/delete-archive-results/index.php?archiveId=" +
       archiveId +
-      "&tournament_id?=" +
+      "&tournamentId=" +
       tournamentId,
     {
       method: "DELETE",
@@ -238,9 +246,10 @@ async function deleteResults(archiveId, tournamentId) {
   const data = await res.json();
   if (!data.success) {
     alert("There was an error deleting results: " + data.error);
+  } else {
+    alert("Results deleted successfully!");
   }
   fetchData();
-  alert("Results deleted successfully!");
 }
 
 window.addEventListener("load", fetchData);
