@@ -24,7 +24,7 @@ class File
       exit;
     }
 
-    if (!$this->isImageMagicNumberValid('pdf')) {
+    if (!$this->isLegislationMagicNumberValid()) {
       Response::error('Invalid file magic number. The file may be corrupted or not a valid PDF.', 400);
       exit;
     }
@@ -79,7 +79,7 @@ class File
       exit;
     }
 
-    if (!$this->isImageMagicNumberValid('pdf')) {
+    if (!$this->isLegislationMagicNumberValid()) {
       Response::error('Invalid file magic number. The file may be corrupted or not a valid PDF.', 400);
       exit;
     }
@@ -135,7 +135,7 @@ class File
       exit;
     }
 
-    if (!$this->isImageMagicNumberValid('pdf')) {
+    if (!$this->isResultsMagicNumberValid()) {
       Response::error('Invalid file magic number. The file may be corrupted or not a valid PDF.', 400);
       exit;
     }
@@ -189,7 +189,7 @@ class File
       exit;
     }
 
-    if (!$this->isImageMagicNumberValid('pdf')) {
+    if (!$this->isResultsMagicNumberValid()) {
       Response::error('Invalid file magic number. The file may be corrupted or not a valid PDF.', 400);
       exit;
     }
@@ -243,7 +243,7 @@ class File
       exit;
     }
 
-    if (!$this->isImageMagicNumberValid('pdf')) {
+    if (!$this->isConstitutionMagicNumberValid()) {
       Response::error('Invalid file magic number. The file may be corrupted or not a valid PDF.', 400);
       exit;
     }
@@ -320,18 +320,9 @@ class File
     }
   }
 
-  public function fetchImage($url)
+  private function getImageHeader($bytes = 12)
   {
-    if (file_exists(PROJECT_ROOT . $url) && is_readable($url)) {
-      return file_get_contents($url);
-    } else {
-      Response::error('Image does not exist or is not readable.', 404);
-      exit;
-    }
-  }
-
-  private function getFileHeader($bytes = 12)
-  {
+    // Need to work for legislation and results too
     $handle = fopen($_FILES['image']['tmp_name'], 'rb');
     $header = fread($handle, $bytes);
     fclose($handle);
@@ -356,7 +347,7 @@ class File
     ];
 
     $ext = strtolower($extension);
-    $header = $this->getFileHeader();
+    $header = $this->getImageHeader();
 
     if (!isset($magicNumbers[$ext])) {
       return false;
@@ -377,6 +368,48 @@ class File
     }
 
     return false;
+  }
+
+  private function isLegislationMagicNumberValid()
+  {
+    $header = $this->getLegislationHeader();
+    return strpos($header, '25504446') === 0; // PDF magic number starts with %PDF
+  }
+
+  private function getLegislationHeader($bytes = 12)
+  {
+    $handle = fopen($_FILES['legislation']['tmp_name'], 'rb');
+    $header = fread($handle, length: $bytes);
+    fclose($handle);
+    return bin2hex($header); // Convert to hexadecimal for easy comparison
+  }
+
+  private function isResultsMagicNumberValid()
+  {
+    $header = $this->getResultsHeader();
+    return strpos($header, '25504446') === 0; // PDF magic number starts with %PDF
+  }
+
+  private function getResultsHeader($bytes = 12)
+  {
+    $handle = fopen($_FILES['results']['tmp_name'], 'rb');
+    $header = fread($handle, length: $bytes);
+    fclose($handle);
+    return bin2hex($header); // Convert to hexadecimal for easy comparison
+  }
+
+  private function isConstitutionMagicNumberValid()
+  {
+    $header = $this->getConstitutionHeader();
+    return strpos($header, '25504446') === 0; // PDF magic number starts with %PDF
+  }
+
+  private function getConstitutionHeader($bytes = 12)
+  {
+    $handle = fopen($_FILES['constitution']['tmp_name'], 'rb');
+    $header = fread($handle, length: $bytes);
+    fclose($handle);
+    return bin2hex($header); // Convert to hexadecimal for easy comparison
   }
 
 
