@@ -82,6 +82,7 @@ function displayData() {
       const uploadLegislationForm = document.createElement("form");
       uploadLegislationForm.id = season.id + "UploadLegislationForm" + i;
       const selectLegislationFile = document.createElement("input");
+      selectLegislationFile.name = "legislation";
       selectLegislationFile.type = "file";
       selectLegislationFile.accept = ".pdf";
       uploadLegislationForm.appendChild(selectLegislationFile);
@@ -116,6 +117,7 @@ function displayData() {
       const uploadResultsForm = document.createElement("form");
       uploadResultsForm.id = season.id + "UploadLegislationForm" + i;
       const selectResultsFile = document.createElement("input");
+      selectResultsFile.name = "results";
       selectResultsFile.type = "file";
       selectResultsFile.accept = ".pdf";
       uploadResultsForm.appendChild(selectResultsFile);
