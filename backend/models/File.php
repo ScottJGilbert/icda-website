@@ -13,7 +13,7 @@ class File
   {
     $tournament_name = $tournament_id === 6 ? 'state' : (string) $tournament_id;
 
-    $targetFile = PROJECT_ROOT . "tournaments/icda-$tournament_name/legislation.pdf";
+    $targetFile = PROJECT_ROOT . "/tournaments/icda-$tournament_name/legislation.pdf";
     $uploadedFile = $_FILES["legislation"]["name"];
 
     $uploadedType = strtolower(pathinfo($uploadedFile, PATHINFO_EXTENSION));
@@ -68,7 +68,7 @@ class File
 
     $tournament_name = $tournament_id === 6 ? 'state' : (string) $tournament_id;
 
-    $targetFile = PROJECT_ROOT . "archive/$season/icda-$tournament_name-legislation.pdf";
+    $targetFile = PROJECT_ROOT . "/archive/$season/icda-$tournament_name-legislation.pdf";
     $uploadedFile = $_FILES["legislation"]["name"];
 
     $uploadedType = strtolower(pathinfo($uploadedFile, PATHINFO_EXTENSION));
@@ -104,7 +104,7 @@ class File
 
     $tournament_name = $tournament_id === 6 ? 'state' : (string) $tournament_id;
 
-    $targetFile = PROJECT_ROOT . "archive/$season/icda-$tournament_name-legislation.pdf";
+    $targetFile = PROJECT_ROOT . "/archive/$season/icda-$tournament_name-legislation.pdf";
 
     if (file_exists($targetFile)) {
       if (unlink($targetFile)) {
@@ -124,7 +124,7 @@ class File
   {
     $tournament_name = $tournament_id === 6 ? 'state' : (string) $tournament_id;
 
-    $targetFile = PROJECT_ROOT . "tournaments/icda-$tournament_name/results.pdf";
+    $targetFile = PROJECT_ROOT . "/tournaments/icda-$tournament_name/results.pdf";
     $uploadedFile = $_FILES["results"]["name"];
 
     $uploadedType = strtolower(pathinfo($uploadedFile, PATHINFO_EXTENSION));
@@ -156,7 +156,7 @@ class File
 
   public function deleteResults($tournament_id)
   {
-    $targetFile = PROJECT_ROOT . "tournaments/icda-$tournament_id/results.pdf";
+    $targetFile = PROJECT_ROOT . "/tournaments/icda-$tournament_id/results.pdf";
 
     if (file_exists($targetFile)) {
       if (unlink($targetFile)) {
@@ -178,7 +178,7 @@ class File
 
     $tournament_name = $tournament_id === 6 ? 'state' : (string) $tournament_id;
 
-    $targetFile = PROJECT_ROOT . "archive/$season/icda-$tournament_name-results.pdf";
+    $targetFile = PROJECT_ROOT . "/archive/$season/icda-$tournament_name-results.pdf";
     $uploadedFile = $_FILES["legislation"]["name"];
 
     $uploadedType = strtolower(pathinfo($uploadedFile, PATHINFO_EXTENSION));
@@ -214,7 +214,7 @@ class File
 
     $tournament_name = $tournament_id === 6 ? 'state' : (string) $tournament_id;
 
-    $targetFile = PROJECT_ROOT . "archive/$season/icda-$tournament_name-results.pdf";
+    $targetFile = PROJECT_ROOT . "/archive/$season/icda-$tournament_name-results.pdf";
 
     if (file_exists($targetFile)) {
       if (unlink($targetFile)) {
@@ -232,7 +232,7 @@ class File
 
   public function uploadConstitution()
   {
-    $targetFile = PROJECT_ROOT . "constitution.pdf";
+    $targetFile = PROJECT_ROOT . "/constitution.pdf";
     $uploadedFile = $_FILES["constitution"]["name"];
 
     $uploadedType = strtolower(pathinfo($uploadedFile, PATHINFO_EXTENSION));
@@ -267,7 +267,7 @@ class File
     $validExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'tiff', 'ico', 'avif', 'heic'];
     $mimeType = str_replace("image/", "", mime_content_type($_FILES["image"]["tmp_name"]));
 
-    $targetDir = PROJECT_ROOT . "public/uploads/";
+    $targetDir = PROJECT_ROOT . "/public/uploads/";
     $targetFile = $targetDir . '/' . uniqid("", true) . '.' . $mimeType;
 
     $imageFileType = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
