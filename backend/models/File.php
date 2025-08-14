@@ -34,14 +34,10 @@ class File
       exit;
     }
 
-    if (move_uploaded_file($_FILES["legislation"]["tmp_name"], $targetFile)) {
-      Response::success('Legislation file uploaded successfully.', 200);
-      exit;
-    } else {
+    if (!move_uploaded_file($_FILES["legislation"]["tmp_name"], $targetFile)) {
       Response::error('Failed to upload legislation file.', 500);
       exit;
     }
-
   }
 
   public function deleteLegislation($tournament_id)
@@ -49,10 +45,7 @@ class File
     $targetFile = realpath(__DIR__ . "/../../tournaments/icda-$tournament_id/legislation.pdf");
 
     if (file_exists($targetFile)) {
-      if (unlink($targetFile)) {
-        Response::success('Legislation file deleted successfully.', 200);
-        exit;
-      } else {
+      if (!unlink($targetFile)) {
         Response::error('Failed to delete legislation file.', 500);
         exit;
       }
@@ -107,10 +100,7 @@ class File
     $targetFile = PROJECT_ROOT . "/archive/$season/icda-$tournament_name-legislation.pdf";
 
     if (file_exists($targetFile)) {
-      if (unlink($targetFile)) {
-        Response::success('Legislation file deleted successfully.', 200);
-        exit;
-      } else {
+      if (!unlink($targetFile)) {
         Response::error('Failed to delete legislation file.', 500);
         exit;
       }
@@ -145,10 +135,7 @@ class File
       exit;
     }
 
-    if (move_uploaded_file($_FILES["results"]["tmp_name"], $targetFile)) {
-      Response::success('Results file uploaded successfully.', 200);
-      exit;
-    } else {
+    if (!move_uploaded_file($_FILES["results"]["tmp_name"], $targetFile)) {
       Response::error('Failed to upload results file.', 500);
       exit;
     }
@@ -159,10 +146,7 @@ class File
     $targetFile = PROJECT_ROOT . "/tournaments/icda-$tournament_id/results.pdf";
 
     if (file_exists($targetFile)) {
-      if (unlink($targetFile)) {
-        Response::success('Results file deleted successfully.', 200);
-        exit;
-      } else {
+      if (!unlink($targetFile)) {
         Response::error('Failed to delete results file.', 500);
         exit;
       }
@@ -199,10 +183,7 @@ class File
       exit;
     }
 
-    if (move_uploaded_file($_FILES["legislation"]["tmp_name"], $targetFile)) {
-      Response::success('Results file uploaded successfully.', 200);
-      exit;
-    } else {
+    if (!move_uploaded_file($_FILES["legislation"]["tmp_name"], $targetFile)) {
       Response::error('Failed to upload results file.', 500);
       exit;
     }
@@ -217,10 +198,7 @@ class File
     $targetFile = PROJECT_ROOT . "/archive/$season/icda-$tournament_name-results.pdf";
 
     if (file_exists($targetFile)) {
-      if (unlink($targetFile)) {
-        Response::success('Results file deleted successfully.', 200);
-        exit;
-      } else {
+      if (!unlink($targetFile)) {
         Response::error('Failed to delete results file.', 500);
         exit;
       }
@@ -248,15 +226,12 @@ class File
       exit;
     }
 
-    if ($_FILES["results"]["size"] > 8000000) {
+    if ($_FILES["constitution"]["size"] > 8000000) {
       Response::error('File size exceeds the limit of 8MB.', 400);
       exit;
     }
 
-    if (move_uploaded_file($_FILES["constitution"]["tmp_name"], $targetFile)) {
-      Response::success('Constitution updated successfully.', 200);
-      exit;
-    } else {
+    if (!move_uploaded_file($_FILES["constitution"]["tmp_name"], $targetFile)) {
       Response::error('Failed to update constitution.', 500);
       exit;
     }
