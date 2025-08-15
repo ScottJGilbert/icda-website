@@ -46,6 +46,7 @@ require_once 'middleware.php';
     </div>
     <div>
       <form id="new-user-form">
+        <h2>New user</h2>
         <input id="name" name="name" type="text" required />
         <label for="name">Name <span style="color: red">*</span></label>
         <input id="username" name="username" type="text" required />
@@ -84,12 +85,14 @@ require_once 'middleware.php';
       <button onclick="newUser()">Add User</button>
     </div>
     <div id="currentUsers">
+      <h2>Manage Site Users</h2>
       <p>
         Note: for security reasons, user information cannot be edited. If you
         need to edit a user's information, please delete their current user and
         create a new one for them.
       </p>
     </div>
+    <h2>Manage Active Sessions</h2>
     <div id="currentSessions"></div>
 
     <!-- Everything above is actual page content and varies by file -->

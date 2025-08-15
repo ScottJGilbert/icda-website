@@ -115,12 +115,18 @@ function displayData() {
       const uploadResultsDiv = document.createElement("div");
 
       const uploadResultsForm = document.createElement("form");
-      uploadResultsForm.id = season.id + "UploadLegislationForm" + i;
+      uploadResultsForm.id = season.id + "UploadResultsForm" + i;
       const selectResultsFile = document.createElement("input");
       selectResultsFile.name = "results";
       selectResultsFile.type = "file";
       selectResultsFile.accept = ".pdf";
       uploadResultsForm.appendChild(selectResultsFile);
+
+      const selectResultsLabel = document.createElement("label");
+      selectResultsLabel.htmlFor = season.id + "UploadResultsForm" + i;
+      selectResultsLabel.innerText = "Upload Results";
+      uploadResultsForm.appendChild(selectResultsLabel);
+
       uploadResultsDiv.appendChild(uploadResultsForm);
 
       const uploadResultsButton = document.createElement("button");
