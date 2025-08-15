@@ -115,6 +115,7 @@ async function addNewSchool() {
     }
     fetchData();
     alert("School added successfully!");
+    window.location.reload();
   } catch (error) {
     console.error("Error adding school:", error);
     alert(
@@ -143,6 +144,7 @@ async function editSchool(schoolId) {
     }
     fetchData();
     alert("School updated successfully!");
+    window.location.reload();
   } catch (error) {
     console.error("Error editing school:", error);
     alert(
@@ -166,6 +168,7 @@ async function deleteSchool(schoolId) {
     }
     fetchData();
     alert("School deleted successfully!");
+    window.location.reload();
   } catch (error) {
     console.error("Error deleting school:", error);
     alert(
@@ -194,6 +197,7 @@ async function editMember(memberId) {
     }
     fetchData();
     alert("Member updated successfully!");
+    window.location.reload();
   } catch (error) {
     console.error("Error editing member:", error);
     alert(

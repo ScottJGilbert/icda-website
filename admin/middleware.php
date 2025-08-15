@@ -1,7 +1,7 @@
 <?php
 
-require_once realpath(__DIR__ . '/../core/Response.php');
-require_once realpath(__DIR__ . '/../models/Session.php');
+require_once realpath(__DIR__ . '/../backend/core/Response.php');
+require_once realpath(__DIR__ . '/../backend/models/Session.php');
 
 if (session_status() == PHP_SESSION_ACTIVE) {
   $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -11,12 +11,12 @@ if (session_status() == PHP_SESSION_ACTIVE) {
   switch ($permissionLevel) {
     case "Editor":
       if ($currentPath == "/management" || $currentPath == "/news") {
-        echo "You do not have permission to access this page.";
+        Response::redirect('/unauthorized');
       }
       break;
     case "Poster":
       if ($currentPath == "/management") {
-        echo "You do not have permission to access this page.";
+        Response::redirect('/unauthorized');
       }
       break;
     case "Administrator":
@@ -29,10 +29,8 @@ if (session_status() == PHP_SESSION_ACTIVE) {
 
       session_unset();
       session_destroy();
-      echo "HI";
       Response::redirect('/login?code=2'); //"Please log in again"
   }
 } else {
-  echo "HI";
   Response::redirect('/login?code=1'); //"Please log in"
 }

@@ -1,5 +1,5 @@
 <?php
-require_once 'middleware.php';
+// require_once __DIR__ . '/../middleware.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,23 +23,47 @@ require_once 'middleware.php';
   <div id="top"></div>
 
   <!-- Everything below is actual page content and varies by file -->
+  <div id="mainContent">
+    <div class="division">
+      <section>
+        <h1 class="title">Edit Resources</h1>
+      </section>
+    </div>
 
-  <h1>Edit Resources</h1>
-  <h2>Edit Rules</h2>
-  <div>
-    <form id="add-rule">
-      <input type="text" id="name" name="name" placeholder="Gaveling Procedure" required />
-      <label for="name">Rule Name <span style="color: red">*</span></label>
-      <input type="number" id="number" name="number" required />
-      <label for="number">Rule Number <span style="color: red">*</span></label>
-      <textarea id="summary" name="summary" spellcheck="default" required></textarea>
-      <label for="summary">Rule Summary <span style="color: red">*</span></label>
-    </form>
-    <button onclick="addRule()">Add Rule</button>
+    <div class="division">
+      <section>
+        <p class="title">New Rule</p>
+        <div>
+          <form id="add-rule" style="display: flex; flex-direction: column; gap: 4px;">
+            <div>
+              <label for="name">
+                <input type="text" id="name" name="name" placeholder="Gaveling Procedure" required />
+                Rule Name <span style="color: red">*</span>
+              </label>
+              <label for="number"> <input type="number" id="number" name="number" required />
+                Rule Number <span style="color: red">*</span>
+              </label>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 2px;">
+              <label for="summary">Rule Summary <span style="color: red">*</span></label>
+              <textarea id="summary" name="summary" spellcheck="default" required></textarea>
+            </div>
+          </form>
+          <button onclick="addRule()">Add Rule</button>
+        </div>
+
+      </section>
+    </div>
+
+    <div class="division">
+      <section>
+        <p class="title">Update Rules</p>
+        <button onclick="updateRules()">Save Rules</button>
+        <div id="rules"></div>
+      </section>
+    </div>
   </div>
 
-  <button onclick="updateRules()">Save Rules</button>
-  <div id="rules"></div>
 
   <!-- Everything above is actual page content and varies by file -->
 

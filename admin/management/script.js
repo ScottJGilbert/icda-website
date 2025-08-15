@@ -11,11 +11,13 @@ async function fetchData() {
       userDiv.className = "user";
       userDiv.id = user.uuid;
       userDiv.innerHTML = `
-      <p>UUID: ${user.uuid}</p>
-      <p>Name: ${user.name}</p>
-      <p>Username: ${user.username}</p>
-      <p>Access Level: ${user.access_level}</p>
-      <button onclick="deleteUser('${user.uuid}')">Delete User</button>
+      <div style:"display: flex; flex-wrap: wrap; gap: 5px;">
+        <p><b>UUID</b>: ${user.uuid}</p>
+        <p><b>Name</b>: ${user.name}</p>
+        <p><b>Username</b>: ${user.username}</p>
+        <p><b>Access Level</b>: ${user.access_level}</p>
+      </div>
+      <button class="redButton" onclick="deleteUser('${user.uuid}')">Delete User</button>
     `;
       document.getElementById("currentUsers").appendChild(userDiv);
     }
@@ -37,12 +39,16 @@ async function fetchData() {
       sessionDiv.id = session.session_id;
       sessionDiv.innerHTML = `
       <p>Session ID: ${session.session_id}</p>
-      <p>User UUID: ${session.user_uuid}</p>
-      <p>IP Address: ${session.ip_address}</p>
-      <p>User Agent: ${session.user_agent}</p>
-      <p>Created At: ${session.created_at}</p>
-      <p>Last Seen: ${session.last_seen}</p>
-      <button onclick="terminateSession('${session.session_id}')">Terminate Session</button>
+      <div style="display: flex; gap: 5px; flex-wrap: wrap;">
+        <p><b>User UUID</b>: ${session.user_uuid}</p>
+        <p><b>IP Address</b>: ${session.ip_address}</p>
+        <p><b>User Agent</b>: ${session.user_agent}</p>
+      </div>
+      <div style="display: flex; gap: 5px; flex-wrap: wrap;">
+        <p><b>Created At</b>: ${session.created_at}</p>
+        <p><b>Last Seen</b>: ${session.last_seen}</p>
+      </div>
+      <button class="redButton" onclick="terminateSession('${session.session_id}')">Terminate Session</button>
     `;
       document.getElementById("currentSessions").appendChild(sessionDiv);
     }

@@ -135,7 +135,6 @@
   text-decoration: none;
   color: white;
   font-family: Ebrima, Serif, serif;
-  vertical-align: middle;
 }
 
 .mobileSubLink:hover {
@@ -364,11 +363,18 @@
   text-decoration: none;
   color: gray;
   font-family: googleSans, Serif, serif;
-  padding: 0 10px;
+  padding: 5px 10px;
+  transition: ease-in-out 0.3s;
+}
+
+#footerLinks {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
 
 #footer a img {
-  padding-top: 20px;
+  padding-top: 15px;
   vertical-align: middle;
 }
 

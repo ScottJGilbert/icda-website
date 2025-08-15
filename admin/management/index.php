@@ -1,5 +1,5 @@
 <?php
-require_once 'middleware.php';
+// require_once __DIR__ . '/../middleware.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,47 +23,88 @@ require_once 'middleware.php';
   <div id="top"></div>
 
   <!-- Everything below is actual page content and varies by file -->
+  <div id="mainContent">
+    <div class="division">
+      <section>
+        <p class="title">Edit Constitution</p>
+        <div style="display: flex; gap: 8px;">
+          <form id="newConstitution" style="transform: translateY(18px);">
+            <label for="constitution"><input type="file" id="constitution" name="constitution" accept=".pdf"
+                required /></label>
+          </form>
+          <button onclick="newConstitution()">Upload</button>
+        </div>
+      </section>
+    </div>
+    <div class="division">
+      <section>
+        <p class="title">New User</p>
+        <div>
+          <form id="new-user-form">
+            <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+              <label for="name">
+                <input id="name" name="name" type="text" required />
+                Name <span style="color: red">*</span>
+              </label>
+              <label for="username">
+                <input id="username" name="username" type="text" required />
+                Username <span style="color: red">*</span>
+              </label>
+              <label for="password">
+                <input id="password" name="password" type="password" required />
+                Password <span style="color: red">*</span>
+              </label>
+              <label for="password">
+                <input id="confirmPassword" type="password" required />
+                Confirm Password <span style="color: red">*</span>
+              </label>
+            </div>
 
-  <div>
-    <form id="newConstitution">
-      <input type="file" id="constitution" name="constitution" accept=".pdf" required />
-      <label for="constitution">New Constitution <span style="color: red">*</span></label>
-    </form>
-    <button onclick="newConstitution()">Upload</button>
+            <div style="display: flex; flex-direction: column;">
+              <label for="editor">
+                <input type="radio" id="editor" name="access_level" value="Editor" checked="true" />
+                Editor (can edit non-post data and upload results/legislation,
+                etc.)
+              </label>
+              <br />
+              <label for="poster">
+                <input type="radio" id="poster" name="access_level" value="Poster" />
+                Poster (all editing permissions + creating/updating/deleting
+                posts)
+              </label>
+              <br />
+              <label for="administrator">
+                <input type="radio" id="administrator" name="access_level" value="Administrator" />
+                Administrator (all permissions)</label>
+              <br />
+            </div>
+          </form>
+          <button onclick="newUser()">Add User</button>
+        </div>
+      </section>
+    </div>
+    <div class="division">
+      <section>
+        <p class="title">Manage Site Users</p>
+        <div id="currentUsers">
+          <p style="font-family: Arial, monospace;">
+            <i>Note: for security reasons, user information cannot be edited directly. If you
+              need to edit a user's information, please delete their current user and
+              create a new one for them.
+            </i>
+          </p>
+        </div>
+      </section>
+    </div>
+    <div class="division">
+      <section>
+        <p class="title">Manage Active Sessions</p>
+        <p style="font-family: Arial, monospace;">
+          <i>Note: expired user sessions are cleared every five minutes.</i>
+        <div id="currentSessions"></div>
+      </section>
+    </div>
   </div>
-  <div>
-    <form id="new-user-form">
-      <h2>New user</h2>
-      <input id="name" name="name" type="text" required />
-      <label for="name">Name <span style="color: red">*</span></label>
-      <input id="username" name="username" type="text" required />
-      <label for="username">Username <span style="color: red">*</span></label>
-      <input id="password" name="password" type="password" required />
-      <label for="password">Password <span style="color: red">*</span></label>
-      <input id="confirmPassword" type="password" required />
-      <label for="password">Confirm Password <span style="color: red">*</span></label>
-
-      <input type="radio" id="editor" name="access_level" value="Editor" checked="true" />
-      <label for="editor">Editor (can edit non-post data and upload results/legislation,
-        etc.)</label><br />
-      <input type="radio" id="poster" name="access_level" value="Poster" />
-      <label for="poster">Poster (all editing permissions + creating/updating/deleting
-        posts)</label><br />
-      <input type="radio" id="administrator" name="access_level" value="Administrator" />
-      <label for="administrator">Administrator (all permissions)</label><br />
-    </form>
-    <button onclick="newUser()">Add User</button>
-  </div>
-  <div id="currentUsers">
-    <h2>Manage Site Users</h2>
-    <p>
-      Note: for security reasons, user information cannot be edited. If you
-      need to edit a user's information, please delete their current user and
-      create a new one for them.
-    </p>
-  </div>
-  <h2>Manage Active Sessions</h2>
-  <div id="currentSessions"></div>
 
   <!-- Everything above is actual page content and varies by file -->
 

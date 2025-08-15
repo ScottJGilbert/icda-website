@@ -24,16 +24,27 @@
     <div id="top"></div>
 
     <!-- Everything below is actual page content and varies by file -->
-
-    <form id="loginForm">
-      <input name="username" type="text" />
-      <label for="username">Username</label>
-      <input name="password" id="password" type="password" />
-      <label for="password">Password</label>
-    </form>
-    <button onclick="login()">Login</button>
-    <p id="errorOne">Please log in.</p>
-    <p id="errorTwo">Please log in again.</p>
+    <div class="mainContent">
+      <div class="division">
+        <section
+          id="login"
+          style="background-color: azure; border: 4px darkblue solid"
+        >
+          <div>
+            <p class="title">Login</p>
+            <form id="loginForm">
+              <input name="username" type="text" />
+              <label for="username">Username</label>
+              <input name="password" id="password" type="password" />
+              <label for="password">Password</label>
+            </form>
+            <button onclick="login()">Login</button>
+            <p id="errorOne">Please log in.</p>
+            <p id="errorTwo">Please log in again.</p>
+          </div>
+        </section>
+      </div>
+    </div>
 
     <!-- Everything above is actual page content and varies by file -->
 

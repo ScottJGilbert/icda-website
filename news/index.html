@@ -28,13 +28,21 @@ require_once 'middleware.php';
     <div id="top"></div>
 
     <!-- Everything below is actual page content and varies by file -->
-
-    <h1 id="title">News</h1>
-    <div id="list"></div>
-
-    <div>
-      <button id="pageDown" onclick="pageDown()">←</button>
-      <button id="pageUp" onclick="pageUp()">→</button>
+    <div id="mainContent">
+      <div class="division">
+        <section>
+          <h1 id="title" class="title">News</h1>
+        </section>
+      </div>
+      <div id="list"></div>
+      <div class="division">
+        <section>
+          <div>
+            <button id="pageDown" onclick="pageDown()">←</button>
+            <button id="pageUp" onclick="pageUp()">→</button>
+          </div>
+        </section>
+      </div>
     </div>
 
     <!-- Everything above is actual page content and varies by file -->

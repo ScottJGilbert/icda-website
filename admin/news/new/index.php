@@ -1,5 +1,5 @@
 <?php
-require_once 'middleware.php';
+// require_once __DIR__ . '/../../middleware.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,66 +26,78 @@ require_once 'middleware.php';
 
   <!-- Everything below is actual page content and varies by file -->
 
-  <h1>New Post</h1>
-  <form name="newPost" id="newPost">
-    <input type="text" id="title" name="title" placeholder="Title" required />
-    <label for="title">Title <span style="color: red">*</span></label>
-    <input type="hidden" name="MAX_FILE_SIZE" value="8000000" />
-    <input type="file" id="image" name="image" />
-    <label for="image">Upload Image</label>
-    <div id="editor"></div>
-  </form>
-  <button onclick="save()">Save Changes</button>
+  <div id="mainContent">
+    <div class="divison">
+      <section>
+        <p class="title">New Post</p>
+        <form name="newPost" id="newPost">
+          <label for="title">
+            <input type="text" id="title" name="title" placeholder="Title" required />
+            Title <span style="color: red">*</span>
+          </label>
+          <input type="hidden" name="MAX_FILE_SIZE" value="8000000" />
+          <label for="image">
+            <input type="file" id="image" name="image" />
+            Upload Image (Max 16MB)
+          </label>
+          <div style="margin-top: 10px;">
+            <div id="editor"></div>
+          </div>
+        </form>
+        <button onclick="save()">Save Changes</button>
+      </section>
+    </div>
 
-  <script src="post-script.js"></script>
 
-  <!-- Everything above is actual page content and varies by file -->
+    <script src="post-script.js"></script>
 
-  <footer id="footer"></footer>
+    <!-- Everything above is actual page content and varies by file -->
 
-  <!-- React components (Babel-in-browser) -->
-  <script type="text/babel" src="/public/components/mobile-menu.jsx"></script>
-  <script type="text/babel" src="/public/components/header.jsx"></script>
-  <script type="text/babel" src="/public/components/footer.jsx"></script>
+    <footer id="footer"></footer>
 
-  <!-- React entry point -->
-  <script type="text/babel">
-    const mobileRoot = ReactDOM.createRoot(
-      document.getElementById("mobile-menu-root")
-    );
-    mobileRoot.render(<MobileMenu />);
+    <!-- React components (Babel-in-browser) -->
+    <script type="text/babel" src="/public/components/mobile-menu.jsx"></script>
+    <script type="text/babel" src="/public/components/header.jsx"></script>
+    <script type="text/babel" src="/public/components/footer.jsx"></script>
 
-    const headerRoot = ReactDOM.createRoot(document.getElementById("top"));
-    headerRoot.render(<TopHeader />);
+    <!-- React entry point -->
+    <script type="text/babel">
+      const mobileRoot = ReactDOM.createRoot(
+        document.getElementById("mobile-menu-root")
+      );
+      mobileRoot.render(<MobileMenu />);
 
-    const footerRoot = ReactDOM.createRoot(document.getElementById("footer"));
-    footerRoot.render(<Footer />);
+      const headerRoot = ReactDOM.createRoot(document.getElementById("top"));
+      headerRoot.render(<TopHeader />);
 
-    function waitForReactAndInitialize() {
-      const maxAttempts = 50;
-      let attempts = 0;
+      const footerRoot = ReactDOM.createRoot(document.getElementById("footer"));
+      footerRoot.render(<Footer />);
 
-      const interval = setInterval(() => {
-        const headerLinks = document.getElementsByClassName("link");
-        const headerMenus = document.getElementById("headerMenus");
+      function waitForReactAndInitialize() {
+        const maxAttempts = 50;
+        let attempts = 0;
 
-        if (headerLinks.length > 0 && headerMenus) {
-          clearInterval(interval);
-          initialize();
-        }
+        const interval = setInterval(() => {
+          const headerLinks = document.getElementsByClassName("link");
+          const headerMenus = document.getElementById("headerMenus");
 
-        attempts++;
-        if (attempts > maxAttempts) {
-          clearInterval(interval);
-          console.warn(
-            "initialize() timed out waiting for React components."
-          );
-        }
-      }, 100); // check every 100ms
-    }
+          if (headerLinks.length > 0 && headerMenus) {
+            clearInterval(interval);
+            initialize();
+          }
 
-    waitForReactAndInitialize();
-  </script>
+          attempts++;
+          if (attempts > maxAttempts) {
+            clearInterval(interval);
+            console.warn(
+              "initialize() timed out waiting for React components."
+            );
+          }
+        }, 100); // check every 100ms
+      }
+
+      waitForReactAndInitialize();
+    </script>
 </body>
 
 </html>
