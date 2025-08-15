@@ -18,15 +18,6 @@ class Response
 		], $statusCode);
 	}
 
-	public static function image($image, $statusCode = 200)
-	{
-		http_response_code($statusCode);
-		$fileExtension = pathinfo($image, PATHINFO_EXTENSION);
-		header('Content-Type: image/' . $fileExtension);
-		echo base64_encode($image);
-		exit;
-	}
-
 	public static function error($message = 'Something went wrong', $statusCode = 400)
 	{
 		self::json([
@@ -35,10 +26,17 @@ class Response
 		], $statusCode);
 	}
 
-	public static function redirect($url, $statusCode)
+	public static function redirect($url)
 	{
-		http_response_code($statusCode);
-		header("Location: $url");
+		// If headers haven't been sent yet, use a server-side redirect
+		if (!headers_sent()) {
+			header('Location: ' . $url);
+			exit;
+		}
+
+		// If headers already sent, use JavaScript redirect
+		echo "<script>window.location.href = " . json_encode($url) . ";</script>";
+		echo '<noscript><meta http-equiv="refresh" content="0;url=' . htmlspecialchars($url) . '"></noscript>';
 		exit;
 	}
 }

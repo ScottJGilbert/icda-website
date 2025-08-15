@@ -9,6 +9,8 @@ async function login() {
   if (!res.ok) {
     alert("Login failed.");
     window.location.reload();
+  } else {
+    window.location.href = "/admin";
   }
 }
 
