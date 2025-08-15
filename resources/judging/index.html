@@ -9,6 +9,267 @@
     <script src="/public/global.js"></script>
     <script src="script.js"></script>
 
+    <script type="module">
+      import {
+        animate,
+        scroll,
+        inView,
+        stagger,
+        spring,
+        hover,
+        press,
+        styleEffect,
+        motionValue,
+        delay,
+        transformValue,
+      } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+
+      inView(document.getElementById("pageHeader"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("resourcesNavigation"),
+          { x: [-20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("headerPolygon"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("pageHeadTitle"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+        animate(
+          document.getElementById("pageHeaderDesc"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.2,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("resourcesNavigation"), { x: -20 }),
+            animate(document.getElementById("headerPolygon"), { x: 20 });
+            animate(document.getElementById("pageHeadTitle"), { x: 20 });
+            animate(document.getElementById("pageHeaderDesc"), { x: 20 });
+        };
+      });
+
+
+      inView(document.getElementById("info"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("impTitles"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("descText0"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+        animate(
+          document.getElementById("descText1"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.2,
+          }
+        );
+        animate(
+          document.getElementById("descText2"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.3,
+          }
+        );
+        animate(
+          document.getElementById("descText3"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.4,
+          }
+        );
+        animate(
+          document.getElementById("descText4"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.5,
+          }
+        );
+        animate(
+          document.getElementById("descText5"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.6,
+          }
+        );
+        animate(
+          document.getElementById("descText6"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.7,
+          }
+        );
+        animate(
+          document.getElementById("descText7"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.8,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("impTitles"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("descText0"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("descText1"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("descText2"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("descText3"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("descText4"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("descText5"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("descText6"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("descText7"), { opacity: 0, scale: 0.9 });
+        };
+      });
+
+
+      inView(document.getElementById("documents"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("docTitles"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("docTitles"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("doc1"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+        animate(
+          document.getElementById("doc2"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.2,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("docTitles"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("doc1"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("doc2"), { opacity: 0, scale: 0.9 });
+        };
+      });
+
+      hover(document.getElementsByClassName("document"), (element) => {
+        animate(element, { scale: 1.05 });
+
+        return () => animate(element, { scale: 1 });
+      });
+
+      press(document.getElementsByClassName("document"), (element) => {
+        animate(element, { scale: 0.9 });
+
+        return () => animate(element, { scale: 1 });
+      });
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
     <script
       src="https://unpkg.com/react@18/umd/react.development.js"
       crossorigin
@@ -32,11 +293,13 @@
             <polygon
               points="20 0 200 0 180 40 0 40"
               style="fill: #142039"
+              id="headerPolygon"
             ></polygon>
             <text
               x="54"
               y="29"
               color="white"
+              id="pageHeadTitle"
               style="fill: white; font-family: langdon, serif; font-size: 30px"
             >
               JUDGING
@@ -65,7 +328,7 @@
           </div>
           <br />
           <br />
-          <p class="pageHeaderDescription">
+          <p class="pageHeaderDescription" id="pageHeaderDesc">
             We strive to ensure each debater receives a fair evaluation of their
             progress and performance for every speech they give. To deliver on
             this promise, we encourage every judge to reference the materials on
@@ -76,8 +339,8 @@
       </div>
       <div id="info" class="division">
         <section style="background-color: #d8d8d8; border: #2a2c68 4px solid">
-          <p class="title" style="text-align: center">Information</p>
-          <p class="descriptionText">
+          <p class="title" style="text-align: center" id="impTitles">Information</p>
+          <p class="descriptionText" id="descText0">
             As a judge, your primary role is to grade speeches and give debaters
             feedback. To ensure debater scores adequately reflect their
             performance, your objectivity and fairness is of immense value.
@@ -87,30 +350,30 @@
             alive and thriving, and keeps the ICDA circuit a competitive and
             thriving environment.
           </p>
-          <p class="descriptionText">
+          <p class="descriptionText" id="descText1">
             Some examples of what you do as a judge:
           </p>
           <ul>
-            <li class="descriptionText">
+            <li class="descriptionText" id="descText2">
               Provide debaters with paradigms to help them tailor their speaking
               to suit desired criterion.
             </li>
-            <li class="descriptionText">
+            <li class="descriptionText" id="descText3">
               Evaluate each speech on a six-point scale.
             </li>
-            <li class="descriptionText">
+            <li class="descriptionText" id="descText4">
               Provide detailed, targeted, and constructive feedback that helps
               debaters improve their skills before the next tournament.
             </li>
-            <li class="descriptionText">
+            <li class="descriptionText" id="descText5">
               Nominate two debaters who you feel performed exceptionally
               throughout the session.
             </li>
-            <li class="descriptionText">
+            <li class="descriptionText" id="descText6">
               Facilitate best legislation, best PO, and 2nd/3rd place voting
               after the end of the third session.
             </li>
-            <li class="descriptionText">
+            <li class="descriptionText" id="descText7">
               Act as a role model to debaters for the best debating,
               questioning, and decorum practices.
             </li>
@@ -125,17 +388,17 @@
             border: #2a2c68 4px solid;
           "
         >
-          <p class="title" style="text-align: center">Documents</p>
+          <p class="title" style="text-align: center" id="docTitles">Documents</p>
           <div id="documentsContainer">
-            <a href="rubric.pdf" target="_blank" class="document">
+            <a id="doc1" href="rubric.pdf" target="_blank" class="document">
               <span>
                 <img src="Resource/rubricImage.png" alt="Rubric" />
               </span>
               <span>
-                <p class="descriptionText" style="font-size: 30px">
+                <p class="descriptionText" style="font-size: 30px" id="docTitles">
                   <b>Judging Rubric</b>
                 </p>
-                <p class="descriptionText">
+                <p class="descriptionText" id="docDesc">
                   A comprehensive judging rubric reflecting the four core
                   pillars of congressional debate speeches: debate,
                   organization, delivery, and questions, on a 0-6 point scale.
@@ -144,7 +407,7 @@
                 </p>
               </span>
             </a>
-            <a href="judging-guide.pdf" target="_blank" class="document">
+            <a id="doc2" href="judging-guide.pdf" target="_blank" class="document">
               <span>
                 <img
                   src="/public/images/judging-guide.png"

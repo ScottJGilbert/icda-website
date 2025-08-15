@@ -47,7 +47,7 @@
         );
 
         animate(
-          document.getElementById("pageHeaderDescription"),
+          document.getElementById("pageHeaderTitle"),
           { x: [20, 0] },
           {
             duration: 0.7,
@@ -63,7 +63,16 @@
           }
         );
         animate(
-          document.getElementsByClassName("pageHeadTitle"),
+          document.getElementById("pageHeadTitle1"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+        animate(
+          document.getElementById("pageHeadTitle2"),
           { x: [20, 0] },
           {
             duration: 0.7,
@@ -84,9 +93,10 @@
         return () => {
           animate(element, { opacity: 0, scale: 0.9 }),
             animate(document.getElementById("aboutNavigation"), { x: -20 }),
-            animate(document.getElementById("pageHeaderDescription"), { x: 20 });
+            animate(document.getElementById("pageHeaderTitle"), { x: 20 });
             animate(document.getElementById("headerPolygon"), { x: 20 });
-            animate(document.getElementsByClassName("pageHeadTitle"), { x: 20 });
+            animate(document.getElementById("pageHeadTitle1"), { x: 20 });
+            animate(document.getElementById("pageHeadTitle2"), { x: 20 });
             animate(document.getElementById("pageHeaderDescription"), { x: 20 });
         };
       });
@@ -442,7 +452,7 @@
               x="50"
               y="17"
               color="white"
-              class="pageHeadTitle"
+              id="pageHeadTitle1"
               style="fill: white; font-family: langdon, serif; font-size: 18px"
             >
               CONGRESSIONAL
@@ -451,7 +461,7 @@
               x="75"
               y="34"
               color="white"
-              class="pageHeadTitle"
+              id="pageHeadTitle2"
               style="fill: white; font-family: langdon, serif; font-size: 18px"
             >
               DEBATE
@@ -479,7 +489,7 @@
           </div>
           <br />
           <br />
-          <p class="title" style="font-family: 'Arial Black', serif">
+          <p class="title" style="font-family: 'Arial Black', serif" id="pageHeaderTitle">
             What is Congressional Debate?
           </p>
           <p id="pageHeaderDescription">

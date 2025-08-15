@@ -9,6 +9,131 @@
     <script src="/public/global.js"></script>
     <script src="script.js"></script>
 
+    <script type="module">
+      import {
+        animate,
+        scroll,
+        inView,
+        stagger,
+        spring,
+        hover,
+        press,
+        styleEffect,
+        motionValue,
+        delay,
+        transformValue,
+      } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+
+      inView(document.getElementById("pageHeader"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("aboutNavigation"),
+          { x: [-20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("pageHeaderTitle"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("headerPolygon"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("pageHeadTitle"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+        animate(
+          document.getElementById("pageHeaderDescription"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.2,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("aboutNavigation"), { x: -20 }),
+            animate(document.getElementById("pageHeaderTitle"), { x: 20 });
+            animate(document.getElementById("headerPolygon"), { x: 20 });
+            animate(document.getElementById("pageHeadTitle"), { x: 20 });
+            animate(document.getElementById("pageHeaderDescription"), { x: 20 });
+        };
+      });
+
+
+      inView(document.getElementById("map"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("mapTitle"),
+          { scale: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("memberMap"),
+          { scale: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("mapTitle"), { scale:0.9 });
+            animate(document.getElementById("memberMap"), { scale: 0.95 });
+        };
+      });
+
+    </script>
+
+
+
+
     <script
       src="https://unpkg.com/react@18/umd/react.development.js"
       crossorigin
@@ -36,11 +161,13 @@
             <polygon
               points="20 0 200 0 180 40 0 40"
               style="fill: #142039"
+              id="headerPolygon"
             ></polygon>
             <text
               x="52"
               y="29"
               color="white"
+              id="pageHeadTitle"
               style="fill: white; font-family: langdon, serif; font-size: 30px"
             >
               MEMBERS
@@ -66,7 +193,7 @@
               >How do I join?</a
             >
           </div>
-          <p class="title" style="font-family: 'Arial Black', serif">
+          <p class="title" style="font-family: 'Arial Black', serif" id="pageHeaderTitle">
             ICDA Members
           </p>
           <p id="pageHeaderDescription">
@@ -79,9 +206,10 @@
       <div
         class="division"
         style="background-color: #e2f2ff; border-radius: 30px"
+        id="map"
       >
         <section style="border: #34518e 4px solid">
-          <p class="title" style="text-align: center">Map</p>
+          <p class="title" style="text-align: center" id="mapTitle">Map</p>
           <iframe
             id="memberMap"
             sandbox="allow-scripts allow-popups"

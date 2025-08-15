@@ -8,6 +8,196 @@
     <link rel="stylesheet" href="/public/global.css" />
     <script src="/public/global.js"></script>
     <script src="script.js"></script>
+    <script type="module">
+      import {
+        animate,
+        scroll,
+        inView,
+        stagger,
+        spring,
+        hover,
+        press,
+        styleEffect,
+        motionValue,
+        delay,
+        transformValue,
+      } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+
+      inView(document.getElementById("pageHeader"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("resourcesNavigation"),
+          { x: [-20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("headerPolygon"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("pageHeadTitle"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+        animate(
+          document.getElementById("pageHeaderDesc"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.2,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("resourcesNavigation"), { x: -20 }),
+            animate(document.getElementById("headerPolygon"), { x: 20 });
+            animate(document.getElementById("pageHeadTitle"), { x: 20 });
+            animate(document.getElementById("pageHeaderDesc"), { x: 20 });
+        };
+      });
+
+
+      inView(document.getElementById("impRule"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("impTitles"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("importantRules"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("impTitles"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("importantRules"), { opacity: 0, scale: 0.9 });
+        };
+      });
+
+
+      inView(document.getElementById("documents"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("docTitles"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("doc1"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+        animate(
+          document.getElementById("doc2"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.2,
+          }
+        );
+        animate(
+          document.getElementById("doc3"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.3,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("docTitles"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("doc1"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("doc2"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("doc3"), { opacity: 0, scale: 0.9 });
+        };
+      });
+
+      hover(document.getElementsByClassName("document"), (element) => {
+        animate(element, { scale: 1.05 });
+
+        return () => animate(element, { scale: 1 });
+      });
+
+      press(document.getElementsByClassName("document"), (element) => {
+        animate(element, { scale: 0.9 });
+
+        return () => animate(element, { scale: 1 });
+      });
+
+
+
+
+
+
+
+
+    </script>
+
+
+
 
     <script
       src="https://unpkg.com/react@18/umd/react.development.js"
@@ -30,6 +220,7 @@
         <section>
           <svg width="200" height="40" style="margin: auto">
             <polygon
+              id="headerPolygon"
               points="20 0 200 0 180 40 0 40"
               style="fill: #142039"
             ></polygon>
@@ -37,6 +228,7 @@
               x="67"
               y="29"
               color="white"
+              id="pageHeadTitle"
               style="fill: white; font-family: langdon, serif; font-size: 30px"
             >
               RULES
@@ -65,7 +257,7 @@
           </div>
           <br />
           <br />
-          <p class="pageHeaderDescription">
+          <p class="pageHeaderDescription" id="pageHeaderDesc">
             To keep debate fair and efficient, and to facilitate order in
             tournaments, ICDA has multiple sets of rules applicable to either
             all tournaments or to championship-level competitions (i.e. TOC).
@@ -76,8 +268,8 @@
         </section>
       </div>
       <div id="info" class="division">
-        <section style="background-color: #d8d8d8; border: #2a2c68 4px solid">
-          <p class="title" style="text-align: center">Important Rules</p>
+        <section style="background-color: #d8d8d8; border: #2a2c68 4px solid" id="impRule">
+          <p class="title" style="text-align: center" id="impTitles">Important Rules</p>
           <div id="importantRules"></div>
         </section>
       </div>
@@ -89,9 +281,9 @@
             border: #2a2c68 4px solid;
           "
         >
-          <p class="title" style="text-align: center">Documents</p>
+          <p class="title" style="text-align: center" id="docTitles">Documents</p>
           <div id="documentsContainer">
-            <a href="invitational-rules.pdf" target="_blank" class="document">
+            <a href="invitational-rules.pdf" target="_blank" class="document" id="doc1">
               <span>
                 <img src="Resource/invitationalRulesImage.png" alt="Rubric" />
               </span>
@@ -110,7 +302,7 @@
                 </p>
               </span>
             </a>
-            <a href="FAQ.pdf" target="_blank" class="document">
+            <a href="FAQ.pdf" target="_blank" class="document" id="doc2">
               <span>
                 <img src="Resource/FAQImage.png" alt="FAQ" />
               </span>
@@ -126,7 +318,7 @@
                 </p>
               </span>
             </a>
-            <a href="state-rules.pdf" target="_blank" class="document">
+            <a href="state-rules.pdf" target="_blank" class="document" id="doc3">
               <span>
                 <img src="Resource/stateRulesImage.png" alt="FAQ" />
               </span>

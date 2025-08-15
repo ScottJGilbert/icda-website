@@ -9,6 +9,174 @@
     <script src="/public/global.js"></script>
     <script src="script.js"></script>
 
+    <script type="module">
+      import {
+        animate,
+        scroll,
+        inView,
+        stagger,
+        spring,
+        hover,
+        press,
+        styleEffect,
+        motionValue,
+        delay,
+        transformValue,
+      } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+
+      inView(document.getElementById("pageHeader"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("resourcesNavigation"),
+          { x: [-20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("headerPolygon"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("pageHeadTitle"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+        animate(
+          document.getElementById("pageHeaderDesc"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.2,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("resourcesNavigation"), { x: -20 }),
+            animate(document.getElementById("headerPolygon"), { x: 20 });
+            animate(document.getElementById("pageHeadTitle"), { x: 20 });
+            animate(document.getElementById("pageHeaderDesc"), { x: 20 });
+        };
+      });
+
+
+      inView(document.getElementById("documents"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("docTitles"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("docDesc"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("doc1"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+        animate(
+          document.getElementById("doc2"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.2,
+          }
+        );
+        animate(
+          document.getElementById("doc3"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.3,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("docTitles"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("doc1"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("doc2"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("doc3"), { opacity: 0, scale: 0.9 });
+        };
+      });
+
+      hover(document.getElementsByClassName("document"), (element) => {
+        animate(element, { scale: 1.05 });
+
+        return () => animate(element, { scale: 1 });
+      });
+
+      press(document.getElementsByClassName("document"), (element) => {
+        animate(element, { scale: 0.9 });
+
+        return () => animate(element, { scale: 1 });
+      });
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
     <script
       src="https://unpkg.com/react@18/umd/react.development.js"
       crossorigin
@@ -30,12 +198,14 @@
         <section>
           <svg width="200" height="40" style="margin: auto">
             <polygon
+              id="headerPolygon"
               points="20 0 200 0 180 40 0 40"
               style="fill: #142039"
             ></polygon>
             <text
               x="38"
               y="29"
+              id="pageHeadTitle"
               color="white"
               style="fill: white; font-family: langdon, serif; font-size: 30px"
             >
@@ -65,7 +235,7 @@
           </div>
           <br />
           <br />
-          <p class="pageHeaderDescription">
+          <p class="pageHeaderDescription" id="pageHeaderDesc">
             Unlike other forms, Congressional Debate does not just debate a
             single-line resolution - we debate student-written bills and
             resolutions that could actually be proposed in the U.S. and Illinois
@@ -84,8 +254,8 @@
             border: #2a2c68 4px solid;
           "
         >
-          <p class="title" style="text-align: center">Legislation Types</p>
-          <p class="descriptionText" style="text-align: center">
+          <p class="title" style="text-align: center" id="docTitles">Legislation Types</p>
+          <p class="descriptionText" style="text-align: center" id="docDesc">
             ICDA debates three different kinds of legislation: bills,
             resolutions, and constitutional amendments. Each one of these types
             is described below, with templates linked for bill writers'
@@ -97,6 +267,7 @@
               href="https://docs.google.com/document/d/1BeV0wgS1p7Bb2ZkY-OIKAhTtLFdBvlKt3EItkB2h78U/copy"
               target="_blank"
               class="document"
+              id="doc1"
             >
               <span>
                 <img src="Resource/billImage.png" alt="Rubric" width="267" />
@@ -114,6 +285,7 @@
               </span>
             </a>
             <a
+              id="doc2"
               href="https://docs.google.com/document/d/1BSAagSoa_0v9_9HVk6-Twyd7qZIMsX6l8lvHBts1tCo/copy"
               target="_blank"
               class="document"
@@ -144,6 +316,7 @@
               href="https://docs.google.com/document/d/1nkQlLuuwNCZUw7yZPrWCl8ZKq_bYmjcIwCqF-KJCH9E/copy"
               target="_blank"
               class="document"
+              id="doc3"
             >
               <span>
                 <img
