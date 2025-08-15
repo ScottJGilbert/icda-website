@@ -27,20 +27,19 @@
   <div id="mainContent">
     <div class="division">
       <section>
-        <h1 class="title">News</h1>
-        <div id="list"></div>
+        <h1 id="title" class="title">News</h1>
       </section>
     </div>
     <div class="division">
-      <section>
+      <section style="background-color: none; border: 0">
         <div id="list"></div>
       </section>
     </div>
     <div class="division">
       <section>
         <div>
-          <button id="pageDown" onclick="pageDown()">←</button>
-          <button id="pageUp" onclick="pageUp()">→</button>
+          <button id="pageDown" onclick="pageDown()">← Back</button>
+          <button id="pageUp" onclick="pageUp()">Next Page →</button>
         </div>
       </section>
     </div>

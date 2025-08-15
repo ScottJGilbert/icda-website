@@ -16,26 +16,31 @@ async function fetchData() {
 }
 
 function displayData() {
-  //May need to change depending on what the earliest season loaded in is - always is earliest year minus one
   const startYear = 2018;
-
   const fullContainer = document.querySelector("#edit");
   fullContainer.innerHTML = "";
 
   for (const season of archiveData) {
+    const division = document.createElement("div");
+    division.className = "division";
+    const section = document.createElement("section");
+
     const div = document.createElement("div");
     div.className = "seasonDiv";
 
     const seasonTitle = document.createElement("h2");
+    seasonTitle.className = "title";
     seasonTitle.textContent = `${startYear + season.id} - ${
       startYear + season.id + 1
     }`;
     div.appendChild(seasonTitle);
 
     const dataForm = document.createElement("form");
+    dataForm.className = "dataForm";
 
     for (let i = 1; i <= 6; i++) {
       const dataFormDiv = document.createElement("div");
+
       if (i !== 6) {
         const schoolInput = document.createElement("input");
         schoolInput.type = "text";
@@ -48,6 +53,7 @@ function displayData() {
         schoolLabel.textContent = `ICDA ${i} School:`;
         dataFormDiv.appendChild(schoolLabel);
       }
+
       const dateInput = document.createElement("input");
       dateInput.type = "date";
       dateInput.id = season.id + "DateInput" + i;
@@ -63,6 +69,16 @@ function displayData() {
       }
       dataFormDiv.appendChild(dateInput);
       dataFormDiv.appendChild(dateLabel);
+
+      // NEW: wrap inputs into following labels
+      for (let j = 0; j < dataFormDiv.children.length - 1; j++) {
+        const current = dataFormDiv.children[j];
+        const next = dataFormDiv.children[j + 1];
+        if (current.tagName === "INPUT" && next?.tagName === "LABEL") {
+          next.insertBefore(current, next.firstChild);
+        }
+      }
+
       dataForm.appendChild(dataFormDiv);
     }
 
@@ -73,14 +89,15 @@ function displayData() {
     dataSubmitButton.onclick = () => {
       updateData(season.id);
     };
-
     div.appendChild(dataSubmitButton);
 
+    const legislationContainer = document.createElement("div");
+    legislationContainer.className = "legislationContainer";
     for (let i = 1; i <= 6; i++) {
       const uploadLegislationDiv = document.createElement("div");
-
       const uploadLegislationForm = document.createElement("form");
       uploadLegislationForm.id = season.id + "UploadLegislationForm" + i;
+
       const selectLegislationFile = document.createElement("input");
       selectLegislationFile.name = "legislation";
       selectLegislationFile.type = "file";
@@ -91,6 +108,14 @@ function displayData() {
       selectLegislationLabel.htmlFor = season.id + "UploadLegislationForm" + i;
       selectLegislationLabel.innerText = "Upload Legislation";
       uploadLegislationForm.appendChild(selectLegislationLabel);
+
+      // Wrap if needed
+      if (selectLegislationFile.nextElementSibling === selectLegislationLabel) {
+        selectLegislationLabel.insertBefore(
+          selectLegislationFile,
+          selectLegislationLabel.firstChild
+        );
+      }
 
       uploadLegislationDiv.appendChild(uploadLegislationForm);
 
@@ -103,19 +128,23 @@ function displayData() {
 
       const deleteLegislationButton = document.createElement("button");
       deleteLegislationButton.textContent = "Delete Legislation";
+      deleteLegislationButton.className = "redButton";
       deleteLegislationButton.onclick = () => {
         deleteLegislation(season.id, i);
       };
       uploadLegislationDiv.appendChild(deleteLegislationButton);
 
-      div.appendChild(uploadLegislationDiv);
+      legislationContainer.appendChild(uploadLegislationDiv);
     }
+    div.appendChild(legislationContainer);
 
+    const resultsContainer = document.createElement("div");
+    resultsContainer.className = "resultsContainer";
     for (let i = 1; i <= 6; i++) {
       const uploadResultsDiv = document.createElement("div");
-
       const uploadResultsForm = document.createElement("form");
       uploadResultsForm.id = season.id + "UploadResultsForm" + i;
+
       const selectResultsFile = document.createElement("input");
       selectResultsFile.name = "results";
       selectResultsFile.type = "file";
@@ -126,6 +155,14 @@ function displayData() {
       selectResultsLabel.htmlFor = season.id + "UploadResultsForm" + i;
       selectResultsLabel.innerText = "Upload Results";
       uploadResultsForm.appendChild(selectResultsLabel);
+
+      // Wrap if needed
+      if (selectResultsFile.nextElementSibling === selectResultsLabel) {
+        selectResultsLabel.insertBefore(
+          selectResultsFile,
+          selectResultsLabel.firstChild
+        );
+      }
 
       uploadResultsDiv.appendChild(uploadResultsForm);
 
@@ -138,14 +175,19 @@ function displayData() {
 
       const deleteResultsButton = document.createElement("button");
       deleteResultsButton.textContent = "Delete Results";
+      deleteResultsButton.className = "redButton";
       deleteResultsButton.onclick = () => {
         deleteResults(season.id, i);
       };
       uploadResultsDiv.appendChild(deleteResultsButton);
 
-      div.appendChild(uploadResultsDiv);
+      resultsContainer.appendChild(uploadResultsDiv);
     }
-    fullContainer.appendChild(div);
+    div.appendChild(resultsContainer);
+
+    section.appendChild(div);
+    division.appendChild(section);
+    fullContainer.appendChild(division);
   }
 }
 

@@ -18,8 +18,11 @@ function Footer() {
         <a href="/constitution.pdf" target="_blank">
           Constitution
         </a>
+        <a href="/sitemap.xml">Sitemap</a>
         <a href="/admin">Site Administration</a>
-        <a href="mailto:cschwartz@d211.org">Problems with this website?</a>
+        <a href="mailto:cschwartz@d211.org" target="_blank">
+          Problems with this website?
+        </a>
       </div>
     </div>
   );

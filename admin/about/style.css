@@ -30,3 +30,13 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+.redButton {
+  background-color: rgb(119, 0, 0);
+}
+
+.school {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}

@@ -27,9 +27,9 @@
     <div class="division">
       <section>
         <p class="title">Edit Archive</p>
-        <div id="edit"></div>
       </section>
     </div>
+    <div id="edit"></div>
   </div>
 
   <!-- Everything above is actual page content and varies by file -->

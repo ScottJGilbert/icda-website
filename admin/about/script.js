@@ -13,26 +13,34 @@ async function fetchData() {
       const schoolForm = document.createElement("form");
       schoolForm.id = "school" + school.id;
       schoolForm.innerHTML = `
-      <input type="text" id="${
-        "school" + school.id + "name"
-      }" name="name" placeholder="Name" value="${school.name}" />
-      <label for=id="${
-        "school" + school.id + "name"
-      }">Name <span style="color: red">*</span></label>
-      <input type="file" id="${
-        "school" + school.id + "image"
-      }" name="image" accept="image/*" />
-      <label for="${"school" + school.id + "image"}">Logo</label>
-      <input type="checkbox" id="${
-        "school" + school.id + "deletePhoto"
-      }" name="deleteImage" />
-      <label for="${"school" + school.id + "deletePhoto"}">Delete Photo</label>
+      
+      <label for=id="${"school" + school.id + "name"}">
+        <input type="text" id="${
+          "school" + school.id + "name"
+        }" name="name" placeholder="Name" value="${school.name}" />
+        Name <span style="color: red">*</span>
+      </label>
+      
+      <label for="${"school" + school.id + "image"}">
+        <input type="file" id="${
+          "school" + school.id + "image"
+        }" name="image" accept="image/*" />
+        Logo
+      </label>
+      <span> OR </span>
+      <label for="${"school" + school.id + "deletePhoto"}">
+        <input type="checkbox" id="${
+          "school" + school.id + "deletePhoto"
+        }" name="deleteImage" />
+        Delete Photo
+      </label>
       `;
 
       schoolDiv.appendChild(schoolForm);
       schoolDiv.innerHTML += `
       <button onclick="editSchool('${school.id}')">Save</button>
-      <button onclick="deleteSchool('${school.id}')">Delete School</button>
+      <span> OR </span>
+      <button class="redButton" onclick="deleteSchool('${school.id}')">Delete School</button>
       `;
 
       document.getElementById("schools").appendChild(schoolDiv);
@@ -66,26 +74,32 @@ async function fetchData() {
       memberForm.id = "member" + member.id;
       memberForm.innerHTML = `
       <p>${oversightNames[member.id - 1]}:</p>
-      <input type="text" id="${
-        "member" + member.id + "name"
-      }" name="name" placeholder="Name" value="${member.name}" required />
-      <label for="${
-        "member" + member.id + "name"
-      }">Name <span style="color: red">*</span></label>
-      <input type="email" id="${
-        "member" + member.id + "email"
-      }" name="email" placeholder="Email" value="${member.email}" />
-      <label for="email">Email</label>
-      <input type="file" id="${
-        "member" + member.id + "photo"
-      }" name="image" accept="image/*" />
-      <label for="file" id="${"member" + member.id + "photo"}">Portrait</label>
-      <input type="checkbox" id="${
-        "member" + member.id + "deletePhoto"
-      }" name="deleteImage" />
-      <label for="${"member" + member.id + "deletePhoto"}">Delete Photo</label>
+      <label for="${"member" + member.id + "name"}">
+        <input type="text" id="${
+          "member" + member.id + "name"
+        }" name="name" placeholder="Name" value="${member.name}" required />
+        Name <span style="color: red">*</span>
+      </label>
+      <label for="${"member" + member.id + "email"}">
+        <input type="email" id="${
+          "member" + member.id + "email"
+        }" name="email" placeholder="Email" value="${member.email}" />
+        Email
+      </label>
+      <label for="${"member" + member.id + "photo"}">
+        <input type="file" id="${
+          "member" + member.id + "photo"
+        }" name="image" accept="image/*" />
+        Portrait
+      </label>
+      <span> OR </span>
+      <label for="${"member" + member.id + "deletePhoto"}">
+        <input type="checkbox" id="${
+          "member" + member.id + "deletePhoto"
+        }" name="deleteImage" />
+        Delete Photo
+      </label>
       `;
-
       memberDiv.appendChild(memberForm);
       memberDiv.innerHTML += `
       <button onclick="editMember('${member.id}')">Save</button>
