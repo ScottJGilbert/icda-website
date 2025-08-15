@@ -11,12 +11,12 @@ if (session_status() == PHP_SESSION_ACTIVE) {
   switch ($permissionLevel) {
     case "Editor":
       if ($currentPath == "/management" || $currentPath == "/news") {
-        Response::redirect('/unauthorized', 403); // Forbidden
+        echo "You do not have permission to access this page.";
       }
       break;
     case "Poster":
       if ($currentPath == "/management") {
-        Response::redirect('/unauthorized', 403); // Forbidden
+        echo "You do not have permission to access this page.";
       }
       break;
     case "Administrator":
@@ -29,8 +29,10 @@ if (session_status() == PHP_SESSION_ACTIVE) {
 
       session_unset();
       session_destroy();
-      Response::redirect('/login?code=2', 403); //"Please log in again"
+      echo "HI";
+      Response::redirect('/login?code=2'); //"Please log in again"
   }
 } else {
-  Response::redirect('/login?code=1', 403); //"Please log in"
+  echo "HI";
+  Response::redirect('/login?code=1'); //"Please log in"
 }

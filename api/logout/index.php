@@ -34,4 +34,4 @@ if (session_status() === PHP_SESSION_ACTIVE) {
   session_destroy();
 }
 
-Response::redirect('/login', 200);
+Response::success("You have been logged out successfully.");

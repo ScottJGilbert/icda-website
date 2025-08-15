@@ -51,7 +51,7 @@ $model = new User();
 $success = $model->login($username, $password);
 
 if ($success) {
-  Response::redirect('/admin', 200);
+  Response::success('You have been logged in successfully.');
   exit;
 } else {
   Response::error('Invalid username or password', 401);
