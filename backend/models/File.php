@@ -118,7 +118,7 @@ class File
     $uploadedFile = $_FILES["results"]["name"];
 
     $uploadedType = strtolower(pathinfo($uploadedFile, PATHINFO_EXTENSION));
-    $mimeType = str_replace("application/", "", mime_content_type($_FILES["legislation"]["tmp_name"]));
+    $mimeType = str_replace("application/", "", mime_content_type($_FILES["results"]["tmp_name"]));
 
     if ($uploadedType !== 'pdf' || $mimeType !== 'pdf') {
       Response::error('Invalid file type. Only PDF files are allowed.', 400);
@@ -143,8 +143,9 @@ class File
 
   public function deleteResults($tournament_id)
   {
-    $targetFile = PROJECT_ROOT . "/tournaments/icda-$tournament_id/results.pdf";
+    $tournament_name = $tournament_id === 6 ? 'state' : (string) $tournament_id;
 
+    $targetFile = PROJECT_ROOT . "/tournaments/icda-$tournament_name/results.pdf";
     if (file_exists($targetFile)) {
       if (!unlink($targetFile)) {
         Response::error('Failed to delete results file.', 500);
@@ -163,10 +164,10 @@ class File
     $tournament_name = $tournament_id === 6 ? 'state' : (string) $tournament_id;
 
     $targetFile = PROJECT_ROOT . "/archive/$season/icda-$tournament_name-results.pdf";
-    $uploadedFile = $_FILES["legislation"]["name"];
+    $uploadedFile = $_FILES["results"]["name"];
 
     $uploadedType = strtolower(pathinfo($uploadedFile, PATHINFO_EXTENSION));
-    $mimeType = str_replace("application/", "", mime_content_type($_FILES["legislation"]["tmp_name"]));
+    $mimeType = str_replace("application/", "", mime_content_type($_FILES["results"]["tmp_name"]));
 
     if ($uploadedType !== 'pdf' || $mimeType !== 'pdf') {
       Response::error('Invalid file type. Only PDF files are allowed.', 400);
@@ -178,12 +179,12 @@ class File
       exit;
     }
 
-    if ($_FILES["legislation"]["size"] > 8000000) {
+    if ($_FILES["results"]["size"] > 8000000) {
       Response::error('File size exceeds the limit of 8MB.', 400);
       exit;
     }
 
-    if (!move_uploaded_file($_FILES["legislation"]["tmp_name"], $targetFile)) {
+    if (!move_uploaded_file($_FILES["results"]["tmp_name"], $targetFile)) {
       Response::error('Failed to upload results file.', 500);
       exit;
     }

@@ -50,7 +50,7 @@ if ($input === null) {
   exit;
 }
 
-if (!isset($_FILES['legislation']) && $_FILES['legislation']['error'] !== UPLOAD_ERR_OK) {
+if (!isset($_FILES['results']) && $_FILES['results']['error'] !== UPLOAD_ERR_OK) {
   Response::error('Invalid file upload', 400);
   exit;
 }

@@ -60,6 +60,7 @@ function save() {
       .then((result) => {
         console.log("Success:", result);
         alert("Post saved successfully!");
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error:", error);

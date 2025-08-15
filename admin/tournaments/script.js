@@ -157,6 +157,7 @@ async function updateTournament(tournamentId) {
       throw new Error(result.error);
     }
     alert("Tournament updated successfully.");
+    window.location.reload();
   } catch (error) {
     console.error("Error editing tournament:", error);
     alert(
