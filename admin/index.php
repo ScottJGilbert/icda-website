@@ -1,5 +1,5 @@
 <?php
-require_once 'middleware.php';
+// require_once __DIR__ . '/middleware.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,22 +24,35 @@ require_once 'middleware.php';
 
   <!-- Everything below is actual page content and varies by file -->
 
-  <h1>Welcome to your user dashboard!</h1>
-  <button onclick="logout()">Logout</button>
-  <div>
-    <h1>Editors</h1>
-    <a href="about/">Edit "About" Pages</a>
-    <a href="tournaments/">Edit Tournaments</a>
-    <a href="resources/">Edit "Resources" Pages</a>
-    <a href="archive/">Edit Archive</a>
-  </div>
-  <div>
-    <h1>Posters</h1>
-    <a href="news/">Edit News</a>
-  </div>
-  <div>
-    <h1>Administrators</h1>
-    <a href="management/">Manage Users</a>
+  <div id="mainContent">
+    <div class="division">
+      <section>
+        <h1 class="title">Welcome to your user dashboard!</h1>
+        <button onclick="logout()">Logout</button>
+
+      </section>
+    </div>
+    <div class="division">
+      <section>
+        <h1 class="title">Editors</h1>
+        <a href="about/">Edit "About" Pages</a>
+        <a href="tournaments/">Edit Tournaments</a>
+        <a href="resources/">Edit "Resources" Pages</a>
+        <a href="archive/">Edit Archive</a>
+      </section>
+    </div>
+    <div class="division">
+      <section>
+        <h1 class="title">Posters</h1>
+        <a href="news/">Edit News</a>
+      </section>
+    </div>
+    <div class="division">
+      <section>
+        <h1 class="title">Administrators</h1>
+        <a href="management/">Manage Users or Upload Constitution</a>
+      </section>
+    </div>
   </div>
 
   <!-- Everything above is actual page content and varies by file -->

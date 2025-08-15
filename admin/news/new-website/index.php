@@ -1,6 +1,6 @@
-<!-- <?php
-require_once 'middleware.php';
-?> -->
+<?php
+// require_once __DIR__ . '/../../middleware.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,28 +25,44 @@ require_once 'middleware.php';
   <div id="top"></div>
 
   <!-- Everything below is actual page content and varies by file -->
+  <div id="mainContent">
+    <div class="division">
+      <section>
+        <p class="title">Update Post</p>
+        <form id="updatePost">
+          <label for="title">
+            <input id="title" name="title" type="text" placeholder="Title" required />
+            Title <span style="color: red">*</span>
+          </label>
+          <label for="image">
+            <input id="image" name="image" type="file" />
+            Upload new image
+          </label>
 
-  <form id="updatePost">
-    <input id="title" name="title" type="text" placeholder="Title" required />
-    <label for="title">Title <span style="color: red">*</span></label>
-    <input id="image" name="image" type="file" />
-    <label for="image">Upload new image</label>
+          <span> OR </span>
 
-    <input id="deleteImage" name="deleteImage" type="checkbox" onchange="checkBox()" />
-    <label for="deleteImage">Delete associated image</label>
-    <!-- Populate this with stuff that can be duplicated -->
-    <div id="editor"></div>
-  </form>
-  <button onclick="save()">Save</button>
+          <label for="deleteImage">
+            <input id="deleteImage" name="deleteImage" type="checkbox" onchange="checkBox()" />
+            Delete associated image
+          </label>
+          <!-- Populate this with stuff that can be duplicated -->
+          <div style="margin-top: 10px;">
+            <div id="editor"></div>
+          </div>
+        </form>
+        <button onclick="save()">Save</button>
 
-  <button onclick="deletePost()" style="
+        <button onclick="deletePost()" style="
         color: red;
         padding: 4px;
         border-radius: 4px;
         border: 2px solid red;
       ">
-    Delete Post
-  </button>
+          Delete Post
+        </button>
+      </section>
+    </div>
+  </div>
 
   <script src="../data-script.js"></script>
 

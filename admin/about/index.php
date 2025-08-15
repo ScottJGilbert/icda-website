@@ -6,7 +6,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>News | ICDA</title>
+  <title>Edit About | ICDA</title>
   <link rel="icon" href="/public/images/favicon.png" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="/public/global.css" />
@@ -27,25 +27,41 @@
   <div id="mainContent">
     <div class="division">
       <section>
-        <h1 class="title">News</h1>
-        <div id="list"></div>
+        <p class="title">Edit About</h1>
       </section>
     </div>
     <div class="division">
-      <section>
-        <div id="list"></div>
-      </section>
-    </div>
-    <div class="division">
-      <section>
+      <section
+        style="background-color: #e2f2ff; border: #242557 4px solid; display: flex; flex-direction: column; gap: 2px;">
         <div>
-          <button id="pageDown" onclick="pageDown()">←</button>
-          <button id="pageUp" onclick="pageUp()">→</button>
+          <p class="title">Edit Schools</h2>
+          <div id="schools"></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <p class="title">New School Form</p>
+          <form id="new-school-form">
+            <label for="name">
+              <input type="text" id="name" name="name" placeholder="Name" required />
+              Name <span style="color: red">*</span>
+            </label>
+            <label for="image">
+              <input type="file" id="image" name="image" accept="image/*" />
+              Logo
+            </label>
+          </form>
+          <div>
+            <button onclick="addNewSchool()">Add School</button>
+          </div>
         </div>
       </section>
     </div>
+    <div class="division">
+      <section style="background-color: #e2f2ff; border: #242557 4px solid;">
+        <p class="title">Edit Oversight</p>
+        <div id="oversight"></div>
+      </section>
+    </div>
   </div>
-
 
   <!-- Everything above is actual page content and varies by file -->
 

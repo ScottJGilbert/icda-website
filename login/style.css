@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "CustomFont";
+  src: url("fonts/CustomFont.woff2") format("woff2"),
+    url("fonts/CustomFont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+#login {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#loginForm {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+label {
+  margin-bottom: 5px;
+  font-family: CustomFont, Arial, sans-serif;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

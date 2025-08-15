@@ -1,5 +1,5 @@
 <?php
-require_once 'middleware.php';
+// require_once __DIR__ . '/../middleware.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +23,14 @@ require_once 'middleware.php';
   <div id="top"></div>
 
   <!-- Everything below is actual page content and varies by file -->
-
-  <h1>Edit Archive</h1>
-  <div id="edit"></div>
+  <div id="mainContent">
+    <div class="division">
+      <section>
+        <p class="title">Edit Archive</p>
+        <div id="edit"></div>
+      </section>
+    </div>
+  </div>
 
   <!-- Everything above is actual page content and varies by file -->
 

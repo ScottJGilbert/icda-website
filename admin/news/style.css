@@ -1,0 +1,32 @@
+@font-face {
+  font-family: googleSans;
+  src: url("/public/fonts/googleSans.woff");
+}
+
+section {
+  background-color: #e2f2ff;
+  border: #242557 4px solid;
+}
+
+label {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 10px;
+  border: #242557 4px solid;
+  background-color: aliceblue;
+  font-family: googleSans, Arial;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

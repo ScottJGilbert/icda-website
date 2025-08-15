@@ -30,11 +30,23 @@ require_once 'middleware.php';
 
     <!-- Everything below is actual page content and varies by file -->
 
-    <h1 id="title"></h1>
-    <img id="image" src="" />
-    <h2 id="creationDate"></h2>
-    <h2 id="editDate"></h2>
-    <div id="viewer"></div>
+    <div id="mainContent">
+      <div class="division">
+        <section>
+          <div style="display: flex; gap: 10px">
+            <h1 id="title" class="title"></h1>
+            <h2 id="creationDate" class="title" style="color: gray"></h2>
+            <h2 id="editDate" class="title" style="color: gray"></h2>
+          </div>
+          <img id="image" src="" />
+        </section>
+      </div>
+      <div class="division">
+        <section>
+          <div id="viewer"></div>
+        </section>
+      </div>
+    </div>
 
     <!-- Everything above is actual page content and varies by file -->
 

@@ -19,6 +19,9 @@ async function fetchData() {
 
     document.getElementById("seasons").appendChild(anchor);
   }
+
+  document.getElementById("currentYear").innerText =
+    startYear + archiveData.length + 1;
 }
 
 window.addEventListener("load", fetchData);
