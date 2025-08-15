@@ -9,6 +9,319 @@
     <script src="/public/global.js"></script>
     <script src="script.js"></script>
 
+    <script type="module">
+      import {
+        animate,
+        scroll,
+        inView,
+        stagger,
+        spring,
+        hover,
+        press,
+        styleEffect,
+        motionValue,
+        delay,
+        transformValue,
+      } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+
+      inView(document.getElementById("pageHeader"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("aboutNavigation"),
+          { x: [-20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("headerPolygon"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("pageHeadTitle"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+        animate(
+          document.getElementById("pageHeaderTitle"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+        animate(
+          document.getElementById("pageHeaderDesc1"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.2,
+          }
+        );
+        animate(
+          document.getElementById("quote"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.3,
+          }
+        );
+        animate(
+          document.getElementById("pageHeaderDesc2"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.4,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("aboutNavigation"), { x: -20 }),
+            animate(document.getElementById("headerPolygon"), { x: 20 });
+            animate(document.getElementById("pageHeadTitle"), { x: 20 });
+            animate(document.getElementById("pageHeaderTitle"), { x: 20 });
+            animate(document.getElementById("pageHeaderDesc1"), { x: 20 });
+            animate(document.getElementById("quote"), { x: 20 });
+            animate(document.getElementById("pageHeaderDesc2"), { x: 20 });
+        };
+      });
+
+      inView(document.getElementById("students"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("studentsTitle"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("studentsText1"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+
+        animate(
+          document.getElementById("studentsText2"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.2,
+          }
+        );
+
+        animate(
+          document.getElementById("studentsText3"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.3,
+          }
+        );
+
+        animate(
+          document.getElementById("studentsText4"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.4,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("studentsTitle"), { x: 20 });
+            animate(document.getElementById("studentsText1"), { x: 20 });
+            animate(document.getElementById("studentsText2"), { x: 20 });
+            animate(document.getElementById("studentsText3"), { x: 20 });
+            animate(document.getElementById("studentsText4"), { x: 20 });
+        };
+      });
+
+      inView(document.getElementById("coaches"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("coachesTitle"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("coachesText1"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+
+        animate(
+          document.getElementById("coachesText2"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.2,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("coachesTitle"), { x: 20 });
+            animate(document.getElementById("coachesText1"), { x: 20 });
+            animate(document.getElementById("coachesText2"), { x: 20 });
+        };
+      });
+
+      inView(document.getElementById("FAQ"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("FAQTitle"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("q1"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+        animate(
+          document.getElementById("q2"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.2,
+          }
+        );
+        animate(
+          document.getElementById("q3"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.3,
+          }
+        );
+        animate(
+          document.getElementById("q4"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.4,
+          }
+        );
+        animate(
+          document.getElementById("q5"),
+          { scale: 1, opacity: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.5,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("FAQTitle"), { x: 20 });
+            animate(document.getElementById("q1"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("q2"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("q3"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("q4"), { opacity: 0, scale: 0.9 });
+            animate(document.getElementById("q5"), { opacity: 0, scale: 0.9 });
+        };
+      });
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+    
     <script
       src="https://unpkg.com/react@18/umd/react.development.js"
       crossorigin
@@ -32,11 +345,13 @@
             <polygon
               points="20 0 200 0 180 40 0 40"
               style="fill: #142039"
+              id="headerPolygon"
             ></polygon>
             <text
               x="58"
               y="29"
               color="white"
+              id="pageHeadTitle"
               style="fill: white; font-family: langdon, serif; font-size: 30px"
             >
               JOINING
@@ -64,10 +379,10 @@
           </div>
           <br />
           <br />
-          <p class="title" style="font-family: 'Arial Black', serif">
+          <p class="title" style="font-family: 'Arial Black', serif" id="pageHeaderTitle">
             Join ICDA
           </p>
-          <p class="pageHeaderDescription">
+          <p class="pageHeaderDescription" id="pageHeaderDesc1">
             We would love to have you and your school in ICDA! Everyone should
             have the power and the knowledge to raise their voices for justice.
           </p>
@@ -77,7 +392,7 @@
               powerful.</b
             ><br /><br /><i>- Malala Yousafzai</i>
           </p>
-          <p class="pageHeaderDescription">
+          <p class="pageHeaderDescription" id="pageHeaderDesc2">
             Keep scrolling to learn how your school can get involved too!
           </p>
         </section>
@@ -85,19 +400,19 @@
       <div id="students" class="division">
         <section id="billWritingSection" class="section">
           <div id="billWritingTextContainer" class="textContainer">
-            <p class="title">Students</p>
-            <p class="descriptionText"><b>If your school is a member:</b></p>
-            <p class="descriptionText">
+            <p class="title" id="studentsTitle">Students</p>
+            <p class="descriptionText" id="studentsText1"><b>If your school is a member:</b></p>
+            <p class="descriptionText" id="studentsText2">
               Contact your school's head coach and let them know that you're
               interested in joining ICDA. Unfortunately, we cannot include every
               coach's email, so if your school's head coach is not listed on the
               members page, try searching your school's faculty/activity
               listings to find them.
             </p>
-            <p class="descriptionText">
+            <p class="descriptionText" id="studentsText3">
               <b>If your school is NOT a member:</b>
             </p>
-            <p class="descriptionText">
+            <p class="descriptionText" id="studentsText4">
               Direct a teacher who is/would like to sponsor a congressional
               debate team to the second section of this page.
             </p>
@@ -111,8 +426,8 @@
       >
         <section>
           <div id="roundsTextContainer" class="textContainer">
-            <p class="title">Coaches</p>
-            <p class="descriptionText">
+            <p class="title" id="coachesTitle">Coaches</p>
+            <p class="descriptionText" id="coachesText1">
               If your school has a Congressional Debate team, get in touch with
               either
               <a id="president" href="">Unknown</a>
@@ -123,7 +438,7 @@
               representative (usually a principal or board member) and get the
               necessary details to prepare an application.
             </p>
-            <p class="descriptionText">
+            <p class="descriptionText" id="coachesText2">
               If your school does not have a Congressional Debate team, but you
               are interested in sponsoring one and participating in the ICDA
               circuit, we may be able to help with the process. Contact either
@@ -134,8 +449,8 @@
       </div>
       <div id="FAQ" class="division" style="background-color: white">
         <section style="color: black">
-          <p class="title">Frequently Asked Questions</p>
-          <div class="question" style="border-radius: 20px 20px 0 0">
+          <p class="title" id="FAQTitle">Frequently Asked Questions</p>
+          <div class="question" style="border-radius: 20px 20px 0 0" id="q1">
             <p class="descriptionText"><b>Who is allowed to join ICDA?</b></p>
             <img src="Resource/arrow.svg" alt="open/close" />
           </div>
@@ -152,7 +467,7 @@
               2. The school pays dues as required in the Constitution.
             </p>
           </div>
-          <div class="question">
+          <div class="question"id="q2">
             <p class="descriptionText">
               <b>When must membership dues be paid by?</b>
             </p>
@@ -165,7 +480,7 @@
               year’s ICDA tournaments.
             </p>
           </div>
-          <div class="question">
+          <div class="question"id="q3">
             <p class="descriptionText">
               <b
                 >Can new members participate in board and oversight
@@ -181,7 +496,7 @@
               elections.
             </p>
           </div>
-          <div class="question">
+          <div class="question"id="q4">
             <p class="descriptionText">
               <b>How many debaters are needed to form a team?</b>
             </p>
@@ -194,7 +509,7 @@
               without at least four debaters.
             </p>
           </div>
-          <div class="question" style="border-radius: 0 0 20px 20px">
+          <div class="question" style="border-radius: 0 0 20px 20px"id="q5">
             <p class="descriptionText">
               <b>Is small/large school status determined at registration?</b>
             </p>
