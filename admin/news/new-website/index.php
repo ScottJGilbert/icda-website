@@ -52,12 +52,7 @@
         </form>
         <button onclick="save()">Save</button>
 
-        <button onclick="deletePost()" style="
-        color: red;
-        padding: 4px;
-        border-radius: 4px;
-        border: 2px solid red;
-      ">
+        <button onclick="deletePost()" class="redButton">
           Delete Post
         </button>
       </section>

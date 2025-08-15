@@ -44,9 +44,10 @@
                 Rule Number <span style="color: red">*</span>
               </label>
             </div>
-            <div style="display: flex; flex-direction: column; gap: 2px;">
-              <label for="summary">Rule Summary <span style="color: red">*</span></label>
-              <textarea id="summary" name="summary" spellcheck="default" required></textarea>
+            <div style="display: flex; flex-direction: column; gap: 2px; margin-top: 4px;">
+              <label for="summary">Rule Summary <span style="color: red">*</span>
+                <textarea id="summary" name="summary" spellcheck="default" required></textarea>
+              </label>
             </div>
           </form>
           <button onclick="addRule()">Add Rule</button>
@@ -58,7 +59,9 @@
     <div class="division">
       <section>
         <p class="title">Update Rules</p>
-        <button onclick="updateRules()">Save Rules</button>
+        <button onclick="updateRules()" style="background-color: darkgreen;">
+          <h1>Save Rules</h1>
+        </button>
         <div id="rules"></div>
       </section>
     </div>

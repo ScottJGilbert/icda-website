@@ -30,3 +30,21 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+.redButton {
+  background-color: rgb(119, 0, 0);
+}
+
+.rule {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.ruleForm {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
