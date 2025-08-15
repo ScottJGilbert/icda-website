@@ -81,7 +81,10 @@ async function save() {
     if (!res.ok) {
       const error = json.error || "Unknown error occurred";
       alert("An error occurred while saving the post: " + error.message);
+      return;
     }
+
+    window.location.href = `/admin/news/${slug}`;
   }
 }
 

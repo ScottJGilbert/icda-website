@@ -1,0 +1,229 @@
+<?php
+require_once 'middleware.php';
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Edit Tournaments | ICDA</title>
+  <link rel="icon" href="/public/images/favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="/public/global.css" />
+  <script src="/public/global.js"></script>
+  <script src="script.js"></script>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="mobile-menu-root"></div>
+  <div id="top"></div>
+
+  <!-- Everything below is actual page content and varies by file -->
+
+  <h1>Edit Tournaments</h1>
+  <div id="tournamentsDiv">
+    <div>
+      <form id="tournament1" class="tournament">
+        <p>ICDA 1</p>
+        <input type="date" name="date" id="date1" placeholder="01/01/2025" />
+        <label for="date1">Tournament Date</label>
+        <input type="url" name="tabroom" id="tabroom1" placeholder="https://www.tabroom.com/index/tourn..." />
+        <label for="tabroom1">Tabroom</label>
+        <input type="file" name="legislation" id="legislation1" accept=".pdf" />
+        <label for="legislation1">Legislation</label>
+        <input type="checkbox" name="deleteLegislation" id="deleteLegislation1" />
+        <label for="deleteLegislation1">Delete Legislation</label>
+        <input type="file" name="results" id="results1" accept=".pdf" />
+        <label for="results1">Results</label>
+        <input type="checkbox" name="deleteResults" id="deleteResults1" />
+        <label for="deleteResults1">Delete Results</label>
+        <select id="schoolSelect1" class="schoolSelect"></select>
+        <div id="tournament1Contacts" class="contacts">
+          <input id="1contact_name" type="text" placeholder="John Smith" name="contact_name" />
+          <input id="1contact_email" type="email" placeholder="johnsmith@example.com" name="contact_email" />
+          <button type="button" onclick="addContact(1)">Add Contact</button>
+          <div class="contactList"></div>
+        </div>
+      </form>
+      <button onclick="updateTournament(1)">Save</button>
+    </div>
+    <div>
+      <form id="tournament2" class="tournament">
+        <p>ICDA 2</p>
+        <input type="date" name="date" id="date2" placeholder="01/01/2025" />
+        <label for="date2">Tournament Date</label>
+        <input type="url" name="tabroom" id="tabroom2" placeholder="https://www.tabroom.com/index/tourn..." />
+        <label for="tabroom2">Tabroom</label>
+        <input type="file" name="legislation" id="legislation2" accept=".pdf" />
+        <label for="legislation2">Legislation</label>
+        <input type="checkbox" name="deleteLegislation" id="deleteLegislation2" />
+        <label for="deleteLegislation2">Delete Legislation</label>
+        <input type="file" name="results" id="results2" accept=".pdf" />
+        <label for="results2">Results</label>
+        <input type="checkbox" name="deleteResults" id="deleteResults2" />
+        <label for="deleteResults2">Delete Results</label>
+        <select id="schoolSelect2" class="schoolSelect"></select>
+        <div id="tournament2Contacts" class="contacts">
+          <input id="2contact_name" type="text" placeholder="John Smith" name="contact_name" />
+          <input id="2contact_email" type="email" placeholder="johnsmith@example.com" name="contact_email" />
+          <button type="button" onclick="addContact(2)">Add Contact</button>
+          <div class="contactList"></div>
+        </div>
+      </form>
+      <button onclick="updateTournament(2)">Save</button>
+    </div>
+    <div>
+      <form id="tournament3" class="tournament">
+        <p>ICDA 3</p>
+        <input type="date" name="date" id="date3" placeholder="01/01/2025" />
+        <label for="date3">Tournament Date</label>
+        <input type="url" name="tabroom" id="tabroom3" placeholder="https://www.tabroom.com/index/tourn..." />
+        <label for="tabroom3">Tabroom</label>
+        <input type="file" name="legislation" id="legislation3" accept=".pdf" />
+        <label for="legislation3">Legislation</label>
+        <input type="checkbox" name="deleteLegislation" id="deleteLegislation3" />
+        <label for="deleteLegislation3">Delete Legislation</label>
+        <input type="file" name="results" id="results3" accept=".pdf" />
+        <label for="results3">Results</label>
+        <input type="checkbox" name="deleteResults" id="deleteResults3" />
+        <label for="deleteResults3">Delete Results</label>
+        <select id="schoolSelect3" class="schoolSelect"></select>
+        <div id="tournament3Contacts" class="contacts">
+          <input id="3contact_name" type="text" placeholder="John Smith" name="contact_name" />
+          <input id="3contact_email" type="email" placeholder="johnsmith@example.com" name="contact_email" />
+          <button type="button" onclick="addContact(3)">Add Contact</button>
+          <div class="contactList"></div>
+        </div>
+      </form>
+      <button onclick="updateTournament(3)">Save</button>
+    </div>
+    <div>
+      <form id="tournament4" class="tournament">
+        <p>ICDA 4</p>
+        <input type="date" name="date" id="date4" placeholder="01/01/2025" />
+        <label for="date4">Tournament Date</label>
+        <input type="url" name="tabroom" id="tabroom4" placeholder="https://www.tabroom.com/index/tourn..." />
+        <label for="tabroom4">Tabroom</label>
+        <input type="file" name="legislation" id="legislation4" accept=".pdf" />
+        <label for="legislation4">Legislation</label>
+        <input type="checkbox" name="deleteLegislation" id="deleteLegislation4" />
+        <label for="deleteLegislation4">Delete Legislation</label>
+        <input type="file" name="results" id="results4" accept=".pdf" />
+        <label for="results4">Results</label>
+        <input type="checkbox" name="deleteResults" id="deleteResults4" />
+        <label for="deleteResults4">Delete Results</label>
+        <select id="schoolSelect4" class="schoolSelect"></select>
+        <div id="tournament4Contacts" class="contacts">
+          <input id="4contact_name" type="text" placeholder="John Smith" name="contact_name" />
+          <input id="4contact_email" type="email" placeholder="johnsmith@example.com" name="contact_email" />
+          <button type="button" onclick="addContact(4)">Add Contact</button>
+          <div class="contactList"></div>
+        </div>
+      </form>
+      <button onclick="updateTournament(4)">Save</button>
+    </div>
+    <div>
+      <form id="tournament5" class="tournament">
+        <p>ICDA 5</p>
+        <input type="date" name="date" id="date5" placeholder="01/01/2025" />
+        <label for="date5">Tournament Date</label>
+        <input type="url" name="tabroom" id="tabroom5" placeholder="https://www.tabroom.com/index/tourn..." />
+        <label for="tabroom5">Tabroom</label>
+        <input type="file" name="legislation" id="legislation5" accept=".pdf" />
+        <label for="legislation5">Legislation</label>
+        <input type="checkbox" name="deleteLegislation" id="deleteLegislation5" />
+        <label for="deleteLegislation5">Delete Legislation</label>
+        <input type="file" name="results" id="results5" accept=".pdf" />
+        <label for="results5">Results</label>
+        <input type="checkbox" name="deleteResults" id="deleteResults5" />
+        <label for="deleteResults5">Delete Results</label>
+        <select id="schoolSelect5" class="schoolSelect"></select>
+        <div id="tournament5Contacts" class="contacts">
+          <input id="5contact_name" type="text" placeholder="John Smith" name="contact_name" />
+          <input id="5contact_email" type="email" placeholder="johnsmith@example.com" name="contact_email" />
+          <button type="button" onclick="addContact(5)">Add Contact</button>
+          <div class="contactList"></div>
+        </div>
+      </form>
+      <button onclick="updateTournament(5)">Save</button>
+    </div>
+    <div>
+      <form id="tournament6" class="tournament">
+        <p>ICDA State</p>
+        <input type="date" name="date" id="date6" placeholder="01/01/2025" />
+        <label for="date6">Tournament Date</label>
+        <input type="url" name="tabroom" id="tabroom6" placeholder="https://www.tabroom.com/index/tourn..." />
+        <label for="tabroom6">Tabroom</label>
+        <input type="file" name="legislation" id="legislation6" accept=".pdf" />
+        <label for="legislation6">Legislation</label>
+        <input type="checkbox" name="deleteLegislation" id="deleteLegislation6" />
+        <label for="deleteLegislation6">Delete Legislation</label>
+        <input type="file" name="results" id="results6" accept=".pdf" />
+        <label for="results6">Results</label>
+        <input type="checkbox" name="deleteResults" id="deleteResults6" />
+        <label for="deleteResults6">Delete Results</label>
+        <div id="tournament6Contacts" class="contacts">
+          <input id="6contact_name" type="text" placeholder="John Smith" name="contact_name" />
+          <input id="6contact_email" type="email" placeholder="johnsmith@example.com" name="contact_email" />
+          <button type="button" onclick="addContact(6)">Add Contact</button>
+          <div class="contactList"></div>
+        </div>
+      </form>
+      <button onclick="updateTournament(6)">Save</button>
+    </div>
+  </div>
+
+  <!-- Everything above is actual page content and varies by file -->
+
+  <footer id="footer"></footer>
+
+  <!-- React components (Babel-in-browser) -->
+  <script type="text/babel" src="/public/components/mobile-menu.jsx"></script>
+  <script type="text/babel" src="/public/components/header.jsx"></script>
+  <script type="text/babel" src="/public/components/footer.jsx"></script>
+
+  <!-- React entry point -->
+  <script type="text/babel">
+    const mobileRoot = ReactDOM.createRoot(
+      document.getElementById("mobile-menu-root")
+    );
+    mobileRoot.render(<MobileMenu />);
+
+    const headerRoot = ReactDOM.createRoot(document.getElementById("top"));
+    headerRoot.render(<TopHeader />);
+
+    const footerRoot = ReactDOM.createRoot(document.getElementById("footer"));
+    footerRoot.render(<Footer />);
+
+    function waitForReactAndInitialize() {
+      const maxAttempts = 50;
+      let attempts = 0;
+
+      const interval = setInterval(() => {
+        const headerLinks = document.getElementsByClassName("link");
+        const headerMenus = document.getElementById("headerMenus");
+
+        if (headerLinks.length > 0 && headerMenus) {
+          clearInterval(interval);
+          initialize();
+        }
+
+        attempts++;
+        if (attempts > maxAttempts) {
+          clearInterval(interval);
+          console.warn(
+            "initialize() timed out waiting for React components."
+          );
+        }
+      }, 100); // check every 100ms
+    }
+
+    waitForReactAndInitialize();
+  </script>
+</body>
+
+</html>

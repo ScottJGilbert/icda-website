@@ -1,11 +1,11 @@
-<!-- <?php
+<?php
 require_once 'middleware.php';
-?> -->
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Edit Resources | ICDA</title>
+    <title>News | ICDA</title>
     <link rel="icon" href="/public/images/favicon.png" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="/public/global.css" />
@@ -29,37 +29,13 @@ require_once 'middleware.php';
 
     <!-- Everything below is actual page content and varies by file -->
 
-    <h1>Edit Resources</h1>
-    <h2>Edit Rules</h2>
-    <div>
-      <form id="add-rule">
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Gaveling Procedure"
-          required
-        />
-        <label for="name">Rule Name <span style="color: red">*</span></label>
-        <input type="number" id="number" name="number" required />
-        <label for="number"
-          >Rule Number <span style="color: red">*</span></label
-        >
-        <textarea
-          id="summary"
-          name="summary"
-          spellcheck="default"
-          required
-        ></textarea>
-        <label for="summary"
-          >Rule Summary <span style="color: red">*</span></label
-        >
-      </form>
-      <button onclick="addRule()">Add Rule</button>
-    </div>
+    <h1 id="title">News</h1>
+    <div id="list"></div>
 
-    <button onclick="updateRules()">Save Rules</button>
-    <div id="rules"></div>
+    <div>
+      <button id="pageDown" onclick="pageDown()">←</button>
+      <button id="pageUp" onclick="pageUp()">→</button>
+    </div>
 
     <!-- Everything above is actual page content and varies by file -->
 
