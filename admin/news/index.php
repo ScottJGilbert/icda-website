@@ -31,7 +31,7 @@
       </section>
     </div>
     <div class="division">
-      <section style="background-color: none; border: 0">
+      <section style="background-color: transparent; border: 0; padding: 0; margin: 0;">
         <div id="list"></div>
       </section>
     </div>

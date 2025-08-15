@@ -35,6 +35,9 @@ function displayData() {
     }`;
     div.appendChild(seasonTitle);
 
+    const dataFormContainer = document.createElement("div");
+    dataFormContainer.className = "dataFormContainer";
+
     const dataForm = document.createElement("form");
     dataForm.className = "dataForm";
 
@@ -81,8 +84,8 @@ function displayData() {
 
       dataForm.appendChild(dataFormDiv);
     }
-
-    div.appendChild(dataForm);
+    dataFormContainer.appendChild(dataForm);
+    div.appendChild(dataFormContainer);
 
     const dataSubmitButton = document.createElement("button");
     dataSubmitButton.innerText = "Save Archive Data";

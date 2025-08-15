@@ -27,15 +27,15 @@ function changePage(amount) {
   queryParams.set("page", page + amount);
 
   if (page + amount === 1) {
-    document.getElementById("downArrow").style.display = "none";
+    document.getElementById("pageDown").style.display = "none";
   } else {
-    document.getElementById("downArrow").style.display = "inline";
+    document.getElementById("pageDown").style.display = "inline";
   }
 
   if (page + amount === numPages) {
-    document.getElementById("upArrow").style.display = "none";
+    document.getElementById("pageUp").style.display = "none";
   } else {
-    document.getElementById("upArrow").style.display = "inline";
+    document.getElementById("pageUp").style.display = "inline";
   }
 }
 
@@ -58,7 +58,7 @@ async function fetchData() {
     const box = document.createElement("div");
     box.className = "post";
     box.innerHTML = `
-    <div class="post">
+    <div>
       <img src="${post.image_url}" />
       <h2>${post.title}</h2>
       <h3><i>${new Date(post.creation_date).toLocaleDateString()}</i></h3>
