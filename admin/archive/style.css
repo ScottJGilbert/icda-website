@@ -36,6 +36,7 @@ button:hover {
   border-radius: 20px;
   border: #242557 4px solid;
   margin-bottom: 30px;
+  padding: 10px;
 }
 
 .dataForm {
