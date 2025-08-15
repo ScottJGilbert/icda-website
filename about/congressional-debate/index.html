@@ -10,7 +10,409 @@
     <link rel="stylesheet" href="/public/global.css" />
     <script src="/public/global.js"></script>
     <script src="script.js"></script>
+    <script type="module">
+      import {
+        animate,
+        scroll,
+        inView,
+        stagger,
+        spring,
+        hover,
+        press,
+        styleEffect,
+        motionValue,
+        delay,
+        transformValue,
+      } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
 
+      inView(document.getElementById("pageHeader"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("aboutNavigation"),
+          { x: [-20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("pageHeaderDescription"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("headerPolygon"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementsByClassName("pageHeadTitle"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+        animate(
+          document.getElementById("pageHeaderDescription"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.2,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("aboutNavigation"), { x: -20 }),
+            animate(document.getElementById("pageHeaderDescription"), { x: 20 });
+            animate(document.getElementById("headerPolygon"), { x: 20 });
+            animate(document.getElementsByClassName("pageHeadTitle"), { x: 20 });
+            animate(document.getElementById("pageHeaderDescription"), { x: 20 });
+        };
+      });
+
+      inView(document.getElementById("billWriting"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("billWritingImage"),
+          { x: [-20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("textCont"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("billWritingImage"), { x: -20 }),
+            animate(document.getElementById("textCont"), { x: 20 });
+        };
+      });
+
+      inView(document.getElementById("rounds"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("roundTitle"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("roundText1"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+
+        animate(
+          document.getElementById("roundText2"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.2,
+          }
+        );
+
+        animate(
+          document.getElementById("roundText3"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.3,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("roundTitle"), { x: 20 });
+            animate(document.getElementById("roundText1"), { x: 20 });
+            animate(document.getElementById("roundText2"), { x: 20 });
+            animate(document.getElementById("roundText3"), { x: 20 });
+        };
+      });
+
+      inView(document.getElementById("speeches"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("speechesImage"),
+          { x: [-20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+
+        animate(
+          document.getElementById("speechTitle"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("speechText1"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+
+        animate(
+          document.getElementById("speechText2"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.2,
+          }
+        );
+
+        animate(
+          document.getElementById("speechText3"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.3,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("speechTitle"), { x: -20 });
+            animate(document.getElementById("speechTitle"), { x: 20 });
+            animate(document.getElementById("speechText1"), { x: 20 });
+            animate(document.getElementById("speechText2"), { x: 20 });
+            animate(document.getElementById("speechText3"), { x: 20 });
+        };
+      });
+
+      inView(document.getElementById("awards"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("awardTitle"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("awardText1"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+
+        animate(
+          document.getElementById("awardText2"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.2,
+          }
+        );
+
+        animate(
+          document.getElementById("awardText3"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.3,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("awardTitle"), { x: 20 });
+            animate(document.getElementById("awardText1"), { x: 20 });
+            animate(document.getElementById("awardText2"), { x: 20 });
+            animate(document.getElementById("awardText3"), { x: 20 });
+        };
+      });
+
+
+      inView(document.getElementById("video"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("videoTitle"),
+          { scale: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("videoCont"),
+          { scale: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+
+        animate(
+          document.getElementById("videoNote"),
+          { scale: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.2,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("videoTitle"), { scale:0.9 });
+            animate(document.getElementById("videoCont"), { scale: 0.95 });
+            animate(document.getElementById("videoNote"), { scale: 0.9 });
+        };
+      });
+
+
+      inView(document.getElementById("guide"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("internalGuide"),
+          { scale: 1 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("internalGuide"), { scale:0.9 });
+        };
+      });
+
+
+
+
+      hover(document.getElementById("internalGuide"), (element) => {
+        animate(element, { scale: 1.1 });
+
+        return () => animate(element, { scale: 1 });
+      });
+
+      press(document.getElementById("internalGuide"), (element) => {
+        animate(element, { scale: 0.9 });
+
+        return () => animate(element, { scale: 1 });
+      });
+
+    </script>
     <script
       src="https://unpkg.com/react@18/umd/react.development.js"
       crossorigin
@@ -34,11 +436,13 @@
             <polygon
               points="20 0 200 0 180 40 0 40"
               style="fill: #142039"
+              id="headerPolygon"
             ></polygon>
             <text
               x="50"
               y="17"
               color="white"
+              class="pageHeadTitle"
               style="fill: white; font-family: langdon, serif; font-size: 18px"
             >
               CONGRESSIONAL
@@ -47,6 +451,7 @@
               x="75"
               y="34"
               color="white"
+              class="pageHeadTitle"
               style="fill: white; font-family: langdon, serif; font-size: 18px"
             >
               DEBATE
@@ -90,7 +495,7 @@
       </div>
       <div id="billWriting" class="division" style="padding-top: 20px">
         <section id="billWritingSection" class="informationalSection">
-          <div class="textContainer">
+          <div class="textContainer" id="textCont">
             <p class="title">Legislation</p>
             <p class="descriptionText">
               Congressional Debate uses congressional bills and resolution
@@ -120,8 +525,8 @@
       <div id="rounds" class="division">
         <section class="informationalSection">
           <div class="textContainer">
-            <p class="title">Rounds</p>
-            <p class="descriptionText">
+            <p class="title" id="roundTitle">Rounds</p>
+            <p class="descriptionText" id="roundText1">
               Before the start of each round, debaters set a docket, which
               determines the order they will debate all nine pieces of
               legislation in. Each of the three rounds (or sessions) is two
@@ -129,7 +534,7 @@
               between two and three pieces of legislation, depending on how long
               they debate each bill for.
             </p>
-            <p class="descriptionText">
+            <p class="descriptionText" id="roundText2">
               When debating a bill, the presiding officer, or PO, will first
               call on debaters to give an affirmation, or pro, speech, which
               encourages the chamber to pass the bill. If an author of the bill
@@ -143,7 +548,7 @@
               speeches until either nobody stands up, or the time for the bill
               expires.
             </p>
-            <p class="descriptionText">
+            <p class="descriptionText" id="roundText3">
               Once debate on a bill has ended, the chamber moves to previous
               questioning, or voting on the bill. The PO tallies up the number
               of debaters voting aye, nay, or abstaining, and announces to the
@@ -164,22 +569,22 @@
             width="360"
           />
           <div class="textContainer">
-            <p class="title">Speeches</p>
-            <p class="descriptionText">
+            <p class="title" id="speechTitle">Speeches</p>
+            <p class="descriptionText" id="speechText1">
               Besides authorships and conships, most speeches in Congressional
               Debate are no more than three minutes long. While some POs will
               allow debaters to speak for a few extra seconds if they need it,
               taking too long is generally frowned upon and often leads to
               deductions in score.
             </p>
-            <p class="descriptionText">
+            <p class="descriptionText" id="speechText2">
               While the style of different speeches can vary, each speech
               follows a similar structure: an introduction, one to three body
               paragraphs, or contentions, and a conclusion. Each contention is
               further broken down into four parts: claim, warrant, evidence, and
               impact. Debaters also have to refute previous speakers' points.
             </p>
-            <p class="descriptionText">
+            <p class="descriptionText" id="speechText3">
               Each speech is followed up by two (three for four-minute speeches)
               blocks of questioning. During each block, the PO calls on a
               debater to ask questions to the speaker, with the goal of using
@@ -194,22 +599,22 @@
       <div id="awards" class="division">
         <section id="awardsSection" class="informationalSection">
           <div class="textContainer">
-            <p class="title">Awards</p>
-            <p class="descriptionText">
+            <p class="title" id="awardTitle">Awards</p>
+            <p class="descriptionText" id="awardText1">
               Each debater's speeches are scored from 0-6 based on the debater's
               content, delivery, and response to questions. They also receive a
               separate "ethos" score based on their behavior during the session.
               Each judge also nominates two debaters that they felt did
               exceptionally well during the session.
             </p>
-            <p class="descriptionText">
+            <p class="descriptionText" id="awardText2">
               For each chamber, the debater with the highest speaking average
               (total points divided by total speeches) earns first place. The
               chamber then votes on the second and third place debaters, who
               must've received at least one nomination. The chamber also votes
               on the best presiding officer of the day.
             </p>
-            <p class="descriptionText">
+            <p class="descriptionText" id="awardText3">
               Awards are also given out for best legislation (voted on by all
               chambers), quality speaker (highest speaking averages across the
               entire tournament), and small/large school sweepstakes (or team
@@ -228,17 +633,19 @@
           color: black;
         "
       >
-        <p class="title" style="width: 100%; text-align: center">
+        <p class="title" id="videoTitle" style="width: 100%; text-align: center">
           Example Video
         </p>
         <div
           style="
             background-color: #1c255a;
+            border: #5a73aa 4px solid;
             border-radius: 30px;
             padding: 40px;
             margin: auto;
             width: fit-content;
           "
+          id="videoCont"
         >
           <iframe
             src="https://player.vimeo.com/video/836726345?h=d44abcc3f5&byline=0"
@@ -268,6 +675,7 @@
             text-align: center;
             font-family: googleSans, serif;
           "
+          id="videoNote"
         >
           <br />Note: ICDA has slightly different rules and format than NSDA
           Nationals. Refer to our rules section for the ICDA rules.
@@ -296,9 +704,9 @@
             text-decoration: none;
             color: white;
           "
-          >NSDA Congressional Debate Guide
-          <img src="/public/images/externalLink.png"
-        /></a>
+          id="internalGuide"
+          >NSDA Congressional Debate Guide →
+          </a>
       </section>
     </div>
 

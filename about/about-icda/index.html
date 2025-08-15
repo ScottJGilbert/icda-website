@@ -9,6 +9,275 @@
     <script src="/public/global.js"></script>
     <script src="script.js"></script>
 
+    <script type="module">
+      import {
+        animate,
+        scroll,
+        inView,
+        stagger,
+        spring,
+        hover,
+        press,
+        styleEffect,
+        motionValue,
+        transformValue,
+      } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+
+      inView(document.getElementById("pageHeader"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("aboutNavigation"),
+          { x: [-20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("aboutICDAText"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("headerPolygon"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        animate(
+          document.getElementById("pageHeadTitle"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+        animate(
+          document.getElementById("pageHeaderDescription"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.2,
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("aboutNavigation"), { x: -20 }),
+            animate(document.getElementById("aboutICDAText"), { x: 20 });
+            animate(document.getElementById("headerPolygon"), { x: 20 });
+            animate(document.getElementById("pageHeadTitle"), { x: 20 });
+            animate(document.getElementById("pageHeaderDescription"), { x: 20 });
+        };
+      });
+
+      inView(document.getElementById("tournamentsDescription"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("tournamentsTitle"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("descriptTextTourneys"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("navLink1"),
+          { scaleX: 1 , opacity: 100 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.1,
+          }
+        );
+
+        animate(
+          document.getElementById("navLink2"),
+          { scaleX: 1 , opacity: 100 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.2,
+          }
+        );
+
+        animate(
+          document.getElementById("navLink3"),
+          { scaleX: 1 , opacity: 100 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.3,
+          }
+        );
+
+        animate(
+          document.getElementById("navLink4"),
+          { scaleX: 1 , opacity: 100 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.4,
+          }
+        );
+
+        animate(
+          document.getElementById("navLink5"),
+          { scaleX: 1 , opacity: 100 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.5,
+          }
+        );
+
+        animate(
+          document.getElementById("navLink6"),
+          { scaleX: 1 , opacity: 100 },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+            delay: 0.5,
+          }
+        );
+
+        animate(
+          document.getElementById("bottomTextTourneys"),
+          { x: [-20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("tournamentsTitle"), { x: 20 });
+            animate(document.getElementById("descriptTextTourneys"), { x: 20 });
+            animate(document.getElementById("navLink1"), { scaleX: 0.9, opacity: 0 });
+            animate(document.getElementById("navLink2"), { scaleX: 0.9, opacity: 0 });
+            animate(document.getElementById("navLink3"), { scaleX: 0.9, opacity: 0 });
+            animate(document.getElementById("navLink4"), { scaleX: 0.9, opacity: 0 });
+            animate(document.getElementById("navLink5"), { scaleX: 0.9, opacity: 0 });
+            animate(document.getElementById("navLink6"), { scaleX: 0.9, opacity: 0 });
+            animate(document.getElementById("bottomTextTourneys"), { x: -20 });            
+        };
+      });
+
+      inView(document.getElementById("noviceWorkShop"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("noviceWorkshopImage"),
+          { x: [-20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+
+        animate(
+          document.getElementById("noviceWorkShopTextContainer"),
+          { x: [20, 0] },
+          {
+            duration: 0.7,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 }),
+            animate(document.getElementById("noviceWorkshopImage"), { x: -20 }),
+            animate(document.getElementById("noviceWorkShopTextContainer"), { x: 20 });
+        };
+      });
+
+
+      inView(document.getElementById("impact"), (element) => {
+        animate(
+          element,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.7,
+            type: spring,
+            bounce: 0.3,
+            easing: [0.17, 0.55, 0.55, 1],
+          }
+        );
+        
+        return () => {
+          animate(element, { opacity: 0, scale: 0.9 })
+        };
+      });
+
+
+
+
+
+
+
+      hover(document.getElementsByClassName("tournamentBox"), (element) => {
+        animate(element, { scale: 1.1 });
+
+        return () => animate(element, { scale: 1 });
+      });
+
+      press(document.getElementsByClassName("tournamentBox"), (element) => {
+        animate(element, { scale: 0.9 });
+
+        return () => animate(element, { scale: 1 });
+      });
+    </script>
+
+
+
     <script
       src="https://unpkg.com/react@18/umd/react.development.js"
       crossorigin
@@ -32,12 +301,14 @@
             <polygon
               points="20 0 200 0 180 40 0 40"
               style="fill: #142039"
+              id="headerPolygon"
             ></polygon>
             <text
               x="40"
               y="29"
               color="white"
               style="fill: white; font-family: langdon, serif; font-size: 30px"
+              id="aboutICDAText"
             >
               ABOUT ICDA
             </text>
@@ -64,7 +335,7 @@
           </div>
           <br />
           <br />
-          <p class="title" style="font-family: 'Arial Black', serif">
+          <p class="title" style="font-family: 'Arial Black', serif" id="pageHeadTitle">
             <b>We make debate happen.</b>
           </p>
           <p id="pageHeaderDescription">
@@ -76,8 +347,8 @@
       </div>
       <div id="tournamentsDescription" class="division">
         <section>
-          <p class="title">Tournaments</p>
-          <p class="descriptionText" style="padding-bottom: 10px">
+          <p class="title" id="tournamentsTitle">Tournaments</p>
+          <p class="descriptionText" style="padding-bottom: 10px" id="descriptTextTourneys">
             Each year, ICDA partners with five different high schools and Harper
             College in Palatine to host six Congressional Debate tournaments,
             giving hundreds of debaters across the state the opportunity to
@@ -85,38 +356,38 @@
             peers.
           </p>
           <div id="boxesContainer">
-            <a href="../../tournaments/icda-1" class="tournamentBox"
+            <a href="../../tournaments/icda-1" class="tournamentBox" id="navLink1"
               ><svg width="160" height="10">
                 <rect width="200" height="10" style="fill: #8a8a8a"></rect></svg
               >ICDA 1</a
             >
-            <a href="../../tournaments/icda-2" class="tournamentBox"
+            <a href="../../tournaments/icda-2" class="tournamentBox" id="navLink2"
               ><svg width="160" height="10">
                 <rect width="200" height="10" style="fill: #8a8a8a"></rect></svg
               >ICDA 2</a
             >
-            <a href="../../tournaments/icda-3" class="tournamentBox"
+            <a href="../../tournaments/icda-3" class="tournamentBox" id="navLink3"
               ><svg width="160" height="10">
                 <rect width="200" height="10" style="fill: #8a8a8a"></rect></svg
               >ICDA 3</a
             >
-            <a href="../../tournaments/icda-4" class="tournamentBox"
+            <a href="../../tournaments/icda-4" class="tournamentBox" id="navLink4"
               ><svg width="160" height="10">
                 <rect width="160" height="10" style="fill: #8a8a8a"></rect></svg
               >ICDA 4</a
             >
-            <a href="../../tournaments/icda-5" class="tournamentBox"
+            <a href="../../tournaments/icda-5" class="tournamentBox" id="navLink5"
               ><svg width="160" height="10">
                 <rect width="160" height="10" style="fill: #8a8a8a"></rect></svg
               >ICDA 5</a
             >
-            <a href="../../tournaments/icda-state" class="tournamentBox"
+            <a href="../../tournaments/icda-state" class="tournamentBox" id="navLink6"
               ><svg width="160" height="10">
                 <rect width="200" height="10" style="fill: #8a8a8a"></rect></svg
               >ICDA State</a
             >
           </div>
-          <p class="descriptionText" style="padding-top: 10px">
+          <p class="descriptionText" style="padding-top: 10px" id="bottomTextTourneys">
             The fifth tournament, ICDA 5, is also an approved Tournament of
             Champions (TOC) bid tournament. The top six TOC finalists will earn
             a bid to qualify to compete at the TOC championship in April.
