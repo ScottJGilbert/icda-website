@@ -49,8 +49,30 @@ button:hover {
 
 #mainContent img {
   max-height: 400px;
+  border-radius: 30px;
 }
 
 #viewer {
   font-family: googleSans, Arial;
+}
+
+#viewer p {
+  margin-top: 10px;
+  line-height: 1.6;
+  font-size: 18px;
+}
+
+#viewer h1,
+#viewer h2,
+#viewer h3 {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+#viewer h1 {
+  font-size: 30px;
+}
+
+#viewer h2 {
+  font-size: 25px;
 }

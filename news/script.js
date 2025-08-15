@@ -26,8 +26,17 @@ function changePage(amount) {
     pageLocation === -1 ? 1 : Number(queryString.slice(pageLocation + 5));
   queryParams.set("page", page + amount);
 
-  document.getElementById("downArrow").disabled = page + amount === 1;
-  document.getElementById("upArrow").disabled = page + amount === numPages;
+  if (page + amount === 1) {
+    document.getElementById("downArrow").style.display = "none";
+  } else {
+    document.getElementById("downArrow").style.display = "inline";
+  }
+
+  if (page + amount === numPages) {
+    document.getElementById("upArrow").style.display = "none";
+  } else {
+    document.getElementById("upArrow").style.display = "inline";
+  }
 }
 
 async function fetchData() {
@@ -49,12 +58,12 @@ async function fetchData() {
     const box = document.createElement("div");
     box.className = "post";
     box.innerHTML = `
-    <div class="division"><section>
+    <div class="post">
       <img src="${post.image_url}" />
       <h2>${post.title}</h2>
-      <h3><i>${new Date(post.creation_date)}</i></h3>
+      <h3><i>${new Date(post.creation_date).toLocaleDateString()}</i></h3>
       <a href="${post.slug}">Read More →</a>
-    </div></section>
+    </div>
     `;
 
     document.getElementById("list").appendChild(box);

@@ -1,7 +1,6 @@
 @font-face {
   font-family: "CustomFont";
-  src: url("fonts/CustomFont.woff2") format("woff2"),
-    url("fonts/CustomFont.woff") format("woff");
+  src: url("fonts/googleSans.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -11,6 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: CustomFont, Arial, sans-serif;
 }
 
 #loginForm {
