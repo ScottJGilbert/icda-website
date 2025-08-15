@@ -84,15 +84,16 @@ function displayData() {
 
       dataForm.appendChild(dataFormDiv);
     }
-    dataFormContainer.appendChild(dataForm);
-    div.appendChild(dataFormContainer);
 
     const dataSubmitButton = document.createElement("button");
     dataSubmitButton.innerText = "Save Archive Data";
     dataSubmitButton.onclick = () => {
       updateData(season.id);
     };
-    div.appendChild(dataSubmitButton);
+
+    dataFormContainer.appendChild(dataForm);
+    dataFormContainer.appendChild(dataSubmitButton);
+    div.appendChild(dataFormContainer);
 
     const legislationContainer = document.createElement("div");
     legislationContainer.className = "legislationContainer";

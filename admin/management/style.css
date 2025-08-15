@@ -42,3 +42,9 @@ button:hover {
 .redButton {
   background-color: rgb(119, 0, 0);
 }
+
+.user {
+  padding: 10px;
+  border: #242557 4px solid;
+  border-radius: 20px;
+}
