@@ -38,7 +38,7 @@ async function fetchData() {
 
       schoolDiv.appendChild(schoolForm);
       schoolDiv.innerHTML += `
-      <button onclick="editSchool('${school.id}')">Save</button>
+      <button class="editSchoolButton" onclick="editSchool('${school.id}')">Save</button>
       <span> OR </span>
       <button class="redButton" onclick="deleteSchool('${school.id}')">Delete School</button>
       `;

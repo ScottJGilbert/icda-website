@@ -42,8 +42,9 @@ class File
 
   public function deleteLegislation($tournament_id)
   {
-    $targetFile = realpath(__DIR__ . "/../../tournaments/icda-$tournament_id/legislation.pdf");
+    $tournament_name = $tournament_id === 6 ? 'state' : (string) $tournament_id;
 
+    $targetFile = PROJECT_ROOT . "/tournaments/icda-$tournament_name/legislation.pdf";
     if (file_exists($targetFile)) {
       if (!unlink($targetFile)) {
         Response::error('Failed to delete legislation file.', 500);
@@ -284,7 +285,7 @@ class File
   public function deleteImage($imagePath)
   {
     if (file_exists(PROJECT_ROOT . $imagePath)) {
-      if (unlink($imagePath)) {
+      if (unlink(PROJECT_ROOT . $imagePath)) {
         exit;
       } else {
         Response::error('Failed to delete image.', 500);

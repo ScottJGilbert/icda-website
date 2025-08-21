@@ -106,13 +106,22 @@ function addRule() {
   ruleDiv.className = "rule";
   const ruleForm = document.createElement("form");
   ruleForm.id = "rule" + rule.id;
+  ruleForm.className = "ruleForm";
   ruleForm.innerHTML = `
-    <label for="${rule.id}Name">Rule Name <span style="color: red">*</span></label>
-    <input type="text" id="${rule.id}Name" name="name" placeholder="Name" value="${rule.name}" required />
-    <label for="${rule.id}Number">Rule Number <span style="color: red">*</span></label>
-    <input type="number" id="${rule.id}Number" name="number" placeholder="Gaveling Procedure" value="${rule.number}" required />
-    <label for="summary">Rule Summary <span style="color: red">*</span></label>
-    `;
+      <div>
+        <label for="${rule.id}Name">
+          <input type="text" id="${rule.id}Name" name="name" placeholder="Name" value="${rule.name}" required />
+          Rule Name <span style="color: red">*</span>
+        </label>
+        <label for="${rule.id}Number">
+          <input type="number" id="${rule.id}Number" name="number" placeholder="12" value="${rule.number}" required />
+          Rule Number <span style="color: red">*</span>
+        </label>
+      </div>
+      `;
+
+  const summaryLabel = document.createElement("label");
+  summaryLabel.htmlFor = "summary";
 
   const textarea = document.createElement("textarea");
   textarea.id = rule.id + "summary";
@@ -120,12 +129,15 @@ function addRule() {
   textarea.placeholder = "Presiding officers must...";
   textarea.spellcheck = "default";
   textarea.defaultValue = rule.summary;
-  ruleForm.appendChild(textarea);
+  summaryLabel.appendChild(textarea);
+
+  summaryLabel.innerHTML += 'Rule Summary <span style="color: red">*</span>';
+  ruleForm.appendChild(summaryLabel);
 
   ruleDiv.appendChild(ruleForm);
   ruleDiv.innerHTML += `
-    <button onclick="deleteRule(${rule.id})">Delete Rule</button>
-    `;
+      <button class="redButton" onclick="deleteRule(${rule.id})">Delete Rule</button>
+      `;
 
   document.getElementById("rules").appendChild(ruleDiv);
 

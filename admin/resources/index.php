@@ -34,17 +34,28 @@ require_once __DIR__ . '/../middleware.php';
       <section>
         <p class="title">New Rule</p>
         <div>
-          <form id="add-rule" style="display: flex; flex-direction: column; gap: 4px;">
-            <div>
+          <form id="add-rule" style="
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                border-radius: 20px;
+              ">
+            <div style="margin-top: 20px">
               <label for="name">
                 <input type="text" id="name" name="name" placeholder="Gaveling Procedure" required />
                 Rule Name <span style="color: red">*</span>
               </label>
-              <label for="number"> <input type="number" id="number" name="number" required />
+              <label for="number">
+                <input type="number" id="number" name="number" required />
                 Rule Number <span style="color: red">*</span>
               </label>
             </div>
-            <div style="display: flex; flex-direction: column; gap: 2px; margin-top: 4px;">
+            <div style="
+                  display: flex;
+                  flex-direction: column;
+                  gap: 2px;
+                  margin-top: 4px;
+                ">
               <label for="summary">Rule Summary <span style="color: red">*</span>
                 <textarea id="summary" name="summary" spellcheck="default" required></textarea>
               </label>
@@ -52,21 +63,19 @@ require_once __DIR__ . '/../middleware.php';
           </form>
           <button onclick="addRule()">Add Rule</button>
         </div>
-
       </section>
     </div>
 
     <div class="division">
       <section>
         <p class="title">Update Rules</p>
-        <button onclick="updateRules()" style="background-color: darkgreen;">
+        <button onclick="updateRules()" style="background-color: darkgreen; border-radius: 20px">
           <h1>Save Rules</h1>
         </button>
         <div id="rules"></div>
       </section>
     </div>
   </div>
-
 
   <!-- Everything above is actual page content and varies by file -->
 

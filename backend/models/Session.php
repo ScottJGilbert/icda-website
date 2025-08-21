@@ -42,6 +42,10 @@ class Session
 		$validSession = $stmt->fetch(PDO::FETCH_ASSOC); // Returns false if not found
 
 		if ($validSession !== false) {
+			$sql = "UPDATE sessions SET last_seen = CURRENT_TIMESTAMP WHERE (session_id = :sessionId AND DATE_ADD(last_seen, INTERVAL 30 MINUTE) > NOW())";
+			$stmt = $this->pdo->prepare($sql);
+			$stmt->bindParam(":sessionId", $sessionId, PDO::PARAM_STR);
+			$stmt->execute();
 			$userModel = new User();
 			return $userModel->findAccessByUUID($validSession['user_uuid']);
 		} else {
@@ -75,7 +79,7 @@ class Session
 
 	public function fetchSessions(): array
 	{
-		$sql = "SELECT * FROM sessions";
+		$sql = "SELECT * FROM sessions ORDER BY last_seen DESC";
 		$stmt = $this->pdo->prepare($sql);
 		$stmt->execute();
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);

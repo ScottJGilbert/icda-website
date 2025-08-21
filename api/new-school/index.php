@@ -52,7 +52,7 @@ if (!isset($input['name']) || trim($input['name']) === '') {
   exit;
 }
 
-if (isset($_FILES['image'])) {
+if (isset($_FILES['image']) && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE) {
   if ($_FILES['image']['error'] !== UPLOAD_ERR_OK) {
     if ($_FILES['image']['error'] === UPLOAD_ERR_INI_SIZE) {
       Response::error('Image exceeds 8MB limit.', 400);

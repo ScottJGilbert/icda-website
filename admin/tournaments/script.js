@@ -75,8 +75,12 @@ async function fetchSchoolDropdown() {
 }
 
 function addContact(tournamentId) {
-  const nameInput = document.getElementById(tournamentId + "contact_name");
-  const emailInput = document.getElementById(tournamentId + "contact_email");
+  const nameInput = document.getElementById(
+    "tournament" + tournamentId + "contact_name"
+  );
+  const emailInput = document.getElementById(
+    "tournament" + tournamentId + "contact_email"
+  );
   const name = nameInput.value.trim();
   const email = emailInput.value.trim();
 
@@ -90,11 +94,11 @@ function addContact(tournamentId) {
     .getElementById("tournament" + tournamentId + "Contacts")
     .querySelector(".contactList");
   contactList.innerHTML += `
-  <div class="contact" id="${tournamentId + trimmedName}contact">
+  <div class="contact" id="${"tournament" + tournamentId + trimmedName}contact">
     <p class="contactName">${name}</p>
     <p class="contactEmail">(${email})</p>
     <button type="button" onclick="deleteContact('${
-      tournamentId + trimmedName + "contact"
+      "tournament" + tournamentId + trimmedName + "contact"
     }')">Delete Contact</button>
   </div>
   `;

@@ -126,7 +126,6 @@
   border-bottom: white 2px solid;
   overflow: hidden;
   display: flex;
-  justify: space-between;
 }
 
 .mobileDropDownCategory a {
@@ -171,7 +170,6 @@
   text-decoration: none;
   color: white;
   font-family: Ebrima, Serif, serif;
-  vertical-align: middle;
 }
 
 .mobileSubLink:hover {
@@ -503,7 +501,6 @@ section {
   overflow: hidden;
   margin: auto;
   white-space: nowrap;
-  border: #242557 6px solid;
 }
 
 .slide {
@@ -512,6 +509,9 @@ section {
   vertical-align: middle;
   display: none;
   object-fit: cover;
+  border: #242557 6px solid;
+  border-radius: 30px;
+  overflow: hidden;
 }
 
 .slide img {
@@ -520,6 +520,8 @@ section {
   width: 100%;
   max-height: 625px;
   object-fit: cover;
+  border-radius: 26px;
+  display: block;
 }
 
 .slide p {

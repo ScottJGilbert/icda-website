@@ -72,9 +72,10 @@ require_once __DIR__ . '/../middleware.php';
               <select id="schoolSelect1" class="schoolSelect"></select>
             </div>
             <div id="tournament1Contacts" class="contacts">
-              <p class="descriptionText">Tournament Contacts:</p>
-              <input id="1contact_name" type="text" placeholder="John Smith" name="contact_name" />
-              <input id="1contact_email" type="email" placeholder="johnsmith@example.com" name="contact_email" />
+              <p class="descriptionText">Tournament Contacts<span style="color: red;">*</span></p>
+              <input id="tournament1contact_name" type="text" placeholder="John Smith" name="contact_name" />
+              <input id="tournament1contact_email" type="email" placeholder="johnsmith@example.com"
+                name="contact_email" />
               <button type="button" onclick="addContact(1)">Add Contact</button>
               <div class="contactList"></div>
             </div>
@@ -122,9 +123,10 @@ require_once __DIR__ . '/../middleware.php';
               <select id="schoolSelect2" class="schoolSelect"></select>
             </div>
             <div id="tournament2Contacts" class="contacts">
-              <p class="descriptionText">Tournament Contacts:</p>
-              <input id="2contact_name" type="text" placeholder="John Smith" name="contact_name" />
-              <input id="2contact_email" type="email" placeholder="johnsmith@example.com" name="contact_email" />
+              <p class="descriptionText">Tournament Contacts<span style="color: red;">*</span></p>
+              <input id="tournament2contact_name" type="text" placeholder="John Smith" name="contact_name" />
+              <input id="tournament2contact_email" type="email" placeholder="johnsmith@example.com"
+                name="contact_email" />
               <button type="button" onclick="addContact(2)">Add Contact</button>
               <div class="contactList"></div>
             </div>
@@ -172,9 +174,10 @@ require_once __DIR__ . '/../middleware.php';
               <select id="schoolSelect3" class="schoolSelect"></select>
             </div>
             <div id="tournament3Contacts" class="contacts">
-              <p class="descriptionText">Tournament Contacts:</p>
-              <input id="3contact_name" type="text" placeholder="John Smith" name="contact_name" />
-              <input id="3contact_email" type="email" placeholder="johnsmith@example.com" name="contact_email" />
+              <p class="descriptionText">Tournament Contacts<span style="color: red;">*</span></p>
+              <input id="tournament3contact_name" type="text" placeholder="John Smith" name="contact_name" />
+              <input id="tournament3contact_email" type="email" placeholder="johnsmith@example.com"
+                name="contact_email" />
               <button type="button" onclick="addContact(3)">Add Contact</button>
               <div class="contactList"></div>
             </div>
@@ -222,9 +225,10 @@ require_once __DIR__ . '/../middleware.php';
               <select id="schoolSelect4" class="schoolSelect"></select>
             </div>
             <div id="tournament4Contacts" class="contacts">
-              <p class="descriptionText">Tournament Contacts:</p>
-              <input id="4contact_name" type="text" placeholder="John Smith" name="contact_name" />
-              <input id="4contact_email" type="email" placeholder="johnsmith@example.com" name="contact_email" />
+              <p class="descriptionText">Tournament Contacts<span style="color: red;">*</span></p>
+              <input id="tournament4contact_name" type="text" placeholder="John Smith" name="contact_name" />
+              <input id="tournament4contact_email" type="email" placeholder="johnsmith@example.com"
+                name="contact_email" />
               <button type="button" onclick="addContact(4)">Add Contact</button>
               <div class="contactList"></div>
             </div>
@@ -272,9 +276,10 @@ require_once __DIR__ . '/../middleware.php';
               <select id="schoolSelect5" class="schoolSelect"></select>
             </div>
             <div id="tournament5Contacts" class="contacts">
-              <p class="descriptionText">Tournament Contacts:</p>
-              <input id="5contact_name" type="text" placeholder="John Smith" name="contact_name" />
-              <input id="5contact_email" type="email" placeholder="johnsmith@example.com" name="contact_email" />
+              <p class="descriptionText">Tournament Contacts<span style="color: red;">*</span></p>
+              <input id="tournament5contact_name" type="text" placeholder="John Smith" name="contact_name" />
+              <input id="tournament5contact_email" type="email" placeholder="johnsmith@example.com"
+                name="contact_email" />
               <button type="button" onclick="addContact(5)">Add Contact</button>
               <div class="contactList"></div>
             </div>
@@ -318,9 +323,10 @@ require_once __DIR__ . '/../middleware.php';
               </label>
             </div>
             <div id="tournament6Contacts" class="contacts">
-              <p class="descriptionText">Tournament Contacts:</p>
-              <input id="6contact_name" type="text" placeholder="John Smith" name="contact_name" />
-              <input id="6contact_email" type="email" placeholder="johnsmith@example.com" name="contact_email" />
+              <p class="descriptionText">Tournament Contacts<span style="color: red;">*</span></p>
+              <input id="tournament6contact_name" type="text" placeholder="John Smith" name="contact_name" />
+              <input id="tournament6contact_email" type="email" placeholder="johnsmith@example.com"
+                name="contact_email" />
               <button type="button" onclick="addContact(6)">Add Contact</button>
               <div class="contactList"></div>
             </div>

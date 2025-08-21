@@ -12,7 +12,7 @@ class Rule
 
   public function fetchRules()
   {
-    $stmt = $this->pdo->prepare("SELECT * FROM rules");
+    $stmt = $this->pdo->prepare("SELECT * FROM rules ORDER BY number");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }

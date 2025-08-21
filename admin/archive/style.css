@@ -32,6 +32,10 @@ button:hover {
   background-color: #0056b3;
 }
 
+input {
+  margin-right: 15px;
+}
+
 .dataFormContainer {
   border-radius: 20px;
   border: #242557 4px solid;
@@ -46,7 +50,7 @@ button:hover {
 }
 
 .dataForm label {
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .redButton {

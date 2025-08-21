@@ -65,41 +65,6 @@ function closeMobileMenu() {
 }
 
 async function initialize() {
-  let presidentName = "";
-  let presidentEmail = "";
-  let commissionerName = "";
-  let commissionerEmail = "";
-
-  try {
-    const res = await fetch("/api/fetch-oversight/index.php?id=1");
-    if (!res.ok) {
-      console.error("Error fetching president.");
-      return;
-    }
-    const json = await res.json();
-    const data = await json.data;
-
-    presidentName = data.name;
-    presidentEmail = data.email;
-  } catch (error) {
-    console.error("There was an error fetching data.");
-  }
-
-  try {
-    const res = await fetch("/api/fetch-oversight/index.php?id=6");
-    if (!res.ok) {
-      console.error("Error fetching membership/training commissioner.");
-      return;
-    }
-    const json = await res.json();
-    const data = await json.data;
-
-    commissionerName = data.name;
-    commissionerEmail = data.email;
-  } catch (error) {
-    console.error("There was an error fetching data.");
-  }
-
   topElement = document.getElementById("top");
   homeElement = document.getElementById("home");
   headerElement = document.getElementById("header");
@@ -202,14 +167,6 @@ async function initialize() {
     };
   }
 
-  document.getElementById("presidentLink").href = "mailto:" + presidentEmail;
-  document.getElementById("commissionerLink").href =
-    "mailto:" + commissionerEmail;
-  document.getElementById("presidentLink").textContent =
-    presidentName + " - President";
-  document.getElementById("commissionerLink").textContent =
-    commissionerName + " - Membership/Training Commissioner";
-
   initializeCarousel();
   changeScreenSizeMain(document.documentElement.clientWidth);
   setTimeout(function () {
@@ -219,6 +176,53 @@ async function initialize() {
       behavior: "instant",
     });
   }, 10);
+
+  let presidentName = "";
+  let presidentEmail = "";
+  let commissionerName = "";
+  let commissionerEmail = "";
+
+  try {
+    const res = await fetch("/api/fetch-oversight/index.php?id=1");
+    if (!res.ok) {
+      console.error("Error fetching president.");
+      return;
+    }
+    const json = await res.json();
+    const data = await json.data;
+
+    presidentName = data.name;
+    presidentEmail = data.email;
+    presidentImageUrl = data.image_url;
+  } catch (error) {
+    console.error("There was an error fetching data.");
+  }
+
+  try {
+    const res = await fetch("/api/fetch-oversight/index.php?id=6");
+    if (!res.ok) {
+      console.error("Error fetching membership/training commissioner.");
+      return;
+    }
+    const json = await res.json();
+    const data = await json.data;
+
+    commissionerName = data.name;
+    commissionerEmail = data.email;
+  } catch (error) {
+    console.error("There was an error fetching data.");
+  }
+
+  document.getElementById("presidentLink").href = "mailto:" + presidentEmail;
+  document.getElementById("commissionerLink").href =
+    "mailto:" + commissionerEmail;
+  document.getElementById("presidentLink").textContent =
+    presidentName + " - President";
+  document.getElementById("commissionerLink").textContent =
+    commissionerName + " - Membership/Training Commissioner";
+
+  document.getElementById("presidentNameHome").textContent = presidentName;
+  document.getElementById("presidentImage").src = presidentImageUrl;
 }
 
 function changeTop() {

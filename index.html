@@ -34,7 +34,7 @@
         );
 
         animate(
-          document.getElementById("timWatersImg"),
+          document.getElementById("presidentImg"),
           { x: [-20, 0] },
           {
             duration: 0.7,
@@ -53,7 +53,7 @@
 
         return () => {
           animate(element, { opacity: 0, scale: 0.9 }),
-            animate(document.getElementById("timWatersImg"), { x: -20 }),
+            animate(document.getElementById("presidentImg"), { x: -20 }),
             animate(document.getElementById("theMessage"), { x: 20 });
         };
       });
@@ -417,14 +417,12 @@
             of congressional debate competition across Illinois. We stress the
             educational importance of congressional debate activities, along
             with a spirit of cooperation and friendship amongst our membership.
-            <br /><br /><i>- Tim Waters, Former ICDA President</i>
+            <br /><br /><i
+              >- <span id="presidentNameHome"></span>, ICDA President</i
+            >
           </p>
           <div class="imageContainer">
-            <img
-              src="public/images/timWaters.jpeg"
-              alt="Tim Waters"
-              id="timWatersImg"
-            />
+            <img alt="ICDA President" id="presidentImage" />
           </div>
         </section>
       </div>
@@ -447,7 +445,7 @@
             <p>Join ICDA →</p>
           </a>
         </div>
-        <section id="carouselAdditional">
+        <section id="carouselAdditional" style="margin-bottom: -245px">
           <span class="carouselButton" id="leftCarousel" style="left: 0">
             <img
               style="transform: scaleX(-1)"

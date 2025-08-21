@@ -31,8 +31,13 @@ button:hover {
   background-color: #0056b3;
 }
 
+.editSchoolButton {
+  translate: 0px -5px;
+}
+
 .redButton {
   background-color: rgb(119, 0, 0);
+  translate: 0px -5px;
 }
 
 .school {

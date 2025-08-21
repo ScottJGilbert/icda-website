@@ -53,7 +53,7 @@ function displayData() {
 
         const schoolLabel = document.createElement("label");
         schoolLabel.htmlFor = season.id + "SchoolInput" + i;
-        schoolLabel.textContent = `ICDA ${i} School:`;
+        schoolLabel.textContent = `ICDA ${i} School`;
         dataFormDiv.appendChild(schoolLabel);
       }
 
@@ -65,10 +65,10 @@ function displayData() {
       dateLabel.htmlFor = season.id + "DateInput" + i;
       if (i !== 6) {
         dateInput.value = season[`icda_${i}_date`];
-        dateLabel.textContent = `ICDA ${i} Date:`;
+        dateLabel.textContent = `ICDA ${i} Date`;
       } else {
         dateInput.value = season.icda_state_date;
-        dateLabel.textContent = `ICDA State Date:`;
+        dateLabel.textContent = `ICDA State Date`;
       }
       dataFormDiv.appendChild(dateInput);
       dataFormDiv.appendChild(dateLabel);

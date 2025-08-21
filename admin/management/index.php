@@ -47,15 +47,15 @@ require_once __DIR__ . '/../middleware.php';
                 Name <span style="color: red">*</span>
               </label>
               <label for="username">
-                <input id="username" name="username" type="text" required />
+                <input id="username" name="username" type="text" autocomplete="off" required />
                 Username <span style="color: red">*</span>
               </label>
               <label for="password">
-                <input id="password" name="password" type="password" required />
+                <input id="password" name="password" type="password" autocomplete="new-password" required />
                 Password <span style="color: red">*</span>
               </label>
               <label for="password">
-                <input id="confirmPassword" type="password" required />
+                <input id="confirmPassword" type="password" autocomplete="new-password" required />
                 Confirm Password <span style="color: red">*</span>
               </label>
             </div>

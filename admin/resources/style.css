@@ -48,3 +48,8 @@ button:hover {
   flex-direction: column;
   gap: 5px;
 }
+
+#mainContent textarea {
+  display: block;
+  width: 99%;
+}
