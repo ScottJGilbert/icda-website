@@ -284,8 +284,8 @@ class File
 
   public function deleteImage($imagePath)
   {
-    if (file_exists(PROJECT_ROOT . $imagePath)) {
-      if (unlink(PROJECT_ROOT . $imagePath)) {
+    if (file_exists(PROJECT_ROOT . "/public/uploads/" . $imagePath)) {
+      if (unlink(PROJECT_ROOT . "/public/uploads/" . $imagePath)) {
         exit;
       } else {
         Response::error('Failed to delete image.', 500);
