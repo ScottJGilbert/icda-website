@@ -286,7 +286,6 @@ class File
   {
     if (file_exists(PROJECT_ROOT . $imagePath)) {
       if (unlink(PROJECT_ROOT . $imagePath)) {
-        exit;
       } else {
         Response::error('Failed to delete image.', 500);
         exit;

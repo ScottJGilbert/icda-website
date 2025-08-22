@@ -34,11 +34,11 @@ async function fetchData() {
       for (const contact of tournament.contacts) {
         const trimmedName = contact.name.replace(/\s+/g, "");
         contactList.innerHTML += `
-        <div class="contact" id="${i + trimmedName}contact">
+        <div class="contact" id="${"tournament" + i + trimmedName}contact">
           <p class="contactName">${contact.name}</p> 
           <p class="contactEmail">(${contact.email})</p>
           <button type="button" onclick="deleteContact(${
-            i + contact.name
+            "tournament" + i + trimmedName + "contact"
           }')">Delete Contact</button>
         </div>
         `;
