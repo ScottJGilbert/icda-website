@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>| ICDA</title>
+    <link rel="icon" href="/public/images/favicon.png" />
+    <link rel="stylesheet" href="/public/global.css" />
+    <link rel="stylesheet" href="../archive.css" />
+    <script src="/public/global.js"></script>
+    <script src="../season-script.js"></script>
+
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+
+  <body>
+    <div id="mobile-menu-root"></div>
+    <div id="top"></div>
+
+    <!-- Everything below is actual page content and varies by file -->
+
+    <div id="mainContent">
+      <div class="division">
+        <section>
+          <h1 id="season" class="title">Archive</h1>
+        </section>
+      </div>
+      <div class="division">
+        <section>
+          <div id="icda1">
+            <h2 class="title">ICDA 1</h2>
+            <p id="icda1Name" class="descriptionText"></p>
+            <p id="icda1Date" class="descriptionText"></p>
+            <a
+              id="icda1Legislation"
+              href="icda-1-legislation.pdf"
+              target="_blank"
+              >Legislation</a
+            >
+            <a id="icda1Results" href="icda-1-results.pdf" target="_blank"
+              >Results</a
+            >
+          </div>
+        </section>
+      </div>
+      <div class="division">
+        <section>
+          <div id="icda2">
+            <h2 class="title">ICDA 2</h2>
+            <p id="icda2Name" class="descriptionText"></p>
+            <p id="icda2Date" class="descriptionText"></p>
+            <a
+              id="icda2Legislation"
+              href="icda-2-legislation.pdf"
+              target="_blank"
+              >Legislation</a
+            >
+            <a id="icda2Results" href="icda-2-results.pdf" target="_blank"
+              >Results</a
+            >
+          </div>
+        </section>
+      </div>
+      <div class="division">
+        <section>
+          <div id="icda3">
+            <h2 class="title">ICDA 3</h2>
+            <p id="icda3Name" class="descriptionText"></p>
+            <p id="icda3Date" class="descriptionText"></p>
+            <a
+              id="icda3Legislation"
+              href="icda-3-legislation.pdf"
+              target="_blank"
+              >Legislation</a
+            >
+            <a id="icda3Results" href="icda-3-results.pdf" target="_blank"
+              >Results</a
+            >
+          </div>
+        </section>
+      </div>
+      <div class="division">
+        <section>
+          <div id="icda4">
+            <h2 class="title">ICDA 4</h2>
+            <p id="icda4Name" class="descriptionText"></p>
+            <p id="icda4Date" class="descriptionText"></p>
+            <a
+              id="icda4Legislation"
+              href="icda-4-legislation.pdf"
+              target="_blank"
+              >Legislation</a
+            >
+            <a id="icda4Results" href="icda-4-results.pdf" target="_blank"
+              >Results</a
+            >
+          </div>
+        </section>
+      </div>
+      <div class="division">
+        <section>
+          <div id="icda5">
+            <h2 class="title">ICDA 5</h2>
+            <p id="icda5Name" class="descriptionText"></p>
+            <p id="icda5Date" class="descriptionText"></p>
+            <a
+              id="icda5Legislation"
+              href="icda-5-legislation.pdf"
+              target="_blank"
+              >Legislation</a
+            >
+            <a id="icda5Results" href="icda-5-results.pdf" target="_blank"
+              >Results</a
+            >
+          </div>
+        </section>
+      </div>
+      <div class="division">
+        <section>
+          <div id="icdaState">
+            <h2 class="title">ICDA State</h2>
+            <p id="icdaStateName" class="descriptionText">Harper College</p>
+            <p id="icdaStateDate" class="descriptionText"></p>
+            <a
+              id="icdaStateLegislation"
+              href="icda-state-legislation.pdf"
+              target="_blank"
+              >Legislation</a
+            >
+            <a
+              id="icdaStateResults"
+              href="icda-state-results.pdf"
+              target="_blank"
+              >Results</a
+            >
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Everything above is actual page content and varies by file -->
+
+    <footer id="footer"></footer>
+
+    <!-- React components (Babel-in-browser) -->
+    <script type="text/babel" src="/public/components/mobile-menu.jsx"></script>
+    <script type="text/babel" src="/public/components/header.jsx"></script>
+    <script type="text/babel" src="/public/components/footer.jsx"></script>
+
+    <!-- React entry point -->
+    <script type="text/babel">
+      const mobileRoot = ReactDOM.createRoot(
+        document.getElementById("mobile-menu-root")
+      );
+      mobileRoot.render(<MobileMenu />);
+
+      const headerRoot = ReactDOM.createRoot(document.getElementById("top"));
+      headerRoot.render(<TopHeader />);
+
+      const footerRoot = ReactDOM.createRoot(document.getElementById("footer"));
+      footerRoot.render(<Footer />);
+
+      function waitForReactAndInitialize() {
+        const maxAttempts = 50;
+        let attempts = 0;
+
+        const interval = setInterval(() => {
+          const headerLinks = document.getElementsByClassName("link");
+          const headerMenus = document.getElementById("headerMenus");
+
+          if (headerLinks.length > 0 && headerMenus) {
+            clearInterval(interval);
+            initialize();
+          }
+
+          attempts++;
+          if (attempts > maxAttempts) {
+            clearInterval(interval);
+            console.warn(
+              "initialize() timed out waiting for React components."
+            );
+          }
+        }, 100); // check every 100ms
+      }
+
+      waitForReactAndInitialize();
+    </script>
+  </body>
+</html>

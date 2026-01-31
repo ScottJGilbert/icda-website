@@ -37,7 +37,7 @@ async function fetchData() {
         <div class="contact" id="${"tournament" + i + trimmedName}contact">
           <p class="contactName">${contact.name}</p> 
           <p class="contactEmail">(${contact.email})</p>
-          <button type="button" onclick="deleteContact(${
+          <button type="button" onclick="deleteContact('${
             "tournament" + i + trimmedName + "contact"
           }')">Delete Contact</button>
         </div>
